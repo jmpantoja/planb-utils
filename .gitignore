@@ -1,7 +1,6 @@
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
-/app/mocks/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 !app/mocks/.gitkeep
@@ -10,6 +9,7 @@
 /var/cache/*
 /var/temp/*
 /var/logs/*
+/var/mocks/*
 
 !var/cache/.gitkeep
 !var/mocks/.gitkeep

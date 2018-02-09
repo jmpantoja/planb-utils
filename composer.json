@@ -1,0 +1,26 @@
+{
+    "name": "planb/utils",
+    "description": "utilidades para proyectos php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Manuel Pantoja",
+            "email": "jmpantoja@gmail.com",
+            "homepage": "https://github.com/jmpantoja/"
+        }
+    ],
+    "require-dev": {
+		"planb/utils-dev": "dev-develop"
+	},
+    "autoload": {
+        "psr-4": {
+            "PlanB\\Utils\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "apcu-autoloader": true
+    }
+}

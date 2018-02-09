@@ -33,7 +33,7 @@ final class PathNormalizer
 
     /**
      * PathNormalizer constructor.
-     * @param string[] $pieces
+     * @param string[] ...$pieces
      */
     private function __construct(string ...$pieces)
     {
@@ -73,7 +73,7 @@ final class PathNormalizer
     /**
      * Añade segmentos a la ruta
      *
-     * @param string[] $pieces
+     * @param string[] ...$pieces
      * @return \PlanB\Utils\Path\PathNormalizer
      */
     public function append(string ...$pieces): self
@@ -168,6 +168,8 @@ final class PathNormalizer
      */
     public function build(): string
     {
-        return sprintf('%s%s', $this->prefix, implode(DIRECTORY_SEPARATOR, $this->stack));
+        $normalized = sprintf('%s%s', $this->prefix, implode(DIRECTORY_SEPARATOR, $this->stack));
+
+        return trim($normalized);
     }
 }

@@ -19,14 +19,17 @@ class PathTest extends Unit
      * @dataProvider providerJoin
      *
      * @covers ::join
+     * @covers ::normalize
      */
     public function testJoin(Data $data)
     {
         $expected = $data->expected;
         $pieces = $data->pieces;
 
-        $response = Path::join(...$pieces);
-        $this->assertEquals($expected, $response);
+        $this->assertEquals($expected, Path::join(...$pieces));
+
+        $path = implode('', $pieces);
+        $this->assertEquals($expected, Path::normalize($path));
 
     }
 
@@ -35,19 +38,19 @@ class PathTest extends Unit
         return Provider::create()
             ->add([
                 'expected' => '/',
-                'pieces'=> ['/', '///', '////', '////', '///']
+                'pieces' => ['/', '///', '////', '////', '///']
             ])
             ->add([
-                'expected' =>'/path/to/dir/or/file',
-                'pieces'=> ['/', 'path///', '////to', '////', '', '///dir//or///', 'file']
+                'expected' => '/path/to/dir/or/file',
+                'pieces' => ['/', 'path///', '////to', '////', '', '///dir//or///', 'file']
             ])
             ->add([
-                'expected' =>'/path',
-                'pieces'=> ['/', '/path/to///', '..']
+                'expected' => '/path',
+                'pieces' => ['/', '/path/to///', '..']
             ])
             ->add([
-                'expected' =>'/',
-                'pieces'=> ['/', '/path/to///', '../..']
+                'expected' => '/',
+                'pieces' => ['/', '/path/to///', '../..']
             ])
             ->end();
     }
@@ -71,8 +74,96 @@ class PathTest extends Unit
         $this->assertInstanceOf(Path::class, $path);
 
         $this->assertEquals($expected, $path->build());
-        $this->assertEquals($expected, (string) $path);
+        $this->assertEquals($expected, (string)$path);
+    }
 
+
+    /**
+     * @test
+     * @dataProvider providerEmpty
+     *
+     * @covers ::create
+     * @covers ::__construct
+     * @covers       \PlanB\Utils\Path\Exception\EmptyPathException::create
+     *
+     * @expectedException \PlanB\Utils\Path\Exception\EmptyPathException
+     * @expectedExceptionMessage No se pueden crear Paths desde cadenas vacias
+     */
+    public function testEmpty(Data $data)
+    {
+        $pieces = $data->pieces;
+
+        Path::create(...$pieces);
+    }
+
+
+    public function providerEmpty()
+    {
+        return Provider::create()
+            ->add([
+                'pieces' => ['']
+            ])
+            ->add([
+                'pieces' => [' ']
+            ])
+            ->add([
+                'pieces' => ['path/../dir', '..']
+            ])
+            ->end();
+    }
+
+
+    /**
+     * @test
+     * @dataProvider providerAbsolute
+     *
+     * @covers ::isAbsolute
+     * @covers ::isRelative
+     */
+    public function testAbsolute(Data $data)
+    {
+        $expected = $data->expected;
+        $pieces = $data->pieces;
+
+        $path = Path::create(...$pieces);
+        $this->assertInstanceOf(Path::class, $path);
+
+        $this->assertEquals($expected, $path->isAbsolute());
+        $this->assertEquals(!$expected, $path->isRelative());
+    }
+
+    public function providerAbsolute()
+    {
+        return Provider::create()
+            ->add([
+                'expected' => true,
+                'pieces' => ['/', '///', '////', '////', '///']
+            ])
+            ->add([
+                'expected' => true,
+                'pieces' => ['/', 'path///', '////to', '////', '', '///dir//or///', 'file']
+            ])
+            ->add([
+                'expected' => true,
+                'pieces' => ['/', '/path/to///', '..']
+            ])
+            ->add([
+                'expected' => true,
+                'pieces' => ['/', '/path/to///', '../..']
+            ])
+            ->add([
+                'expected' => false,
+                'pieces' => ['path///', '////to', '////', '', '///dir//or///', 'file']
+            ])
+            ->add([
+                'expected' => false,
+                'pieces' => ['path/to///', '..']
+            ])
+            ->add([
+                'expected' => false,
+                'pieces' => ['path/to///', 'dir', '../..']
+            ])
+            ->end();
     }
 
 }

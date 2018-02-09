@@ -11,6 +11,8 @@
 
 namespace PlanB\Utils\Path;
 
+use PlanB\Utils\Path\Exception\EmptyPathException;
+
 /**
  * Clase de Utilidades para la manipulacion de rutas
  *
@@ -28,19 +30,16 @@ final class Path
     private $path;
 
     /**
-     * @var string[]
-     */
-    private $segments = [];
-
-    /**
      * Path private constructor.
      *
      * @param string $path
      */
     private function __construct(string $path)
     {
+        if (empty($path)) {
+            throw EmptyPathException::create();
+        }
         $this->path = $path;
-        $this->segments = explode(DIRECTORY_SEPARATOR, $path);
     }
 
     /**
@@ -61,9 +60,40 @@ final class Path
      * @param string[] ...$parts
      * @return string
      */
-    public static function join(string ...$parts): ?string
+    public static function join(string ...$parts): string
     {
         return PathNormalizer::create(...$parts)->build();
+    }
+
+    /**
+     * Devuelve una ruta normalizada
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function normalize(string $path): string
+    {
+        return self::join($path);
+    }
+
+    /**
+     * Indica si es una ruta absoluta
+     *
+     * @return bool
+     */
+    public function isAbsolute(): bool
+    {
+        return substr($this->path, 0, 1) === DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * Indica si es una ruta relativa
+     *
+     * @return bool
+     */
+    public function isRelative(): bool
+    {
+        return !$this->isAbsolute();
     }
 
     /**
@@ -75,6 +105,7 @@ final class Path
     {
         return $this->path;
     }
+
 
     /**
      * Devuelve la ruta normalizada

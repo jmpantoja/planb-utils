@@ -12,6 +12,7 @@
 namespace PlanB\Utils\Path;
 
 use PlanB\Utils\Path\Exception\EmptyPathException;
+use PlanB\Utils\Path\Exception\OverFlowRootDirException;
 
 /**
  * Clase de Utilidades para la manipulacion de rutas
@@ -124,6 +125,31 @@ final class Path
     public function isRelative(): bool
     {
         return !$this->isAbsolute();
+    }
+
+    /**
+     * Devuelve el directorio padre del nivel indicado
+     *
+     * 0: devuelve la ruta actual
+     * 1: devuelve el directorio padre
+     * 2: devuelve el directorio "abuelo"
+     * etc.
+     *
+     * @param int $level
+     * @return \PlanB\Utils\Path\Path
+     *
+     * @throws \PlanB\Utils\Path\Exception\OverFlowRootDirException
+     */
+    public function parent(int $level = 1): self
+    {
+        $tree = PathTree::create($this->path)
+            ->getInversedPathTree();
+
+        if ($level > count($tree) - 1) {
+            throw OverFlowRootDirException::create();
+        }
+
+        return $tree[$level];
     }
 
     /**

@@ -86,7 +86,7 @@ class PathTest extends Unit
      * @covers ::create
      * @covers ::__construct
      * @covers ::setPath
-     * @covers \PlanB\Utils\Path\Exception\EmptyPathException::create
+     * @covers       \PlanB\Utils\Path\Exception\EmptyPathException::create
      *
      * @expectedException \PlanB\Utils\Path\Exception\EmptyPathException
      * @expectedExceptionMessage No se pueden crear Paths desde cadenas vacias
@@ -157,7 +157,7 @@ class PathTest extends Unit
                 'original' => ['/path/to/dir'],
                 'expected' => '/base/path/to',
                 'append' => ['..'],
-                'prepend' => ['/', 'base' ]
+                'prepend' => ['/', 'base']
             ])
             ->end();
     }
@@ -213,6 +213,73 @@ class PathTest extends Unit
                 'pieces' => ['path/to///', 'dir', '../..']
             ])
             ->end();
+    }
+
+
+    /**
+     * @test
+     * @dataProvider providerParent
+     *
+     * @covers ::parent
+     */
+    public function testParent(Data $data)
+    {
+        $expected = $data->expected;
+        $level = $data->level;
+
+        $path = Path::create('/path/to/dirname/subdirA/subdirB/filename');
+
+        $this->assertEquals($expected, $path->parent($level));
+    }
+
+    public function providerParent()
+    {
+        return Provider::create()
+            ->add([
+                'level' => 0,
+                'expected' => '/path/to/dirname/subdirA/subdirB/filename'
+            ])
+            ->add([
+                'level' => 1,
+                'expected' => '/path/to/dirname/subdirA/subdirB'
+            ])
+            ->add([
+                'level' => 2,
+                'expected' => '/path/to/dirname/subdirA'
+            ])
+            ->add([
+                'level' => 3,
+                'expected' => '/path/to/dirname'
+            ])
+            ->add([
+                'level' => 4,
+                'expected' => '/path/to'
+            ])
+            ->add([
+                'level' => 5,
+                'expected' => '/path'
+            ])
+            ->add([
+                'level' => 6,
+                'expected' => '/'
+            ])
+            ->end();
+    }
+
+    /**
+     * @test
+     *
+     * @covers ::parent
+     * @covers \PlanB\Utils\Path\Exception\OverFlowRootDirException::create
+     *
+     * @expectedException \PlanB\Utils\Path\Exception\OverFlowRootDirException
+     * @expectedExceptionMessage No se puede crear la ruta porque va más allá del directorio raiz
+     */
+    public function testParentOverflow()
+    {
+        $path = Path::create('/path/to/dirname/subdirA/subdirB/filename');
+
+        $path->parent(7);
     }
 
 }

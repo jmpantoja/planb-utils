@@ -23,6 +23,39 @@ final class Path
 {
 
     /**
+     * @var string $path
+     */
+    private $path;
+
+    /**
+     * @var string[]
+     */
+    private $segments = [];
+
+    /**
+     * Path private constructor.
+     *
+     * @param string $path
+     */
+    private function __construct(string $path)
+    {
+        $this->path = $path;
+        $this->segments = explode(DIRECTORY_SEPARATOR, $path);
+    }
+
+    /**
+     *
+     *
+     * @param string[] ...$parts
+     * @return \PlanB\Utils\Path\Path
+     */
+    public static function create(string ...$parts): self
+    {
+        $path = self::join(...$parts);
+        return new self($path);
+    }
+
+    /**
      * Devuelve una ruta normalizada a partir de varios segmentos
      *
      * @param string[] ...$parts
@@ -31,5 +64,25 @@ final class Path
     public static function join(string ...$parts): ?string
     {
         return PathNormalizer::create(...$parts)->build();
+    }
+
+    /**
+     * Devuelve la ruta normalizada
+     *
+     * @return string
+     */
+    public function build(): string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Devuelve la ruta normalizada
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->build();
     }
 }

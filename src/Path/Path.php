@@ -36,6 +36,11 @@ final class Path
      */
     private function __construct(string $path)
     {
+        $this->setPath($path);
+    }
+
+    private function setPath(string $path): void
+    {
         if (empty($path)) {
             throw EmptyPathException::create();
         }
@@ -75,6 +80,31 @@ final class Path
     {
         return self::join($path);
     }
+
+    /**
+     * Modifica la ruta, añadiendo uno o varios segmentos al final
+     *
+     * @param string[] ...$parts
+     * @return \PlanB\Utils\Path\Path
+     */
+    public function append(string ...$parts): self
+    {
+        array_unshift($parts, $this->path);
+        return self::create(...$parts);
+    }
+
+    /**
+     * Modifica la ruta, añadiendo uno o varios segmentos al principio
+     *
+     * @param string[] ...$parts
+     * @return \PlanB\Utils\Path\Path
+     */
+    public function prepend(string ...$parts): self
+    {
+        array_push($parts, $this->path);
+        return self::create(...$parts);
+    }
+
 
     /**
      * Indica si es una ruta absoluta

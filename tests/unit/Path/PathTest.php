@@ -62,6 +62,7 @@ class PathTest extends Unit
      *
      * @covers ::create
      * @covers ::__construct
+     * @covers ::setPath
      * @covers ::build
      * @covers ::__toString
      */
@@ -84,7 +85,8 @@ class PathTest extends Unit
      *
      * @covers ::create
      * @covers ::__construct
-     * @covers       \PlanB\Utils\Path\Exception\EmptyPathException::create
+     * @covers ::setPath
+     * @covers \PlanB\Utils\Path\Exception\EmptyPathException::create
      *
      * @expectedException \PlanB\Utils\Path\Exception\EmptyPathException
      * @expectedExceptionMessage No se pueden crear Paths desde cadenas vacias
@@ -112,6 +114,53 @@ class PathTest extends Unit
             ->end();
     }
 
+
+    /**
+     * @test
+     * @dataProvider providerAppendPrepend
+     *
+     * @covers ::setPath
+     * @covers ::append
+     * @covers ::prepend
+     */
+    public function testAppendPrepend(Data $data)
+    {
+        $orginal = $data->original;
+        $append = $data->append;
+        $prepend = $data->prepend;
+        $expected = $data->expected;
+
+        $path = Path::create(...$orginal)
+            ->append(...$append)
+            ->prepend(...$prepend);
+
+
+        $this->assertEquals($expected, $path->build());
+    }
+
+    public function providerAppendPrepend()
+    {
+        return Provider::create()
+            ->add([
+                'original' => ['/path/to/dir'],
+                'expected' => 'base/path/to/dir/subdir/filename',
+                'append' => ['subdir', 'filename'],
+                'prepend' => ['base']
+            ])
+            ->add([
+                'original' => ['/path/to/dir'],
+                'expected' => 'path/to/dir/subdir/filename',
+                'append' => ['subdir', 'filename'],
+                'prepend' => ['base', '..']
+            ])
+            ->add([
+                'original' => ['/path/to/dir'],
+                'expected' => '/base/path/to',
+                'append' => ['..'],
+                'prepend' => ['/', 'base' ]
+            ])
+            ->end();
+    }
 
     /**
      * @test

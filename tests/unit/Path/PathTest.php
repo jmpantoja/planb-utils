@@ -282,4 +282,30 @@ class PathTest extends Unit
         $path->parent(7);
     }
 
+    /**
+     * @test
+     *
+     * @covers ::basename
+     * @covers ::filename
+     * @covers ::extension
+     *
+     */
+    public function testInfo()
+    {
+
+        $path = Path::create('/path/to/dirname/subdirA/subdirB/filename.ext');
+
+        $this->assertEquals('filename.ext', $path->basename());
+        $this->assertEquals('filename', $path->filename());
+        $this->assertEquals('ext', $path->extension());
+
+        $path = Path::create('/path/to/dirname/subdirA/subdirB/filename');
+
+        $this->assertEquals('filename', $path->basename());
+        $this->assertEquals('filename', $path->filename());
+        $this->assertNull($path->extension());
+
+
+    }
+
 }

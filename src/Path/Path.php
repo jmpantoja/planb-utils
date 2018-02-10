@@ -152,6 +152,38 @@ final class Path
         return $tree[$level];
     }
 
+
+    /**
+     * Devuelve basename
+     *
+     * @return string
+     */
+    public function basename(): string
+    {
+        return pathinfo($this->path, PATHINFO_BASENAME);
+    }
+
+    /**
+     * Devuelve filename
+     *
+     * @return string
+     */
+    public function filename(): string
+    {
+        return pathinfo($this->path, PATHINFO_FILENAME);
+    }
+
+    /**
+     * Devuelve extension
+     *
+     * @return string
+     */
+    public function extension(): ?string
+    {
+        $exentension = pathinfo($this->path, PATHINFO_EXTENSION);
+        return !empty($exentension) ? $exentension : null;
+    }
+
     /**
      * Devuelve la ruta normalizada
      *

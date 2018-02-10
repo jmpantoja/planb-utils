@@ -305,6 +305,62 @@ class PathTest extends Unit
         $this->assertEquals('filename', $path->filename());
         $this->assertNull($path->extension());
 
+    }
+
+
+    /**
+     * @test
+     * @dataProvider providerType
+     *
+     * @covers ::exists
+     * @covers ::isFile
+     * @covers ::isDirectory
+     * @covers ::isLink
+     *
+     */
+    public function testType(Data $data)
+    {
+        $path = $data->path;
+        $exists = $data->exists;
+        $file = $data->file;
+        $directory = $data->directory;
+        $link = $data->link;
+
+
+        $path = Path::create($path);
+
+        $this->assertEquals($exists, $path->exists());
+        $this->assertEquals($file, $path->isFile());
+        $this->assertEquals($directory, $path->isDirectory());
+        $this->assertEquals($link, $path->isLink());
+
+    }
+
+    public function providerType()
+    {
+        return Provider::create()
+            ->add([
+                'path' => __FILE__,
+                'exists' => true,
+                'file' => true,
+                'directory' => false,
+                'link' => false
+            ])
+            ->add([
+                'path' => __DIR__,
+                'exists' => true,
+                'file' => false,
+                'directory' => true,
+                'link' => false
+            ])
+            ->add([
+                'path' => __DIR__ . '/fake-file.ext',
+                'exists' => false,
+                'file' => false,
+                'directory' => false,
+                'link' => false
+            ])
+            ->end();
 
     }
 

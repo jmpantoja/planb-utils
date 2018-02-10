@@ -127,6 +127,49 @@ final class Path
         return !$this->isAbsolute();
     }
 
+
+    /**
+     * Indica si la ruta existe
+     *
+     * @return bool
+     */
+    public function exists(): bool
+    {
+        return file_exists($this->path);
+    }
+
+    /**
+     * Indica si la ruta es de un fichero
+     *
+     * @return bool
+     */
+    public function isFile(): bool
+    {
+        return is_file($this->path);
+    }
+
+    /**
+     * Indica si la ruta es de un directorio
+     *
+     * @return bool
+     */
+    public function isDirectory(): bool
+    {
+
+        return is_dir($this->path);
+    }
+
+    /**
+     * Indica si la ruta es de un enlace simbolico
+     *
+     * @return bool
+     */
+    public function isLink(): bool
+    {
+        return is_link($this->path);
+    }
+
+
     /**
      * Devuelve el directorio padre del nivel indicado
      *

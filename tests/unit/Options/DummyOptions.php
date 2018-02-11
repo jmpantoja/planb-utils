@@ -15,7 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DummyOptions extends Options
 {
-    protected function initialize(OptionsResolver $resolver): void
+
+    public function configure(OptionsResolver $resolver): void
     {
         $profile = $this->getProfile();
 
@@ -24,12 +25,12 @@ class DummyOptions extends Options
                 $this->configureCustom($resolver);
                 break;
             default:
-                parent::initialize($resolver);
+                $this->configureStandard($resolver);
                 break;
         }
     }
 
-    public function configure(OptionsResolver $resolver): void
+    public function configureStandard(OptionsResolver $resolver): void
     {
         $resolver->setRequired('value');
         $resolver->setAllowedValues('value', ['A', 'B', 'C']);

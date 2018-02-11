@@ -19,23 +19,24 @@ class OptionsTest extends Unit
      *
      * @covers ::__construct
      * @covers ::getProfile
-     * @covers ::initialize
-     * @covers ::default
      * @covers ::create
+     * @covers ::configure
+     * @covers ::newInstance
      * @covers ::resolve
+     * @covers ::getResolver
      *
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @expectedExceptionMessage The option "value" with value "X" is invalid.
      * @expectedExceptionMessage Accepted values are: "A", "B", "C".
      */
-    public function testDefault()
+    public function testCreate()
     {
-        $options = DummyOptions::default();
+        $options = DummyOptions::create();
 
         $this->assertEquals('standard', $options->getProfile());
         $options->resolve([
-                'value' => 'X'
-            ]);
+            'value' => 'X'
+        ]);
     }
 
     /**
@@ -43,10 +44,11 @@ class OptionsTest extends Unit
      *
      * @covers ::__construct
      * @covers ::getProfile
-     * @covers ::initialize
-     * @covers ::custom
      * @covers ::create
+     * @covers ::configure
+     * @covers ::newInstance
      * @covers ::resolve
+     * @covers ::getResolver
      *
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
      * @expectedExceptionMessage The option "value" with value "A" is invalid.
@@ -54,7 +56,7 @@ class OptionsTest extends Unit
      */
     public function testCustom()
     {
-        $options = DummyOptions::custom('CUSTOM');
+        $options = DummyOptions::create('CUSTOM');
 
         $this->assertEquals('CUSTOM', $options->getProfile());
         $options->resolve([
@@ -62,4 +64,24 @@ class OptionsTest extends Unit
         ]);
     }
 
+    /**
+     * @test
+     * @covers ::map
+     *
+     */
+    public function testMap()
+    {
+        $options = DummyOptions::create('CUSTOM');
+
+        $values = [
+            ['value' => 'X'],
+            ['value' => 'Y'],
+            ['value' => 'Z']
+        ];
+
+        $this->assertEquals('CUSTOM', $options->getProfile());
+        $params = $options->map($values);
+
+        $this->assertEquals($values, $params);
+    }
 }

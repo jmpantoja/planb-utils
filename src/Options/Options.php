@@ -45,12 +45,8 @@ abstract class Options
     final private function __construct(string $profile)
     {
         $this->profile = $profile;
-
-        $resolver = new OptionsResolver();
-        $this->initialize($resolver);
-
-        $this->resolver = $resolver;
     }
+
 
     /**
      * Devuelve el perfil que hay que usar para la configuración
@@ -65,8 +61,33 @@ abstract class Options
         return $this->profile;
     }
 
+
     /**
-     * Incializa el objeto
+     * Crea una instancia para un perfil determinado
+     *
+     * @param string $profile
+     * @return \PlanB\Utils\Options\Options
+     */
+    public static function create(string $profile = self::DEFAULT_PROFILE): Options
+    {
+        return self::newInstance($profile);
+    }
+
+    /**
+     * Crea una instancia
+     *
+     * @param string $profile
+     * @return \PlanB\Utils\Options\Options
+     */
+    private static function newInstance(string $profile): Options
+    {
+        $className = get_called_class();
+        return new $className($profile);
+    }
+
+
+    /**
+     * Añade criterios de validación a cada perfil
      *
      * Para mantener varios perfiles hacer:
      *
@@ -83,50 +104,6 @@ abstract class Options
      *
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    protected function initialize(OptionsResolver $resolver): void
-    {
-        $this->configure($resolver);
-    }
-
-    /**
-     * Crea una instancia con el profile por defecto
-     *
-     * @return \PlanB\Utils\Options\Options
-     */
-    public static function default(): Options
-    {
-        return self::create();
-    }
-
-    /**
-     * Crea una instancia con un profile personalizado
-     *
-     * @param string $profile
-     * @return \PlanB\Utils\Options\Options
-     */
-    public static function custom(string $profile): Options
-    {
-        return self::create($profile);
-    }
-
-    /**
-     * Crea una instancia
-     *
-     * @param string $profile
-     * @return \PlanB\Utils\Options\Options
-     */
-    private static function create(string $profile = self::DEFAULT_PROFILE): Options
-    {
-        $className = get_called_class();
-        return new $className($profile);
-    }
-
-    /**
-     * Configura los criterios de validación
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     * @return mixed
-     */
     abstract public function configure(OptionsResolver $resolver): void;
 
     /**
@@ -135,8 +112,39 @@ abstract class Options
      * @param mixed[] $options
      * @return mixed[]
      */
-    public function resolve(array $options): array
+    public function resolve(array $options = []): array
     {
-        return $this->resolver->resolve($options);
+        $resolver = $this->getResolver();
+        return $resolver->resolve($options);
+    }
+
+    /**
+     * Devuelve el optionsResolver
+     * si no existe, lo crea e inicializa
+     *
+     * @return \Symfony\Component\OptionsResolver\OptionsResolver
+     */
+    private function getResolver(): OptionsResolver
+    {
+        if (empty($this->resolver)) {
+            $resolver = new OptionsResolver();
+            $this->configure($resolver);
+            $this->resolver = $resolver;
+        }
+        return $this->resolver;
+    }
+
+    /**
+     * Aplica el método resolve a cada elemento de un array
+     * Sirve para validar varios juegos de datos de una vez
+     *
+     * @param mixed[] $collection
+     * @return mixed[]
+     */
+    public function map(array $collection): array
+    {
+        return array_map(function (array $options) {
+            return $this->resolve($options);
+        }, $collection);
     }
 }

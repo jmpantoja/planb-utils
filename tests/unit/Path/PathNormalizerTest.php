@@ -2,9 +2,10 @@
 
 namespace PlanB\Utils\Path;
 
-use PlanB\Utils\Dev\Tdd\Test\Data\Data;
-use PlanB\Utils\Dev\Tdd\Test\Data\Provider;
-use PlanB\Utils\Dev\Tdd\Test\Unit;
+use Codeception\Test\Unit;
+use PlanB\Utils\Dev\Tdd\Data\Data;
+use PlanB\Utils\Dev\Tdd\Data\Provider;
+use PlanB\Utils\Dev\Tdd\Feature\Mocker;
 
 
 /**
@@ -14,6 +15,13 @@ use PlanB\Utils\Dev\Tdd\Test\Unit;
 class PathNormalizerTest extends Unit
 {
 
+    use Mocker;
+
+
+    /**
+     * @var \UnitTester $tester
+     */
+    protected $tester;
 
     /**
      * @test
@@ -38,9 +46,9 @@ class PathNormalizerTest extends Unit
 
         /** @var PathNormalizer $target */
         $target = PathNormalizer::create(...$pieces);
-        $this->assertInstanceOf(PathNormalizer::class, $target);
+        $this->tester->assertInstanceOf(PathNormalizer::class, $target);
 
-        $this->assertEquals($expected, $target->build());
+        $this->tester->assertEquals($expected, $target->build());
     }
 
 

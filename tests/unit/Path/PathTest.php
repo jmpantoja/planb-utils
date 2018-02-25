@@ -2,9 +2,10 @@
 
 namespace PlanB\Utils\Path;
 
-use PlanB\Utils\Dev\Tdd\Test\Data\Data;
-use PlanB\Utils\Dev\Tdd\Test\Data\Provider;
-use PlanB\Utils\Dev\Tdd\Test\Unit;
+use Codeception\Test\Unit;
+use PlanB\Utils\Dev\Tdd\Feature\Mocker;
+use PlanB\Utils\Dev\Tdd\Data\Data;
+use PlanB\Utils\Dev\Tdd\Data\Provider;
 
 
 /**
@@ -13,6 +14,14 @@ use PlanB\Utils\Dev\Tdd\Test\Unit;
  */
 class PathTest extends Unit
 {
+
+    use Mocker;
+
+
+    /**
+     * @var \UnitTester $tester
+     */
+    protected $tester;
 
     /**
      * @test
@@ -26,10 +35,10 @@ class PathTest extends Unit
         $expected = $data->expected;
         $pieces = $data->pieces;
 
-        $this->assertEquals($expected, Path::join(...$pieces));
+        $this->tester->assertEquals($expected, Path::join(...$pieces));
 
         $path = implode('', $pieces);
-        $this->assertEquals($expected, Path::normalize($path));
+        $this->tester->assertEquals($expected, Path::normalize($path));
 
     }
 
@@ -72,10 +81,10 @@ class PathTest extends Unit
         $pieces = $data->pieces;
 
         $path = Path::create(...$pieces);
-        $this->assertInstanceOf(Path::class, $path);
+        $this->tester->assertInstanceOf(Path::class, $path);
 
-        $this->assertEquals($expected, $path->build());
-        $this->assertEquals($expected, (string)$path);
+        $this->tester->assertEquals($expected, $path->build());
+        $this->tester->assertEquals($expected, (string)$path);
     }
 
 
@@ -135,7 +144,7 @@ class PathTest extends Unit
             ->prepend(...$prepend);
 
 
-        $this->assertEquals($expected, $path->build());
+        $this->tester->assertEquals($expected, $path->build());
     }
 
     public function providerAppendPrepend()
@@ -175,10 +184,10 @@ class PathTest extends Unit
         $pieces = $data->pieces;
 
         $path = Path::create(...$pieces);
-        $this->assertInstanceOf(Path::class, $path);
+        $this->tester->assertInstanceOf(Path::class, $path);
 
-        $this->assertEquals($expected, $path->isAbsolute());
-        $this->assertEquals(!$expected, $path->isRelative());
+        $this->tester->assertEquals($expected, $path->isAbsolute());
+        $this->tester->assertEquals(!$expected, $path->isRelative());
     }
 
     public function providerAbsolute()
@@ -229,7 +238,7 @@ class PathTest extends Unit
 
         $path = Path::create('/path/to/dirname/subdirA/subdirB/filename');
 
-        $this->assertEquals($expected, $path->parent($level));
+        $this->tester->assertEquals($expected, $path->parent($level));
     }
 
     public function providerParent()
@@ -295,15 +304,15 @@ class PathTest extends Unit
 
         $path = Path::create('/path/to/dirname/subdirA/subdirB/filename.ext');
 
-        $this->assertEquals('filename.ext', $path->basename());
-        $this->assertEquals('filename', $path->filename());
-        $this->assertEquals('ext', $path->extension());
+        $this->tester->assertEquals('filename.ext', $path->basename());
+        $this->tester->assertEquals('filename', $path->filename());
+        $this->tester->assertEquals('ext', $path->extension());
 
         $path = Path::create('/path/to/dirname/subdirA/subdirB/filename');
 
-        $this->assertEquals('filename', $path->basename());
-        $this->assertEquals('filename', $path->filename());
-        $this->assertNull($path->extension());
+        $this->tester->assertEquals('filename', $path->basename());
+        $this->tester->assertEquals('filename', $path->filename());
+        $this->tester->assertNull($path->extension());
 
     }
 
@@ -329,10 +338,10 @@ class PathTest extends Unit
 
         $path = Path::create($path);
 
-        $this->assertEquals($exists, $path->exists());
-        $this->assertEquals($file, $path->isFile());
-        $this->assertEquals($directory, $path->isDirectory());
-        $this->assertEquals($link, $path->isLink());
+        $this->tester->assertEquals($exists, $path->exists());
+        $this->tester->assertEquals($file, $path->isFile());
+        $this->tester->assertEquals($directory, $path->isDirectory());
+        $this->tester->assertEquals($link, $path->isLink());
 
     }
 

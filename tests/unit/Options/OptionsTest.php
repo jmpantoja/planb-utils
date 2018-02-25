@@ -2,8 +2,8 @@
 
 namespace PlanB\Utils\Options;
 
-use PlanB\Utils\Dev\Tdd\Test\Unit;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Codeception\Test\Unit;
+use PlanB\Utils\Dev\Tdd\Feature\Mocker;
 
 
 /**
@@ -13,6 +13,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class OptionsTest extends Unit
 {
+
+
+    use Mocker;
+
+
+    /**
+     * @var \UnitTester $tester
+     */
+    protected $tester;
 
     /**
      * @test
@@ -33,7 +42,7 @@ class OptionsTest extends Unit
     {
         $options = DummyOptions::create();
 
-        $this->assertEquals('standard', $options->getProfile());
+        $this->tester->assertEquals('standard', $options->getProfile());
         $options->resolve([
             'value' => 'X'
         ]);
@@ -58,7 +67,7 @@ class OptionsTest extends Unit
     {
         $options = DummyOptions::create('CUSTOM');
 
-        $this->assertEquals('CUSTOM', $options->getProfile());
+        $this->tester->assertEquals('CUSTOM', $options->getProfile());
         $options->resolve([
             'value' => 'A'
         ]);
@@ -79,9 +88,9 @@ class OptionsTest extends Unit
             ['value' => 'Z']
         ];
 
-        $this->assertEquals('CUSTOM', $options->getProfile());
+        $this->tester->assertEquals('CUSTOM', $options->getProfile());
         $params = $options->map($values);
 
-        $this->assertEquals($values, $params);
+        $this->tester->assertEquals($values, $params);
     }
 }

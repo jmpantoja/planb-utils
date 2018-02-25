@@ -2,9 +2,10 @@
 
 namespace PlanB\Utils\Path;
 
-use PlanB\Utils\Dev\Tdd\Test\Data\Data;
-use PlanB\Utils\Dev\Tdd\Test\Data\Provider;
-use PlanB\Utils\Dev\Tdd\Test\Unit;
+use Codeception\Test\Unit;
+use PlanB\Utils\Dev\Tdd\Data\Data;
+use PlanB\Utils\Dev\Tdd\Data\Provider;
+use PlanB\Utils\Dev\Tdd\Feature\Mocker;
 
 
 /**
@@ -13,6 +14,16 @@ use PlanB\Utils\Dev\Tdd\Test\Unit;
  */
 class PathTreeTest extends Unit
 {
+
+    use Mocker;
+
+
+    /**
+     * @var \UnitTester $tester
+     */
+    protected $tester;
+
+
     /**
      * @test
      *
@@ -28,7 +39,7 @@ class PathTreeTest extends Unit
         $path = PathTree::create('/path/to/dirname');
 
         $this->assertContainsOnly('string', $path->getTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             '/',
             '/path',
             '/path/to',
@@ -37,7 +48,7 @@ class PathTreeTest extends Unit
 
 
         $this->assertContainsOnly('string', $path->getInversedTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             '/path/to/dirname',
             '/path/to',
             '/path',
@@ -61,7 +72,7 @@ class PathTreeTest extends Unit
         $path = PathTree::create('path/to/dirname');
 
         $this->assertContainsOnly('string', $path->getTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             'path',
             'path/to',
             'path/to/dirname'
@@ -69,7 +80,7 @@ class PathTreeTest extends Unit
 
 
         $this->assertContainsOnly('string', $path->getInversedTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             'path/to/dirname',
             'path/to',
             'path',
@@ -127,7 +138,7 @@ class PathTreeTest extends Unit
         $path = PathTree::create('/path/to/dirname');
 
         $this->assertContainsOnly(Path::class, $path->getPathTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             '/',
             '/path',
             '/path/to',
@@ -136,7 +147,7 @@ class PathTreeTest extends Unit
 
 
         $this->assertContainsOnly(Path::class, $path->getInversedPathTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             '/path/to/dirname',
             '/path/to',
             '/path',
@@ -161,7 +172,7 @@ class PathTreeTest extends Unit
         $path = PathTree::create('path/to/dirname');
 
         $this->assertContainsOnly(Path::class, $path->getPathTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             'path',
             'path/to',
             'path/to/dirname'
@@ -169,7 +180,7 @@ class PathTreeTest extends Unit
 
 
         $this->assertContainsOnly(Path::class, $path->getInversedPathTree());
-        $this->assertEquals([
+        $this->tester->assertEquals([
             'path/to/dirname',
             'path/to',
             'path'

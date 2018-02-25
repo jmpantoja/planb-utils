@@ -12,6 +12,7 @@ $kernel->init([
         $base . '/vendor',
     ],
     'excludePaths' => [
+        $base . "/vendor/planb/utils-dev",
         $base . "/vendor/behat",
         $base . "/vendor/codeception",
         $base . "/vendor/mockery",

@@ -39,7 +39,8 @@ final class PathNormalizer
     {
         $this->stack = [];
 
-        $this->calculePrefix($pieces[0] ?? '');
+        $pieces = $this->configurePharPrefix($pieces);
+        $this->configureSlashPrefix($pieces);
         $this->append(...$pieces);
     }
 
@@ -55,18 +56,39 @@ final class PathNormalizer
         return new self(...$pieces);
     }
 
+
     /**
-     * Comprueba si la ruta debe ser tratada como absoluta
+     * Configura el normalizer para tratar con librerias phar
      *
-     * @param string $piece
+     * @param string[] $pieces
+     * @return string[]
+     */
+    private function configurePharPrefix(array $pieces): array
+    {
+        $first = $pieces[0] ?? '';
+        if (preg_match('#^phar://#', $first)) {
+            $this->prefix = 'phar://';
+            $pieces[0] = preg_replace('#^phar://#', '', $first);
+        }
+
+        return array_filter($pieces);
+    }
+
+    /**
+     * Configura el normalizer para tratar con rutas absolutas
+     *
+     * @param string[] $pieces
      * @return \PlanB\Utils\Path\PathNormalizer
      */
-    private function calculePrefix(string $piece): self
+    private function configureSlashPrefix(array $pieces): self
     {
+        $first = array_shift($pieces);
+
         $pattern = sprintf('#^%s#', DIRECTORY_SEPARATOR);
-        if (preg_match($pattern, $piece)) {
-            $this->prefix = DIRECTORY_SEPARATOR;
+        if (preg_match($pattern, $first)) {
+            $this->prefix .= DIRECTORY_SEPARATOR;
         }
+
         return $this;
     }
 
@@ -168,8 +190,8 @@ final class PathNormalizer
      */
     public function build(): string
     {
-        $normalized = sprintf('%s%s', $this->prefix, implode(DIRECTORY_SEPARATOR, $this->stack));
 
+        $normalized = sprintf('%s%s', $this->prefix, implode(DIRECTORY_SEPARATOR, $this->stack));
         return trim($normalized);
     }
 }

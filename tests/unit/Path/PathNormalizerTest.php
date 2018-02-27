@@ -30,7 +30,10 @@ class PathNormalizerTest extends Unit
      *
      * @covers ::__construct
      * @covers ::create
-     * @covers ::calculePrefix
+     *
+     * @covers ::configurePharPrefix
+     * @covers ::configureSlashPrefix
+     *
      * @covers ::append
      * @covers ::getPartsFromSegment
      * @covers ::isNotEmpty
@@ -56,6 +59,22 @@ class PathNormalizerTest extends Unit
     {
         return Provider::create()
             ->add([
+                'expected' => 'phar:///path/to/dir/or/file',
+                'pieces' => ['phar:///path/to', 'dir/or/file']
+            ])
+            ->add([
+                'expected' => 'phar:///path/to/dir/or/file',
+                'pieces' => ['phar://', '/path/to', 'dir/or/file']
+            ])
+            ->add([
+                'expected' => 'phar://path/to/dir/or/file',
+                'pieces' => ['phar://', 'path/to//////', 'dir/or/file']
+            ])
+            ->add([
+                'expected' => 'phar://path/to/dir/or/file',
+                'pieces' => ['phar://path/to//////', 'dir/or/file']
+            ])
+            ->add([
                 'expected' => '/',
                 'pieces'=> ['/', '///', '////', '////', '///']
             ])
@@ -80,7 +99,9 @@ class PathNormalizerTest extends Unit
      *
      * @covers ::__construct
      * @covers ::create
-     * @covers ::calculePrefix
+     * @covers ::configurePharPrefix
+     * @covers ::configureSlashPrefix
+     *
      * @covers ::append
      * @covers ::getPartsFromSegment
      * @covers ::isNotEmpty

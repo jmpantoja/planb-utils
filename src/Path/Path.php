@@ -49,7 +49,7 @@ final class Path
     }
 
     /**
-     *
+     * Crea una nueva ruta
      *
      * @param string[] ...$parts
      * @return \PlanB\Utils\Path\Path
@@ -59,6 +59,26 @@ final class Path
         $path = self::join(...$parts);
         return new self($path);
     }
+
+    /**
+     * Devuelve una listado, con las rutas que coinciden con un patrón
+     *
+     * @param string[] ...$parts
+     * @return \PlanB\Utils\Path\Path[]
+     */
+    public static function glob(string ...$parts): array
+    {
+
+        $paths = [];
+        $pattern = self::join(...$parts);
+
+        foreach (glob($pattern) as $path) {
+            $paths[] = self::create($path);
+        }
+
+        return $paths;
+    }
+
 
     /**
      * Devuelve una ruta normalizada a partir de varios segmentos

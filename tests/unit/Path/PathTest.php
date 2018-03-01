@@ -90,6 +90,71 @@ class PathTest extends Unit
 
     /**
      * @test
+     *
+     * @dataProvider providerGlob
+     *
+     * @covers ::glob
+     */
+    public function testGlob(Data $data)
+    {
+
+        $result = Path::glob(__DIR__, 'dummy/glob', $data->pattern);
+
+        $paths = array_map(function (Path $path) {
+            return $path->build();
+        }, $result);
+
+        $this->assertEquals($data->expected, $paths);
+
+    }
+
+
+    public function providerGlob()
+    {
+        return Provider::create()
+            ->add([
+                'pattern' => '*.txt',
+                'expected' => [
+                    sprintf('%s/dummy/glob/A.txt', __DIR__),
+                    sprintf('%s/dummy/glob/B.txt', __DIR__),
+                    sprintf('%s/dummy/glob/C.txt', __DIR__)
+                ]
+            ])
+            ->add([
+                'pattern' => '*.yml',
+                'expected' => [
+                    sprintf('%s/dummy/glob/A.yml', __DIR__),
+                    sprintf('%s/dummy/glob/B.yml', __DIR__),
+                    sprintf('%s/dummy/glob/C.yml', __DIR__)
+                ]
+            ])
+            ->add([
+                'pattern' => 'A.*',
+                'expected' => [
+                    sprintf('%s/dummy/glob/A.txt', __DIR__),
+                    sprintf('%s/dummy/glob/A.yml', __DIR__)
+                ]
+            ])
+            ->add([
+                'pattern' => 'B.*',
+                'expected' => [
+                    sprintf('%s/dummy/glob/B.txt', __DIR__),
+                    sprintf('%s/dummy/glob/B.yml', __DIR__)
+                ]
+            ])
+            ->add([
+                'pattern' => 'C.*',
+                'expected' => [
+                    sprintf('%s/dummy/glob/C.txt', __DIR__),
+                    sprintf('%s/dummy/glob/C.yml', __DIR__)
+                ]
+            ])
+            ->end();
+
+    }
+
+    /**
+     * @test
      * @dataProvider providerEmpty
      *
      * @covers ::create

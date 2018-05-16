@@ -1,0 +1,29 @@
+{
+  "name": "planb/collections",
+  "description": "php generic collections implementation",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jose Manuel Pantoja",
+      "email": "jmpantoja@gmail.com",
+      "homepage": "https://github.com/jmpantoja/"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PlanB\\Type\\": "src/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "apcu-autoloader": true
+  },
+  "require-dev": {
+    "ciaranmcnulty/phpspec-typehintedmethods": "^3.0",
+    "leanphp/phpspec-code-coverage": "^4.2",
+    "memio/spec-gen": "^0.8.4",
+    "phpspec/phpspec": "^4.3"
+  }
+}

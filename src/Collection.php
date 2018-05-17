@@ -19,13 +19,18 @@ namespace PlanB\Type;
 class Collection implements \Countable
 {
     /**
+     * @var mixed[]
+     */
+    private $items = [];
+
+    /**
      * Devuelve el número total de elementos
      *
      * @return int
      */
     public function count(): int
     {
-        return 0;
+        return count($this->items);
     }
 
     /**
@@ -35,6 +40,17 @@ class Collection implements \Countable
      */
     public function isEmpty(): bool
     {
-        return true;
+        return 0 === $this->count();
     }
+
+    /**
+     * Agrega un item a la colección
+     *
+     * @param mixed $item
+     */
+    public function itemAppend($item): void
+    {
+        $this->items[] = $item;
+    }
+    
 }

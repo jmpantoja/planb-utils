@@ -41,6 +41,36 @@ Indica si la colección está vacia
 ---
 
 
+### itemAppend
+``` php
+ itemAppend (mixed $item)
+
+Agrega un item a la colección
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$item |  |
+
+---
+
+
+### itemGet
+``` php
+mixed itemGet (mixed $key)
+
+
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

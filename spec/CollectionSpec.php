@@ -23,4 +23,24 @@ class CollectionSpec extends ObjectBehavior
         $this->count()->shouldReturn(0);
         $this->isEmpty()->shouldReturn(true);
     }
+
+    function it_can_append_one_item()
+    {
+        $this->itemAppend('value');
+
+        $this->count()->shouldReturn(1);
+        $this->isEmpty()->shouldReturn(false);
+    }
+
+
+    function it_can_append_two_item()
+    {
+        $this->itemAppend('value 1');
+        $this->itemAppend('value 2');
+
+        $this->count()->shouldReturn(2);
+        $this->isEmpty()->shouldReturn(false);
+    }
+
+
 }

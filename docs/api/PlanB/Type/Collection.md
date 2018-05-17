@@ -71,6 +71,21 @@ Devuelve un elemento
 ---
 
 
+### itemExists
+``` php
+bool itemExists (mixed $key)
+
+Indica si un elemento existe
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

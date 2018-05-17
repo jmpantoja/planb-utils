@@ -64,4 +64,16 @@ class Collection implements \Countable
     {
         return $this->items[$key];
     }
+
+    /**
+     * Indica si un elemento existe
+     *
+     * @param mixed $key
+     *
+     * @return bool
+     */
+    public function itemExists($key): bool
+    {
+        return isset($this->items[$key]);
+    }
 }

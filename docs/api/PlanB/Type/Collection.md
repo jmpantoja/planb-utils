@@ -1,10 +1,33 @@
 
                                                                                                                                             
     
-# Namespaces
+# Collection
 
-* [PlanB](PlanB.md)
-* [PlanB\Type](PlanB/Type.md)
+
+> Generic Collection
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### count
+``` php
+ count ()
+
+Devuelve el número total de elementos
+
+```
+
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

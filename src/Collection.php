@@ -52,5 +52,16 @@ class Collection implements \Countable
     {
         $this->items[] = $item;
     }
-    
+
+    /**
+     * Devuelve un elemento
+     *
+     * @param mixed $key
+     *
+     * @return mixed
+     */
+    public function itemGet($key)
+    {
+        return $this->items[$key];
+    }
 }

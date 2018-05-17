@@ -42,5 +42,11 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(false);
     }
 
+    function it_can_retrive_an_item_by_index(){
+        $this->itemAppend('value 1');
+        $this->itemAppend('value 2');
 
+        $this->itemGet(0)->shouldReturn('value 1');
+        $this->itemGet(1)->shouldReturn('value 2');
+    }
 }

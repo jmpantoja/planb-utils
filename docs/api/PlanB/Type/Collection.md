@@ -60,7 +60,7 @@ Agrega un item a la colección
 ``` php
 mixed itemGet (mixed $key)
 
-
+Devuelve un elemento
 
 ```
 

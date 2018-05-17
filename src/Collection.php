@@ -93,17 +93,22 @@ class Collection implements \Countable
     /**
      * Devuelve un elemento
      *
-     * @param mixed $key
+     * @param mixed      $key
+     *
+     * @param mixed|null $default
      *
      * @return mixed
      */
-    public function itemGet($key)
+    public function itemGet($key, $default = null)
     {
-        if (!$this->itemExists($key)) {
+        $notExists = !$this->itemExists($key);
+        $notPassDefault = (1 === func_num_args());
+
+        if ($notExists && $notPassDefault) {
             throw ItemNotFoundException::forKey((string) $key);
         }
 
-        return $this->items[$key];
+        return $this->items[$key] ?? $default;
     }
 
     /**

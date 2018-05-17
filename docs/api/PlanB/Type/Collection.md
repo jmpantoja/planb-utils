@@ -104,7 +104,7 @@ Agrega un conjunto de parejas clave/valor
 
 ### itemGet
 ``` php
-mixed itemGet (mixed $key)
+mixed itemGet (mixed $key, mixed|null $default = null)
 
 Devuelve un elemento
 
@@ -113,6 +113,7 @@ Devuelve un elemento
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+|mixed|null |$default |  |
 
 ---
 

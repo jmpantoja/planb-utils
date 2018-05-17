@@ -66,6 +66,18 @@ class CollectionSpec extends ObjectBehavior
     }
 
 
+    function it_can_append_some_items_at_time()
+    {
+        $this->itemAppendAll([
+            'A' => 'value 1',
+            'B' => 'value 2'
+        ]);
+
+        $this->itemGet(0)->shouldReturn('value 1');
+        $this->itemGet(1)->shouldReturn('value 2');
+    }
+
+
     function it_throws_an_exception_accesing_a_missing_item()
     {
         $this->itemAppend('value');
@@ -91,15 +103,6 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(false);
     }
 
-    function it_can_retrive_an_item_by_key()
-    {
-        $this->itemSet('A', 'value 1');
-        $this->itemSet('B', 'value 2');
-
-        $this->itemGet('A')->shouldReturn('value 1');
-        $this->itemGet('B')->shouldReturn('value 2');
-    }
-
     function it_can_set_some_items_at_time()
     {
         $this->itemSetAll([
@@ -110,4 +113,15 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet('A')->shouldReturn('value 1');
         $this->itemGet('B')->shouldReturn('value 2');
     }
+
+    function it_can_retrive_an_item_by_key()
+    {
+        $this->itemSet('A', 'value 1');
+        $this->itemSet('B', 'value 2');
+
+        $this->itemGet('A')->shouldReturn('value 1');
+        $this->itemGet('B')->shouldReturn('value 2');
+    }
+
+
 }

@@ -56,6 +56,21 @@ Agrega un item a la colección
 ---
 
 
+### itemAppendAll
+``` php
+ itemAppendAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
+
+Agrega un conjunto de elementos
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\iterable](../../PlanB/Type/iterable.md) |$items |  |
+
+---
+
+
 ### itemSet
 ``` php
  itemSet (mixed $key, mixed $value)
@@ -68,6 +83,21 @@ Agrega una pareja clave/valor a la colección
 | --- | --- | --- |
 |mixed |$key |  |
 |mixed |$value |  |
+
+---
+
+
+### itemSetAll
+``` php
+ itemSetAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
+
+Agrega un conjunto de parejas clave/valor
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\iterable](../../PlanB/Type/iterable.md) |$items |  |
 
 ---
 
@@ -98,21 +128,6 @@ Indica si un elemento existe
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
-
----
-
-
-### itemSetAll
-``` php
- itemSetAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
-
-Agrega un conjunto de elementos
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\iterable](../../PlanB/Type/iterable.md) |$items |  |
 
 ---
 

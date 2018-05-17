@@ -55,6 +55,18 @@ class Collection implements \Countable
 
 
     /**
+     * Agrega un conjunto de elementos
+     *
+     * @param mixed[]|iterable $items
+     */
+    public function itemAppendAll(iterable $items): void
+    {
+        foreach ($items as $value) {
+            $this->itemAppend($value);
+        }
+    }
+
+    /**
      * Agrega una pareja clave/valor a la colección
      *
      * @param mixed $key
@@ -64,6 +76,19 @@ class Collection implements \Countable
     {
         $this->items[$key] = $value;
     }
+
+    /**
+     * Agrega un conjunto de parejas clave/valor
+     *
+     * @param mixed[]|iterable $items
+     */
+    public function itemSetAll(iterable $items): void
+    {
+        foreach ($items as $key => $value) {
+            $this->itemSet($key, $value);
+        }
+    }
+
 
     /**
      * Devuelve un elemento
@@ -91,17 +116,5 @@ class Collection implements \Countable
     public function itemExists($key): bool
     {
         return isset($this->items[$key]);
-    }
-
-    /**
-     * Agrega un conjunto de elementos
-     *
-     * @param iterable $items
-     */
-    public function itemSetAll(iterable $items): void
-    {
-        foreach ($items as $key => $value) {
-            $this->itemSet($key, $value);
-        }
     }
 }

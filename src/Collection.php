@@ -20,9 +20,21 @@ class Collection implements \Countable
 {
     /**
      * Devuelve el número total de elementos
+     *
+     * @return int
      */
-    public function count(): void
+    public function count(): int
     {
-        // TODO: Implement count() method.
+        return 0;
+    }
+
+    /**
+     * Indica si la colección está vacia
+     *
+     * @return bool
+     */
+    public function isEmpty(): bool
+    {
+        return true;
     }
 }

@@ -17,4 +17,10 @@ class CollectionSpec extends ObjectBehavior
     {
         $this->shouldHaveType(\Countable::class);
     }
+
+    function it_count_zero_when_intialize()
+    {
+        $this->count()->shouldReturn(0);
+        $this->isEmpty()->shouldReturn(true);
+    }
 }

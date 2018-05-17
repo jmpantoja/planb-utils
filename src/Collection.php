@@ -92,4 +92,16 @@ class Collection implements \Countable
     {
         return isset($this->items[$key]);
     }
+
+    /**
+     * Agrega un conjunto de elementos
+     *
+     * @param iterable $items
+     */
+    public function itemSetAll(iterable $items): void
+    {
+        foreach ($items as $key => $value) {
+            $this->itemSet($key, $value);
+        }
+    }
 }

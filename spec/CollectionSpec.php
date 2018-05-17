@@ -99,4 +99,15 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet('A')->shouldReturn('value 1');
         $this->itemGet('B')->shouldReturn('value 2');
     }
+
+    function it_can_set_some_items_at_time()
+    {
+        $this->itemSetAll([
+            'A' => 'value 1',
+            'B' => 'value 2'
+        ]);
+
+        $this->itemGet('A')->shouldReturn('value 1');
+        $this->itemGet('B')->shouldReturn('value 2');
+    }
 }

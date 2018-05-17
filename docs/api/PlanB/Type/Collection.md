@@ -102,6 +102,21 @@ Indica si un elemento existe
 ---
 
 
+### itemSetAll
+``` php
+ itemSetAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
+
+Agrega un conjunto de elementos
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\iterable](../../PlanB/Type/iterable.md) |$items |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

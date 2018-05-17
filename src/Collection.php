@@ -117,4 +117,14 @@ class Collection implements \Countable
     {
         return isset($this->items[$key]);
     }
+
+    /**
+     * Elimina un elemento
+     *
+     * @param mixed $key
+     */
+    public function itemUnset($key): void
+    {
+        unset($this->items[$key]);
+    }
 }

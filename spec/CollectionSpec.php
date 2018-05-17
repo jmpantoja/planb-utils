@@ -123,5 +123,25 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet('B')->shouldReturn('value 2');
     }
 
+    function it_can_unset_an_element_by_key()
+    {
+        $this->count()->shouldReturn(0);
+        $this->itemSet('A', 'value 1');
+        $this->count()->shouldReturn(1);
+
+        $this->itemUnset('A');
+        $this->count()->shouldReturn(0);
+    }
+
+
+    function it_can_unset_an_element_by_index()
+    {
+        $this->count()->shouldReturn(0);
+        $this->itemAppend('value');
+        $this->count()->shouldReturn(1);
+
+        $this->itemUnset(0);
+        $this->count()->shouldReturn(0);
+    }
 
 }

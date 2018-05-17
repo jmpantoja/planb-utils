@@ -132,6 +132,21 @@ Indica si un elemento existe
 ---
 
 
+### itemUnset
+``` php
+ itemUnset (mixed $key)
+
+Elimina un elemento
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

@@ -53,6 +53,18 @@ class Collection implements \Countable
         $this->items[] = $item;
     }
 
+
+    /**
+     * Agrega una pareja clave/valor a la colección
+     *
+     * @param mixed $key
+     * @param mixed $value
+     */
+    public function itemSet($key, $value): void
+    {
+        $this->items[$key] = $value;
+    }
+
     /**
      * Devuelve un elemento
      *

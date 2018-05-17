@@ -74,4 +74,29 @@ class CollectionSpec extends ObjectBehavior
         $this->shouldThrow(ItemNotFoundException::class)->duringItemGet('missing-key');
     }
 
+    function it_can_set_one_item()
+    {
+        $this->itemSet('key', 'value');
+
+        $this->count()->shouldReturn(1);
+        $this->isEmpty()->shouldReturn(false);
+    }
+
+    function it_can_set_two_item()
+    {
+        $this->itemSet('key A', 'value A');
+        $this->itemSet('key B', 'value B');
+
+        $this->count()->shouldReturn(2);
+        $this->isEmpty()->shouldReturn(false);
+    }
+
+    function it_can_retrive_an_item_by_key()
+    {
+        $this->itemSet('A', 'value 1');
+        $this->itemSet('B', 'value 2');
+
+        $this->itemGet('A')->shouldReturn('value 1');
+        $this->itemGet('B')->shouldReturn('value 2');
+    }
 }

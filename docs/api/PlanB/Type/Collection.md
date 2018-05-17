@@ -56,6 +56,22 @@ Agrega un item a la colección
 ---
 
 
+### itemSet
+``` php
+ itemSet (mixed $key, mixed $value)
+
+Agrega una pareja clave/valor a la colección
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed |$value |  |
+
+---
+
+
 ### itemGet
 ``` php
 mixed itemGet (mixed $key)

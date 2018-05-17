@@ -4,6 +4,7 @@ namespace spec\PlanB\Type;
 
 use PlanB\Type\Collection;
 use PhpSpec\ObjectBehavior;
+use PlanB\Type\ItemNotFoundException;
 use Prophecy\Argument;
 
 class CollectionSpec extends ObjectBehavior
@@ -42,6 +43,19 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(false);
     }
 
+    function it_indicate_if_an_item_exists()
+    {
+        $this->itemAppend('value');
+
+        $this->itemExists(0)->shouldReturn(true);
+    }
+
+    function it_indicate_if_an_item_dont_exists()
+    {
+        $this->itemAppend('value');
+        $this->itemExists('missing-key')->shouldReturn(false);
+    }
+
     function it_can_retrive_an_item_by_index()
     {
         $this->itemAppend('value 1');
@@ -51,19 +65,13 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet(1)->shouldReturn('value 2');
     }
 
-    function it_indicate_if_an_item_exists()
+
+    function it_throws_an_exception_accesing_a_missing_item()
     {
         $this->itemAppend('value');
 
-        $this->itemExists(0)->shouldReturn(true);
+        $this->shouldThrow(\OutOfRangeException::class)->duringItemGet('missing-key');
+        $this->shouldThrow(ItemNotFoundException::class)->duringItemGet('missing-key');
     }
-
-
-    function it_indicate_if_an_item_dont_exists()
-    {
-        $this->itemAppend('value');
-        $this->itemExists('missing-key')->shouldReturn(false);
-    }
-
 
 }

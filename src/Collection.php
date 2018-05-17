@@ -62,6 +62,10 @@ class Collection implements \Countable
      */
     public function itemGet($key)
     {
+        if (!$this->itemExists($key)) {
+            throw ItemNotFoundException::forKey((string) $key);
+        }
+
         return $this->items[$key];
     }
 

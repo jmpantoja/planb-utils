@@ -17,6 +17,36 @@
 
 ## Methods
 
+### __construct
+``` php
+protected __construct (string $type)
+
+Collection constructor.
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
+### ofType
+``` php
+static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) ofType (string $type)
+
+Crea una colleción de elementos para el tipo dado
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
 ### count
 ``` php
 int count ()
@@ -144,6 +174,18 @@ Elimina un elemento
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+
+---
+
+
+### getType
+``` php
+string getType ()
+
+Devuelve el tipo de la colleción
+
+```
+
 
 ---
 

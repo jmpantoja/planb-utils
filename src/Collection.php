@@ -75,16 +75,35 @@ class Collection implements \Countable
     }
 
     /**
-     * Agrega un item a la colección
+     * Agrega un elemento a la colección
      *
      * @param mixed $value
      */
     public function itemAppend($value): void
     {
 
-        $this->items[] = $value;
+        $pair = KeyValue::fromValue($value);
+        $this->appendKeyValue($pair);
     }
 
+    /**
+     * Agrega una pareja clave/valor a la colección
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     */
+    private function appendKeyValue(KeyValue $pair): void
+    {
+        $value = $pair->getValue();
+        $key = $pair->getKey();
+
+        if ($pair->hasKey()) {
+            $this->items[$key] = $value;
+            return;
+        }
+
+        $this->items[] = $value;
+
+    }
 
     /**
      * Agrega un conjunto de elementos
@@ -106,7 +125,9 @@ class Collection implements \Countable
      */
     public function itemSet($key, $value): void
     {
-        $this->items[$key] = $value;
+        $pair = KeyValue::fromPair($key, $value);
+        $this->appendKeyValue($pair);
+
     }
 
     /**
@@ -125,7 +146,7 @@ class Collection implements \Countable
     /**
      * Devuelve un elemento
      *
-     * @param mixed      $key
+     * @param mixed $key
      *
      * @param mixed|null $default
      *
@@ -137,7 +158,7 @@ class Collection implements \Countable
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string) $key);
+            throw ItemNotFoundException::forKey((string)$key);
         }
 
         return $this->items[$key] ?? $default;

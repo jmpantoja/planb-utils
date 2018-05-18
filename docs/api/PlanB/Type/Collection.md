@@ -75,7 +75,7 @@ Indica si la colección está vacia
 ``` php
  itemAppend (mixed $value)
 
-Agrega un item a la colección
+Agrega un elemento a la colección
 
 ```
 

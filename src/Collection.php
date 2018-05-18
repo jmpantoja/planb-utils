@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type;
 
+
 /**
  * Generic Collection
  *
@@ -18,11 +19,27 @@ namespace PlanB\Type;
  */
 class Collection implements \Countable
 {
+
+    /**
+     * @var string
+     */
+    private $type;
+
     /**
      * @var mixed[]
      */
     private $items = [];
 
+
+    /**
+     * Collection constructor.
+     * @param string $type
+     */
+    public function __construct(string $type)
+    {
+        $this->type = $type;
+    }
+    
     /**
      * Devuelve el número total de elementos
      *
@@ -93,7 +110,7 @@ class Collection implements \Countable
     /**
      * Devuelve un elemento
      *
-     * @param mixed      $key
+     * @param mixed $key
      *
      * @param mixed|null $default
      *
@@ -105,7 +122,7 @@ class Collection implements \Countable
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string) $key);
+            throw ItemNotFoundException::forKey((string)$key);
         }
 
         return $this->items[$key] ?? $default;
@@ -131,5 +148,15 @@ class Collection implements \Countable
     public function itemUnset($key): void
     {
         unset($this->items[$key]);
+    }
+
+    /**
+     * Devuelve el tipo de la colleción
+     *
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
     }
 }

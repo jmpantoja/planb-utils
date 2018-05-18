@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\Type;
 
+use PlanB\Type\Exception\ItemNotFoundException;
+
 /**
  * Generic Collection
  *
@@ -75,11 +77,11 @@ class Collection implements \Countable
     /**
      * Agrega un item a la colección
      *
-     * @param mixed $item
+     * @param mixed $value
      */
-    public function itemAppend($item): void
+    public function itemAppend($value): void
     {
-        $this->items[] = $item;
+        $this->items[] = $value;
     }
 
 

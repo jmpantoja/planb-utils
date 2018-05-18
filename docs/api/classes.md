@@ -4,7 +4,7 @@
 # Classes
 
 * [PlanB\Type\Collection](PlanB/Type/Collection.md)
-* [PlanB\Type\ItemNotFoundException](PlanB/Type/ItemNotFoundException.md)
+* [PlanB\Type\Exception\ItemNotFoundException](PlanB/Type/Exception/ItemNotFoundException.md)
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

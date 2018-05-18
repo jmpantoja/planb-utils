@@ -1,11 +1,19 @@
 
                                                                                                                                             
     
-# Namespaces
+# PlanB\Type\Exception
 
-* [PlanB](PlanB.md)
-* [PlanB\Type](PlanB/Type.md)
-* [PlanB\Type\Exception](PlanB/Type/Exception.md)
+
+
+## Classes
+| | |
+| --- | --- |
+| [PlanB\Type\Exception\ItemNotFoundException](../../PlanB/Type/Exception/ItemNotFoundException.md) | Se lanza cuando se trata de acceder a un elemento que no existe |
+
+
+
+
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

@@ -1,11 +1,37 @@
 
                                                                                                                                             
     
-# Namespaces
+# ItemNotFoundException
 
-* [PlanB](PlanB.md)
-* [PlanB\Type](PlanB/Type.md)
-* [PlanB\Type\Exception](PlanB/Type/Exception.md)
+
+> Se lanza cuando se trata de acceder a un elemento que no existe
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### forKey
+``` php
+static[PlanB\Type\ItemNotFoundException](../../../PlanB/Type/ItemNotFoundException.md) forKey (string $key, [Throwable](../../../Throwable.md) $previous = null)
+
+
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$key |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

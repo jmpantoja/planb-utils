@@ -4,7 +4,7 @@ namespace spec\PlanB\Type;
 
 use PlanB\Type\Collection;
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\ItemNotFoundException;
+use PlanB\Type\Exception\ItemNotFoundException;
 use Prophecy\Argument;
 
 class CollectionSpec extends ObjectBehavior

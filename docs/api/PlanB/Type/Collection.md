@@ -73,7 +73,7 @@ Indica si la colección está vacia
 
 ### itemAppend
 ``` php
- itemAppend (mixed $item)
+ itemAppend (mixed $value)
 
 Agrega un item a la colección
 
@@ -81,7 +81,7 @@ Agrega un item a la colección
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$item |  |
+|mixed |$value |  |
 
 ---
 

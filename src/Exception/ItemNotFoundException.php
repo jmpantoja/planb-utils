@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type;
+namespace PlanB\Type\Exception;
 
 /**
  * Se lanza cuando se trata de acceder a un elemento que no existe

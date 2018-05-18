@@ -81,6 +81,7 @@ class Collection implements \Countable
      */
     public function itemAppend($value): void
     {
+
         $this->items[] = $value;
     }
 

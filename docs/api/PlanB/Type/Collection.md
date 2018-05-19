@@ -86,6 +86,21 @@ Agrega un elemento a la colección
 ---
 
 
+### configure
+``` php
+protected configure ([PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) $resolver)
+
+
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) |$resolver |  |
+
+---
+
+
 ### itemAppendAll
 ``` php
  itemAppendAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)

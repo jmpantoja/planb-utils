@@ -22,7 +22,7 @@ class InvalidValueTypeException extends \DomainException
     /**
      * Crea una nueva instancia
      *
-     * @param $value
+     * @param mixed           $value
      * @param string          $expected
      * @param null|\Throwable $previous
      *

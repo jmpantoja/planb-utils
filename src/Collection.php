@@ -27,6 +27,11 @@ class Collection implements \Countable
     private $type;
 
     /**
+     * @var \PlanB\Type\ItemResolver
+     */
+    private $itemResolver;
+
+    /**
      * @var mixed[]
      */
     private $items = [];
@@ -81,7 +86,6 @@ class Collection implements \Countable
      */
     public function itemAppend($value): void
     {
-
         $pair = KeyValue::fromValue($value);
         $this->appendKeyValue($pair);
     }
@@ -89,10 +93,14 @@ class Collection implements \Countable
     /**
      * Agrega una pareja clave/valor a la colección
      *
-     * @param \PlanB\Type\KeyValue $pair
+     * @param \PlanB\Type\KeyValue $candidate
      */
-    private function appendKeyValue(KeyValue $pair): void
+    private function appendKeyValue(KeyValue $candidate): void
     {
+
+        $pair = $this->getResolver()
+            ->resolve($candidate);
+
         $value = $pair->getValue();
         $key = $pair->getKey();
 
@@ -103,6 +111,54 @@ class Collection implements \Countable
         }
 
         $this->items[] = $value;
+    }
+
+    /**
+     * Devuelve el objeto ItemResolver
+     *
+     * Este resolver se construye bajo demanda, para poder ignorarlo en la serialización
+     * y que se "autoconstruya" desde el nuevo objeto en la unserialización
+     *
+     * Si, como parece lógico de primeras, se instanciara en el constructor de la clase, no se puede recuperar desde unserialize
+     * y o bien perderiamos esa información, o bien tenemos que serializar datos + resolver
+     *
+     * @return \PlanB\Type\ItemResolver
+     */
+    private function getResolver(): ItemResolver
+    {
+        if (is_null($this->itemResolver)) {
+            $resolver = ItemResolver::ofType($this->type);
+            
+            $this->configure($resolver);
+
+            $this->itemResolver = $resolver;
+        }
+
+        return $this->itemResolver;
+    }
+
+    /**
+     * Personaliza el resolver de esta colección,
+     *
+     * @param \PlanB\Type\ItemResolver $resolver
+     *
+     * @@SuppressWarnings(PMD.UnusedFormalParameter)
+     */
+    protected function configure(ItemResolver $resolver): void
+    {
+
+//        @todo crear las interfaces, Validable, Normalizable, y NormalizableKey
+//        if ($this instanceof Validable) {
+//            $this->itemResolver->setValidator([$this, 'validate']);
+//        }
+//
+//        if ($this instanceof Normalizable) {
+//            $this->itemResolver->setValidator([$this, 'normalize']);
+//        }
+//
+//        if ($this instanceof NormalizableKey) {
+//            $this->itemResolver->setValidator([$this, 'normalizeKey']);
+//        }
     }
 
     /**

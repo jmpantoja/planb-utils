@@ -11,7 +11,7 @@ class CollectionSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedOfType(__CLASS__);
+        $this->beConstructedOfType('string');
     }
 
     public function it_is_initializable()
@@ -158,7 +158,7 @@ class CollectionSpec extends ObjectBehavior
 
     public function it_can_instantiate_with_a_type()
     {
-        $this->getType()->shouldReturn(__CLASS__);
+        $this->getType()->shouldReturn('string');
     }
 
 

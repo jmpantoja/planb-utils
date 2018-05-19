@@ -58,8 +58,15 @@ class ItemResolver
     public function resolve(KeyValue $pair): KeyValue
     {
         $this->valueTypeInsurance($pair);
+
+        return $pair;
     }
 
+    /**
+     * Nos aseguramos que el valor sea del tipo requerido por la colección
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     */
     private function valueTypeInsurance(KeyValue $pair): void
     {
         $value = $pair->getValue();

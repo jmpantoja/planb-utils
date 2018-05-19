@@ -19,7 +19,7 @@
 
 ### forValue
 ``` php
-static[PlanB\Type\Exception\InvalidValueTypeException](../../../PlanB/Type/Exception/InvalidValueTypeException.md) forValue ($value, string $expected, [Throwable](../../../Throwable.md) $previous = null)
+static[PlanB\Type\Exception\InvalidValueTypeException](../../../PlanB/Type/Exception/InvalidValueTypeException.md) forValue (mixed $value, string $expected, [Throwable](../../../Throwable.md) $previous = null)
 
 Crea una nueva instancia
 
@@ -27,7 +27,7 @@ Crea una nueva instancia
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$value |  |
+|mixed |$value |  |
 |string |$expected |  |
 |[Throwable](../../../Throwable.md) |$previous |  |
 

@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# ItemResolver
+# InvalidValueTypeException
 
 
-> Procesa una pareja clave/valor antes de ser añadida a la colección
+> Se lanza cuando se trata agregar un item de un tipo incorrecto
 >
 > 
 
@@ -17,59 +17,19 @@
 
 ## Methods
 
-### __construct
+### forValue
 ``` php
-protected __construct (string $type)
+static[PlanB\Type\Exception\InvalidValueTypeException](../../../PlanB/Type/Exception/InvalidValueTypeException.md) forValue ($value, string $expected, [Throwable](../../../Throwable.md) $previous = null)
 
-ItemResolver constructor.
+Crea una nueva instancia
 
 ```
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### ofType
-``` php
-static[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) ofType (string $type)
-
-Crea una nueva instancia, para un tipo
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### resolve
-``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
-
-Resuelve una pareja clave/valor
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) |$pair |  |
-
----
-
-
-### getType
-``` php
-string getType ()
-
-Devuelve el tipo base de la colección
-
-```
-
+| |$value |  |
+|string |$expected |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 

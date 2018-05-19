@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# ItemResolver
+# AbstractTypeValidator
 
 
-> Procesa una pareja clave/valor antes de ser añadida a la colección
+> Validator Abstracto
 >
 > 
 
@@ -13,6 +13,8 @@
 
 
 
+## Properties
+- type
 
 
 ## Methods
@@ -21,43 +23,13 @@
 ``` php
 protected __construct (string $type)
 
-ItemResolver constructor.
+AbstractTypeValidator constructor.
 
 ```
 
 |Parameters: | | |
 | --- | --- | --- |
 |string |$type |  |
-
----
-
-
-### ofType
-``` php
-static[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) ofType (string $type)
-
-Crea una nueva instancia, para un tipo
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### resolve
-``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
-
-Resuelve una pareja clave/valor
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) |$pair |  |
 
 ---
 
@@ -66,10 +38,40 @@ Resuelve una pareja clave/valor
 ``` php
 string getType ()
 
-Devuelve el tipo base de la colección
+Devuelve el tipo contra el que se valida
 
 ```
 
+
+---
+
+
+### forType
+``` php
+static[PlanB\Type\Validator\AbstractTypeValidator](../../../PlanB/Type/Validator/AbstractTypeValidator.md) forType (string $type)
+
+Crea una instancia con un tipo asignado
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
+### isValidType
+``` php
+abstractstaticbool isValidType (string $type)
+
+Indica este validator se resposabiliza de validar el tipo pasado como argumento
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

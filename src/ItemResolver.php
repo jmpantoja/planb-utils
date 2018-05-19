@@ -11,7 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\Type;
 
-use PlanB\Type\Exception\InvalidTypeException;
+use PlanB\Type\Exception\InvalidValueTypeException;
+use PlanB\Type\Validator\ValidatorFactory;
 
 /**
  * Procesa una pareja clave/valor antes de ser añadida a la colección
@@ -21,39 +22,19 @@ use PlanB\Type\Exception\InvalidTypeException;
 class ItemResolver
 {
     /**
+     * @var \PlanB\Type\Validator\Validator
+     */
+    private $typeValidator;
+
+    /**
      * ItemResolver constructor.
      *
      * @param string $type
      */
     protected function __construct(string $type)
     {
-        $this->validTypeInsurance($type);
-
-        $this->type = $type;
+        $this->typeValidator = ValidatorFactory::factory($type);
     }
-
-    /**
-     * Asegura que el tipo dado sea:
-     * 1. un nombre de clase
-     * 2. un nombre de interfaz
-     * 3. un nombre de un tipo nativo
-     *
-     * @param string $type
-     */
-    private function validTypeInsurance(string $type): void
-    {
-        $isClassName = class_exists($type);
-        $isInterfaceName = interface_exists($type);
-
-        $isNative = function_exists(sprintf('is_%s', $type));
-
-        $isValid = $isClassName || $isInterfaceName || $isNative;
-
-        if (!$isValid) {
-            throw InvalidTypeException::forType($type);
-        }
-    }
-
 
     /**
      * Crea una nueva instancia, para un tipo
@@ -65,5 +46,37 @@ class ItemResolver
     public static function ofType(string $type): self
     {
         return new static($type);
+    }
+
+    /**
+     * Resuelve una pareja clave/valor
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     *
+     * @return \PlanB\Type\KeyValue
+     */
+    public function resolve(KeyValue $pair): KeyValue
+    {
+        $this->valueTypeInsurance($pair);
+    }
+
+    private function valueTypeInsurance(KeyValue $pair): void
+    {
+        $value = $pair->getValue();
+
+        if (!$this->typeValidator->validate($value)) {
+            $type = $this->getType();
+            throw InvalidValueTypeException::forValue($value, $type);
+        }
+    }
+
+    /**
+     * Devuelve el tipo base de la colección
+     *
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->typeValidator->getType();
     }
 }

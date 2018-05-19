@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# ItemResolver
+# ValidatorFactory
 
 
-> Procesa una pareja clave/valor antes de ser añadida a la colección
+> Method Factory para crear el validator que corresponde a un tipo determinado
 >
 > 
 
@@ -17,59 +17,17 @@
 
 ## Methods
 
-### __construct
+### factory
 ``` php
-protected __construct (string $type)
+static[PlanB\Type\Validator\Validator](../../../PlanB/Type/Validator/Validator.md) factory (string $type)
 
-ItemResolver constructor.
+Crea validators
 
 ```
 
 |Parameters: | | |
 | --- | --- | --- |
 |string |$type |  |
-
----
-
-
-### ofType
-``` php
-static[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) ofType (string $type)
-
-Crea una nueva instancia, para un tipo
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### resolve
-``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
-
-Resuelve una pareja clave/valor
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) |$pair |  |
-
----
-
-
-### getType
-``` php
-string getType ()
-
-Devuelve el tipo base de la colección
-
-```
-
 
 ---
 

@@ -1,9 +1,19 @@
 
                                                                                                                                             
     
-# Interfaces
+# PlanB\Type\Validator
 
-* [PlanB\Type\Validator\Validator](PlanB/Type/Validator/Validator.md)
+
+
+## Classes
+| | |
+| --- | --- |
+| [PlanB\Type\Validator\InstanceOfValidator](../../PlanB/Type/Validator/InstanceOfValidator.md) |  |
+
+
+
+
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

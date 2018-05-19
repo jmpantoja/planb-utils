@@ -98,11 +98,11 @@ class Collection implements \Countable
 
         if ($pair->hasKey()) {
             $this->items[$key] = $value;
+
             return;
         }
 
         $this->items[] = $value;
-
     }
 
     /**
@@ -127,7 +127,6 @@ class Collection implements \Countable
     {
         $pair = KeyValue::fromPair($key, $value);
         $this->appendKeyValue($pair);
-
     }
 
     /**
@@ -146,7 +145,7 @@ class Collection implements \Countable
     /**
      * Devuelve un elemento
      *
-     * @param mixed $key
+     * @param mixed      $key
      *
      * @param mixed|null $default
      *
@@ -158,7 +157,7 @@ class Collection implements \Countable
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string)$key);
+            throw ItemNotFoundException::forKey((string) $key);
         }
 
         return $this->items[$key] ?? $default;

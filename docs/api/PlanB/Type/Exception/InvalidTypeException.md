@@ -1,13 +1,36 @@
 
                                                                                                                                             
     
-# Classes
+# InvalidTypeException
 
-* [PlanB\Type\Collection](PlanB/Type/Collection.md)
-* [PlanB\Type\Exception\InvalidTypeException](PlanB/Type/Exception/InvalidTypeException.md)
-* [PlanB\Type\Exception\ItemNotFoundException](PlanB/Type/Exception/ItemNotFoundException.md)
-* [PlanB\Type\ItemResolver](PlanB/Type/ItemResolver.md)
-* [PlanB\Type\KeyValue](PlanB/Type/KeyValue.md)
+
+> Se lanza cuando se trata de crear un ItemResolver con algo que no es un tipo válido
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### forType
+``` php
+static[PlanB\Type\Exception\InvalidTypeException](../../../PlanB/Type/Exception/InvalidTypeException.md) forType (string $type, [Throwable](../../../Throwable.md) $previous = null)
+
+Crea una nueva instancia
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
+
+---
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

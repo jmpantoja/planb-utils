@@ -1,13 +1,50 @@
 
                                                                                                                                             
     
-# Classes
+# ItemResolver
 
-* [PlanB\Type\Collection](PlanB/Type/Collection.md)
-* [PlanB\Type\Exception\InvalidTypeException](PlanB/Type/Exception/InvalidTypeException.md)
-* [PlanB\Type\Exception\ItemNotFoundException](PlanB/Type/Exception/ItemNotFoundException.md)
-* [PlanB\Type\ItemResolver](PlanB/Type/ItemResolver.md)
-* [PlanB\Type\KeyValue](PlanB/Type/KeyValue.md)
+
+> Procesa una pareja clave/valor antes de ser añadida a la colección
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### __construct
+``` php
+protected __construct (string $type)
+
+ItemResolver constructor.
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
+### ofType
+``` php
+static[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) ofType (string $type)
+
+Crea una nueva instancia, para un tipo
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

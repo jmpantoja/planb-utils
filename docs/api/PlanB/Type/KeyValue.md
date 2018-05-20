@@ -84,6 +84,21 @@ Devuelve la clave
 ---
 
 
+### changeValue
+``` php
+[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) changeValue ($newValue)
+
+Crea una nueva clave/valor, con la misma clave que la actual, pero un valor distinto
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+| |$newValue |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

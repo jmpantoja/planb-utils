@@ -104,6 +104,21 @@ Asigna el validador personalizado
 ---
 
 
+### setNormalizer
+``` php
+ setNormalizer (callable $normalizer)
+
+Asigna el normalizador personalizado
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

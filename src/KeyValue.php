@@ -18,6 +18,12 @@ namespace PlanB\Type;
  */
 class KeyValue
 {
+
+    /**
+     * @var bool
+     */
+    private $hasKey;
+
     /**
      * @var mixed
      */
@@ -93,5 +99,21 @@ class KeyValue
     public function getKey()
     {
         return $this->key;
+    }
+
+    /**
+     * Crea una nueva clave/valor, con la misma clave que la actual, pero un valor distinto
+     *
+     * @param $newValue
+     *
+     * @return \PlanB\Type\KeyValue
+     */
+    public function changeValue($newValue): KeyValue
+    {
+        if ($this->hasKey()) {
+            return static::fromPair($this->key, $newValue);
+        }
+
+        return static::fromValue($newValue);
     }
 }

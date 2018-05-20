@@ -75,6 +75,10 @@ class ItemResolverSpec extends ObjectBehavior
         $collection->validate(Argument::any(), Argument::any())
             ->willReturn(true);
 
+        $collection->normalize(Argument::any(), Argument::any())
+            ->willReturn('este valor no se llega a evaluar');
+
+
         $this->configure($collection);
         $this->shouldNotThrow(\DomainException::class)
             ->duringResolve($pair);
@@ -89,6 +93,9 @@ class ItemResolverSpec extends ObjectBehavior
 
         $collection->validate(Argument::any(), Argument::any())
             ->willReturn(false);
+
+        $collection->normalize(Argument::any(), Argument::any())
+            ->willReturn('este valor no se llega a evaluar');
 
         $this->configure($collection);
         $this->shouldNotThrow(\DomainException::class)
@@ -106,6 +113,9 @@ class ItemResolverSpec extends ObjectBehavior
         $collection->validate(Argument::any(), Argument::any())
             ->willThrow(\DomainException::class);
 
+        $collection->normalize(Argument::any(), Argument::any())
+            ->willReturn('este valor no se llega a evaluar');
+
 
         $this->shouldNotThrow(\Exception::class)
             ->duringResolve($pair);
@@ -117,4 +127,41 @@ class ItemResolverSpec extends ObjectBehavior
 
     }
 
+
+    public function it_can_configure_for_trasnsform_a_value_before_append(ShortStringCollection $collection)
+    {
+        $pair = KeyValue::fromValue(10);
+        $this->beConstructedOfType('string');
+
+        $collection->validate(Argument::any(), Argument::any())
+            ->willReturn(true);
+
+        $collection->normalize(Argument::any(), Argument::any())
+            ->willReturn('cadena transformada');
+
+
+        $this->configure($collection);
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+        $this->resolve($pair)->getValue()->shouldReturn('cadena transformada');
+
+    }
+
+    public function it_can_configure_for_trasnsform_a_value_key_before_append(ShortStringCollection $collection)
+    {
+        $pair = KeyValue::fromPair('key', 10);
+        $this->beConstructedOfType('string');
+
+        $collection->validate(Argument::any(), Argument::any())
+            ->willReturn(true);
+
+        $collection->normalize(Argument::any(), Argument::any())
+            ->willReturn('cadena transformada');
+
+
+        $this->configure($collection);
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+        $this->resolve($pair)->getValue()->shouldReturn('cadena transformada');
+        $this->resolve($pair)->getKey()->shouldReturn('key');
+
+    }
 }

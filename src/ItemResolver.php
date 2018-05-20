@@ -32,6 +32,11 @@ class ItemResolver
     private $validator;
 
     /**
+     * @var callable
+     */
+    private $normalizer;
+
+    /**
      * ItemResolver constructor.
      *
      * @param string $type
@@ -63,11 +68,31 @@ class ItemResolver
     public function resolve(KeyValue $pair): ?KeyValue
     {
 
-        //$this->normalize($pair);
+        $pair = $this->normalize($pair);
         $this->valueTypeInsurance($pair);
 
         if (!$this->validate($pair)) {
             return null;
+        }
+
+        return $pair;
+    }
+
+    /**
+     * Normaliza un valor antes de ser añadido
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     *
+     * @return \PlanB\Type\KeyValue
+     */
+    private function normalize(KeyValue $pair): KeyValue
+    {
+        if (is_callable($this->normalizer)) {
+            $value = $pair->getValue();
+            $key = $pair->getKey();
+
+            $newValue = call_user_func($this->normalizer, $value, $key);
+            $pair = $pair->changeValue($newValue);
         }
 
         return $pair;
@@ -82,10 +107,10 @@ class ItemResolver
      */
     private function validate(KeyValue $pair): bool
     {
-        $value = $pair->getValue();
-        $key = $pair->getKey();
-
         if (is_callable($this->validator)) {
+            $value = $pair->getValue();
+            $key = $pair->getKey();
+
             return (bool) call_user_func($this->validator, $value, $key);
         }
 
@@ -126,11 +151,17 @@ class ItemResolver
     {
         $validator = [$collection, 'validate'];
 
-        if (!is_callable($validator)) {
+        if (is_callable($validator)) {
+            $this->setValidator($validator);
+        }
+
+        $normalizer = [$collection, 'normalize'];
+
+        if (!is_callable($normalizer)) {
             return;
         }
 
-        $this->setValidator($validator);
+        $this->setNormalizer($normalizer);
     }
 
     /**
@@ -142,5 +173,16 @@ class ItemResolver
     {
 
         $this->validator = $validator;
+    }
+
+    /**
+     * Asigna el normalizador personalizado
+     *
+     * @param callable $normalizer
+     */
+    public function setNormalizer(callable $normalizer): void
+    {
+
+        $this->normalizer = $normalizer;
     }
 }

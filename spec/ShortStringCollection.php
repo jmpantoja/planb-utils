@@ -26,4 +26,9 @@ class ShortStringCollection extends Collection
         return strlen($value) <= 5;
     }
 
+    public function normalize(string $value): string
+    {
+        return $value;
+    }
+
 }

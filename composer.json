@@ -15,6 +15,11 @@
       "PlanB\\Type\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "PlanB\\Type\\": "spec/"
+    }
+  },
   "config": {
     "optimize-autoloader": true,
     "sort-packages": true,

@@ -5,6 +5,7 @@ namespace spec\PlanB\Type;
 use PlanB\Type\Collection;
 use PhpSpec\ObjectBehavior;
 use PlanB\Type\Exception\ItemNotFoundException;
+use PlanB\Type\ShortStringCollection;
 use Prophecy\Argument;
 
 class CollectionSpec extends ObjectBehavior
@@ -38,7 +39,6 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(false);
     }
 
-
     public function it_can_append_two_item()
     {
         $this->itemAppend('value 1');
@@ -69,7 +69,6 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet(0)->shouldReturn('value 1');
         $this->itemGet(1)->shouldReturn('value 2');
     }
-
 
     public function it_can_append_some_items_at_time()
     {
@@ -128,7 +127,6 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet('B')->shouldReturn('value 2');
     }
 
-
     public function it_can_retrive_an_item_or_defaults()
     {
         $this->itemGet('A', 'defaults')->shouldReturn('defaults');
@@ -144,7 +142,6 @@ class CollectionSpec extends ObjectBehavior
         $this->count()->shouldReturn(0);
     }
 
-
     public function it_can_unset_an_item_by_index()
     {
         $this->count()->shouldReturn(0);
@@ -155,11 +152,25 @@ class CollectionSpec extends ObjectBehavior
         $this->count()->shouldReturn(0);
     }
 
-
     public function it_can_instantiate_with_a_type()
     {
         $this->getType()->shouldReturn('string');
     }
 
+    public function it_can_ignore_invalid_values()
+    {
+        $this->beAnInstanceOf(ShortStringCollection::class);
+
+        $this->itemAppend('cadena demasiado larga');
+        $this->count()->shouldReturn(0);
+    }
+
+    public function it_can_accept_invalid_values()
+    {
+        $this->beAnInstanceOf(ShortStringCollection::class);
+
+        $this->itemAppend('corta');
+        $this->count()->shouldReturn(1);
+    }
 
 }

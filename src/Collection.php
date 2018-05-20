@@ -101,6 +101,10 @@ class Collection implements \Countable
         $pair = $this->getResolver()
             ->resolve($candidate);
 
+        if (!($pair instanceof KeyValue)) {
+            return;
+        }
+
         $value = $pair->getValue();
         $key = $pair->getKey();
 
@@ -128,9 +132,10 @@ class Collection implements \Countable
     {
         if (is_null($this->itemResolver)) {
             $resolver = ItemResolver::ofType($this->type);
-            
-            $this->configure($resolver);
 
+            $resolver->configure($this);
+
+            $this->configure($resolver);
             $this->itemResolver = $resolver;
         }
 
@@ -146,19 +151,6 @@ class Collection implements \Countable
      */
     protected function configure(ItemResolver $resolver): void
     {
-
-//        @todo crear las interfaces, Validable, Normalizable, y NormalizableKey
-//        if ($this instanceof Validable) {
-//            $this->itemResolver->setValidator([$this, 'validate']);
-//        }
-//
-//        if ($this instanceof Normalizable) {
-//            $this->itemResolver->setValidator([$this, 'normalize']);
-//        }
-//
-//        if ($this instanceof NormalizableKey) {
-//            $this->itemResolver->setValidator([$this, 'normalizeKey']);
-//        }
     }
 
     /**

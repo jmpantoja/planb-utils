@@ -49,7 +49,7 @@ Crea una nueva instancia, para un tipo
 
 ### resolve
 ``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
+[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md)|null resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
 
 Resuelve una pareja clave/valor
 
@@ -70,6 +70,36 @@ Devuelve el tipo base de la colección
 
 ```
 
+
+---
+
+
+### configure
+``` php
+ configure ([PlanB\Type\Collection](../../PlanB/Type/Collection.md) $collection)
+
+Configura el ItemResolver a partir de lo que se deduce de una coleccion
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\Collection](../../PlanB/Type/Collection.md) |$collection |  |
+
+---
+
+
+### setValidator
+``` php
+ setValidator (callable $validator)
+
+Asigna el validador personalizado
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
 
 ---
 

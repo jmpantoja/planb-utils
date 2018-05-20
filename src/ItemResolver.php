@@ -27,6 +27,11 @@ class ItemResolver
     private $typeValidator;
 
     /**
+     * @var callable
+     */
+    private $validator;
+
+    /**
      * ItemResolver constructor.
      *
      * @param string $type
@@ -53,13 +58,38 @@ class ItemResolver
      *
      * @param \PlanB\Type\KeyValue $pair
      *
-     * @return \PlanB\Type\KeyValue
+     * @return \PlanB\Type\KeyValue|null
      */
-    public function resolve(KeyValue $pair): KeyValue
+    public function resolve(KeyValue $pair): ?KeyValue
     {
+
+        //$this->normalize($pair);
         $this->valueTypeInsurance($pair);
 
+        if (!$this->validate($pair)) {
+            return null;
+        }
+
         return $pair;
+    }
+
+    /**
+     * Valida una pareja clave valor
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     *
+     * @return bool
+     */
+    private function validate(KeyValue $pair): bool
+    {
+        $value = $pair->getValue();
+        $key = $pair->getKey();
+
+        if (is_callable($this->validator)) {
+            return (bool) call_user_func($this->validator, $value, $key);
+        }
+
+        return true;
     }
 
     /**
@@ -85,5 +115,32 @@ class ItemResolver
     public function getType(): string
     {
         return $this->typeValidator->getType();
+    }
+
+    /**
+     * Configura el ItemResolver a partir de lo que se deduce de una coleccion
+     *
+     * @param \PlanB\Type\Collection $collection
+     */
+    public function configure(Collection $collection): void
+    {
+        $validator = [$collection, 'validate'];
+
+        if (!is_callable($validator)) {
+            return;
+        }
+
+        $this->setValidator($validator);
+    }
+
+    /**
+     * Asigna el validador personalizado
+     *
+     * @param callable $validator
+     */
+    public function setValidator(callable $validator): void
+    {
+
+        $this->validator = $validator;
     }
 }

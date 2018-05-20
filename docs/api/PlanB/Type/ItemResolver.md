@@ -119,6 +119,21 @@ Asigna el normalizador personalizado
 ---
 
 
+### setKeyNormalizer
+``` php
+ setKeyNormalizer (callable $normalizer)
+
+Asigna el normalizador de clave personalizado
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

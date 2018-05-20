@@ -37,6 +37,11 @@ class ItemResolver
     private $normalizer;
 
     /**
+     * @var callable
+     */
+    private $keyNormalizer;
+
+    /**
      * ItemResolver constructor.
      *
      * @param string $type
@@ -70,6 +75,8 @@ class ItemResolver
 
         $pair = $this->normalize($pair);
         $this->valueTypeInsurance($pair);
+        
+        $pair = $this->normalizeKey($pair);
 
         if (!$this->validate($pair)) {
             return null;
@@ -93,6 +100,26 @@ class ItemResolver
 
             $newValue = call_user_func($this->normalizer, $value, $key);
             $pair = $pair->changeValue($newValue);
+        }
+
+        return $pair;
+    }
+
+    /**
+     * Normaliza una clave antes de ser usada
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     *
+     * @return \PlanB\Type\KeyValue
+     */
+    private function normalizeKey(KeyValue $pair): KeyValue
+    {
+        if (is_callable($this->keyNormalizer)) {
+            $value = $pair->getValue();
+            $key = $pair->getKey();
+
+            $newKey = call_user_func($this->keyNormalizer, $value, $key);
+            $pair = $pair->changeKey($newKey);
         }
 
         return $pair;
@@ -150,18 +177,21 @@ class ItemResolver
     public function configure(Collection $collection): void
     {
         $validator = [$collection, 'validate'];
-
         if (is_callable($validator)) {
             $this->setValidator($validator);
         }
 
         $normalizer = [$collection, 'normalize'];
+        if (is_callable($normalizer)) {
+            $this->setNormalizer($normalizer);
+        }
 
-        if (!is_callable($normalizer)) {
+        $keyNormalizer = [$collection, 'normalizeKey'];
+        if (!is_callable($keyNormalizer)) {
             return;
         }
 
-        $this->setNormalizer($normalizer);
+        $this->setKeyNormalizer($keyNormalizer);
     }
 
     /**
@@ -184,5 +214,15 @@ class ItemResolver
     {
 
         $this->normalizer = $normalizer;
+    }
+
+    /**
+     * Asigna el normalizador de clave personalizado
+     *
+     * @param callable $normalizer
+     */
+    public function setKeyNormalizer(callable $normalizer): void
+    {
+        $this->keyNormalizer = $normalizer;
     }
 }

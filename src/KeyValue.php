@@ -104,7 +104,7 @@ class KeyValue
     /**
      * Crea una nueva clave/valor, con la misma clave que la actual, pero un valor distinto
      *
-     * @param $newValue
+     * @param mixed $newValue
      *
      * @return \PlanB\Type\KeyValue
      */
@@ -115,5 +115,22 @@ class KeyValue
         }
 
         return static::fromValue($newValue);
+    }
+
+
+    /**
+     * Crea una nueva clave/valor, con el mismo valor que el actual, pero con una clave distinta
+     *
+     * @param mixed $newKey
+     *
+     * @return \PlanB\Type\KeyValue
+     */
+    public function changeKey($newKey): KeyValue
+    {
+        if (is_null($newKey)) {
+            return static::fromValue($this->value);
+        }
+
+        return static::fromPair($newKey, $this->value);
     }
 }

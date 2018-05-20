@@ -31,4 +31,9 @@ class ShortStringCollection extends Collection
         return $value;
     }
 
+    public function normalizeKey(string $value, ?string $key): ?string
+    {
+        return $key;
+    }
+
 }

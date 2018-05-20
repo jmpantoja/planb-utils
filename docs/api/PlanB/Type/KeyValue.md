@@ -86,7 +86,7 @@ Devuelve la clave
 
 ### changeValue
 ``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) changeValue ($newValue)
+[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) changeValue (mixed $newValue)
 
 Crea una nueva clave/valor, con la misma clave que la actual, pero un valor distinto
 
@@ -94,7 +94,22 @@ Crea una nueva clave/valor, con la misma clave que la actual, pero un valor dist
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$newValue |  |
+|mixed |$newValue |  |
+
+---
+
+
+### changeKey
+``` php
+[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) changeKey (mixed $newKey)
+
+Crea una nueva clave/valor, con el mismo valor que el actual, pero con una clave distinta
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$newKey |  |
 
 ---
 

@@ -42,22 +42,11 @@ class Collection implements \Countable
      *
      * @param string $type
      */
-    protected function __construct(string $type)
+    public function __construct(string $type)
     {
         $this->type = $type;
     }
 
-    /**
-     * Crea una colleción de elementos para el tipo dado
-     *
-     * @param string $type
-     *
-     * @return \PlanB\Type\Collection
-     */
-    public static function ofType(string $type): self
-    {
-        return new static($type);
-    }
 
     /**
      * Devuelve el número total de elementos

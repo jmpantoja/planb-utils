@@ -19,24 +19,9 @@
 
 ### __construct
 ``` php
-protected __construct (string $type)
+ __construct (string $type)
 
 Collection constructor.
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### ofType
-``` php
-static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) ofType (string $type)
-
-Crea una colleción de elementos para el tipo dado
 
 ```
 

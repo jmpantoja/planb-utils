@@ -12,7 +12,7 @@ class CollectionSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedOfType('string');
+        $this->beConstructedWith('string');
     }
 
     public function it_is_initializable()

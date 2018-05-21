@@ -9,11 +9,17 @@ use PlanB\Type\Exception\InvalidValueTypeException;
 use PlanB\Type\ItemResolver;
 use PhpSpec\ObjectBehavior;
 use PlanB\Type\KeyValue;
-use PlanB\Type\Validable;
-use Prophecy\Argument;
+use Prophecy\Argument as p;
+
 
 class ItemResolverSpec extends ObjectBehavior
 {
+
+    private const NORMALIZED_VALUE = 'cadena-transformada';
+
+    private const NORMALIZED_KEY = 'key-transformada';
+
+    private const SOME_DUMMY_TEXT = 'cadena-de-texto';
 
     public function let()
     {
@@ -32,31 +38,25 @@ class ItemResolverSpec extends ObjectBehavior
         $this->shouldThrow(InvalidTypeException::class)->duringInstantiation();
     }
 
-    public function it_refuse_resolve_an_invalid_value(KeyValue $pair)
+    public function it_refuse_resolve_an_invalid_value()
     {
-
-        $pair->getValue()->willReturn('invalid-value');
-        $pair->getKey()->willReturn(null);
+        $pair = KeyValue::fromValue('invalid value, expects a ItemResolver::class');
 
         $this->shouldThrow(\DomainException::class)->duringResolve($pair);
         $this->shouldThrow(InvalidValueTypeException::class)->duringResolve($pair);
     }
 
-    public function it_accept_resolve_an_valid_classname(KeyValue $pair)
+    public function it_accept_resolve_an_valid_classname()
     {
-
-        $pair->getValue()->willReturn($this);
-        $pair->getKey()->willReturn(null);
+        $pair = KeyValue::fromValue($this->getWrappedObject());
 
         $this->shouldNotThrow(\Exception::class)->duringResolve($pair);
     }
 
-    public function it_accept_resolve_an_valid_native(KeyValue $pair)
+    public function it_accept_resolve_an_valid_native()
     {
         $this->beConstructedOfType('string');
-
-        $pair->getValue()->willReturn('cadena-de-texto');
-        $pair->getKey()->willReturn(null);
+        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
 
         $this->shouldNotThrow(\Exception::class)->duringResolve($pair);
     }
@@ -66,70 +66,52 @@ class ItemResolverSpec extends ObjectBehavior
         $this->getType()->shouldReturn(ItemResolver::class);
     }
 
+    public function it_can_configure_for_default_behaviour()
+    {
+        $this->beConstructedOfType('string');
+        $collection = new Collection('string');
+
+        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
+
+        $this->configure($collection);
+        $this->resolve($pair)->shouldReturn($pair);
+    }
+
 
     public function it_can_configure_for_accept_a_valid_value(ShortStringCollection $collection)
     {
-        $pair = KeyValue::fromValue('este valor no se llega a evaluar');
-        $this->beConstructedOfType('string');
 
-        $collection->validate(Argument::any(), Argument::any())
+        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
+        $this->prepareForConfigure($collection);
+
+        $collection->validate(p::any(), p::any())
             ->willReturn(true);
 
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('este valor no se llega a evaluar');
-
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn(null);
-
         $this->configure($collection);
-        $this->shouldNotThrow(\DomainException::class)
-            ->duringResolve($pair);
-
         $this->resolve($pair)->shouldHaveType(KeyValue::class);
     }
 
     public function it_can_configure_for_ignoring_an_invalid_value(ShortStringCollection $collection)
     {
-        $pair = KeyValue::fromValue('este valor no se llega a evaluar');
-        $this->beConstructedOfType('string');
 
-        $collection->validate(Argument::any(), Argument::any())
+        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
+        $this->prepareForConfigure($collection);
+
+        $collection->validate(p::any(), p::any())
             ->willReturn(false);
 
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('este valor no se llega a evaluar');
-
-
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn(null);
-
-
         $this->configure($collection);
-        $this->shouldNotThrow(\DomainException::class)
-            ->duringResolve($pair);
-
         $this->resolve($pair)->shouldReturn(null);
     }
 
 
     public function it_can_configure_for_refuse_an_invalid_value(ShortStringCollection $collection)
     {
-        $pair = KeyValue::fromValue('este valor no se llega a evaluar');
-        $this->beConstructedOfType('string');
+        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
+        $this->prepareForConfigure($collection);
 
-        $collection->validate(Argument::any(), Argument::any())
+        $collection->validate(p::any(), p::any())
             ->willThrow(\DomainException::class);
-
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('este valor no se llega a evaluar');
-
-
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn(null);
-
-        $this->shouldNotThrow(\Exception::class)
-            ->duringResolve($pair);
-
 
         $this->configure($collection);
         $this->shouldThrow(\DomainException::class)
@@ -138,68 +120,45 @@ class ItemResolverSpec extends ObjectBehavior
     }
 
 
-    public function it_can_configure_for_trasnsform_a_value_before_append(ShortStringCollection $collection)
+    public function it_can_configure_for_trasnsform_the_value(ShortStringCollection $collection)
     {
         $pair = KeyValue::fromValue(10);
-        $this->beConstructedOfType('string');
-
-        $collection->validate(Argument::any(), Argument::any())
-            ->willReturn(true);
-
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('cadena transformada');
-
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn(null);
-
+        $this->prepareForConfigure($collection);
 
         $this->configure($collection);
         $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getValue()->shouldReturn('cadena transformada');
+        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_VALUE);
 
     }
 
-    public function it_can_configure_for_trasnsform_a_value_key_before_append(ShortStringCollection $collection)
+    public function it_can_configure_for_trasnsform_the_key(ShortStringCollection $collection)
     {
         $pair = KeyValue::fromPair('key', 10);
-        $this->beConstructedOfType('string');
+        $this->prepareForConfigure($collection);
 
-        $collection->validate(Argument::any(), Argument::any())
-            ->willReturn(true);
-
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('cadena transformada');
-
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn('key');
-
+        $collection->normalizeKey(p::any(), p::any())
+            ->willReturn(self::NORMALIZED_KEY);
 
         $this->configure($collection);
         $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getValue()->shouldReturn('cadena transformada');
-        $this->resolve($pair)->getKey()->shouldReturn('key');
+        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
 
     }
 
-    public function it_can_configure_for_trasnsform_a_key_before_append(ShortStringCollection $collection)
+    /**
+     * @param ShortStringCollection $collection
+     */
+    private function prepareForConfigure(ShortStringCollection $collection): void
     {
-        $pair = KeyValue::fromPair('key', 'value');
         $this->beConstructedOfType('string');
 
-        $collection->validate(Argument::any(), Argument::any())
+        $collection->validate(p::any(), p::any())
             ->willReturn(true);
 
-        $collection->normalize(Argument::any(), Argument::any())
-            ->willReturn('value');
+        $collection->normalize(p::any(), p::any())
+            ->willReturn(self::NORMALIZED_VALUE);
 
-        $collection->normalizeKey(Argument::any(), Argument::any())
-            ->willReturn('key transformada');
-
-
-        $this->configure($collection);
-        $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getValue()->shouldReturn('value');
-        $this->resolve($pair)->getKey()->shouldReturn('key transformada');
-
+        $collection->normalizeKey(p::any(), p::any())
+            ->willReturn(null);
     }
 }

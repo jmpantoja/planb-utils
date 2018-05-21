@@ -5,6 +5,7 @@ namespace spec\PlanB\Type;
 use PlanB\Type\Collection;
 use PhpSpec\ObjectBehavior;
 use PlanB\Type\Exception\ItemNotFoundException;
+use PlanB\Type\LenghtCollection;
 use PlanB\Type\ShortStringCollection;
 use Prophecy\Argument;
 
@@ -159,18 +160,30 @@ class CollectionSpec extends ObjectBehavior
 
     public function it_can_ignore_invalid_values()
     {
-        $this->beAnInstanceOf(ShortStringCollection::class);
+        $this->beAnInstanceOf(LenghtCollection::class);
 
         $this->itemAppend('cadena demasiado larga');
         $this->count()->shouldReturn(0);
     }
 
-    public function it_can_accept_invalid_values()
+    public function it_can_accept_valid_values()
     {
-        $this->beAnInstanceOf(ShortStringCollection::class);
+        $this->beAnInstanceOf(LenghtCollection::class);
 
         $this->itemAppend('corta');
         $this->count()->shouldReturn(1);
+
+        $this->itemGet('xxxxx')->shouldReturn(5);
+    }
+
+    public function it_can_normalize_the_value_and_the_key()
+    {
+        $this->beAnInstanceOf(LenghtCollection::class);
+
+        $this->itemAppend('corta');
+        $this->count()->shouldReturn(1);
+
+        $this->itemGet('xxxxx')->shouldReturn(5);
     }
 
 }

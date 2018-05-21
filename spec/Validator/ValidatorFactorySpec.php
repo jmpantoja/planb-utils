@@ -2,6 +2,7 @@
 
 namespace spec\PlanB\Type\Validator;
 
+use PlanB\Type\Exception\InvalidTypeException;
 use PlanB\Type\Validator\InstanceOfValidator;
 use PlanB\Type\Validator\TypeOfValidator;
 use PlanB\Type\Validator\Validator;
@@ -30,5 +31,12 @@ class ValidatorFactorySpec extends ObjectBehavior
     public function it_can_create_a_validator_by_native()
     {
         $this->factory('string')->shouldHaveType(TypeOfValidator::class);
+    }
+
+
+    public function it_throws_an_exception_if_recieve_an_invalid_type()
+    {
+
+        $this->shouldThrow(InvalidTypeException::class)->duringFactory('invalid-type');
     }
 }

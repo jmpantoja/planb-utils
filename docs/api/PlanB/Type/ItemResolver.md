@@ -47,21 +47,6 @@ Crea una nueva instancia, para un tipo
 ---
 
 
-### resolve
-``` php
-[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md)|null resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
-
-Resuelve una pareja clave/valor
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) |$pair |  |
-
----
-
-
 ### getType
 ``` php
 string getType ()
@@ -70,21 +55,6 @@ Devuelve el tipo base de la colección
 
 ```
 
-
----
-
-
-### configure
-``` php
- configure ([PlanB\Type\Collection](../../PlanB/Type/Collection.md) $collection)
-
-Configura el ItemResolver a partir de lo que se deduce de una coleccion
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\Collection](../../PlanB/Type/Collection.md) |$collection |  |
 
 ---
 
@@ -130,6 +100,36 @@ Asigna el normalizador de clave personalizado
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$normalizer |  |
+
+---
+
+
+### configure
+``` php
+ configure ([PlanB\Type\Collection](../../PlanB/Type/Collection.md) $collection)
+
+Configura el ItemResolver a partir de lo que se deduce de una coleccion
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\Collection](../../PlanB/Type/Collection.md) |$collection |  |
+
+---
+
+
+### resolve
+``` php
+[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md)|null resolve ([PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) $pair)
+
+Resuelve una pareja clave/valor
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|[PlanB\Type\KeyValue](../../PlanB/Type/KeyValue.md) |$pair |  |
 
 ---
 

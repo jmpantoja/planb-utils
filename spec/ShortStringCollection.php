@@ -36,4 +36,6 @@ class ShortStringCollection extends Collection
         return $key;
     }
 
+
+
 }

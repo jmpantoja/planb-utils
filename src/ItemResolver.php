@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace PlanB\Type;
 
 use PlanB\Type\Exception\InvalidValueTypeException;
-use PlanB\Type\Validator\ValidatorFactory;
 
 /**
  * Procesa una pareja clave/valor antes de ser añadida a la colección
@@ -22,12 +21,17 @@ use PlanB\Type\Validator\ValidatorFactory;
 class ItemResolver
 {
     /**
-     * @var \PlanB\Type\Validator\Validator
+     * @var string
+     */
+    private $type;
+
+    /**
+     * @var \PlanB\Type\Validator\ValidableType
      */
     private $typeValidator;
 
     /**
-     * @var callable
+     * @var \PlanB\Type\Validator\Validator
      */
     private $validator;
 
@@ -48,7 +52,13 @@ class ItemResolver
      */
     protected function __construct(string $type)
     {
+        $this->type = $type;
         $this->typeValidator = ValidatorFactory::factory($type);
+
+
+        $this->validator = Hook::default();
+        $this->normalizer = Hook::default();
+        $this->keyNormalizer = Hook::default();
     }
 
     /**
@@ -64,25 +74,59 @@ class ItemResolver
     }
 
     /**
-     * Resuelve una pareja clave/valor
+     * Devuelve el tipo base de la colección
      *
-     * @param \PlanB\Type\KeyValue $pair
-     *
-     * @return \PlanB\Type\KeyValue|null
+     * @return string
      */
-    public function resolve(KeyValue $pair): ?KeyValue
+    public function getType(): string
     {
+        return $this->type;
+    }
 
-        $pair = $this->normalize($pair);
-        $this->valueTypeInsurance($pair);
-        
-        $pair = $this->normalizeKey($pair);
 
-        if (!$this->validate($pair)) {
-            return null;
-        }
+    /**
+     * Asigna el validador personalizado
+     *
+     * @param callable $validator
+     */
+    public function setValidator(callable $validator): void
+    {
+        $this->validator = Hook::fromCallable($validator);
+    }
 
-        return $pair;
+
+    /**
+     * Asigna el normalizador personalizado
+     *
+     * @param callable $normalizer
+     */
+    public function setNormalizer(callable $normalizer): void
+    {
+        $this->normalizer = Hook::fromCallable($normalizer);
+    }
+
+
+    /**
+     * Asigna el normalizador de clave personalizado
+     *
+     * @param callable $normalizer
+     */
+    public function setKeyNormalizer(callable $normalizer): void
+    {
+        $this->keyNormalizer = Hook::fromCallable($normalizer);
+    }
+
+
+    /**
+     * Configura el ItemResolver a partir de lo que se deduce de una coleccion
+     *
+     * @param \PlanB\Type\Collection $collection
+     */
+    public function configure(Collection $collection): void
+    {
+        $this->validator = Hook::fromArray([$collection, 'validate']);
+        $this->normalizer = Hook::fromArray([$collection, 'normalize']);
+        $this->keyNormalizer = Hook::fromArray([$collection, 'normalizeKey']);
     }
 
     /**
@@ -94,16 +138,11 @@ class ItemResolver
      */
     private function normalize(KeyValue $pair): KeyValue
     {
-        if (is_callable($this->normalizer)) {
-            $value = $pair->getValue();
-            $key = $pair->getKey();
+        $newValue = $this->normalizer->execute($pair, $pair->getValue());
 
-            $newValue = call_user_func($this->normalizer, $value, $key);
-            $pair = $pair->changeValue($newValue);
-        }
-
-        return $pair;
+        return $pair->changeValue($newValue);
     }
+
 
     /**
      * Normaliza una clave antes de ser usada
@@ -114,16 +153,11 @@ class ItemResolver
      */
     private function normalizeKey(KeyValue $pair): KeyValue
     {
-        if (is_callable($this->keyNormalizer)) {
-            $value = $pair->getValue();
-            $key = $pair->getKey();
+        $newKey = $this->keyNormalizer->execute($pair, $pair->getKey());
 
-            $newKey = call_user_func($this->keyNormalizer, $value, $key);
-            $pair = $pair->changeKey($newKey);
-        }
-
-        return $pair;
+        return $pair->changeKey($newKey);
     }
+
 
     /**
      * Valida una pareja clave valor
@@ -134,14 +168,7 @@ class ItemResolver
      */
     private function validate(KeyValue $pair): bool
     {
-        if (is_callable($this->validator)) {
-            $value = $pair->getValue();
-            $key = $pair->getKey();
-
-            return (bool) call_user_func($this->validator, $value, $key);
-        }
-
-        return true;
+        return (bool) $this->validator->execute($pair, true);
     }
 
     /**
@@ -149,80 +176,37 @@ class ItemResolver
      *
      * @param \PlanB\Type\KeyValue $pair
      */
-    private function valueTypeInsurance(KeyValue $pair): void
+    private function assertType(KeyValue $pair): void
     {
-        $value = $pair->getValue();
 
-        if (!$this->typeValidator->validate($value)) {
-            $type = $this->getType();
-            throw InvalidValueTypeException::forValue($value, $type);
-        }
-    }
-
-    /**
-     * Devuelve el tipo base de la colección
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->typeValidator->getType();
-    }
-
-    /**
-     * Configura el ItemResolver a partir de lo que se deduce de una coleccion
-     *
-     * @param \PlanB\Type\Collection $collection
-     */
-    public function configure(Collection $collection): void
-    {
-        $validator = [$collection, 'validate'];
-        if (is_callable($validator)) {
-            $this->setValidator($validator);
-        }
-
-        $normalizer = [$collection, 'normalize'];
-        if (is_callable($normalizer)) {
-            $this->setNormalizer($normalizer);
-        }
-
-        $keyNormalizer = [$collection, 'normalizeKey'];
-        if (!is_callable($keyNormalizer)) {
+        if (true === (bool) $this->typeValidator->execute($pair)) {
             return;
         }
 
-        $this->setKeyNormalizer($keyNormalizer);
+        $value = $pair->getValue();
+        $type = $this->getType();
+
+        throw InvalidValueTypeException::forValue($value, $type);
     }
 
-    /**
-     * Asigna el validador personalizado
-     *
-     * @param callable $validator
-     */
-    public function setValidator(callable $validator): void
-    {
-
-        $this->validator = $validator;
-    }
 
     /**
-     * Asigna el normalizador personalizado
+     * Resuelve una pareja clave/valor
      *
-     * @param callable $normalizer
-     */
-    public function setNormalizer(callable $normalizer): void
-    {
-
-        $this->normalizer = $normalizer;
-    }
-
-    /**
-     * Asigna el normalizador de clave personalizado
+     * @param \PlanB\Type\KeyValue $pair
      *
-     * @param callable $normalizer
+     * @return \PlanB\Type\KeyValue|null
      */
-    public function setKeyNormalizer(callable $normalizer): void
+    public function resolve(KeyValue $pair): ?KeyValue
     {
-        $this->keyNormalizer = $normalizer;
+        $pair = $this->normalize($pair);
+        $this->assertType($pair);
+        $pair = $this->normalizeKey($pair);
+
+        if (!$this->validate($pair)) {
+            return null;
+        }
+
+        return $pair;
     }
 }

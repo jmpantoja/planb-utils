@@ -1,13 +1,12 @@
 <?php
 
-namespace spec\PlanB\Type\Validator;
+namespace spec\PlanB\Type;
 
+use PlanB\Type\Hook;
 use PlanB\Type\Exception\InvalidTypeException;
-use PlanB\Type\Validator\InstanceOfValidator;
-use PlanB\Type\Validator\TypeOfValidator;
-use PlanB\Type\Validator\Validator;
-use PlanB\Type\Validator\ValidatorFactory;
+
 use PhpSpec\ObjectBehavior;
+use PlanB\Type\ValidatorFactory;
 use Prophecy\Argument;
 
 class ValidatorFactorySpec extends ObjectBehavior
@@ -19,18 +18,18 @@ class ValidatorFactorySpec extends ObjectBehavior
 
     public function it_can_create_a_validator_by_classname()
     {
-        $this->factory(__CLASS__)->shouldHaveType(InstanceOfValidator::class);
+        $this->factory(__CLASS__)->shouldHaveType(Hook::class);
     }
 
     public function it_can_create_a_validator_by_interface()
     {
-        $this->factory(Validator::class)->shouldHaveType(InstanceOfValidator::class);
+        $this->factory(\Throwable::class)->shouldHaveType(Hook::class);
     }
 
 
     public function it_can_create_a_validator_by_native()
     {
-        $this->factory('string')->shouldHaveType(TypeOfValidator::class);
+        $this->factory('string')->shouldHaveType(Hook::class);
     }
 
 

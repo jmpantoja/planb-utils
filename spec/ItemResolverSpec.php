@@ -2,13 +2,13 @@
 
 namespace spec\PlanB\Type;
 
+use PhpSpec\ObjectBehavior;
 use PlanB\Type\Collection;
-use PlanB\Type\ShortStringCollection;
 use PlanB\Type\Exception\InvalidTypeException;
 use PlanB\Type\Exception\InvalidValueTypeException;
 use PlanB\Type\ItemResolver;
-use PhpSpec\ObjectBehavior;
 use PlanB\Type\KeyValue;
+use PlanB\Type\ShortStringCollection;
 use Prophecy\Argument as p;
 
 
@@ -74,7 +74,7 @@ class ItemResolverSpec extends ObjectBehavior
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
 
         $this->configure($collection);
-        $this->resolve($pair)->shouldReturn($pair);
+        $this->resolve($pair)->getValue()->shouldReturn(self::SOME_DUMMY_TEXT);
     }
 
 
@@ -145,10 +145,32 @@ class ItemResolverSpec extends ObjectBehavior
 
     }
 
+    public function it_can_configure_custom_hooks()
+    {
+        $pair = KeyValue::fromPair('key', 10);
+        $this->beConstructedOfType('string');
+
+        $this->setValidator(function(){
+            return true;
+        });
+
+        $this->setNormalizer(function(){
+            return self::NORMALIZED_VALUE;
+        });
+
+        $this->setKeyNormalizer(function(){
+            return self::NORMALIZED_KEY;
+        });
+
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_VALUE);
+        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
+    }
+
     /**
      * @param ShortStringCollection $collection
      */
-    private function prepareForConfigure(ShortStringCollection $collection): void
+    private function prepareForConfigure($collection): void
     {
         $this->beConstructedOfType('string');
 
@@ -161,4 +183,5 @@ class ItemResolverSpec extends ObjectBehavior
         $collection->normalizeKey(p::any(), p::any())
             ->willReturn(null);
     }
+
 }

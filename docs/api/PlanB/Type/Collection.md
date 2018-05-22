@@ -192,6 +192,22 @@ Indica si la colección está vacia
 ---
 
 
+### each
+``` php
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) each (callable $callable, null $userdata = null)
+
+Ejecuta una acción para cada elemento de la colección
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|null |$userdata |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

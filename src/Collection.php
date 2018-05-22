@@ -71,4 +71,19 @@ class Collection implements \Countable
     {
         return 0 === $this->count();
     }
+
+    /**
+     * Ejecuta una acción para cada elemento de la colección
+     *
+     * @param callable $callable
+     * @param null     $userdata
+     *
+     * @return \PlanB\Type\Collection
+     */
+    public function each(callable $callable, $userdata = null): self
+    {
+        array_walk($this->items, $callable, $userdata);
+
+        return $this;
+    }
 }

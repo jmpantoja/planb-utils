@@ -1,12 +1,45 @@
 
                                                                                                                                             
     
-# Namespaces
+# Count
 
-* [PlanB](PlanB.md)
-* [PlanB\Type](PlanB/Type.md)
-* [PlanB\Type\Exception](PlanB/Type/Exception.md)
-* [PlanB\Type\Traits](PlanB/Type/Traits.md)
+
+> Aporta funcionalidad relacionada con el número de elementos de la collecion
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### count
+``` php
+int count ()
+
+Devuelve el número total de elementos
+
+```
+
+
+---
+
+
+### isEmpty
+``` php
+bool isEmpty ()
+
+Indica si la colección está vacia
+
+```
+
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

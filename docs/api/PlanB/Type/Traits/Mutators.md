@@ -1,16 +1,14 @@
 
                                                                                                                                             
     
-# Collection
+# Mutators
 
 
-> Generic Collection
+> Aporta la capacidad de agregar y obtener elementos de la colección
 >
 > 
 
 
-## Traits
-- PlanB\Type\Traits\Mutators
 
 
 
@@ -21,7 +19,7 @@
 
 ### itemAppend
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemAppend (mixed $value)
+[PlanB\Type\Collection](../../../PlanB/Type/Collection.md) itemAppend (mixed $value)
 
 Agrega un elemento a la colección
 
@@ -36,7 +34,7 @@ Agrega un elemento a la colección
 
 ### itemAppendAll
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemAppendAll ([PlanB\Type\Traits\iterable](../../PlanB/Type/Traits/iterable.md) $items)
+[PlanB\Type\Collection](../../../PlanB/Type/Collection.md) itemAppendAll ([PlanB\Type\Traits\iterable](../../../PlanB/Type/Traits/iterable.md) $items)
 
 Agrega un conjunto de elementos
 
@@ -44,14 +42,14 @@ Agrega un conjunto de elementos
 
 |Parameters: | | |
 | --- | --- | --- |
-|[PlanB\Type\Traits\iterable](../../PlanB/Type/Traits/iterable.md) |$items |  |
+|[PlanB\Type\Traits\iterable](../../../PlanB/Type/Traits/iterable.md) |$items |  |
 
 ---
 
 
 ### itemSet
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemSet (mixed $key, mixed $value)
+[PlanB\Type\Collection](../../../PlanB/Type/Collection.md) itemSet (mixed $key, mixed $value)
 
 Agrega una pareja clave/valor a la colección
 
@@ -67,7 +65,7 @@ Agrega una pareja clave/valor a la colección
 
 ### itemSetAll
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemSetAll ([PlanB\Type\Traits\iterable](../../PlanB/Type/Traits/iterable.md) $items)
+[PlanB\Type\Collection](../../../PlanB/Type/Collection.md) itemSetAll ([PlanB\Type\Traits\iterable](../../../PlanB/Type/Traits/iterable.md) $items)
 
 Agrega un conjunto de parejas clave/valor
 
@@ -75,7 +73,7 @@ Agrega un conjunto de parejas clave/valor
 
 |Parameters: | | |
 | --- | --- | --- |
-|[PlanB\Type\Traits\iterable](../../PlanB/Type/Traits/iterable.md) |$items |  |
+|[PlanB\Type\Traits\iterable](../../../PlanB/Type/Traits/iterable.md) |$items |  |
 
 ---
 
@@ -113,7 +111,7 @@ Indica si un elemento existe
 
 ### itemUnset
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemUnset (mixed $key)
+[PlanB\Type\Collection](../../../PlanB/Type/Collection.md) itemUnset (mixed $key)
 
 Elimina un elemento
 
@@ -128,7 +126,7 @@ Elimina un elemento
 
 ### configure
 ``` php
-protected configure ([PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) $resolver)
+protected configure ([PlanB\Type\ItemResolver](../../../PlanB/Type/ItemResolver.md) $resolver)
 
 
 
@@ -136,58 +134,7 @@ protected configure ([PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md)
 
 |Parameters: | | |
 | --- | --- | --- |
-|[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) |$resolver |  |
-
----
-
-
-### __construct
-``` php
- __construct (string $type)
-
-Collection constructor.
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### getType
-``` php
-string getType ()
-
-Devuelve el tipo de la colleción
-
-```
-
-
----
-
-
-### count
-``` php
-int count ()
-
-Devuelve el número total de elementos
-
-```
-
-
----
-
-
-### isEmpty
-``` php
-bool isEmpty ()
-
-Indica si la colección está vacia
-
-```
-
+|[PlanB\Type\ItemResolver](../../../PlanB/Type/ItemResolver.md) |$resolver |  |
 
 ---
 

@@ -10,7 +10,9 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type;
+namespace spec\PlanB\Type\Stub;
+
+use PlanB\Type\Collection;
 
 
 /**

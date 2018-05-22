@@ -5,8 +5,9 @@ namespace spec\PlanB\Type;
 use PlanB\Type\KeyValue;
 use PlanB\Type\Hook;
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\ShortStringCollection;
+
 use Prophecy\Argument;
+use spec\PlanB\Type\Stub\ShortStringCollection;
 
 class HookSpec extends ObjectBehavior
 {

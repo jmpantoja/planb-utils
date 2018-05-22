@@ -8,8 +8,8 @@ use PlanB\Type\Exception\InvalidTypeException;
 use PlanB\Type\Exception\InvalidValueTypeException;
 use PlanB\Type\ItemResolver;
 use PlanB\Type\KeyValue;
-use PlanB\Type\ShortStringCollection;
 use Prophecy\Argument as p;
+use spec\PlanB\Type\Stub\ShortStringCollection;
 
 
 class ItemResolverSpec extends ObjectBehavior
@@ -170,7 +170,7 @@ class ItemResolverSpec extends ObjectBehavior
     /**
      * @param ShortStringCollection $collection
      */
-    private function prepareForConfigure($collection): void
+    private function prepareForConfigure(ShortStringCollection $collection): void
     {
         $this->beConstructedOfType('string');
 

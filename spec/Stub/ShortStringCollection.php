@@ -10,8 +10,10 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type;
+namespace spec\PlanB\Type\Stub;
 
+
+use PlanB\Type\Collection;
 
 class ShortStringCollection extends Collection
 {
@@ -35,7 +37,5 @@ class ShortStringCollection extends Collection
     {
         return $key;
     }
-
-
 
 }

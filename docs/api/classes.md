@@ -10,6 +10,7 @@
 * [PlanB\Type\Hook](PlanB/Type/Hook.md)
 * [PlanB\Type\ItemResolver](PlanB/Type/ItemResolver.md)
 * [PlanB\Type\KeyValue](PlanB/Type/KeyValue.md)
+* [PlanB\Type\Traits\Mutators](PlanB/Type/Traits/Mutators.md)
 * [PlanB\Type\ValidatorFactory](PlanB/Type/ValidatorFactory.md)
 
 

@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace spec\PlanB\Type;
 
 
-use PhpSpec\Wrapper\Wrapper;
-use PlanB\Type\Collection;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PlanB\Type\Collection;
 use spec\PlanB\Type\Stub\Word;
 
 class CollectionSpec extends ObjectBehavior
@@ -18,10 +16,6 @@ class CollectionSpec extends ObjectBehavior
         $this->beConstructedWith('string');
     }
 
-    public function it_is_initializable()
-    {
-        $this->shouldHaveType(Collection::class);
-    }
 
     public function it_is_countable()
     {
@@ -75,7 +69,7 @@ class CollectionSpec extends ObjectBehavior
 
         ]);
 
-        $response = $this->map(function (Word $word, int $key, string $userdata) : string {
+        $response = $this->map(function (Word $word, int $key, string $userdata): string {
             return $word->toUpper()
                 ->concat(sprintf('[%s]', $key))
                 ->concat($userdata)

@@ -41,7 +41,6 @@ class Collection implements \Countable
         $this->type = $type;
     }
 
-
     /**
      * Devuelve el tipo de la colleción
      *
@@ -108,24 +107,10 @@ class Collection implements \Countable
         foreach ($this->items as $key => $value) {
             $item = $callable($value, $key, $userdata);
 
-            $mapped = $mapped ?? $this->buildMapped($item);
+            $mapped = $mapped ?? CollectionCreator::fromValueType($item);
             $mapped->itemSet($key, $item);
         }
 
         return $mapped;
-    }
-
-    /**
-     * Devuelve una colección del mismo tipo que el valor pasado
-     *
-     * @param mixed $value
-     *
-     * @return \PlanB\Type\Collection
-     */
-    private function buildMapped($value): self
-    {
-        $type = is_object($value) ? get_class($value) : gettype($value);
-
-        return new Collection($type);
     }
 }

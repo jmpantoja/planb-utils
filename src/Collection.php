@@ -78,7 +78,7 @@ class Collection implements \Countable
     public function itemAppend($value): self
     {
         $pair = KeyValue::fromValue($value);
-        $this->appendKeyValue($pair);
+        $this->appendPair($pair);
 
         return $this;
     }
@@ -90,7 +90,7 @@ class Collection implements \Countable
      *
      * @return \PlanB\Type\Collection
      */
-    private function appendKeyValue(KeyValue $candidate): self
+    private function appendPair(KeyValue $candidate): self
     {
 
         $pair = $this->getResolver()
@@ -100,18 +100,46 @@ class Collection implements \Countable
             return $this;
         }
 
+        $this->appendPairWithKey($pair);
+        $this->appendPairWithoutKey($pair);
+
+
+        return $this;
+    }
+
+    /**
+     * Agrega una pareja clave/valor a la colección,
+     * en el caso de que la clave esté definida
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     */
+    private function appendPairWithKey(KeyValue $pair): void
+    {
+        if (!$pair->hasKey()) {
+            return;
+        }
+
         $value = $pair->getValue();
         $key = $pair->getKey();
 
+        $this->items[$key] = $value;
+    }
+
+
+    /**
+     * Agrega una pareja clave/valor a la colección,
+     * en el caso de que la clave no esté definida
+     *
+     * @param \PlanB\Type\KeyValue $pair
+     */
+    private function appendPairWithoutKey(KeyValue $pair): void
+    {
         if ($pair->hasKey()) {
-            $this->items[$key] = $value;
-
-            return $this;
+            return;
         }
-
+        
+        $value = $pair->getValue();
         $this->items[] = $value;
-
-        return $this;
     }
 
     /**
@@ -180,7 +208,7 @@ class Collection implements \Countable
     public function itemSet($key, $value): self
     {
         $pair = KeyValue::fromPair($key, $value);
-        $this->appendKeyValue($pair);
+        $this->appendPair($pair);
 
         return $this;
     }

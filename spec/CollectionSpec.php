@@ -55,4 +55,50 @@ class CollectionSpec extends ObjectBehavior
         $this->itemGet(2)->__toString()->shouldReturn('TRES [2] <=');
     }
 
+    public function it_each_method_return_instance_on_empty()
+    {
+        $this->beConstructedWith(Word::class);
+
+        $this->each(function (Word $word, int $key, string $userdata) {
+            $word->toUpper();
+        })->shouldReturn($this);
+    }
+
+
+    public function it_each_element_is_mapped_to_callable()
+    {
+        $this->beConstructedWith(Word::class);
+        $this->itemSetAll([
+            Word::fromString('uno'),
+            Word::fromString('dos'),
+            Word::fromString('tres')
+
+        ]);
+
+        $response = $this->map(function (Word $word, int $key, string $userdata) : string {
+            return $word->toUpper()
+                ->concat(sprintf('[%s]', $key))
+                ->concat($userdata)
+                ->__toString();
+
+        }, '<=');
+
+        $response->shouldHaveType(Collection::class);
+
+        $response->itemGet(0)->shouldReturn('UNO [0] <=');
+        $response->itemGet(1)->shouldReturn('DOS [1] <=');
+        $response->itemGet(2)->shouldReturn('TRES [2] <=');
+    }
+
+    public function it_map_method_return_instance_on_empty()
+    {
+        $this->beConstructedWith(Word::class);
+
+        $response = $this->map(function (Word $word) {
+            $word->toUpper();
+        });
+
+        $response->shouldNotReturn($this);
+        $response->shouldHaveType(Collection::class);
+    }
 }

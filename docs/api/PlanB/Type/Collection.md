@@ -208,6 +208,22 @@ Ejecuta una acción para cada elemento de la colección
 ---
 
 
+### map
+``` php
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) map (callable $callable, null|mixed $userdata = null)
+
+Devuelve el resultado de aplicar una acción a cada elemento de la colección
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|null|mixed |$userdata |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

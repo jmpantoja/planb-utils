@@ -88,10 +88,14 @@ class ItemResolver
      * Asigna el validador personalizado
      *
      * @param callable $validator
+     *
+     * @return \PlanB\Type\ItemResolver
      */
-    public function setValidator(callable $validator): void
+    public function setValidator(callable $validator): self
     {
         $this->validator = Hook::fromCallable($validator);
+
+        return $this;
     }
 
 
@@ -99,10 +103,14 @@ class ItemResolver
      * Asigna el normalizador personalizado
      *
      * @param callable $normalizer
+     *
+     * @return \PlanB\Type\ItemResolver
      */
-    public function setNormalizer(callable $normalizer): void
+    public function setNormalizer(callable $normalizer): self
     {
         $this->normalizer = Hook::fromCallable($normalizer);
+
+        return $this;
     }
 
 
@@ -110,10 +118,14 @@ class ItemResolver
      * Asigna el normalizador de clave personalizado
      *
      * @param callable $normalizer
+     *
+     * @return \PlanB\Type\ItemResolver
      */
-    public function setKeyNormalizer(callable $normalizer): void
+    public function setKeyNormalizer(callable $normalizer): self
     {
         $this->keyNormalizer = Hook::fromCallable($normalizer);
+
+        return $this;
     }
 
 
@@ -121,12 +133,16 @@ class ItemResolver
      * Configura el ItemResolver a partir de lo que se deduce de una coleccion
      *
      * @param \PlanB\Type\Collection $collection
+     *
+     * @return \PlanB\Type\ItemResolver
      */
-    public function configure(Collection $collection): void
+    public function configure(Collection $collection): self
     {
         $this->validator = Hook::fromArray([$collection, 'validate']);
         $this->normalizer = Hook::fromArray([$collection, 'normalize']);
         $this->keyNormalizer = Hook::fromArray([$collection, 'normalizeKey']);
+
+        return $this;
     }
 
     /**
@@ -175,12 +191,14 @@ class ItemResolver
      * Nos aseguramos que el valor sea del tipo requerido por la colección
      *
      * @param \PlanB\Type\KeyValue $pair
+     *
+     * @return \PlanB\Type\ItemResolver
      */
-    private function assertType(KeyValue $pair): void
+    private function assertType(KeyValue $pair): self
     {
 
         if (true === (bool) $this->typeValidator->execute($pair)) {
-            return;
+            return $this;
         }
 
         $value = $pair->getValue();

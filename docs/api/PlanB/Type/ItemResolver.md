@@ -61,7 +61,7 @@ Devuelve el tipo base de la colección
 
 ### setValidator
 ``` php
- setValidator (callable $validator)
+[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) setValidator (callable $validator)
 
 Asigna el validador personalizado
 
@@ -76,7 +76,7 @@ Asigna el validador personalizado
 
 ### setNormalizer
 ``` php
- setNormalizer (callable $normalizer)
+[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) setNormalizer (callable $normalizer)
 
 Asigna el normalizador personalizado
 
@@ -91,7 +91,7 @@ Asigna el normalizador personalizado
 
 ### setKeyNormalizer
 ``` php
- setKeyNormalizer (callable $normalizer)
+[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) setKeyNormalizer (callable $normalizer)
 
 Asigna el normalizador de clave personalizado
 
@@ -106,7 +106,7 @@ Asigna el normalizador de clave personalizado
 
 ### configure
 ``` php
- configure ([PlanB\Type\Collection](../../PlanB/Type/Collection.md) $collection)
+[PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md) configure ([PlanB\Type\Collection](../../PlanB/Type/Collection.md) $collection)
 
 Configura el ItemResolver a partir de lo que se deduce de una coleccion
 

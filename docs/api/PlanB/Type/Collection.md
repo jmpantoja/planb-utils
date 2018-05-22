@@ -58,7 +58,7 @@ Indica si la colección está vacia
 
 ### itemAppend
 ``` php
- itemAppend (mixed $value)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemAppend (mixed $value)
 
 Agrega un elemento a la colección
 
@@ -88,7 +88,7 @@ protected configure ([PlanB\Type\ItemResolver](../../PlanB/Type/ItemResolver.md)
 
 ### itemAppendAll
 ``` php
- itemAppendAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemAppendAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
 
 Agrega un conjunto de elementos
 
@@ -103,7 +103,7 @@ Agrega un conjunto de elementos
 
 ### itemSet
 ``` php
- itemSet (mixed $key, mixed $value)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemSet (mixed $key, mixed $value)
 
 Agrega una pareja clave/valor a la colección
 
@@ -119,7 +119,7 @@ Agrega una pareja clave/valor a la colección
 
 ### itemSetAll
 ``` php
- itemSetAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemSetAll ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $items)
 
 Agrega un conjunto de parejas clave/valor
 
@@ -165,7 +165,7 @@ Indica si un elemento existe
 
 ### itemUnset
 ``` php
- itemUnset (mixed $key)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) itemUnset (mixed $key)
 
 Elimina un elemento
 

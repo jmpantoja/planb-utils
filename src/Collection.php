@@ -72,26 +72,32 @@ class Collection implements \Countable
      * Agrega un elemento a la colección
      *
      * @param mixed $value
+     *
+     * @return \PlanB\Type\Collection
      */
-    public function itemAppend($value): void
+    public function itemAppend($value): self
     {
         $pair = KeyValue::fromValue($value);
         $this->appendKeyValue($pair);
+
+        return $this;
     }
 
     /**
      * Agrega una pareja clave/valor a la colección
      *
      * @param \PlanB\Type\KeyValue $candidate
+     *
+     * @return \PlanB\Type\Collection
      */
-    private function appendKeyValue(KeyValue $candidate): void
+    private function appendKeyValue(KeyValue $candidate): self
     {
 
         $pair = $this->getResolver()
             ->resolve($candidate);
 
         if (!($pair instanceof KeyValue)) {
-            return;
+            return $this;
         }
 
         $value = $pair->getValue();
@@ -100,10 +106,12 @@ class Collection implements \Countable
         if ($pair->hasKey()) {
             $this->items[$key] = $value;
 
-            return;
+            return $this;
         }
 
         $this->items[] = $value;
+
+        return $this;
     }
 
     /**
@@ -137,21 +145,28 @@ class Collection implements \Countable
      * @param \PlanB\Type\ItemResolver $resolver
      *
      * @@SuppressWarnings(PMD.UnusedFormalParameter)
+     *
+     * @return \PlanB\Type\Collection
      */
-    protected function configure(ItemResolver $resolver): void
+    protected function configure(ItemResolver $resolver): self
     {
+        return $this;
     }
 
     /**
      * Agrega un conjunto de elementos
      *
      * @param mixed[]|iterable $items
+     *
+     * @return \PlanB\Type\Collection
      */
-    public function itemAppendAll(iterable $items): void
+    public function itemAppendAll(iterable $items): self
     {
         foreach ($items as $value) {
             $this->itemAppend($value);
         }
+
+        return $this;
     }
 
     /**
@@ -159,23 +174,31 @@ class Collection implements \Countable
      *
      * @param mixed $key
      * @param mixed $value
+     *
+     * @return \PlanB\Type\Collection
      */
-    public function itemSet($key, $value): void
+    public function itemSet($key, $value): self
     {
         $pair = KeyValue::fromPair($key, $value);
         $this->appendKeyValue($pair);
+
+        return $this;
     }
 
     /**
      * Agrega un conjunto de parejas clave/valor
      *
      * @param mixed[]|iterable $items
+     *
+     * @return \PlanB\Type\Collection
      */
-    public function itemSetAll(iterable $items): void
+    public function itemSetAll(iterable $items): self
     {
         foreach ($items as $key => $value) {
             $this->itemSet($key, $value);
         }
+
+        return $this;
     }
 
 
@@ -216,10 +239,14 @@ class Collection implements \Countable
      * Elimina un elemento
      *
      * @param mixed $key
+     *
+     * @return \PlanB\Type\Collection
      */
-    public function itemUnset($key): void
+    public function itemUnset($key): self
     {
         unset($this->items[$key]);
+
+        return $this;
     }
 
     /**

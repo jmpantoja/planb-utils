@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace spec\PlanB\Type\Traits;
+namespace spec\PlanB\Type\Collection;
 
 
 use PhpSpec\ObjectBehavior;

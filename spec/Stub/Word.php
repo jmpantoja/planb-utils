@@ -39,6 +39,15 @@ class Word
         return $this;
     }
 
+    public function concatAll(string ...$words): self
+    {
+        array_unshift($words, $this->text);
+
+        $this->text = implode('/', $words);
+        return $this;
+
+    }
+
     public function length(): int
     {
         return strlen($this->text);

@@ -151,7 +151,7 @@ class Collection implements \Countable
      *
      * @return mixed|null
      */
-    public function search(callable $callable, ...$userdata)
+    public function itemSearch(callable $callable, ...$userdata)
     {
 
         foreach ($this->items as $key => $value) {
@@ -170,7 +170,7 @@ class Collection implements \Countable
      *
      * @return mixed
      */
-    public function find(callable $callable, ...$userdata)
+    public function itemFind(callable $callable, ...$userdata)
     {
         foreach ($this->items as $key => $value) {
             if ($callable($value, $key, ...$userdata)) {

@@ -30,7 +30,7 @@ class Seach_FindSpec extends ObjectBehavior
 
     public function it_search_method_return_null_on_empty()
     {
-        $this->search(function (Word $word) {
+        $this->itemSearch(function (Word $word) {
             return $word->length() > 3;
         })->shouldReturn(null);
     }
@@ -40,7 +40,7 @@ class Seach_FindSpec extends ObjectBehavior
     {
         $this->addSomeElements();
 
-        $this->search(function (Word $word) {
+        $this->itemSearch(function (Word $word) {
             return $word->length() > 10;
         })->shouldReturn(null);
     }
@@ -48,7 +48,7 @@ class Seach_FindSpec extends ObjectBehavior
     public function it_search_method_return_an_element()
     {
         $this->addSomeElements();
-        $response = $this->search(function (Word $word) {
+        $response = $this->itemSearch(function (Word $word) {
             return $word->length() > 3;
         });
 
@@ -60,20 +60,32 @@ class Seach_FindSpec extends ObjectBehavior
     public function it_find_method_throws_an_exception_on_empty()
     {
         $this->shouldThrow(ItemNotFoundException::class)
-            ->duringFind(function (Word $word) {
+            ->duringItemFind(function (Word $word) {
                 return $word->length() > 3;
             });
     }
-
 
     public function it_find_method_throws_an_exception_if_nothing_is_found()
     {
         $this->addSomeElements();
         $this->shouldThrow(ItemNotFoundException::class)
-            ->duringFind(function (Word $word) {
+            ->duringItemFind(function (Word $word) {
                 return $word->length() > 10;
             });
     }
+
+
+    public function it_find_method_return_an_element()
+    {
+        $this->addSomeElements();
+        $response = $this->itemFind(function (Word $word) {
+            return $word->length() > 3;
+        });
+
+        $response->shouldHaveType(Word::class);
+        $response->__toString()->shouldReturn('tres');
+    }
+
 
     protected function addSomeElements()
     {

@@ -240,9 +240,9 @@ Devuelve una colección con los elementos que cumplen un criterio
 ---
 
 
-### search
+### itemSearch
 ``` php
-mixed|null search (callable $callable, mixed ...$userdata)
+mixed|null itemSearch (callable $callable, mixed ...$userdata)
 
 Devuelve el primer elemento que cumpla con el criterio,
 o nulo si no encuentra ninguno
@@ -257,9 +257,9 @@ o nulo si no encuentra ninguno
 ---
 
 
-### find
+### itemFind
 ``` php
-mixed find (callable $callable, mixed ...$userdata)
+mixed itemFind (callable $callable, mixed ...$userdata)
 
 Devuelve el primer elemento que cumpla con el criterio,
 o lanza una excepción si no encuentra ninguno

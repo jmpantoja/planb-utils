@@ -180,4 +180,22 @@ class Collection implements \Countable
 
         throw ItemNotFoundException::forCondition();
     }
+
+    /**
+     * Reduce una colección, a un unico valor
+     *
+     * @param callable   $callable
+     * @param mixed|null $initial
+     * @param mixed      ...$userdata
+     *
+     * @return mixed
+     */
+    public function reduce(callable $callable, $initial = null, ...$userdata)
+    {
+        foreach ($this->items as $value) {
+            $initial = $callable($value, $initial, ...$userdata);
+        }
+
+        return $initial;
+    }
 }

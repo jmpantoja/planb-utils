@@ -274,6 +274,23 @@ o lanza una excepción si no encuentra ninguno
 ---
 
 
+### reduce
+``` php
+mixed reduce (callable $callable, mixed|null $initial = null, mixed ...$userdata)
+
+Reduce una colección, a un unico valor
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|mixed|null |$initial |  |
+|mixed |...$userdata |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

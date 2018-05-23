@@ -5,6 +5,7 @@
 
 * [PlanB\Type\Collection](PlanB/Type/Collection.md)
 * [PlanB\Type\CollectionCreator](PlanB/Type/CollectionCreator.md)
+* [PlanB\Type\Exception\EmptyArgumentException](PlanB/Type/Exception/EmptyArgumentException.md)
 * [PlanB\Type\Exception\InvalidTypeException](PlanB/Type/Exception/InvalidTypeException.md)
 * [PlanB\Type\Exception\InvalidValueTypeException](PlanB/Type/Exception/InvalidValueTypeException.md)
 * [PlanB\Type\Exception\ItemNotFoundException](PlanB/Type/Exception/ItemNotFoundException.md)

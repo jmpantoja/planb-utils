@@ -5,6 +5,8 @@ namespace spec\PlanB\Type;
 use PlanB\Type\Collection;
 use PlanB\Type\CollectionCreator;
 use PhpSpec\ObjectBehavior;
+use PlanB\Type\Exception\EmptyArgumentException;
+use PlanB\Type\Exception\InvalidValueTypeException;
 use Prophecy\Argument;
 use spec\PlanB\Type\Stub\Word;
 
@@ -38,4 +40,45 @@ class CollectionCreatorSpec extends ObjectBehavior
         $response->shouldHaveType(Collection::class);
         $response->getType(Word::class);
     }
+
+
+    public function it_can_create_a_collection_by_array()
+    {
+        $input = [
+            Word::fromString('item A'),
+            Word::fromString('item B'),
+            Word::fromString('item C')
+        ];
+
+        $response = $this->fromArray($input);
+
+        $response->getType()->shouldReturn(Word::class);
+        $response->count()->shouldReturn(3);
+
+        $response->itemGet(0)->__toString('item A');
+        $response->itemGet(1)->__toString('item B');
+        $response->itemGet(2)->__toString('item C');
+    }
+
+
+    public function it_throws_an_exception_when_create_from_an_invalid_array()
+    {
+        $input = [
+            Word::fromString('item A'),
+            'se esperaba un objeto tipo Word',
+            Word::fromString('item C')
+        ];
+
+        $this->shouldThrow(InvalidValueTypeException::class)->duringFromArray($input);
+    }
+
+
+    public function it_throws_an_exception_when_create_from_an_empty_array()
+    {
+        $input = [];
+
+        $this->shouldThrow(\InvalidArgumentException::class)->duringFromArray($input);
+        $this->shouldThrow(EmptyArgumentException::class)->duringFromArray($input);
+    }
+
 }

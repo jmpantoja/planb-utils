@@ -1,15 +1,13 @@
 
                                                                                                                                             
     
-# CollectionCreator
+# EmptyArgumentException
 
 
-> <ul>
-<li>Nos ayuda a crear colecciones en distintos escenarios</li>
-</ul>
-
+> Se lanza cuando se trata de crear una colleción a partir de un array vacio
 >
-> 
+> Cuando creamos colecciones a partir de arrays, se espera que contenga al menos un elemento
+del que poder deducir el tipo
 
 
 
@@ -20,47 +18,17 @@
 
 ## Methods
 
-### fromType
+### emptyInput
 ``` php
-static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) fromType (string $type)
+static[PlanB\Type\Exception\EmptyArgumentException](../../../PlanB/Type/Exception/EmptyArgumentException.md) emptyInput ([Throwable](../../../Throwable.md) $previous = null)
 
-Crea una colección, a partir de su tipo
+Crea una nueva instancia
 
 ```
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### fromValueType
-``` php
-static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) fromValueType (mixed $value)
-
-Crea una colección, del mismo tipo de un valor dado
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$value |  |
-
----
-
-
-### fromArray
-``` php
-static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) fromArray ([PlanB\Type\iterable](../../PlanB/Type/iterable.md) $input)
-
-Crea una colección a partir de un conjunto de valores
-
-```
-
-|Parameters: | | |
-| --- | --- | --- |
-|[PlanB\Type\iterable](../../PlanB/Type/iterable.md) |$input |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 

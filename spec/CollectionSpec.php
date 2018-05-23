@@ -28,4 +28,37 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(true);
     }
 
+
+    public function it_can_be_returned_as_an_array()
+    {
+        $input = [
+            'uno',
+            'dos',
+            'tres'
+        ];
+
+        $this->itemAppendAll($input);
+        $this->toArray()->shouldReturn($input);
+    }
+
+    public function it_can_be_returned_as_a_mapped_array()
+    {
+        $input = [
+            'uno',
+            'dos',
+            'tres'
+        ];
+
+        $upper = [
+            'UNO',
+            'DOS',
+            'TRES',
+        ];
+
+        $this->itemAppendAll($input);
+
+        $this->toArray(function (string $value) {
+            return strtoupper($value);
+        })->shouldReturn($upper);
+    }
 }

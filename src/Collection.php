@@ -198,4 +198,26 @@ class Collection implements \Countable
 
         return $initial;
     }
+
+    /**
+     * Devuelve un array con los elementos de la colección
+     *
+     * @param callable|null $callable
+     * @param mixed         ...$userdata
+     *
+     * @return mixed[]
+     */
+    public function toArray(?callable $callable = null, ...$userdata): array
+    {
+        if (!is_callable($callable)) {
+            return $this->items;
+        }
+
+        $map = [];
+        foreach ($this->items as $key => $value) {
+            $map[] = $callable($value, $key, ...$userdata);
+        }
+
+        return $map;
+    }
 }

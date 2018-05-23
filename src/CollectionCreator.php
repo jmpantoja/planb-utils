@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\Type;
 
+use PlanB\Type\Exception\EmptyArgumentException;
+
 /**
  * * Nos ayuda a crear colecciones en distintos escenarios
  *
@@ -43,5 +45,29 @@ class CollectionCreator
         $type = is_object($value) ? get_class($value) : gettype($value);
 
         return new Collection($type);
+    }
+
+    /**
+     * Crea una colección a partir de un conjunto de valores
+     *
+     * Se espera que el array de entrada no esté vacio, y que no contenga valores de varios tipos
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\Type\Collection
+     */
+    public static function fromArray(iterable $input): Collection
+    {
+        if (empty($input)) {
+            throw EmptyArgumentException::emptyInput();
+        }
+
+        $collection = null;
+        foreach ($input as $key => $value) {
+            $collection = $collection ?? static::fromValueType($value);
+            $collection->itemSet($key, $value);
+        }
+
+        return $collection;
     }
 }

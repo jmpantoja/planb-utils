@@ -291,6 +291,22 @@ Reduce una colección, a un unico valor
 ---
 
 
+### toArray
+``` php
+mixed[] toArray (callable $callable = null, mixed ...$userdata)
+
+Devuelve un array con los elementos de la colección
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|mixed |...$userdata |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

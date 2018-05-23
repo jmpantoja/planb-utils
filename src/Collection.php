@@ -75,13 +75,16 @@ class Collection implements \Countable
      * Ejecuta una acción para cada elemento de la colección
      *
      * @param callable $callable
-     * @param null     $userdata
+     * @param mixed    ...$userdata
      *
      * @return \PlanB\Type\Collection
      */
-    public function each(callable $callable, $userdata = null): self
+    public function each(callable $callable, ...$userdata): self
     {
-        array_walk($this->items, $callable, $userdata);
+
+        foreach ($this->items as $key => $value) {
+            $callable($value, $key, ...$userdata);
+        }
 
         return $this;
     }
@@ -92,12 +95,12 @@ class Collection implements \Countable
      *
      * La colección original permanece inmutable
      *
-     * @param callable   $callable
-     * @param null|mixed $userdata
+     * @param callable $callable
+     * @param mixed    ...$userdata
      *
      * @return \PlanB\Type\Collection
      */
-    public function map(callable $callable, $userdata = null): self
+    public function map(callable $callable, ...$userdata): self
     {
         if ($this->isEmpty()) {
             return clone $this;
@@ -105,12 +108,35 @@ class Collection implements \Countable
 
         $mapped = null;
         foreach ($this->items as $key => $value) {
-            $item = $callable($value, $key, $userdata);
+            $item = $callable($value, $key, ...$userdata);
 
             $mapped = $mapped ?? CollectionCreator::fromValueType($item);
             $mapped->itemSet($key, $item);
         }
 
         return $mapped;
+    }
+
+    /**
+     * Devuelve una colección con los elementos que cumplen un criterio
+     *
+     * @param callable $callable
+     * @param mixed    ...$userdata
+     *
+     * @return \PlanB\Type\Collection
+     */
+    public function filter(callable $callable, ...$userdata): self
+    {
+        $filtered = CollectionCreator::fromType($this->getType());
+
+        foreach ($this->items as $key => $value) {
+            if (!$callable($value, $key, ...$userdata)) {
+                continue;
+            }
+
+            $filtered->itemSet($key, $value);
+        }
+
+        return $filtered;
     }
 }

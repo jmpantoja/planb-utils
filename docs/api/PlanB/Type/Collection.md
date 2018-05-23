@@ -194,7 +194,7 @@ Indica si la colección está vacia
 
 ### each
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) each (callable $callable, null $userdata = null)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) each (callable $callable, mixed ...$userdata)
 
 Ejecuta una acción para cada elemento de la colección
 
@@ -203,14 +203,14 @@ Ejecuta una acción para cada elemento de la colección
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callable |  |
-|null |$userdata |  |
+|mixed |...$userdata |  |
 
 ---
 
 
 ### map
 ``` php
-[PlanB\Type\Collection](../../PlanB/Type/Collection.md) map (callable $callable, null|mixed $userdata = null)
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) map (callable $callable, mixed ...$userdata)
 
 Devuelve el resultado de aplicar una acción a cada elemento de la colección
 
@@ -219,7 +219,23 @@ Devuelve el resultado de aplicar una acción a cada elemento de la colección
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callable |  |
-|null|mixed |$userdata |  |
+|mixed |...$userdata |  |
+
+---
+
+
+### filter
+``` php
+[PlanB\Type\Collection](../../PlanB/Type/Collection.md) filter (callable $callable, mixed ...$userdata)
+
+Devuelve una colección con los elementos que cumplen un criterio
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 

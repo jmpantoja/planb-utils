@@ -39,6 +39,10 @@ class Word
         return $this;
     }
 
+    public function length(): int
+    {
+        return strlen($this->text);
+    }
 
     public function __toString()
     {

@@ -28,10 +28,4 @@ class CollectionSpec extends ObjectBehavior
         $this->isEmpty()->shouldReturn(true);
     }
 
-
-
-//
-//    public function it_search_method_returns_null_on_fail(){
-//
-//    }
 }

@@ -37,7 +37,7 @@ Crea una colección, a partir de su tipo
 
 ### fromValueType
 ``` php
-static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) fromValueType ($value)
+static[PlanB\Type\Collection](../../PlanB/Type/Collection.md) fromValueType (mixed $value)
 
 Crea una colección, del mismo tipo de un valor dado
 
@@ -45,7 +45,7 @@ Crea una colección, del mismo tipo de un valor dado
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$value |  |
+|mixed |$value |  |
 
 ---
 

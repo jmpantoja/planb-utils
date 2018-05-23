@@ -19,6 +19,8 @@ namespace PlanB\Type\Exception;
 class ItemNotFoundException extends \OutOfRangeException
 {
     /**
+     * Crea una instancia, con un mensae que indica que la clave no existe
+     *
      * @param string          $key
      * @param null|\Throwable $previous
      *
@@ -30,5 +32,17 @@ class ItemNotFoundException extends \OutOfRangeException
         $message = sprintf('Undefined index: %s', $key);
 
         return new static($message, 100, $previous);
+    }
+
+    /**
+     * Crea una instancia, con un mensae que indica que el elemento no existe
+     *
+     * @param null|\Throwable $previous
+     *
+     * @return \PlanB\Type\Exception\ItemNotFoundException
+     */
+    public static function forCondition(?\Throwable $previous = null): self
+    {
+        return new static('Element not found', 100, $previous);
     }
 }

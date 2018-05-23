@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\Type;
 
+use PlanB\Type\Exception\ItemNotFoundException;
+
 /**
  * Generic Collection
  *
@@ -138,5 +140,44 @@ class Collection implements \Countable
         }
 
         return $filtered;
+    }
+
+    /**
+     * Devuelve el primer elemento que cumpla con el criterio,
+     * o nulo si no encuentra ninguno
+     *
+     * @param callable $callable
+     * @param mixed    ...$userdata
+     *
+     * @return mixed|null
+     */
+    public function search(callable $callable, ...$userdata)
+    {
+
+        foreach ($this->items as $key => $value) {
+            if ($callable($value, $key, ...$userdata)) {
+                return $value;
+            }
+        }
+    }
+
+    /**
+     * Devuelve el primer elemento que cumpla con el criterio,
+     * o lanza una excepción si no encuentra ninguno
+     *
+     * @param callable $callable
+     * @param mixed    ...$userdata
+     *
+     * @return mixed
+     */
+    public function find(callable $callable, ...$userdata)
+    {
+        foreach ($this->items as $key => $value) {
+            if ($callable($value, $key, ...$userdata)) {
+                return $value;
+            }
+        }
+
+        throw ItemNotFoundException::forCondition();
     }
 }

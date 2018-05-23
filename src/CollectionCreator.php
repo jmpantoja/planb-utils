@@ -34,7 +34,7 @@ class CollectionCreator
     /**
      * Crea una colección, del mismo tipo de un valor dado
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return \PlanB\Type\Collection
      */

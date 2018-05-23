@@ -240,6 +240,40 @@ Devuelve una colección con los elementos que cumplen un criterio
 ---
 
 
+### search
+``` php
+mixed|null search (callable $callable, mixed ...$userdata)
+
+Devuelve el primer elemento que cumpla con el criterio,
+o nulo si no encuentra ninguno
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|mixed |...$userdata |  |
+
+---
+
+
+### find
+``` php
+mixed find (callable $callable, mixed ...$userdata)
+
+Devuelve el primer elemento que cumpla con el criterio,
+o lanza una excepción si no encuentra ninguno
+
+```
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+|mixed |...$userdata |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

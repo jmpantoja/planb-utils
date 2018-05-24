@@ -19,4 +19,4 @@ before_script:
   - travis_retry composer install --no-interaction --optimize-autoloader
 
 script:
-  - vendor/bin/codecept run unit --coverage --coverage-text --coverage-xml -f --debug
+  - vendor/bin/phpspec run spec

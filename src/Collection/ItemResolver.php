@@ -26,22 +26,22 @@ class ItemResolver
     private $type;
 
     /**
-     * @var \PlanB\Type\Collection\Validator\ValidableType
+     * @var \PlanB\Type\Collection\Hook
      */
     private $typeValidator;
 
     /**
-     * @var \PlanB\Type\Collection\Validator\Validator
+     * @var \PlanB\Type\Collection\Hook
      */
     private $validator;
 
     /**
-     * @var callable
+     * @var \PlanB\Type\Collection\Hook
      */
     private $normalizer;
 
     /**
-     * @var callable
+     * @var \PlanB\Type\Collection\Hook
      */
     private $keyNormalizer;
 
@@ -56,9 +56,9 @@ class ItemResolver
         $this->typeValidator = ValidatorFactory::factory($type);
 
 
-        $this->validator = Hook::default();
-        $this->normalizer = Hook::default();
-        $this->keyNormalizer = Hook::default();
+        $this->validator = Hook::empty();
+        $this->normalizer = Hook::empty();
+        $this->keyNormalizer = Hook::empty();
     }
 
     /**

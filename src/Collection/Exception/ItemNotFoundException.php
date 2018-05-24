@@ -24,7 +24,7 @@ class ItemNotFoundException extends \OutOfRangeException
      * @param string          $key
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\ItemNotFoundException
+     * @return \PlanB\Type\Collection\Exception\ItemNotFoundException
      */
     public static function forKey(string $key, ?\Throwable $previous = null): self
     {

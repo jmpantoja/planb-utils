@@ -18,10 +18,10 @@ class HookSpec extends ObjectBehavior
         $this->shouldHaveType(Hook::class);
     }
 
-    public function it_is_initializable_from_default()
+    public function it_is_initializable_from_empty()
     {
 
-        $this->beConstructedDefault();
+        $this->beConstructedEmpty();
 
         $pair = KeyValue::fromValue('dummy');
 

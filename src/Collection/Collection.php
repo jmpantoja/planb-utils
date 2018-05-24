@@ -27,7 +27,7 @@ class Collection implements \Countable
     /**
      * @var mixed[]
      */
-    private $items = [];
+    protected $items = [];
 
     /**
      * @var string

@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Collection\Traits;
 
-use PlanB\Type\Collection\Collection;
 use PlanB\Type\Collection\Exception\ItemNotFoundException;
 use PlanB\Type\Collection\ItemResolver;
 use PlanB\Type\Collection\KeyValue;
@@ -25,6 +24,10 @@ use PlanB\Type\Collection\KeyValue;
 trait Mutators
 {
 
+    /**
+     * @var mixed[]
+     */
+    protected $items = [];
 
     /**
      * @var \PlanB\Type\Collection\ItemResolver
@@ -51,9 +54,9 @@ trait Mutators
      *
      * @param mixed[]|iterable $items
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    public function itemAppendAll(iterable $items): Collection
+    public function itemAppendAll(iterable $items)
     {
         foreach ($items as $value) {
             $this->itemAppend($value);
@@ -68,9 +71,9 @@ trait Mutators
      * @param mixed $key
      * @param mixed $value
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    public function itemSet($key, $value): Collection
+    public function itemSet($key, $value)
     {
         $pair = KeyValue::fromPair($key, $value);
         $this->appendPair($pair);
@@ -84,9 +87,9 @@ trait Mutators
      *
      * @param mixed[]|iterable $items
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    public function itemSetAll(iterable $items): Collection
+    public function itemSetAll(iterable $items)
     {
         foreach ($items as $key => $value) {
             $this->itemSet($key, $value);
@@ -134,9 +137,9 @@ trait Mutators
      *
      * @param mixed $key
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    public function itemUnset($key): Collection
+    public function itemUnset($key)
     {
         unset($this->items[$key]);
 
@@ -148,9 +151,9 @@ trait Mutators
      *
      * @param \PlanB\Type\Collection\KeyValue $candidate
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    private function appendPair(KeyValue $candidate): Collection
+    private function appendPair(KeyValue $candidate)
     {
 
         $pair = $this->getResolver()
@@ -173,9 +176,9 @@ trait Mutators
      *
      * @param \PlanB\Type\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    private function appendPairWithKey(KeyValue $pair): Collection
+    private function appendPairWithKey(KeyValue $pair)
     {
         if (!$pair->hasKey()) {
             return $this;
@@ -196,9 +199,9 @@ trait Mutators
      *
      * @param \PlanB\Type\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    private function appendPairWithoutKey(KeyValue $pair): Collection
+    private function appendPairWithoutKey(KeyValue $pair)
     {
         if ($pair->hasKey()) {
             return $this;
@@ -243,9 +246,9 @@ trait Mutators
      *
      * @@SuppressWarnings(PMD.UnusedFormalParameter)
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return $this
      */
-    protected function configure(ItemResolver $resolver): Collection
+    protected function configure(ItemResolver $resolver)
     {
         return $this;
     }

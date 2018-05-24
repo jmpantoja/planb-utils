@@ -13,6 +13,8 @@
 
 
 
+## Properties
+- items
 
 
 ## Methods
@@ -35,7 +37,7 @@ Agrega un elemento a la colección
 Agrega un conjunto de elementos
 
 
-**Mutators::itemAppendAll**([iterable](../../../../iterable.md) $items) : [Collection](../../../../Collection.md)
+**Mutators::itemAppendAll**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |
@@ -49,7 +51,7 @@ Agrega un conjunto de elementos
 Agrega una pareja clave/valor a la colección
 
 
-**Mutators::itemSet**(mixed $key, mixed $value) : [Collection](../../../../Collection.md)
+**Mutators::itemSet**(mixed $key, mixed $value) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |
@@ -64,7 +66,7 @@ Agrega una pareja clave/valor a la colección
 Agrega un conjunto de parejas clave/valor
 
 
-**Mutators::itemSetAll**([iterable](../../../../iterable.md) $items) : [Collection](../../../../Collection.md)
+**Mutators::itemSetAll**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |
@@ -107,7 +109,7 @@ Indica si un elemento existe
 Elimina un elemento
 
 
-**Mutators::itemUnset**(mixed $key) : [Collection](../../../../Collection.md)
+**Mutators::itemUnset**(mixed $key) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |

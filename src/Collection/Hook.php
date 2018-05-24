@@ -17,7 +17,7 @@ namespace PlanB\Type\Collection;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class Hook
+final class Hook
 {
     /**
      * @var callable
@@ -29,7 +29,7 @@ class Hook
      *
      * @param callable|null $callable
      */
-    protected function __construct(?callable $callable)
+    private function __construct(callable $callable)
     {
         $this->callable = $callable;
     }
@@ -39,9 +39,10 @@ class Hook
      *
      * @return \PlanB\Type\Collection\Hook
      */
-    public static function default(): self
+    public static function empty(): self
     {
-        return new static(null);
+        return new static(function (): void {
+        });
     }
 
     /**
@@ -67,7 +68,7 @@ class Hook
     public static function fromArray(array $callable): self
     {
         if (!is_callable($callable)) {
-            return static::default();
+            return static::empty();
         }
 
         return static::fromCallable($callable);
@@ -77,20 +78,17 @@ class Hook
      * Ejecuta la operación
      *
      * @param \PlanB\Type\Collection\KeyValue $pair
-     * @param null                            $default
+     * @param mixed|null                      $default
      *
      * @return mixed|null
      */
     public function execute(KeyValue $pair, $default = null)
     {
-
-        if (is_null($this->callable)) {
-            return $default;
-        }
-
         $value = $pair->getValue();
         $key = $pair->getKey();
 
-        return call_user_func($this->callable, $value, $key);
+        $response = call_user_func($this->callable, $value, $key);
+
+        return $response ?? $default;
     }
 }

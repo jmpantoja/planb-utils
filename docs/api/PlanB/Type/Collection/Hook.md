@@ -17,25 +17,11 @@
 
 ## Methods
 
-### __construct
-Operation constructor.
-
-
-protected **Hook::__construct**(callable $callable) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-
----
-
-
-### default
+### empty
 Crea una operación personalizada que no hace nada
 
 
-static **Hook::default**() : [Hook](../../../Hook.md)
+static **Hook::empty**() : [Hook](../../../Hook.md)
 
 
 
@@ -74,13 +60,13 @@ static **Hook::fromArray**(array $callable) : [Hook](../../../Hook.md)
 Ejecuta la operación
 
 
-**Hook::execute**([KeyValue](../../../KeyValue.md) $pair, null $default = null) : mixed|null
+**Hook::execute**([KeyValue](../../../KeyValue.md) $pair, mixed|null $default = null) : mixed|null
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[KeyValue](../../../KeyValue.md) |$pair |  |
-|null |$default |  |
+|mixed|null |$default |  |
 
 ---
 

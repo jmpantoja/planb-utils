@@ -15,6 +15,8 @@
 
 
 
+## Properties
+- items
 
 
 ## Methods
@@ -23,7 +25,7 @@
 Agrega un elemento a la colección
 
 
-**Collection::itemAppend**(mixed $value) : [Collection](../../../Collection.md)
+**Collection::itemAppend**(mixed $value) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -37,7 +39,7 @@ Agrega un elemento a la colección
 Agrega un conjunto de elementos
 
 
-**Collection::itemAppendAll**([iterable](../../../iterable.md) $items) : [Collection](../../../Collection.md)
+**Collection::itemAppendAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -51,7 +53,7 @@ Agrega un conjunto de elementos
 Agrega una pareja clave/valor a la colección
 
 
-**Collection::itemSet**(mixed $key, mixed $value) : [Collection](../../../Collection.md)
+**Collection::itemSet**(mixed $key, mixed $value) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -66,7 +68,7 @@ Agrega una pareja clave/valor a la colección
 Agrega un conjunto de parejas clave/valor
 
 
-**Collection::itemSetAll**([iterable](../../../iterable.md) $items) : [Collection](../../../Collection.md)
+**Collection::itemSetAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -109,7 +111,7 @@ Indica si un elemento existe
 Elimina un elemento
 
 
-**Collection::itemUnset**(mixed $key) : [Collection](../../../Collection.md)
+**Collection::itemUnset**(mixed $key) : [$this](../../../$this.md)
 
 
 |Parameters: | | |

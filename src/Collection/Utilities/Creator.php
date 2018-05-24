@@ -9,10 +9,10 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection\Utilities;
+namespace PlanB\Utils\Collection\Utilities;
 
-use PlanB\Type\Collection\Collection;
-use PlanB\Type\Collection\Exception\EmptyArgumentException;
+use PlanB\Utils\Collection\Collection;
+use PlanB\Utils\Collection\Exception\EmptyArgumentException;
 
 /**
  * * Nos ayuda a crear colecciones en distintos escenarios
@@ -33,7 +33,7 @@ class Creator
      *
      * @param string $type
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public static function fromType(string $type): Collection
     {
@@ -45,7 +45,7 @@ class Creator
      *
      * @param mixed $value
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public static function fromValueType($value): Collection
     {
@@ -61,7 +61,7 @@ class Creator
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public static function fromArray(iterable $input): Collection
     {

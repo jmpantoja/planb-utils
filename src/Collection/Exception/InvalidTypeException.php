@@ -9,7 +9,7 @@
  */
 
 
-namespace PlanB\Type\Collection\Exception;
+namespace PlanB\Utils\Collection\Exception;
 
 /**
  * Se lanza cuando se trata de crear un ItemResolver con algo que no es un tipo válido
@@ -25,7 +25,7 @@ class InvalidTypeException extends \DomainException
      * @param string          $type
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\Exception\InvalidTypeException
+     * @return \PlanB\Utils\Collection\Exception\InvalidTypeException
      */
     public static function forType(string $type, ?\Throwable $previous = null): self
     {

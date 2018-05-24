@@ -3,17 +3,17 @@
     
 # Classes
 
-* [PlanB\Type\Collection\Collection](PlanB/Type/Collection/Collection.md)
-* [PlanB\Type\Collection\Exception\EmptyArgumentException](PlanB/Type/Collection/Exception/EmptyArgumentException.md)
-* [PlanB\Type\Collection\Exception\InvalidTypeException](PlanB/Type/Collection/Exception/InvalidTypeException.md)
-* [PlanB\Type\Collection\Exception\InvalidValueTypeException](PlanB/Type/Collection/Exception/InvalidValueTypeException.md)
-* [PlanB\Type\Collection\Exception\ItemNotFoundException](PlanB/Type/Collection/Exception/ItemNotFoundException.md)
-* [PlanB\Type\Collection\Hook](PlanB/Type/Collection/Hook.md)
-* [PlanB\Type\Collection\ItemResolver](PlanB/Type/Collection/ItemResolver.md)
-* [PlanB\Type\Collection\KeyValue](PlanB/Type/Collection/KeyValue.md)
-* [PlanB\Type\Collection\Traits\Mutators](PlanB/Type/Collection/Traits/Mutators.md)
-* [PlanB\Type\Collection\Utilities\Creator](PlanB/Type/Collection/Utilities/Creator.md)
-* [PlanB\Type\Collection\ValidatorFactory](PlanB/Type/Collection/ValidatorFactory.md)
+* [PlanB\Utils\Collection\Collection](PlanB/Utils/Collection/Collection.md)
+* [PlanB\Utils\Collection\Exception\EmptyArgumentException](PlanB/Utils/Collection/Exception/EmptyArgumentException.md)
+* [PlanB\Utils\Collection\Exception\InvalidTypeException](PlanB/Utils/Collection/Exception/InvalidTypeException.md)
+* [PlanB\Utils\Collection\Exception\InvalidValueTypeException](PlanB/Utils/Collection/Exception/InvalidValueTypeException.md)
+* [PlanB\Utils\Collection\Exception\ItemNotFoundException](PlanB/Utils/Collection/Exception/ItemNotFoundException.md)
+* [PlanB\Utils\Collection\Hook](PlanB/Utils/Collection/Hook.md)
+* [PlanB\Utils\Collection\ItemResolver](PlanB/Utils/Collection/ItemResolver.md)
+* [PlanB\Utils\Collection\KeyValue](PlanB/Utils/Collection/KeyValue.md)
+* [PlanB\Utils\Collection\Traits\Mutators](PlanB/Utils/Collection/Traits/Mutators.md)
+* [PlanB\Utils\Collection\Utilities\Creator](PlanB/Utils/Collection/Utilities/Creator.md)
+* [PlanB\Utils\Collection\ValidatorFactory](PlanB/Utils/Collection/ValidatorFactory.md)
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

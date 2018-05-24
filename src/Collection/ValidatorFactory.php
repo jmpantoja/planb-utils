@@ -10,9 +10,9 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection;
+namespace PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\Exception\InvalidTypeException;
+use PlanB\Utils\Collection\Exception\InvalidTypeException;
 
 /**
  * Method Factory para crear el validator que corresponde a un tipo determinado
@@ -27,7 +27,7 @@ class ValidatorFactory
      *
      * @param string $type
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     public static function factory(string $type): Hook
     {
@@ -62,7 +62,7 @@ class ValidatorFactory
      *
      * @param string $type
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     private static function getTypeOfHook(string $type): Hook
     {
@@ -92,7 +92,7 @@ class ValidatorFactory
      *
      * @param string $type
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     private static function getInstanceOfHook(string $type): Hook
     {

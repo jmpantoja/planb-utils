@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection\Exception;
+namespace PlanB\Utils\Collection\Exception;
 
 /**
  * Se lanza cuando se trata de crear una colleción a partir de un array vacio
@@ -28,7 +28,7 @@ class EmptyArgumentException extends \InvalidArgumentException
      *
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\Exception\EmptyArgumentException
+     * @return \PlanB\Utils\Collection\Exception\EmptyArgumentException
      */
     public static function emptyInput(?\Throwable $previous = null): self
     {

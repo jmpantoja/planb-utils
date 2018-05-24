@@ -10,7 +10,7 @@
 
 
 ## Traits
-- PlanB\Type\Collection\Traits\Mutators
+- PlanB\Utils\Collection\Traits\Mutators
 
 
 

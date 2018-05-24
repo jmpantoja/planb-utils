@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\PlanB\Type\Collection\Utilities;
+namespace spec\PlanB\Utils\Collection\Utilities;
 
-use PlanB\Type\Collection\Collection;
+use PlanB\Utils\Collection\Collection;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\Collection\Exception\EmptyArgumentException;
-use PlanB\Type\Collection\Exception\InvalidValueTypeException;
-use PlanB\Type\Collection\Utilities\Creator;
+use PlanB\Utils\Collection\Exception\EmptyArgumentException;
+use PlanB\Utils\Collection\Exception\InvalidValueTypeException;
+use PlanB\Utils\Collection\Utilities\Creator;
 use Prophecy\Argument;
-use spec\PlanB\Type\Collection\Stub\Word;
+use spec\PlanB\Utils\Collection\Stub\Word;
 
 class CreatorSpec extends ObjectBehavior
 {

@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection;
+namespace PlanB\Utils\Collection;
 
 /**
  * Operación, personalizada
@@ -37,7 +37,7 @@ final class Hook
     /**
      * Crea una operación personalizada que no hace nada
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     public static function empty(): self
     {
@@ -50,7 +50,7 @@ final class Hook
      *
      * @param callable $callable
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     public static function fromCallable(callable $callable): self
     {
@@ -63,7 +63,7 @@ final class Hook
      *
      * @param mixed[] $callable
      *
-     * @return \PlanB\Type\Collection\Hook
+     * @return \PlanB\Utils\Collection\Hook
      */
     public static function fromArray(array $callable): self
     {
@@ -77,8 +77,8 @@ final class Hook
     /**
      * Ejecuta la operación
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
-     * @param mixed|null                      $default
+     * @param \PlanB\Utils\Collection\KeyValue $pair
+     * @param mixed|null                       $default
      *
      * @return mixed|null
      */

@@ -10,11 +10,11 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection\Traits;
+namespace PlanB\Utils\Collection\Traits;
 
-use PlanB\Type\Collection\Exception\ItemNotFoundException;
-use PlanB\Type\Collection\ItemResolver;
-use PlanB\Type\Collection\KeyValue;
+use PlanB\Utils\Collection\Exception\ItemNotFoundException;
+use PlanB\Utils\Collection\ItemResolver;
+use PlanB\Utils\Collection\KeyValue;
 
 /**
  * Aporta la capacidad de agregar y obtener elementos de la colección
@@ -30,7 +30,7 @@ trait Mutators
     protected $items = [];
 
     /**
-     * @var \PlanB\Type\Collection\ItemResolver
+     * @var \PlanB\Utils\Collection\ItemResolver
      */
     private $itemResolver;
 
@@ -149,7 +149,7 @@ trait Mutators
     /**
      * Agrega una pareja clave/valor a la colección
      *
-     * @param \PlanB\Type\Collection\KeyValue $candidate
+     * @param \PlanB\Utils\Collection\KeyValue $candidate
      *
      * @return $this
      */
@@ -174,7 +174,7 @@ trait Mutators
      * Agrega una pareja clave/valor a la colección,
      * en el caso de que la clave esté definida
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
      * @return $this
      */
@@ -197,7 +197,7 @@ trait Mutators
      * Agrega una pareja clave/valor a la colección,
      * en el caso de que la clave no esté definida
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
      * @return $this
      */
@@ -223,7 +223,7 @@ trait Mutators
      * Si, como parece lógico de primeras, se instanciara en el constructor de la clase, no se puede recuperar desde unserialize
      * y o bien perderiamos esa información, o bien tenemos que serializar datos + resolver
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     private function getResolver(): ItemResolver
     {
@@ -242,7 +242,7 @@ trait Mutators
     /**
      * Personaliza el resolver de esta colección,
      *
-     * @param \PlanB\Type\Collection\ItemResolver $resolver
+     * @param \PlanB\Utils\Collection\ItemResolver $resolver
      *
      * @@SuppressWarnings(PMD.UnusedFormalParameter)
      *

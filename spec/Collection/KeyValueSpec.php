@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\PlanB\Type\Collection;
+namespace spec\PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\KeyValue;
+use PlanB\Utils\Collection\KeyValue;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

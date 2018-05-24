@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\PlanB\Type\Collection;
+namespace spec\PlanB\Utils\Collection;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\Collection\Collection;
-use PlanB\Type\Collection\Exception\InvalidTypeException;
-use PlanB\Type\Collection\Exception\InvalidValueTypeException;
-use PlanB\Type\Collection\ItemResolver;
-use PlanB\Type\Collection\KeyValue;
+use PlanB\Utils\Collection\Collection;
+use PlanB\Utils\Collection\Exception\InvalidTypeException;
+use PlanB\Utils\Collection\Exception\InvalidValueTypeException;
+use PlanB\Utils\Collection\ItemResolver;
+use PlanB\Utils\Collection\KeyValue;
 use Prophecy\Argument as p;
-use spec\PlanB\Type\Collection\Stub\ShortStringCollection;
+use spec\PlanB\Utils\Collection\Stub\ShortStringCollection;
 
 
 class ItemResolverSpec extends ObjectBehavior

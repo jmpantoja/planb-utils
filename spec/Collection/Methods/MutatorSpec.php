@@ -10,13 +10,13 @@
 
 declare(strict_types=1);
 
-namespace spec\PlanB\Type\Collection\Methods;
+namespace spec\PlanB\Utils\Collection\Methods;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\Collection\Collection;
-use PlanB\Type\Collection\Exception\ItemNotFoundException;
-use spec\PlanB\Type\Collection\Stub\LenghtCollection;
+use PlanB\Utils\Collection\Collection;
+use PlanB\Utils\Collection\Exception\ItemNotFoundException;
+use spec\PlanB\Utils\Collection\Stub\LenghtCollection;
 
 
 class MutatorSpec extends ObjectBehavior

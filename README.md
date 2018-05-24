@@ -1,4 +1,4 @@
-# planb/collections
+# planb/utils
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -10,7 +10,7 @@
 |  develop | [![Build Status][ico-travis-develop]][link-travis-develop] | [![Coverage Status][ico-coverage-develop]][link-coverage-develop] | [![Quality core][ico-code-quality-develop]][link-code-quality-develop] | [![Read the docs][ico-docs-develop]][link-docs-develop] |
 
 
-php generic collections implementation
+utilidades para proyectos php
 
 
 ## Install
@@ -18,7 +18,7 @@ php generic collections implementation
 Via Composer
 
 ``` bash
-$ composer require planb/collections
+$ composer require planb/utils
 ```
 
 ## Documentation
@@ -54,38 +54,38 @@ If you discover any security related issues, please email jmpantoja@gmail.com in
 The MIT License. Please see [License File](LICENSE.md) for more information.
 
 
-[ico-docs-master]: https://img.shields.io/readthedocs/planb-collections/master.svg
-[ico-docs-develop]: https://img.shields.io/readthedocs/planb-collections/develop.svg
+[ico-docs-master]: https://img.shields.io/readthedocs/planb-utils/master.svg
+[ico-docs-develop]: https://img.shields.io/readthedocs/planb-utils/develop.svg
 
-[link-docs-master]: http://planb-collections.readthedocs.io/en/master/
-[link-docs-develop]: http://planb-collections.readthedocs.io/en/develop/
+[link-docs-master]: http://planb-utils.readthedocs.io/en/master/
+[link-docs-develop]: http://planb-utils.readthedocs.io/en/develop/
 
 
-[ico-version]: https://img.shields.io/packagist/v/planb/collections.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/planb/utils.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/planb/collections.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/planb/utils.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/planb/collections
-[link-downloads]: https://packagist.org/packages/planb/collections
+[link-packagist]: https://packagist.org/packages/planb/utils
+[link-downloads]: https://packagist.org/packages/planb/utils
 [link-author]: https://github.com/jmpantoja/
 [link-contributors]: ../../contributors
 
-[ico-travis-master]: https://img.shields.io/travis/jmpantoja/planb-collections/master.svg?style=flat-square
-[ico-travis-develop]: https://img.shields.io/travis/jmpantoja/planb-collections/develop.svg?style=flat-square
+[ico-travis-master]: https://img.shields.io/travis/jmpantoja/planb-utils/master.svg?style=flat-square
+[ico-travis-develop]: https://img.shields.io/travis/jmpantoja/planb-utils/develop.svg?style=flat-square
 
-[ico-coverage-master]: https://img.shields.io/scrutinizer/coverage/g/jmpantoja/planb-collections/master.svg?style=flat-square
-[ico-coverage-develop]: https://img.shields.io/scrutinizer/coverage/g/jmpantoja/planb-collections/develop.svg?style=flat-square
+[ico-coverage-master]: https://img.shields.io/scrutinizer/coverage/g/jmpantoja/planb-utils/master.svg?style=flat-square
+[ico-coverage-develop]: https://img.shields.io/scrutinizer/coverage/g/jmpantoja/planb-utils/develop.svg?style=flat-square
 
-[ico-code-quality-master]: https://img.shields.io/scrutinizer/g/jmpantoja/planb-collections/master.svg?style=flat-square
-[ico-code-quality-develop]: https://img.shields.io/scrutinizer/g/jmpantoja/planb-collections/develop.svg?style=flat-square
+[ico-code-quality-master]: https://img.shields.io/scrutinizer/g/jmpantoja/planb-utils/master.svg?style=flat-square
+[ico-code-quality-develop]: https://img.shields.io/scrutinizer/g/jmpantoja/planb-utils/develop.svg?style=flat-square
 
 
-[link-travis-master]: https://travis-ci.org/jmpantoja/planb-collections/branches
-[link-travis-develop]: https://travis-ci.org/jmpantoja/planb-collections/branches
+[link-travis-master]: https://travis-ci.org/jmpantoja/planb-utils/branches
+[link-travis-develop]: https://travis-ci.org/jmpantoja/planb-utils/branches
 
-[link-coverage-master]: https://scrutinizer-ci.com/g/jmpantoja/planb-collections/code-structure/master
-[link-coverage-develop]: https://scrutinizer-ci.com/g/jmpantoja/planb-collections/code-structure/develop
+[link-coverage-master]: https://scrutinizer-ci.com/g/jmpantoja/planb-utils/code-structure/master
+[link-coverage-develop]: https://scrutinizer-ci.com/g/jmpantoja/planb-utils/code-structure/develop
 
-[link-code-quality-master]: https://scrutinizer-ci.com/g/jmpantoja/planb-collections?branch=master
-[link-code-quality-develop]: https://scrutinizer-ci.com/g/jmpantoja/planb-collections?branch=develop
+[link-code-quality-master]: https://scrutinizer-ci.com/g/jmpantoja/planb-utils?branch=master
+[link-code-quality-develop]: https://scrutinizer-ci.com/g/jmpantoja/planb-utils?branch=develop
 

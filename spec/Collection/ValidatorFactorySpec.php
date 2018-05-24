@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\Type\Collection;
+namespace spec\PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\Hook;
-use PlanB\Type\Collection\Exception\InvalidTypeException;
+use PlanB\Utils\Collection\Hook;
+use PlanB\Utils\Collection\Exception\InvalidTypeException;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\Collection\ValidatorFactory;
+use PlanB\Utils\Collection\ValidatorFactory;
 use Prophecy\Argument;
 
 class ValidatorFactorySpec extends ObjectBehavior

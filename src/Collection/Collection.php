@@ -9,10 +9,10 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection;
+namespace PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\Exception\ItemNotFoundException;
-use PlanB\Type\Collection\Utilities\Creator;
+use PlanB\Utils\Collection\Exception\ItemNotFoundException;
+use PlanB\Utils\Collection\Utilities\Creator;
 
 /**
  * Generic Collection
@@ -80,7 +80,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public function each(callable $callable, ...$userdata): self
     {
@@ -101,7 +101,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public function map(callable $callable, ...$userdata): self
     {
@@ -126,7 +126,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\Type\Collection\Collection
+     * @return \PlanB\Utils\Collection\Collection
      */
     public function filter(callable $callable, ...$userdata): self
     {

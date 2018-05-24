@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection\Exception;
+namespace PlanB\Utils\Collection\Exception;
 
 /**
  * Se lanza cuando se trata de acceder a un elemento que no existe
@@ -24,7 +24,7 @@ class ItemNotFoundException extends \OutOfRangeException
      * @param string          $key
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\Exception\ItemNotFoundException
+     * @return \PlanB\Utils\Collection\Exception\ItemNotFoundException
      */
     public static function forKey(string $key, ?\Throwable $previous = null): self
     {
@@ -39,7 +39,7 @@ class ItemNotFoundException extends \OutOfRangeException
      *
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\Exception\ItemNotFoundException
+     * @return \PlanB\Utils\Collection\Exception\ItemNotFoundException
      */
     public static function forCondition(?\Throwable $previous = null): self
     {

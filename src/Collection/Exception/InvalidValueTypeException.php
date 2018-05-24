@@ -9,7 +9,7 @@
  */
 
 
-namespace PlanB\Type\Collection\Exception;
+namespace PlanB\Utils\Collection\Exception;
 
 /**
  * Se lanza cuando se trata agregar un item de un tipo incorrecto
@@ -26,7 +26,7 @@ class InvalidValueTypeException extends \DomainException
      * @param string          $expected
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Type\Collection\Exception\InvalidValueTypeException
+     * @return \PlanB\Utils\Collection\Exception\InvalidValueTypeException
      */
     public static function forValue($value, string $expected, ?\Throwable $previous = null): self
     {

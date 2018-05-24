@@ -1,6 +1,6 @@
 {
-  "name": "planb/collections",
-  "description": "php generic collections implementation",
+  "name": "planb/utils",
+  "description": "utilidades para proyectos php",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -12,12 +12,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "PlanB\\Type\\": "src/"
+      "PlanB\\Utils\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "spec\\PlanB\\Type\\": "spec/"
+      "spec\\PlanB\\Utils\\": "spec/"
     }
   },
   "config": {

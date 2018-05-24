@@ -1,7 +1,7 @@
 suites:
     default:
-        namespace: PlanB\Type\
-        psr4_prefix: PlanB\Type\
+        namespace: PlanB\Utils\
+        psr4_prefix: PlanB\Utils\
 
 
 formatter.name: pretty
@@ -10,34 +10,12 @@ extensions:
     Memio\SpecGen\MemioSpecGenExtension: ~
     Cjm\PhpSpec\Extension\TypeHintedMethodsExtension: ~
     LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
-      # Specify a list of formats in which code coverage report should be
-      # generated.
-      # Default: [html]
       format:
         - text
         - html
         - clover
-        #- php
-        #- xml
       output:
         html: build/coverage
         clover: build/coverage.xml
-        #php: coverage.php
-        #xml: coverage
       whitelist:
         - src
-
-      #
-      # Whiltelist files for which code generation should be done
-      # Default: empty
-      #whilelist_files:
-        #- app/bootstrap.php
-        #- web/index.php
-      #
-      # Blacklist directories for which code generation should NOT be done
-      #blacklist:
-        #- src/legacy
-      #
-      # Blacklist files for which code generation should NOT be done
-      #blacklist_files:
-        #- lib/bootstrap.php

@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace spec\PlanB\Type\Collection\Stub;
+namespace spec\PlanB\Utils\Collection\Stub;
 
 
 class Word

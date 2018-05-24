@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection;
+namespace PlanB\Utils\Collection;
 
 /**
  * Value Object que encapsula una pareja clave/valor
@@ -64,7 +64,7 @@ class KeyValue
      *
      * @param mixed $value
      *
-     * @return \PlanB\Type\Collection\KeyValue
+     * @return \PlanB\Utils\Collection\KeyValue
      */
     public static function fromValue($value): self
     {
@@ -106,7 +106,7 @@ class KeyValue
      *
      * @param mixed $newValue
      *
-     * @return \PlanB\Type\Collection\KeyValue
+     * @return \PlanB\Utils\Collection\KeyValue
      */
     public function changeValue($newValue): KeyValue
     {
@@ -123,7 +123,7 @@ class KeyValue
      *
      * @param mixed $newKey
      *
-     * @return \PlanB\Type\Collection\KeyValue
+     * @return \PlanB\Utils\Collection\KeyValue
      */
     public function changeKey($newKey): KeyValue
     {

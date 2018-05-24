@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\PlanB\Type\Collection;
+namespace spec\PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\KeyValue;
-use PlanB\Type\Collection\Hook;
+use PlanB\Utils\Collection\KeyValue;
+use PlanB\Utils\Collection\Hook;
 use PhpSpec\ObjectBehavior;
 
 use Prophecy\Argument;
-use spec\PlanB\Type\Collection\Stub\ShortStringCollection;
+use spec\PlanB\Utils\Collection\Stub\ShortStringCollection;
 
 class HookSpec extends ObjectBehavior
 {

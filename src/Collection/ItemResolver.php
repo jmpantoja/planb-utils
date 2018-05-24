@@ -9,9 +9,9 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Collection;
+namespace PlanB\Utils\Collection;
 
-use PlanB\Type\Collection\Exception\InvalidValueTypeException;
+use PlanB\Utils\Collection\Exception\InvalidValueTypeException;
 
 /**
  * Procesa una pareja clave/valor antes de ser añadida a la colección
@@ -26,22 +26,22 @@ class ItemResolver
     private $type;
 
     /**
-     * @var \PlanB\Type\Collection\Hook
+     * @var \PlanB\Utils\Collection\Hook
      */
     private $typeValidator;
 
     /**
-     * @var \PlanB\Type\Collection\Hook
+     * @var \PlanB\Utils\Collection\Hook
      */
     private $validator;
 
     /**
-     * @var \PlanB\Type\Collection\Hook
+     * @var \PlanB\Utils\Collection\Hook
      */
     private $normalizer;
 
     /**
-     * @var \PlanB\Type\Collection\Hook
+     * @var \PlanB\Utils\Collection\Hook
      */
     private $keyNormalizer;
 
@@ -89,7 +89,7 @@ class ItemResolver
      *
      * @param callable $validator
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     public function setValidator(callable $validator): self
     {
@@ -104,7 +104,7 @@ class ItemResolver
      *
      * @param callable $normalizer
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     public function setNormalizer(callable $normalizer): self
     {
@@ -119,7 +119,7 @@ class ItemResolver
      *
      * @param callable $normalizer
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     public function setKeyNormalizer(callable $normalizer): self
     {
@@ -132,9 +132,9 @@ class ItemResolver
     /**
      * Configura el ItemResolver a partir de lo que se deduce de una coleccion
      *
-     * @param \PlanB\Type\Collection\Collection $collection
+     * @param \PlanB\Utils\Collection\Collection $collection
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     public function configure(Collection $collection): self
     {
@@ -148,9 +148,9 @@ class ItemResolver
     /**
      * Normaliza un valor antes de ser añadido
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\KeyValue
+     * @return \PlanB\Utils\Collection\KeyValue
      */
     private function normalize(KeyValue $pair): KeyValue
     {
@@ -163,9 +163,9 @@ class ItemResolver
     /**
      * Normaliza una clave antes de ser usada
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\KeyValue
+     * @return \PlanB\Utils\Collection\KeyValue
      */
     private function normalizeKey(KeyValue $pair): KeyValue
     {
@@ -178,7 +178,7 @@ class ItemResolver
     /**
      * Valida una pareja clave valor
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
      * @return bool
      */
@@ -190,9 +190,9 @@ class ItemResolver
     /**
      * Nos aseguramos que el valor sea del tipo requerido por la colección
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\ItemResolver
+     * @return \PlanB\Utils\Collection\ItemResolver
      */
     private function assertType(KeyValue $pair): self
     {
@@ -211,9 +211,9 @@ class ItemResolver
     /**
      * Resuelve una pareja clave/valor
      *
-     * @param \PlanB\Type\Collection\KeyValue $pair
+     * @param \PlanB\Utils\Collection\KeyValue $pair
      *
-     * @return \PlanB\Type\Collection\KeyValue|null
+     * @return \PlanB\Utils\Collection\KeyValue|null
      */
     public function resolve(KeyValue $pair): ?KeyValue
     {

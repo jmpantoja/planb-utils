@@ -91,6 +91,7 @@ abstract class Options
      *
      * Para mantener varios perfiles hacer:
      *
+     * ´´´
      * $profile = $this->getProfile();
      * switch($profile){
      *   case 'A':
@@ -100,7 +101,7 @@ abstract class Options
      *      $this->configure($resolver);
      *      break;
      * }
-     *
+     *´´´
      *
      * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */

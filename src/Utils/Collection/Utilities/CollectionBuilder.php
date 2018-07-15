@@ -19,7 +19,7 @@ use PlanB\Utils\Collection\Exception\EmptyArgumentException;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class Creator
+class CollectionBuilder
 {
 
     /**
@@ -65,7 +65,7 @@ class Creator
      */
     public static function fromArray(iterable $input): Collection
     {
-        if (empty($input)) {
+        if (0 === count($input)) {
             throw EmptyArgumentException::emptyInput();
         }
 

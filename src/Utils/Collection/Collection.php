@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace PlanB\Utils\Collection;
 
 use PlanB\Utils\Collection\Exception\ItemNotFoundException;
-use PlanB\Utils\Collection\Utilities\Creator;
+use PlanB\Utils\Collection\Utilities\CollectionBuilder;
 
 /**
  * Generic Collection
@@ -113,7 +113,7 @@ class Collection implements \Countable
         foreach ($this->items as $key => $value) {
             $item = $callable($value, $key, ...$userdata);
 
-            $mapped = $mapped ?? Creator::fromValueType($item);
+            $mapped = $mapped ?? CollectionBuilder::fromValueType($item);
             $mapped->itemSet($key, $item);
         }
 
@@ -130,7 +130,7 @@ class Collection implements \Countable
      */
     public function filter(callable $callable, ...$userdata): self
     {
-        $filtered = Creator::fromType($this->getType());
+        $filtered = CollectionBuilder::fromType($this->getType());
 
         foreach ($this->items as $key => $value) {
             if (!$callable($value, $key, ...$userdata)) {

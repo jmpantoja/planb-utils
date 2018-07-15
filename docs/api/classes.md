@@ -12,7 +12,7 @@
 * [PlanB\Utils\Collection\ItemResolver](PlanB/Utils/Collection/ItemResolver.md)
 * [PlanB\Utils\Collection\KeyValue](PlanB/Utils/Collection/KeyValue.md)
 * [PlanB\Utils\Collection\Traits\Mutators](PlanB/Utils/Collection/Traits/Mutators.md)
-* [PlanB\Utils\Collection\Utilities\Creator](PlanB/Utils/Collection/Utilities/Creator.md)
+* [PlanB\Utils\Collection\Utilities\CollectionBuilder](PlanB/Utils/Collection/Utilities/CollectionBuilder.md)
 * [PlanB\Utils\Collection\ValidatorFactory](PlanB/Utils/Collection/ValidatorFactory.md)
 
 

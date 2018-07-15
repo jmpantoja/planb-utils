@@ -12,12 +12,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "PlanB\\Utils\\": "src/"
+      "PlanB\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "spec\\PlanB\\Utils\\": "spec/"
+      "spec\\PlanB\\": "spec/"
     }
   },
   "config": {

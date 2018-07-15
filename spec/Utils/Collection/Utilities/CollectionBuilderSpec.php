@@ -7,15 +7,15 @@ use PlanB\Utils\Collection\Collection;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Collection\Exception\EmptyArgumentException;
 use PlanB\Utils\Collection\Exception\InvalidValueTypeException;
-use PlanB\Utils\Collection\Utilities\Creator;
+use PlanB\Utils\Collection\Utilities\CollectionBuilder;
 use Prophecy\Argument;
 use spec\PlanB\Utils\Collection\Stub\Word;
 
-class CreatorSpec extends ObjectBehavior
+class CollectionBuilderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(Creator::class);
+        $this->shouldHaveType(CollectionBuilder::class);
     }
 
     public function it_can_create_a_collection_by_type()

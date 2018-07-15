@@ -1,7 +1,7 @@
 suites:
     default:
-        namespace: PlanB\Utils\
-        psr4_prefix: PlanB\Utils\
+        namespace: PlanB\
+        psr4_prefix: PlanB\
 
 
 formatter.name: pretty

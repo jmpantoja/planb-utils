@@ -30,5 +30,8 @@
     "leanphp/phpspec-code-coverage": "^4.2",
     "memio/spec-gen": "^0.8.4",
     "phpspec/phpspec": "^4.3"
+  },
+  "require": {
+    "symfony/options-resolver": "^4.1"
   }
 }

@@ -56,9 +56,9 @@ class ItemResolver
         $this->typeValidator = ValidatorFactory::factory($type);
 
 
-        $this->validator = Hook::empty();
-        $this->normalizer = Hook::empty();
-        $this->keyNormalizer = Hook::empty();
+        $this->validator = Hook::blank();
+        $this->normalizer = Hook::blank();
+        $this->keyNormalizer = Hook::blank();
     }
 
     /**

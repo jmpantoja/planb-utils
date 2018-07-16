@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# Hook
+# PathTree
 
 
-> Operación, personalizada
+> Gestiona un arbol de directorios
 >
 > 
 
@@ -17,56 +17,64 @@
 
 ## Methods
 
-### blank
-Crea una operación personalizada que no hace nada
+### create
 
 
-static **Hook::blank**() : [Hook](../../../Hook.md)
+
+static **PathTree::create**(string ...$parts) : [PathTree](../../../PathTree.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$parts |  |
+
+---
+
+
+### getTree
+Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
+como un array de strings
+
+
+**PathTree::getTree**() : string[]
 
 
 
 ---
 
 
-### fromCallable
-Crea una operación personalizada, a partir de un callable
+### getInversedTree
+Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
+como un array de strings
 
 
-static **Hook::fromCallable**(callable $callable) : [Hook](../../../Hook.md)
+**PathTree::getInversedTree**() : string[]
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
 
 ---
 
 
-### fromArray
-Crea una operación personalizada, a partir de un array
+### getPathTree
+Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
+como un array de objetos Paths
 
 
-static **Hook::fromArray**(array $callable) : [Hook](../../../Hook.md)
+**PathTree::getPathTree**() : [Path](../../../Path.md)[]
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|array |$callable |  |
 
 ---
 
 
-### execute
-Ejecuta la operación
+### getInversedPathTree
+Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
+como un array de objetos Path
 
 
-**Hook::execute**([KeyValue](../../../KeyValue.md) $pair, mixed|null $default = null) : mixed|null
+**PathTree::getInversedPathTree**() : [Path](../../../Path.md)[]
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|[KeyValue](../../../KeyValue.md) |$pair |  |
-|mixed|null |$default |  |
 
 ---
 

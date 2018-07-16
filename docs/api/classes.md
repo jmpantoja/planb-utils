@@ -16,6 +16,12 @@
 * [PlanB\Utils\Collection\ValidatorFactory](PlanB/Utils/Collection/ValidatorFactory.md)
 * [PlanB\Utils\Options\Exception\UndefinedProfileException](PlanB/Utils/Options/Exception/UndefinedProfileException.md)
 * [PlanB\Utils\Options\Options](PlanB/Utils/Options/Options.md)
+* [PlanB\Utils\Path\Exception\EmptyPathException](PlanB/Utils/Path/Exception/EmptyPathException.md)
+* [PlanB\Utils\Path\Exception\OverFlowRootDirException](PlanB/Utils/Path/Exception/OverFlowRootDirException.md)
+* [PlanB\Utils\Path\Path](PlanB/Utils/Path/Path.md)
+* [PlanB\Utils\Path\PathNormalizer](PlanB/Utils/Path/PathNormalizer.md)
+* [PlanB\Utils\Path\PathTree](PlanB/Utils/Path/PathTree.md)
+* [PlanB\Utils\Text\Text](PlanB/Utils/Text/Text.md)
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

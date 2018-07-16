@@ -21,14 +21,14 @@ class HookSpec extends ObjectBehavior
     public function it_is_initializable_from_empty()
     {
 
-        $this->beConstructedEmpty();
+
+        $this->beConstructedThrough('blank');
 
         $pair = KeyValue::fromValue('dummy');
 
         $this->execute($pair, 'default-value')
             ->shouldReturn('default-value');
     }
-
 
     public function it_is_initializable_from_callable()
     {
@@ -41,7 +41,6 @@ class HookSpec extends ObjectBehavior
         $this->execute($pair)
             ->shouldReturn(self::RETURNED_VALUE);
     }
-
 
     public function it_is_initializable_from_array(ShortStringCollection $collection)
     {

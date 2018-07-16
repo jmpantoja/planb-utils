@@ -39,7 +39,7 @@ final class Hook
      *
      * @return \PlanB\Utils\Collection\Hook
      */
-    public static function empty(): self
+    public static function blank(): self
     {
         return new static(function (): void {
         });
@@ -68,7 +68,7 @@ final class Hook
     public static function fromArray(array $callable): self
     {
         if (!is_callable($callable)) {
-            return static::empty();
+            return static::blank();
         }
 
         return static::fromCallable($callable);

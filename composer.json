@@ -1,37 +1,41 @@
 {
-  "name": "planb/utils",
-  "description": "utilidades para proyectos php",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Jose Manuel Pantoja",
-      "email": "jmpantoja@gmail.com",
-      "homepage": "https://github.com/jmpantoja/"
+    "name": "planb/utils",
+    "description": "utilidades para proyectos php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Manuel Pantoja",
+            "email": "jmpantoja@gmail.com",
+            "homepage": "https://github.com/jmpantoja/"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/Utils/Resources/functions/text.php"
+        ],
+        "psr-4": {
+            "PlanB\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\PlanB\\": "spec/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "apcu-autoloader": true
+    },
+    "require-dev": {
+        "ciaranmcnulty/phpspec-typehintedmethods": "^3.0",
+        "leanphp/phpspec-code-coverage": "^4.2",
+        "memio/spec-gen": "^0.8.4",
+        "phpspec/phpspec": "^4.3",
+        "symfony/var-dumper": "^4.1"
+    },
+    "require": {
+        "symfony/options-resolver": "^4.1"
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "PlanB\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "spec\\PlanB\\": "spec/"
-    }
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "sort-packages": true,
-    "apcu-autoloader": true
-  },
-  "require-dev": {
-    "ciaranmcnulty/phpspec-typehintedmethods": "^3.0",
-    "leanphp/phpspec-code-coverage": "^4.2",
-    "memio/spec-gen": "^0.8.4",
-    "phpspec/phpspec": "^4.3"
-  },
-  "require": {
-    "symfony/options-resolver": "^4.1"
-  }
 }

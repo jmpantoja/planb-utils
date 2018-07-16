@@ -9,10 +9,11 @@
 * [PlanB\Utils\Collection\Exception](PlanB/Utils/Collection/Exception.md)
 * [PlanB\Utils\Collection\Traits](PlanB/Utils/Collection/Traits.md)
 * [PlanB\Utils\Collection\Utilities](PlanB/Utils/Collection/Utilities.md)
-* [PlanB\Utils\Dictionary](PlanB/Utils/Dictionary.md)
-* [PlanB\Utils\Dictionary\Exception](PlanB/Utils/Dictionary/Exception.md)
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
+* [PlanB\Utils\Path](PlanB/Utils/Path.md)
+* [PlanB\Utils\Path\Exception](PlanB/Utils/Path/Exception.md)
+* [PlanB\Utils\Text](PlanB/Utils/Text.md)
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

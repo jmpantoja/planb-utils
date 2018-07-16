@@ -24,7 +24,7 @@
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
         <properties>
             <property name="ignorepattern" description="Ignore methods matching this regex"
-                      value="(^(set|get|is|has))i"/>
+                      value="(^(set|get|is|has).*)i"/>
         </properties>
     </rule>
 

@@ -19,3 +19,5 @@ extensions:
         clover: build/coverage.xml
       whitelist:
         - src
+      blacklist:
+        - src/Utils/Resources

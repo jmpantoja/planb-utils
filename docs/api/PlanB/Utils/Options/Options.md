@@ -37,7 +37,7 @@ static **Options::create**(string $profile = self::DEFAULT_PROFILE) : [Options](
 Options constructor.
 
 
-protected **Options::__construct**(string $profile) : 
+protected **Options::__construct**(string $profile = self::DEFAULT_PROFILE) : 
 
 
 |Parameters: | | |

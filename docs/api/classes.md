@@ -14,6 +14,7 @@
 * [PlanB\Utils\Collection\Traits\Mutators](PlanB/Utils/Collection/Traits/Mutators.md)
 * [PlanB\Utils\Collection\Utilities\CollectionBuilder](PlanB/Utils/Collection/Utilities/CollectionBuilder.md)
 * [PlanB\Utils\Collection\ValidatorFactory](PlanB/Utils/Collection/ValidatorFactory.md)
+* [PlanB\Utils\Hydrator\GetSetHydrator](PlanB/Utils/Hydrator/GetSetHydrator.md)
 * [PlanB\Utils\Options\Exception\UndefinedProfileException](PlanB/Utils/Options/Exception/UndefinedProfileException.md)
 * [PlanB\Utils\Options\Options](PlanB/Utils/Options/Options.md)
 * [PlanB\Utils\Path\Exception\EmptyPathException](PlanB/Utils/Path/Exception/EmptyPathException.md)

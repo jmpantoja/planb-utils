@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "files": [
-            "src/Utils/Resources/functions/text.php"
+            "src/Utils/Resources/functions/text.php",
+            "src/Utils/Resources/functions/hydrator.php"
         ],
         "psr-4": {
             "PlanB\\": "src/"
@@ -36,6 +37,7 @@
         "symfony/var-dumper": "^4.1"
     },
     "require": {
-        "symfony/options-resolver": "^4.1"
+        "symfony/options-resolver": "^4.1",
+        "symfony/serializer": "^4.1"
     }
 }

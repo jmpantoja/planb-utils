@@ -47,7 +47,7 @@ abstract class Options
      *
      * @param string $profile
      *
-     * @return \PlanB\Utils\Dictionary\Options
+     * @return \PlanB\Utils\Options\Options
      */
     public static function create(string $profile = self::DEFAULT_PROFILE): Options
     {
@@ -60,7 +60,7 @@ abstract class Options
      *
      * @param string $profile
      */
-    protected function __construct(string $profile)
+    protected function __construct(string $profile = self::DEFAULT_PROFILE)
     {
         $this->profiles = CollectionBuilder::fromType('callable');
 
@@ -85,7 +85,7 @@ abstract class Options
      *
      * @param string $name
      *
-     * @return \PlanB\Utils\Dictionary\Options
+     * @return \PlanB\Utils\Options\Options
      */
     private function setCurrentProfile(string $name): self
     {
@@ -121,7 +121,7 @@ abstract class Options
      * @param string   $name
      * @param callable $callback
      *
-     * @return \PlanB\Utils\Dictionary\Options
+     * @return \PlanB\Utils\Options\Options
      */
     public function addProfile(string $name, callable $callback): self
     {

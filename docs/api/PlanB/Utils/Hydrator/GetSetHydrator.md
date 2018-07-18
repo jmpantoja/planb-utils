@@ -1,20 +1,61 @@
 
                                                                                                                                             
     
-# Namespaces
+# GetSetHydrator
 
-* [PlanB](PlanB.md)
-* [PlanB\Utils](PlanB/Utils.md)
-* [PlanB\Utils\Collection](PlanB/Utils/Collection.md)
-* [PlanB\Utils\Collection\Exception](PlanB/Utils/Collection/Exception.md)
-* [PlanB\Utils\Collection\Traits](PlanB/Utils/Collection/Traits.md)
-* [PlanB\Utils\Collection\Utilities](PlanB/Utils/Collection/Utilities.md)
-* [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
-* [PlanB\Utils\Options](PlanB/Utils/Options.md)
-* [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
-* [PlanB\Utils\Path](PlanB/Utils/Path.md)
-* [PlanB\Utils\Path\Exception](PlanB/Utils/Path/Exception.md)
-* [PlanB\Utils\Text](PlanB/Utils/Text.md)
+
+> Convierte un array en un objeto o viceversa
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### configure
+Configura el objeto normalizer
+
+
+**GetSetHydrator::configure**([GetSetMethodNormalizer](../../../GetSetMethodNormalizer.md) $normalizer) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[GetSetMethodNormalizer](../../../GetSetMethodNormalizer.md) |$normalizer |  |
+
+---
+
+
+### create
+Crea una nueva instancia
+
+
+static **GetSetHydrator::create**() : [GetSetHydrator](../../../GetSetHydrator.md)
+
+
+
+---
+
+
+### hydrate
+Crea un objeto a partir de un array
+
+
+**GetSetHydrator::hydrate**(string $className, [iterable](../../../iterable.md) $values) : object
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$className |  |
+|[iterable](../../../iterable.md) |$values |  |
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

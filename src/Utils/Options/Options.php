@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Options;
 
-use PlanB\Utils\Collection\Utilities\CollectionBuilder;
+use PlanB\DS\Collection\Utilities\CollectionBuilder;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -89,7 +89,7 @@ abstract class Options
      */
     private function setCurrentProfile(string $name): self
     {
-        if (!$this->profiles->itemExists($name)) {
+        if (!$this->profiles->has($name)) {
             throw UndefinedProfileException::forProfile($name);
         }
 
@@ -125,7 +125,7 @@ abstract class Options
      */
     public function addProfile(string $name, callable $callback): self
     {
-        $this->profiles->itemSet($name, $callback);
+        $this->profiles->set($name, $callback);
 
         return $this;
     }

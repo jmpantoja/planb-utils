@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Options;
 
-use PlanB\DS\Collection\Utilities\CollectionBuilder;
+use PlanB\DS\ArrayList\Utilities\CollectionBuilder;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

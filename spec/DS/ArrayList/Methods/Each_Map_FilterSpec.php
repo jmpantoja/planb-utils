@@ -14,7 +14,7 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use spec\PlanB\DS\ArrayList\Stub\Word;
 
 
@@ -22,7 +22,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beAnInstanceOf(Collection::class);
+        $this->beAnInstanceOf(ArrayList::class);
         $this->beConstructedWith(Word::class);
     }
 
@@ -58,7 +58,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
         });
 
         $response->shouldNotReturn($this);
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
         $response->getType()->shouldReturn(Word::class);
         $response->count()->shouldReturn(0);
     }
@@ -75,7 +75,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
 
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
 
         $response->get(0)->shouldReturn('uno/0/</=');
         $response->get(1)->shouldReturn('dos/1/</=');
@@ -91,7 +91,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
         });
 
         $response->shouldNotReturn($this);
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
         $response->getType()->shouldReturn(Word::class);
 
         $response->count()->shouldReturn(0);
@@ -107,7 +107,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
         });
 
         $response->shouldNotReturn($this);
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
         $response->getType()->shouldReturn(Word::class);
 
         $response->count()->shouldReturn(1);

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ArrayList\Traits;
 
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
 use PlanB\DS\ArrayList\ItemResolver;
 use PlanB\DS\ArrayList\KeyValue;
@@ -42,7 +42,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function add($value): Collection
+    public function add($value): ArrayList
     {
         $pair = KeyValue::fromValue($value);
         $this->addPair($pair);
@@ -57,7 +57,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function addAll(iterable $items): Collection
+    public function addAll(iterable $items): ArrayList
     {
         foreach ($items as $value) {
             $this->add($value);
@@ -74,7 +74,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function set($key, $value): Collection
+    public function set($key, $value): ArrayList
     {
         $pair = KeyValue::fromPair($key, $value);
         $this->addPair($pair);
@@ -90,7 +90,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function setAll(iterable $items): Collection
+    public function setAll(iterable $items): ArrayList
     {
         foreach ($items as $key => $value) {
             $this->set($key, $value);
@@ -152,7 +152,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function unset($key): Collection
+    public function unset($key): ArrayList
     {
         unset($this->items[$key]);
 
@@ -166,7 +166,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function addPair(KeyValue $candidate): Collection
+    private function addPair(KeyValue $candidate): ArrayList
     {
 
         $pair = $this->getResolver()
@@ -191,7 +191,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function addPairWithKey(KeyValue $pair): Collection
+    private function addPairWithKey(KeyValue $pair): ArrayList
     {
         if (!$pair->hasKey()) {
             return $this;
@@ -214,7 +214,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function addPairWithoutKey(KeyValue $pair): Collection
+    private function addPairWithoutKey(KeyValue $pair): ArrayList
     {
         if ($pair->hasKey()) {
             return $this;
@@ -261,7 +261,7 @@ trait Mutators
      *
      * @return $this
      */
-    protected function configure(ItemResolver $resolver): Collection
+    protected function configure(ItemResolver $resolver): ArrayList
     {
         return $this;
     }

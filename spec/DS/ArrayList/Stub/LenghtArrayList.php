@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace spec\PlanB\DS\ArrayList\Stub;
 
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 
 
 /**
@@ -22,7 +22,7 @@ use PlanB\DS\ArrayList\Collection;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class LenghtCollection extends Collection
+class LenghtArrayList extends ArrayList
 {
     public function __construct()
     {

@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace spec\PlanB\DS\ArrayList\Stub;
 
 
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 
-class ShortStringCollection extends Collection
+class ShortStringArrayList extends ArrayList
 {
 
     public function __construct()

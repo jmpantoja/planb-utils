@@ -14,9 +14,9 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
-use spec\PlanB\DS\ArrayList\CollectionSpec;
+use spec\PlanB\DS\ArrayList\ArrayListSpec;
 use spec\PlanB\DS\ArrayList\Stub\Word;
 
 
@@ -24,7 +24,7 @@ class Seach_FindSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beAnInstanceOf(Collection::class);
+        $this->beAnInstanceOf(ArrayList::class);
         $this->beConstructedWith(Word::class);
     }
 

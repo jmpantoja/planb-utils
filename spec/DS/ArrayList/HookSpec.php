@@ -7,7 +7,7 @@ use PlanB\DS\ArrayList\Hook;
 use PhpSpec\ObjectBehavior;
 
 use Prophecy\Argument;
-use spec\PlanB\DS\ArrayList\Stub\ShortStringCollection;
+use spec\PlanB\DS\ArrayList\Stub\ShortStringArrayList;
 
 class HookSpec extends ObjectBehavior
 {
@@ -41,7 +41,7 @@ class HookSpec extends ObjectBehavior
             ->shouldReturn(self::RETURNED_VALUE);
     }
 
-    public function it_is_initializable_from_array(ShortStringCollection $collection)
+    public function it_is_initializable_from_array(ShortStringArrayList $collection)
     {
         $collection->validate(Argument::any(), Argument::any())->willReturn(self::RETURNED_VALUE);
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ArrayList\Utilities;
 
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\EmptyArgumentException;
 
 /**
@@ -33,11 +33,11 @@ class CollectionBuilder
      *
      * @param string $type
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
-    public static function fromType(string $type): Collection
+    public static function fromType(string $type): ArrayList
     {
-        return new Collection($type);
+        return new ArrayList($type);
     }
 
     /**
@@ -45,13 +45,13 @@ class CollectionBuilder
      *
      * @param mixed $value
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
-    public static function fromValueType($value): Collection
+    public static function fromValueType($value): ArrayList
     {
         $type = is_object($value) ? get_class($value) : gettype($value);
 
-        return new Collection($type);
+        return new ArrayList($type);
     }
 
     /**
@@ -61,9 +61,9 @@ class CollectionBuilder
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
-    public static function fromArray(iterable $input): Collection
+    public static function fromArray(iterable $input): ArrayList
     {
         if (0 === count($input)) {
             throw EmptyArgumentException::emptyInput();

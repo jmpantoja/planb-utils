@@ -3,13 +3,13 @@
 namespace spec\PlanB\DS\ArrayList;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\InvalidTypeException;
 use PlanB\DS\ArrayList\Exception\InvalidValueTypeException;
 use PlanB\DS\ArrayList\ItemResolver;
 use PlanB\DS\ArrayList\KeyValue;
 use Prophecy\Argument as p;
-use spec\PlanB\DS\ArrayList\Stub\ShortStringCollection;
+use spec\PlanB\DS\ArrayList\Stub\ShortStringArrayList;
 
 
 class ItemResolverSpec extends ObjectBehavior
@@ -69,7 +69,7 @@ class ItemResolverSpec extends ObjectBehavior
     public function it_can_configure_for_default_behaviour()
     {
         $this->beConstructedOfType('string');
-        $collection = new Collection('string');
+        $collection = new ArrayList('string');
 
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
 
@@ -78,7 +78,7 @@ class ItemResolverSpec extends ObjectBehavior
     }
 
 
-    public function it_can_configure_for_accept_a_valid_value(ShortStringCollection $collection)
+    public function it_can_configure_for_accept_a_valid_value(ShortStringArrayList $collection)
     {
 
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
@@ -91,7 +91,7 @@ class ItemResolverSpec extends ObjectBehavior
         $this->resolve($pair)->shouldHaveType(KeyValue::class);
     }
 
-    public function it_can_configure_for_ignoring_an_invalid_value(ShortStringCollection $collection)
+    public function it_can_configure_for_ignoring_an_invalid_value(ShortStringArrayList $collection)
     {
 
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
@@ -105,7 +105,7 @@ class ItemResolverSpec extends ObjectBehavior
     }
 
 
-    public function it_can_configure_for_refuse_an_invalid_value(ShortStringCollection $collection)
+    public function it_can_configure_for_refuse_an_invalid_value(ShortStringArrayList $collection)
     {
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
         $this->prepareForConfigure($collection);
@@ -120,7 +120,7 @@ class ItemResolverSpec extends ObjectBehavior
     }
 
 
-    public function it_can_configure_for_trasnsform_the_value(ShortStringCollection $collection)
+    public function it_can_configure_for_trasnsform_the_value(ShortStringArrayList $collection)
     {
         $pair = KeyValue::fromValue(10);
         $this->prepareForConfigure($collection);
@@ -131,7 +131,7 @@ class ItemResolverSpec extends ObjectBehavior
 
     }
 
-    public function it_can_configure_for_trasnsform_the_key(ShortStringCollection $collection)
+    public function it_can_configure_for_trasnsform_the_key(ShortStringArrayList $collection)
     {
         $pair = KeyValue::fromPair('key', 10);
         $this->prepareForConfigure($collection);
@@ -168,9 +168,9 @@ class ItemResolverSpec extends ObjectBehavior
     }
 
     /**
-     * @param ShortStringCollection $collection
+     * @param ShortStringArrayList $collection
      */
-    private function prepareForConfigure(ShortStringCollection $collection): void
+    private function prepareForConfigure(ShortStringArrayList $collection): void
     {
         $this->beConstructedOfType('string');
 

@@ -14,16 +14,16 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
-use spec\PlanB\DS\ArrayList\Stub\LenghtCollection;
+use spec\PlanB\DS\ArrayList\Stub\LenghtArrayList;
 
 
 class MutatorSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beAnInstanceOf(Collection::class);
+        $this->beAnInstanceOf(ArrayList::class);
         $this->beConstructedWith('string');
     }
 
@@ -155,7 +155,7 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_ignore_invalid_values()
     {
-        $this->beAnInstanceOf(LenghtCollection::class);
+        $this->beAnInstanceOf(LenghtArrayList::class);
 
         $this->add('cadena demasiado larga');
         $this->count()->shouldReturn(0);
@@ -163,7 +163,7 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_accept_valid_values()
     {
-        $this->beAnInstanceOf(LenghtCollection::class);
+        $this->beAnInstanceOf(LenghtArrayList::class);
 
         $this->add('corta');
         $this->count()->shouldReturn(1);
@@ -173,7 +173,7 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_normalize_the_value_and_the_key()
     {
-        $this->beAnInstanceOf(LenghtCollection::class);
+        $this->beAnInstanceOf(LenghtArrayList::class);
 
         $this->add('corta');
         $this->count()->shouldReturn(1);

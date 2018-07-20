@@ -132,11 +132,11 @@ class ItemResolver
     /**
      * Configura el ItemResolver a partir de lo que se deduce de una coleccion
      *
-     * @param \PlanB\DS\ArrayList\Collection $collection
+     * @param \PlanB\DS\ArrayList\ArrayList $collection
      *
      * @return \PlanB\DS\ArrayList\ItemResolver
      */
-    public function configure(Collection $collection): self
+    public function configure(ArrayList $collection): self
     {
         $this->validator = Hook::fromArray([$collection, 'validate']);
         $this->normalizer = Hook::fromArray([$collection, 'normalize']);

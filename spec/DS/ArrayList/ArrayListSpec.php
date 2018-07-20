@@ -6,10 +6,10 @@ namespace spec\PlanB\DS\ArrayList;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use spec\PlanB\DS\ArrayList\Stub\Word;
 
-class CollectionSpec extends ObjectBehavior
+class ArrayListSpec extends ObjectBehavior
 {
     public function let()
     {

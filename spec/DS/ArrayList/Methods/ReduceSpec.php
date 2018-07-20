@@ -14,7 +14,7 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 use spec\PlanB\DS\ArrayList\Stub\Word;
 
 
@@ -22,7 +22,7 @@ class ReduceSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beAnInstanceOf(Collection::class);
+        $this->beAnInstanceOf(ArrayList::class);
         $this->beConstructedWith(Word::class);
     }
 

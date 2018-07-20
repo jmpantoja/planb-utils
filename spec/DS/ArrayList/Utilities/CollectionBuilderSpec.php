@@ -2,7 +2,7 @@
 
 namespace spec\PlanB\DS\ArrayList\Utilities;
 
-use PlanB\DS\ArrayList\Collection;
+use PlanB\DS\ArrayList\ArrayList;
 
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ArrayList\Exception\EmptyArgumentException;
@@ -21,14 +21,14 @@ class CollectionBuilderSpec extends ObjectBehavior
     public function it_can_create_a_collection_by_type()
     {
         $response = $this->fromType('string');
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
     }
 
     public function it_can_create_a_collection_by_value_type()
     {
         $response = $this->fromValueType('dummy');
 
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
         $response->getType('string');
     }
 
@@ -38,7 +38,7 @@ class CollectionBuilderSpec extends ObjectBehavior
 
         $response = $this->fromValueType($word);
 
-        $response->shouldHaveType(Collection::class);
+        $response->shouldHaveType(ArrayList::class);
         $response->getType(Word::class);
     }
 

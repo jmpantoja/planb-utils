@@ -19,7 +19,7 @@ use PlanB\DS\ArrayList\Utilities\CollectionBuilder;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class Collection implements \Countable
+class ArrayList implements \Countable
 {
 
     use Traits\Mutators;
@@ -80,7 +80,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
     public function each(callable $callable, ...$userdata): self
     {
@@ -100,7 +100,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
     public function map(callable $callable, ...$userdata): self
     {
@@ -125,7 +125,7 @@ class Collection implements \Countable
      * @param callable $callable
      * @param mixed    ...$userdata
      *
-     * @return \PlanB\DS\ArrayList\Collection
+     * @return \PlanB\DS\ArrayList\ArrayList
      */
     public function filter(callable $callable, ...$userdata): self
     {

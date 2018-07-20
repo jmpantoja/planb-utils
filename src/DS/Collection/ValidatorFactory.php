@@ -10,9 +10,10 @@
 
 declare(strict_types=1);
 
-namespace PlanB\DS\ArrayList;
+namespace PlanB\DS\Collection;
 
-use PlanB\DS\ArrayList\Exception\InvalidTypeException;
+use PlanB\DS\ArrayList\Hook;
+use PlanB\DS\Collection\Exception\InvalidTypeException;
 
 /**
  * Method Factory para crear el validator que corresponde a un tipo determinado

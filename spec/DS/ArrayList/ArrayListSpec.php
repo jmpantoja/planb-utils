@@ -11,11 +11,6 @@ use spec\PlanB\DS\ArrayList\Stub\Word;
 
 class ArrayListSpec extends ObjectBehavior
 {
-    public function let()
-    {
-        $this->beConstructedWith('string');
-    }
-
 
     public function it_is_countable()
     {
@@ -26,6 +21,17 @@ class ArrayListSpec extends ObjectBehavior
     {
         $this->count()->shouldReturn(0);
         $this->isEmpty()->shouldReturn(true);
+    }
+
+    public function it_is_initializable_from_array()
+    {
+        $values = [
+            'cadena',
+            123456
+        ];
+
+        $this->beConstructedThrough('fromArray', [$values]);
+        $this->shouldHaveType(ArrayList::class);
     }
 
 

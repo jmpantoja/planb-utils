@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace PlanB\DS\ArrayList;
 
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
-use PlanB\DS\ArrayList\Utilities\CollectionBuilder;
 
 /**
  * Generic Collection
@@ -30,28 +29,45 @@ class ArrayList implements \Countable
     protected $items = [];
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * Collection constructor.
+     * Crea el objecto ItemResolver
      *
-     * @param string $type
+     * Hacer que la construcción del objeto ItemResolver dependa un KeyValue, nos permite ajustarlo al primer elemento
+     * de la colección, y por consecuencia, crear colecciones agnosticas que tomen el tipo del primer elemento
+     *
+     * @param \PlanB\DS\ArrayList\KeyValue $first
+     *
+     * @return \PlanB\DS\ArrayList\ItemResolver
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function __construct(string $type)
+    protected function buildItemResolver(KeyValue $first): ItemResolver
     {
-        $this->type = $type;
+        $resolver = ItemResolver::create();
+
+        return $resolver;
     }
 
     /**
-     * Devuelve el tipo de la colleción
-     *
-     * @return string
+     * ArrayList constructor.
      */
-    public function getType(): string
+    public function __construct()
     {
-        return $this->type;
+        $this->items = [];
+    }
+
+    /**
+     * Crea una instancia a partir de un conjunto de valores
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\ArrayList\ArrayList
+     */
+    public static function fromArray(iterable $input): ArrayList
+    {
+        $collection = new static();
+        $collection->setAll($input);
+
+        return $collection;
     }
 
     /**
@@ -84,10 +100,10 @@ class ArrayList implements \Countable
      */
     public function each(callable $callable, ...$userdata): self
     {
-
         foreach ($this->items as $key => $value) {
             $callable($value, $key, ...$userdata);
         }
+
         return $this;
     }
 
@@ -108,11 +124,11 @@ class ArrayList implements \Countable
             return clone $this;
         }
 
-        $mapped = null;
+        $mapped = new static();
         foreach ($this->items as $key => $value) {
             $item = $callable($value, $key, ...$userdata);
 
-            $mapped = $mapped ?? CollectionBuilder::fromValueType($item);
+//            $mapped = $mapped ?? CollectionBuilder::fromValueType($item);
             $mapped->set($key, $item);
         }
 
@@ -129,7 +145,7 @@ class ArrayList implements \Countable
      */
     public function filter(callable $callable, ...$userdata): self
     {
-        $filtered = CollectionBuilder::fromType($this->getType());
+        $filtered = new static();
 
         foreach ($this->items as $key => $value) {
             if (!$callable($value, $key, ...$userdata)) {
@@ -151,7 +167,7 @@ class ArrayList implements \Countable
      *
      * @return mixed|null
      */
-    public function itemSearch(callable $callable, ...$userdata)
+    public function search(callable $callable, ...$userdata)
     {
 
         foreach ($this->items as $key => $value) {
@@ -170,7 +186,7 @@ class ArrayList implements \Countable
      *
      * @return mixed
      */
-    public function itemFind(callable $callable, ...$userdata)
+    public function find(callable $callable, ...$userdata)
     {
         foreach ($this->items as $key => $value) {
             if ($callable($value, $key, ...$userdata)) {

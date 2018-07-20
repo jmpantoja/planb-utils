@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\DS\ArrayList\Exception;
+namespace PlanB\DS\Collection\Exception;
 
 /**
  * Se lanza cuando se trata agregar un item de un tipo incorrecto

@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ArrayList;
 
-use PlanB\DS\ArrayList\Exception\InvalidValueTypeException;
-
 /**
  * Procesa una pareja clave/valor antes de ser añadida a la colección
  *
@@ -20,15 +18,7 @@ use PlanB\DS\ArrayList\Exception\InvalidValueTypeException;
  */
 class ItemResolver
 {
-    /**
-     * @var string
-     */
-    private $type;
 
-    /**
-     * @var \PlanB\DS\ArrayList\Hook
-     */
-    private $typeValidator;
 
     /**
      * @var \PlanB\DS\ArrayList\Hook
@@ -47,42 +37,23 @@ class ItemResolver
 
     /**
      * ItemResolver constructor.
-     *
-     * @param string $type
      */
-    protected function __construct(string $type)
+    public function __construct()
     {
-        $this->type = $type;
-        $this->typeValidator = ValidatorFactory::factory($type);
-
-
         $this->validator = Hook::blank();
         $this->normalizer = Hook::blank();
         $this->keyNormalizer = Hook::blank();
     }
 
     /**
-     * Crea una nueva instancia, para un tipo
+     * Crea una nueva instancia
      *
-     * @param string $type
-     *
-     * @return static
+     * @return \PlanB\DS\ArrayList\ItemResolver
      */
-    public static function ofType(string $type): self
+    public static function create(): self
     {
-        return new static($type);
+        return new self();
     }
-
-    /**
-     * Devuelve el tipo base de la colección
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
 
     /**
      * Asigna el validador personalizado
@@ -152,7 +123,7 @@ class ItemResolver
      *
      * @return \PlanB\DS\ArrayList\KeyValue
      */
-    private function normalize(KeyValue $pair): KeyValue
+    protected function normalize(KeyValue $pair): KeyValue
     {
         $newValue = $this->normalizer->execute($pair, $pair->getValue());
 
@@ -167,7 +138,7 @@ class ItemResolver
      *
      * @return \PlanB\DS\ArrayList\KeyValue
      */
-    private function normalizeKey(KeyValue $pair): KeyValue
+    protected function normalizeKey(KeyValue $pair): KeyValue
     {
         $newKey = $this->keyNormalizer->execute($pair, $pair->getKey());
 
@@ -182,29 +153,9 @@ class ItemResolver
      *
      * @return bool
      */
-    private function validate(KeyValue $pair): bool
+    protected function validate(KeyValue $pair): bool
     {
         return (bool) $this->validator->execute($pair, true);
-    }
-
-    /**
-     * Nos aseguramos que el valor sea del tipo requerido por la colección
-     *
-     * @param \PlanB\DS\ArrayList\KeyValue $pair
-     *
-     * @return \PlanB\DS\ArrayList\ItemResolver
-     */
-    private function assertType(KeyValue $pair): self
-    {
-
-        if (true === (bool) $this->typeValidator->execute($pair)) {
-            return $this;
-        }
-
-        $value = $pair->getValue();
-        $type = $this->getType();
-
-        throw InvalidValueTypeException::forValue($value, $type);
     }
 
 
@@ -218,7 +169,6 @@ class ItemResolver
     public function resolve(KeyValue $pair): ?KeyValue
     {
         $pair = $this->normalize($pair);
-        $this->assertType($pair);
         $pair = $this->normalizeKey($pair);
 
         if (!$this->validate($pair)) {

@@ -23,7 +23,7 @@ class ItemResolverSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedOfType(ItemResolver::class);
+        $this->beConstructedCreate();
     }
 
     public function it_is_initializable()
@@ -31,44 +31,8 @@ class ItemResolverSpec extends ObjectBehavior
         $this->shouldHaveType(ItemResolver::class);
     }
 
-    public function it_throw_an_exception_when_initialze_with_an_invalid_type()
-    {
-        $this->beConstructedOfType('invalid type');
-        $this->shouldThrow(\DomainException::class)->duringInstantiation();
-        $this->shouldThrow(InvalidTypeException::class)->duringInstantiation();
-    }
-
-    public function it_refuse_resolve_an_invalid_value()
-    {
-        $pair = KeyValue::fromValue('invalid value, expects a ItemResolver::class');
-
-        $this->shouldThrow(\DomainException::class)->duringResolve($pair);
-        $this->shouldThrow(InvalidValueTypeException::class)->duringResolve($pair);
-    }
-
-    public function it_accept_resolve_an_valid_classname()
-    {
-        $pair = KeyValue::fromValue($this->getWrappedObject());
-
-        $this->shouldNotThrow(\Exception::class)->duringResolve($pair);
-    }
-
-    public function it_accept_resolve_an_valid_native()
-    {
-        $this->beConstructedOfType('string');
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
-
-        $this->shouldNotThrow(\Exception::class)->duringResolve($pair);
-    }
-
-    public function it_can_retrieve_resolver_target_type()
-    {
-        $this->getType()->shouldReturn(ItemResolver::class);
-    }
-
     public function it_can_configure_for_default_behaviour()
     {
-        $this->beConstructedOfType('string');
         $collection = new ArrayList('string');
 
         $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
@@ -148,17 +112,16 @@ class ItemResolverSpec extends ObjectBehavior
     public function it_can_configure_custom_hooks()
     {
         $pair = KeyValue::fromPair('key', 10);
-        $this->beConstructedOfType('string');
 
-        $this->setValidator(function(){
+        $this->setValidator(function () {
             return true;
         });
 
-        $this->setNormalizer(function(){
+        $this->setNormalizer(function () {
             return self::NORMALIZED_VALUE;
         });
 
-        $this->setKeyNormalizer(function(){
+        $this->setKeyNormalizer(function () {
             return self::NORMALIZED_KEY;
         });
 
@@ -172,7 +135,6 @@ class ItemResolverSpec extends ObjectBehavior
      */
     private function prepareForConfigure(ShortStringArrayList $collection): void
     {
-        $this->beConstructedOfType('string');
 
         $collection->validate(p::any(), p::any())
             ->willReturn(true);

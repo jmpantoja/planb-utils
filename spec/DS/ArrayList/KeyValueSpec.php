@@ -32,6 +32,20 @@ class KeyValueSpec extends ObjectBehavior
         $this->getValue()->shouldReturn('value');
     }
 
+
+    public function it_can_retrive_the_value_primitive_type()
+    {
+        $this->getType()->shouldReturn('string');
+    }
+
+    public function it_can_retrive_the_value_classname()
+    {
+        $this->beConstructedFromPair('key', new \stdClass());
+
+        $this->getType()->shouldReturn(\stdClass::class);
+    }
+
+
     public function it_can_retrive_key()
     {
         $this->beConstructedFromPair('key', 'value');

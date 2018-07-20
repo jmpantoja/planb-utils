@@ -102,6 +102,17 @@ class KeyValue
     }
 
     /**
+     * Devuelve el tipo
+     *
+     * @return string
+     */
+    public function getType(): string
+    {
+
+        return is_object($this->value) ? get_class($this->value) : gettype($this->value);
+    }
+
+    /**
      * Crea una nueva clave/valor, con la misma clave que la actual, pero un valor distinto
      *
      * @param mixed $newValue

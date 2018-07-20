@@ -103,7 +103,7 @@ trait Mutators
     /**
      * Devuelve un elemento
      *
-     * @param mixed $key
+     * @param mixed      $key
      *
      * @param mixed|null $default
      *
@@ -115,7 +115,7 @@ trait Mutators
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string)$key);
+            throw ItemNotFoundException::forKey((string) $key);
         }
 
         return $this->items[$key] ?? $default;
@@ -168,9 +168,8 @@ trait Mutators
      */
     private function addPair(KeyValue $candidate): ArrayList
     {
-
-        $pair = $this->getResolver()
-            ->resolve($candidate);
+        $resolver = $this->getResolverFor($candidate);
+        $pair = $resolver->resolve($candidate);
 
         if (!($pair instanceof KeyValue)) {
             return $this;
@@ -182,6 +181,7 @@ trait Mutators
 
         return $this;
     }
+
 
     /**
      * Agrega una pareja clave/valor a la colección,
@@ -226,9 +226,8 @@ trait Mutators
         return $this;
     }
 
-
     /**
-     * Devuelve el objeto ItemResolver
+     * Devuelve el objeto ItemResolver, configurado para una pareja clave/valor
      *
      * Este resolver se construye bajo demanda, para poder ignorarlo en la serialización
      * y que se "autoconstruya" desde el nuevo objeto en la unserialización
@@ -236,16 +235,17 @@ trait Mutators
      * Si, como parece lógico de primeras, se instanciara en el constructor de la clase, no se puede recuperar desde unserialize
      * y o bien perderiamos esa información, o bien tenemos que serializar datos + resolver
      *
+     * @param \PlanB\DS\ArrayList\KeyValue $first
+     *
      * @return \PlanB\DS\ArrayList\ItemResolver
      */
-    private function getResolver(): ItemResolver
+    protected function getResolverFor(KeyValue $first): ItemResolver
     {
         if (is_null($this->itemResolver)) {
-            $resolver = ItemResolver::ofType($this->type);
+            $resolver = $this->buildItemResolver($first);
 
             $resolver->configure($this);
-
-            $this->configure($resolver);
+            $this->configureResolver($resolver);
             $this->itemResolver = $resolver;
         }
 
@@ -261,7 +261,7 @@ trait Mutators
      *
      * @return $this
      */
-    protected function configure(ItemResolver $resolver): ArrayList
+    protected function configureResolver(ItemResolver $resolver): ArrayList
     {
         return $this;
     }

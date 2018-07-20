@@ -23,7 +23,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ArrayList::class);
-        $this->beConstructedWith(Word::class);
+    //    $this->beConstructedWith(Word::class);
     }
 
     public function it_each_method_return_instance_on_empty()
@@ -59,7 +59,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
         $response->shouldHaveType(ArrayList::class);
-        $response->getType()->shouldReturn(Word::class);
+    //    $response->getType()->shouldReturn(Word::class);
         $response->count()->shouldReturn(0);
     }
 
@@ -92,8 +92,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
         $response->shouldHaveType(ArrayList::class);
-        $response->getType()->shouldReturn(Word::class);
-
+        //     $response->getType()->shouldReturn(Word::class);
         $response->count()->shouldReturn(0);
     }
 
@@ -108,7 +107,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
         $response->shouldHaveType(ArrayList::class);
-        $response->getType()->shouldReturn(Word::class);
+     //   $response->getType()->shouldReturn(Word::class);
 
         $response->count()->shouldReturn(1);
         $response->get(2)->__toString()->shouldReturn('tres');

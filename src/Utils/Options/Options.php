@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Options;
 
-use PlanB\DS\ArrayList\Utilities\CollectionBuilder;
+use PlanB\DS\Collection\Collection;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -62,7 +62,7 @@ abstract class Options
      */
     protected function __construct(string $profile = self::DEFAULT_PROFILE)
     {
-        $this->profiles = CollectionBuilder::fromType('callable');
+        $this->profiles = Collection::fromType('callable');
 
         $this->addProfile(self::DEFAULT_PROFILE, [$this, 'configure']);
         $this->customize();

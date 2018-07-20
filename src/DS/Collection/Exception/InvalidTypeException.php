@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\DS\ArrayList\Exception;
+namespace PlanB\DS\Collection\Exception;
 
 /**
  * Se lanza cuando se trata de crear un ItemResolver con algo que no es un tipo válido

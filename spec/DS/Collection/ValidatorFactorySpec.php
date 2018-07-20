@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\DS\ArrayList;
+namespace spec\PlanB\DS\Collection;
 
 use PlanB\DS\ArrayList\Hook;
-use PlanB\DS\ArrayList\Exception\InvalidTypeException;
+use PlanB\DS\Collection\Exception\InvalidTypeException;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ArrayList\ValidatorFactory;
+use PlanB\DS\Collection\ValidatorFactory;
 use Prophecy\Argument;
 
 class ValidatorFactorySpec extends ObjectBehavior
@@ -35,7 +35,6 @@ class ValidatorFactorySpec extends ObjectBehavior
 
     public function it_throws_an_exception_if_recieve_an_invalid_type()
     {
-
         $this->shouldThrow(InvalidTypeException::class)->duringFactory('invalid-type');
     }
 }

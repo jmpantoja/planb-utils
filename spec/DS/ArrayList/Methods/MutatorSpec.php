@@ -24,7 +24,6 @@ class MutatorSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ArrayList::class);
-        $this->beConstructedWith('string');
     }
 
     public function it_can_append_one_item()
@@ -50,6 +49,14 @@ class MutatorSpec extends ObjectBehavior
 
         $this->exists(0)->shouldReturn(true);
     }
+
+    public function it_indicate_if_an_item_exists_by_has()
+    {
+        $this->set('key', 'value');
+
+        $this->has('key')->shouldReturn(true);
+    }
+
 
     public function it_indicate_if_an_item_dont_exists()
     {
@@ -148,10 +155,6 @@ class MutatorSpec extends ObjectBehavior
         $this->count()->shouldReturn(0);
     }
 
-    public function it_can_instantiate_with_a_type()
-    {
-        $this->getType()->shouldReturn('string');
-    }
 
     public function it_can_ignore_invalid_values()
     {

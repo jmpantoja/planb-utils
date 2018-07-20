@@ -1,22 +1,25 @@
 
                                                                                                                                             
     
-# Namespaces
+# PlanB\DS\ArrayList
 
-* [PlanB](PlanB.md)
-* [PlanB\DS](PlanB/DS.md)
-* [PlanB\DS\ArrayList](PlanB/DS/ArrayList.md)
-* [PlanB\DS\ArrayList\Exception](PlanB/DS/ArrayList/Exception.md)
-* [PlanB\DS\ArrayList\Traits](PlanB/DS/ArrayList/Traits.md)
-* [PlanB\DS\Collection](PlanB/DS/Collection.md)
-* [PlanB\DS\Collection\Exception](PlanB/DS/Collection/Exception.md)
-* [PlanB\Utils](PlanB/Utils.md)
-* [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
-* [PlanB\Utils\Options](PlanB/Utils/Options.md)
-* [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
-* [PlanB\Utils\Path](PlanB/Utils/Path.md)
-* [PlanB\Utils\Path\Exception](PlanB/Utils/Path/Exception.md)
-* [PlanB\Utils\Text](PlanB/Utils/Text.md)
+## Namespaces
+- [PlanB\DS\ArrayList\Exception](../../PlanB/DS/ArrayList/Exception.md)
+- [PlanB\DS\ArrayList\Traits](../../PlanB/DS/ArrayList/Traits.md)
+
+
+## Classes
+| | |
+| --- | --- |
+| [PlanB\DS\ArrayList\ArrayList](../../PlanB/DS/ArrayList/ArrayList.md) | Generic Collection |
+| [PlanB\DS\ArrayList\Hook](../../PlanB/DS/ArrayList/Hook.md) | Operación, personalizada |
+| [PlanB\DS\ArrayList\ItemResolver](../../PlanB/DS/ArrayList/ItemResolver.md) | Procesa una pareja clave/valor antes de ser añadida a la colección |
+| [PlanB\DS\ArrayList\KeyValue](../../PlanB/DS/ArrayList/KeyValue.md) | Value Object que encapsula una pareja clave/valor |
+
+
+
+
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

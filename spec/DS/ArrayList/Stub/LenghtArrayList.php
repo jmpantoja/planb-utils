@@ -24,10 +24,10 @@ use PlanB\DS\ArrayList\ArrayList;
  */
 class LenghtArrayList extends ArrayList
 {
-    public function __construct()
-    {
-        parent::__construct('int');
-    }
+//    public function __construct()
+//    {
+//        parent::__construct('int');
+//    }
 
 
     public function validate(int $value)

@@ -23,7 +23,6 @@ class ReduceSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ArrayList::class);
-        $this->beConstructedWith(Word::class);
     }
 
     public function it_reduce_method_return_null_on_empty_if_not_initial_passed()
@@ -45,15 +44,12 @@ class ReduceSpec extends ObjectBehavior
         $this->addSomeElements();
 
         $this->reduce(function (Word $word, $initial) {
-
-
             return sprintf('%s/%s', $initial, $word->__toString());
 
         }, '==>')->shouldReturn('==>/uno/dos/tres');
 
 
     }
-
 
     protected function addSomeElements()
     {

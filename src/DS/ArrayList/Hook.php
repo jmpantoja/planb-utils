@@ -78,7 +78,7 @@ final class Hook
      * Ejecuta la operación
      *
      * @param \PlanB\DS\ArrayList\KeyValue $pair
-     * @param mixed|null                       $default
+     * @param mixed|null                   $default
      *
      * @return mixed|null
      */

@@ -25,12 +25,11 @@ class Seach_FindSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ArrayList::class);
-        $this->beConstructedWith(Word::class);
     }
 
     public function it_search_method_return_null_on_empty()
     {
-        $this->itemSearch(function (Word $word) {
+        $this->search(function (Word $word) {
             return $word->length() > 3;
         })->shouldReturn(null);
     }
@@ -40,7 +39,7 @@ class Seach_FindSpec extends ObjectBehavior
     {
         $this->addSomeElements();
 
-        $this->itemSearch(function (Word $word) {
+        $this->search(function (Word $word) {
             return $word->length() > 10;
         })->shouldReturn(null);
     }
@@ -48,7 +47,7 @@ class Seach_FindSpec extends ObjectBehavior
     public function it_search_method_return_an_element()
     {
         $this->addSomeElements();
-        $response = $this->itemSearch(function (Word $word) {
+        $response = $this->search(function (Word $word) {
             return $word->length() > 3;
         });
 
@@ -60,7 +59,7 @@ class Seach_FindSpec extends ObjectBehavior
     public function it_find_method_throws_an_exception_on_empty()
     {
         $this->shouldThrow(ItemNotFoundException::class)
-            ->duringItemFind(function (Word $word) {
+            ->duringFind(function (Word $word) {
                 return $word->length() > 3;
             });
     }
@@ -69,7 +68,7 @@ class Seach_FindSpec extends ObjectBehavior
     {
         $this->addSomeElements();
         $this->shouldThrow(ItemNotFoundException::class)
-            ->duringItemFind(function (Word $word) {
+            ->duringFind(function (Word $word) {
                 return $word->length() > 10;
             });
     }
@@ -78,7 +77,7 @@ class Seach_FindSpec extends ObjectBehavior
     public function it_find_method_return_an_element()
     {
         $this->addSomeElements();
-        $response = $this->itemFind(function (Word $word) {
+        $response = $this->find(function (Word $word) {
             return $word->length() > 3;
         });
 

@@ -4,11 +4,13 @@
 # Namespaces
 
 * [PlanB](PlanB.md)
+* [PlanB\DS](PlanB/DS.md)
+* [PlanB\DS\ArrayList](PlanB/DS/ArrayList.md)
+* [PlanB\DS\ArrayList\Exception](PlanB/DS/ArrayList/Exception.md)
+* [PlanB\DS\ArrayList\Traits](PlanB/DS/ArrayList/Traits.md)
+* [PlanB\DS\Collection](PlanB/DS/Collection.md)
+* [PlanB\DS\Collection\Exception](PlanB/DS/Collection/Exception.md)
 * [PlanB\Utils](PlanB/Utils.md)
-* [PlanB\Utils\Collection](PlanB/Utils/Collection.md)
-* [PlanB\Utils\Collection\Exception](PlanB/Utils/Collection/Exception.md)
-* [PlanB\Utils\Collection\Traits](PlanB/Utils/Collection/Traits.md)
-* [PlanB\Utils\Collection\Utilities](PlanB/Utils/Collection/Utilities.md)
 * [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)

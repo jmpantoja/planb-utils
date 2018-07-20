@@ -72,10 +72,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->trim()
-            ->toString()
+            ->stringify()
             ->shouldReturn('text');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -87,10 +87,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->trim(' t')
-            ->toString()
+            ->stringify()
             ->shouldReturn('ex');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -102,10 +102,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->rtrim()
-            ->toString()
+            ->stringify()
             ->shouldReturn('  text');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -117,10 +117,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->rtrim(' t')
-            ->toString()
+            ->stringify()
             ->shouldReturn('  tex');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -133,10 +133,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->ltrim()
-            ->toString()
+            ->stringify()
             ->shouldReturn('text  ');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -148,10 +148,10 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$original]);
 
         $this->ltrim(' t')
-            ->toString()
+            ->stringify()
             ->shouldReturn('ext  ');
 
-        $this->toString()
+        $this->stringify()
             ->shouldReturn($original);
 
     }
@@ -161,7 +161,26 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', ['esto    9    deberia_ser-camel|case']);
 
         $this->toCamelCase()
-            ->toString()
+            ->stringify()
             ->shouldReturn('esto9DeberiaSerCamelCase');
+    }
+
+
+    public function it_can_convert_a_string_to_snakecase()
+    {
+        $this->beConstructedThrough('create', ['esto |  Deberia - SerSnake-_Case']);
+
+        $this->toSnakeCase()
+            ->stringify()
+            ->shouldReturn('esto_deberia_ser_snake_case');
+    }
+
+    public function it_can_convert_a_string_to_snakecase_with_custom_separator()
+    {
+        $this->beConstructedThrough('create', ['esto |  Deberia - SerSnake-_Case']);
+
+        $this->toSnakeCase('-')
+            ->stringify()
+            ->shouldReturn('esto-deberia-ser-snake-case');
     }
 }

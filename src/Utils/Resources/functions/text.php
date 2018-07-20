@@ -34,8 +34,17 @@ if (!function_exists('camelCase')) {
 
     function camelCase(string $text): string
     {
-        return Text::create($text)->toCamelCase()->toString();
+        return (string)Text::create($text)->toCamelCase();
     }
 
 }
 
+
+if (!function_exists('snakeCase')) {
+
+    function snakeCase(string $text, string $separator = '-'): string
+    {
+        return (string)Text::create($text)->toSnakeCase($separator);
+    }
+
+}

@@ -28,9 +28,9 @@ final class PathTree
      *
      * @param \PlanB\Utils\Path\Path $path
      */
-    private function __construct(Path $path)
+    public function __construct(Path $path)
     {
-        $this->segments = explode(DIRECTORY_SEPARATOR, $path->build());
+        $this->segments = explode(DIRECTORY_SEPARATOR, $path->stringify());
 
         if (!$path->isAbsolute()) {
             return;

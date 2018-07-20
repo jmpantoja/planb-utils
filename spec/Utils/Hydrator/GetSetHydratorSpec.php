@@ -36,4 +36,31 @@ class GetSetHydratorSpec extends ObjectBehavior
             ->getLastName()
             ->shouldReturn('garcia');
     }
+
+    public function it_can_converts_an_object_into_an_array()
+    {
+        $dummy = new Dummy ();
+        $dummy->setName('pepe');
+        $dummy->setLastName('garcia');
+
+        $this->extract($dummy)
+            ->shouldReturn([
+                'name' => 'pepe',
+                'lastName' => 'garcia'
+            ]);
+    }
+
+    public function it_can_converts_an_object_into_an_array_formating_keys_to_snake_case()
+    {
+        $dummy = new Dummy ();
+        $dummy->setName('pepe');
+        $dummy->setLastName('garcia');
+
+        $this->extract($dummy, '-')
+            ->shouldReturn([
+                'name' => 'pepe',
+                'last-name' => 'garcia'
+            ]);
+    }
+
 }

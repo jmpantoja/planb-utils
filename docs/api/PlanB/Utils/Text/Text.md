@@ -17,6 +17,20 @@
 
 ## Methods
 
+### __construct
+Text constructor.
+
+
+**Text::__construct**(string $text) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$text |  |
+
+---
+
+
 ### create
 Crea una nueva instancia
 
@@ -45,11 +59,11 @@ Cambia el valor del texto (inmutable)
 ---
 
 
-### toString
+### stringify
 __toString alias
 
 
-**Text::toString**() : string
+**Text::stringify**() : string
 
 
 
@@ -152,6 +166,20 @@ Transforma la cadena de texto a formato camelCase
 **Text::toCamelCase**() : [Text](../../../Text.md)
 
 
+
+---
+
+
+### toSnakeCase
+Transforma la cadena de texto a formato snake_case
+
+
+**Text::toSnakeCase**(string $separator = &#039;_&#039;) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$separator |  |
 
 ---
 

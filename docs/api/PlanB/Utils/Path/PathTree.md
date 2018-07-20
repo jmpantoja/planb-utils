@@ -17,6 +17,20 @@
 
 ## Methods
 
+### __construct
+Path private constructor.
+
+
+**PathTree::__construct**([Path](../../../Path.md) $path) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Path](../../../Path.md) |$path |  |
+
+---
+
+
 ### create
 
 

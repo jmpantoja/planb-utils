@@ -29,7 +29,7 @@ class GetSetHydrator
     /**
      * GetSetHydrator constructor.
      */
-    private function __construct()
+    public function __construct()
     {
         $normalizer = new GetSetMethodNormalizer();
 
@@ -85,6 +85,45 @@ class GetSetHydrator
         $sanitized = [];
         foreach ($values as $key => $value) {
             $newKey = camelCase((string) $key);
+            $sanitized[$newKey] = $value;
+        }
+
+        return $sanitized;
+    }
+
+    /**
+     * Crea un array a partir de un objeto
+     *
+     * @param object      $object
+     *
+     * @param null|string $snakeCaseSeparator
+     *
+     * @return mixed[]
+     */
+    public function extract(object $object, ?string $snakeCaseSeparator = null): array
+    {
+        $values = $this->normalizer->normalize($object);
+
+        if (is_null($snakeCaseSeparator)) {
+            return $values;
+        }
+
+        return $this->reverseSanitize($values, $snakeCaseSeparator);
+    }
+
+    /**
+     * * Convierte las claves al formato snake-case
+     *
+     * @param mixed[] $values
+     * @param string  $separator
+     *
+     * @return mixed[]
+     */
+    private function reverseSanitize(iterable $values, string $separator): array
+    {
+        $sanitized = [];
+        foreach ($values as $key => $value) {
+            $newKey = snakeCase((string) $key, $separator);
             $sanitized[$newKey] = $value;
         }
 

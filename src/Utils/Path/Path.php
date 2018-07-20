@@ -20,7 +20,7 @@ use PlanB\Utils\Path\Exception\OverFlowRootDirException;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-final class Path
+class Path
 {
     /**
      * @var string $path
@@ -32,7 +32,7 @@ final class Path
      *
      * @param string $path
      */
-    private function __construct(string $path)
+    public function __construct(string $path)
     {
         $isEmpty = isBlankText($path);
 
@@ -227,29 +227,57 @@ final class Path
     {
         $exentension = pathinfo($this->path, PATHINFO_EXTENSION);
 
-        $isEmpty = isBlankText($exentension);
+        if (isBlankText($exentension)) {
+            return null;
+        };
 
-        return !$isEmpty ? $exentension : null;
+        return $exentension;
     }
 
     /**
-     * Devuelve la ruta normalizada
+     * Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como argumento
+     * ´´´
+     * /path/to/file | hasExtension() => false
+     * /path/to/file.txt | hasExtension() => true
+     * /path/to/file.txt | hasExtension('php') => false
+     * /path/to/file.txt | hasExtension('php', 'txt') => true
+     *
+     * ´´´
+     *
+     * @param string ...$expected Las extensiones que se consideran válidas
+     *
+     * @return bool
+     */
+    public function haveExtension(string ...$expected): bool
+    {
+        $extension = $this->getExtension();
+
+        if (is_null($extension)) {
+            return false;
+        }
+
+        return in_array($extension, $expected);
+    }
+
+
+    /**
+     * __toString alias
      *
      * @return string
      */
-    public function build(): string
+    public function stringify(): string
     {
-        return $this->path;
+        return $this->__toString();
     }
 
 
     /**
-     * Devuelve la ruta normalizada
+     * Devuelve la ruta normalizada como una cadena de texto
      *
      * @return string
      */
     public function __toString(): string
     {
-        return $this->build();
+        return $this->path;
     }
 }

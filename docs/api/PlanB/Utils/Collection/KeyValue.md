@@ -17,6 +17,21 @@
 
 ## Methods
 
+### __construct
+KeyValue constructor.
+
+
+**KeyValue::__construct**(mixed $value, null|mixed $key = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+|null|mixed |$key |  |
+
+---
+
+
 ### fromPair
 
 

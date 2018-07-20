@@ -44,7 +44,7 @@ final class PathNormalizer
      *
      * @param string[] ...$pieces
      */
-    private function __construct(string ...$pieces)
+    public function __construct(string ...$pieces)
     {
         $this->stack = [];
 

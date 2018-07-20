@@ -40,7 +40,7 @@ class KeyValue
      * @param mixed      $value
      * @param null|mixed $key
      */
-    private function __construct($value, $key = null)
+    public function __construct($value, $key = null)
     {
         $this->hasKey = 2 === func_num_args();
         $this->value = $value;

@@ -32,7 +32,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', ['/tmp', 'dir']);
         $this->append('subdir')
-            ->build()
+            ->stringify()
             ->shouldReturn('/tmp/dir/subdir');
     }
 
@@ -40,7 +40,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', ['/dir', 'subdir']);
         $this->prepend('/', 'tmp')
-            ->build()
+            ->stringify()
             ->shouldReturn('/tmp/dir/subdir');
     }
 
@@ -159,6 +159,58 @@ class PathSpec extends ObjectBehavior
             ->shouldReturn('php');
     }
 
+    public function it_can_retrieve_a_null_extension()
+    {
+        $basename = pathinfo(__FILE__, PATHINFO_FILENAME);
+        $this->beConstructedThrough('create', [__DIR__, $basename]);
+
+        $this->getExtension()
+            ->shouldReturn(null);
+
+    }
+
+    public function it_can_recognize_if_have_one_single_extension()
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+
+        $this->haveExtension('php')
+            ->shouldReturn(true);
+    }
+
+    public function it_can_recognize_if_not_have_one_single_extension()
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+
+        $this->haveExtension('txt')
+            ->shouldReturn(false);
+    }
+
+    public function it_can_recognize_if_not_have_any_extension()
+    {
+        $basename = pathinfo(__FILE__, PATHINFO_FILENAME);
+        $this->beConstructedThrough('create', [__DIR__, $basename]);
+
+        $this->haveExtension()
+            ->shouldReturn(false);
+    }
+
+
+    public function it_can_recognize_if_have_some_extension()
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+
+        $this->haveExtension('txt', 'php', 'xml')
+            ->shouldReturn(true);
+    }
+
+    public function it_can_recognize_if_have_not_some_extension()
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+
+        $this->haveExtension('txt', 'html', 'xml')
+            ->shouldReturn(false);
+    }
+
     public function it_can_cast_a_path_to_string()
     {
         $this->beConstructedThrough('create', ['/tmp/anything/../dir/']);
@@ -172,7 +224,7 @@ class PathSpec extends ObjectBehavior
         $this->beConstructedThrough('create', ['/level0/level1/level2/']);
 
         $this->getParent()
-            ->build()
+            ->stringify()
             ->shouldReturn('/level0/level1');
     }
 
@@ -181,12 +233,12 @@ class PathSpec extends ObjectBehavior
         $this->beConstructedThrough('create', ['/level0/level1/level2/']);
 
         $this->getParent(2)
-            ->build()
+            ->stringify()
             ->shouldReturn('/level0');
 
 
         $this->getParent(3)
-            ->build()
+            ->stringify()
             ->shouldReturn('/');
     }
 

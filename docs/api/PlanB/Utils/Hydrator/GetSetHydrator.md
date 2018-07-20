@@ -17,6 +17,17 @@
 
 ## Methods
 
+### __construct
+GetSetHydrator constructor.
+
+
+**GetSetHydrator::__construct**() : 
+
+
+
+---
+
+
 ### configure
 Configura el objeto normalizer
 
@@ -53,6 +64,21 @@ Crea un objeto a partir de un array
 | --- | --- | --- |
 |string |$className |  |
 |[iterable](../../../iterable.md) |$values |  |
+
+---
+
+
+### extract
+Crea un array a partir de un objeto
+
+
+**GetSetHydrator::extract**([object](../../../object.md) $object, string $snakeCaseSeparator = null) : mixed[]
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[object](../../../object.md) |$object |  |
+|string |$snakeCaseSeparator |  |
 
 ---
 

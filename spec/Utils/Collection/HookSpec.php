@@ -15,13 +15,12 @@ class HookSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
+        $this->beConstructedThrough('blank');
         $this->shouldHaveType(Hook::class);
     }
 
     public function it_is_initializable_from_empty()
     {
-
-
         $this->beConstructedThrough('blank');
 
         $pair = KeyValue::fromValue('dummy');

@@ -13,7 +13,8 @@
     "autoload": {
         "files": [
             "src/Utils/Resources/functions/text.php",
-            "src/Utils/Resources/functions/hydrator.php"
+            "src/Utils/Resources/functions/hydrator.php",
+            "src/Utils/Resources/functions/path.php"
         ],
         "psr-4": {
             "PlanB\\": "src/"

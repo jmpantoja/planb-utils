@@ -88,7 +88,6 @@ class Collection implements \Countable
         foreach ($this->items as $key => $value) {
             $callable($value, $key, ...$userdata);
         }
-
         return $this;
     }
 

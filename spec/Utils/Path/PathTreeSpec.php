@@ -20,7 +20,7 @@ class PathTreeSpec extends ObjectBehavior
         return [
             'havePaths' => function ($response, $expected) {
                 $paths = array_map(function ($path) {
-                    return $path->build();
+                    return $path->stringify();
                 }, $response);
 
                 return $paths === $expected;

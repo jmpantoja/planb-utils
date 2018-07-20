@@ -28,6 +28,20 @@ static **PathNormalizer::newInstance**() : [PathNormalizer](../../../PathNormali
 ---
 
 
+### __construct
+PathNormalizer constructor.
+
+
+**PathNormalizer::__construct**(string ...$pieces) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$pieces |  |
+
+---
+
+
 ### normalize
 Instancia un objeto PathNormalizer
 

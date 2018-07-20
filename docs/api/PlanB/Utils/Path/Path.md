@@ -17,6 +17,20 @@
 
 ## Methods
 
+### __construct
+Path private constructor.
+
+
+**Path::__construct**(string $path) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$path |  |
+
+---
+
+
 ### create
 Crea una nueva ruta
 
@@ -200,11 +214,30 @@ Devuelve extension
 ---
 
 
-### build
-Devuelve la ruta normalizada
+### haveExtension
+Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como argumento
+´´´
+/path/to/file | hasExtension() => false
+/path/to/file.txt | hasExtension() => true
+/path/to/file.txt | hasExtension('php') => false
+/path/to/file.txt | hasExtension('php', 'txt') => true
+´´´
+
+**Path::haveExtension**(string ...$expected) : bool
 
 
-**Path::build**() : string
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$expected | Las extensiones que se consideran válidas |
+
+---
+
+
+### stringify
+__toString alias
+
+
+**Path::stringify**() : string
 
 
 
@@ -212,7 +245,7 @@ Devuelve la ruta normalizada
 
 
 ### __toString
-Devuelve la ruta normalizada
+Devuelve la ruta normalizada como una cadena de texto
 
 
 **Path::__toString**() : string

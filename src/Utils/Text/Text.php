@@ -26,7 +26,7 @@ class Text
      *
      * @param string $text
      */
-    private function __construct(string $text)
+    public function __construct(string $text)
     {
         $this->text = $text;
     }
@@ -60,7 +60,7 @@ class Text
      *
      * @return string
      */
-    public function toString(): string
+    public function stringify(): string
     {
         return $this->__toString();
     }
@@ -152,6 +152,16 @@ class Text
     public function toCamelCase(): self
     {
 
+        //$this->split(regex(Regex::ALPHANUMERIC))
+        //$this->split( regex('/[_\s\W]+/'))
+
+//        $this->split('/[_\s\W]+/')
+//            ->reduce(function (string $piece, $carry) {
+//                return sprintf('%s%s', $carry, ucfirst($piece));
+//            })
+//            ->toLower();
+
+
         $pieces = preg_split('/[_\s\W]+/', $this->text);
 
         $camelCase = array_reduce($pieces, function (string $carry, string $piece) {
@@ -161,5 +171,24 @@ class Text
         $camelCase = lcfirst($camelCase);
 
         return self::create($camelCase);
+    }
+
+    /**
+     * Transforma la cadena de texto a formato snake_case
+     *
+     * @param string $separator
+     *
+     * @return \PlanB\Utils\Text\Text
+     */
+    public function toSnakeCase(string $separator = '_'): self
+    {
+        $camelCase = $this->toCamelCase()->stringify();
+
+        $snakeCase = preg_replace_callback('/[A-Z][^A-Z]*/', function ($piece) use ($separator) {
+
+            return sprintf('%s%s', $separator, strtolower($piece[0]));
+        }, $camelCase);
+
+        return self::create($snakeCase);
     }
 }

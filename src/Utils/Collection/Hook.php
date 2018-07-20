@@ -29,7 +29,7 @@ final class Hook
      *
      * @param callable|null $callable
      */
-    private function __construct(callable $callable)
+    public function __construct(callable $callable)
     {
         $this->callable = $callable;
     }

@@ -15,7 +15,7 @@ namespace PlanB\Utils\Path\Exception;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class OverFlowRootDirException extends \RuntimeException
+class OverFlowRootDirException extends \DomainException
 {
 
     /**

@@ -15,7 +15,7 @@ namespace PlanB\Utils\Path\Exception;
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class EmptyPathException extends \RuntimeException
+class EmptyPathException extends \DomainException
 {
 
     /**

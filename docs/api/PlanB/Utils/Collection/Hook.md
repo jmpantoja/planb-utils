@@ -17,6 +17,20 @@
 
 ## Methods
 
+### __construct
+Operation constructor.
+
+
+**Hook::__construct**(callable $callable) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callable |  |
+
+---
+
+
 ### blank
 Crea una operación personalizada que no hace nada
 

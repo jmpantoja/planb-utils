@@ -89,7 +89,7 @@ class Seach_FindSpec extends ObjectBehavior
 
     protected function addSomeElements()
     {
-        $this->itemAppendAll([
+        $this->addAll([
             Word::fromString('uno'),
             Word::fromString('dos'),
             Word::fromString('tres')

@@ -37,7 +37,7 @@ class CollectionSpec extends ObjectBehavior
             'tres'
         ];
 
-        $this->itemAppendAll($input);
+        $this->addAll($input);
         $this->toArray()->shouldReturn($input);
     }
 
@@ -55,7 +55,7 @@ class CollectionSpec extends ObjectBehavior
             'TRES',
         ];
 
-        $this->itemAppendAll($input);
+        $this->addAll($input);
 
         $this->toArray(function (string $value) {
             return strtoupper($value);

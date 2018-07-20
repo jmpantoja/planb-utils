@@ -43,9 +43,9 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
 
         $this->shouldReturn($this);
-        $this->itemGet(0)->__toString()->shouldReturn('uno/0/</=');
-        $this->itemGet(1)->__toString()->shouldReturn('dos/1/</=');
-        $this->itemGet(2)->__toString()->shouldReturn('tres/2/</=');
+        $this->get(0)->__toString()->shouldReturn('uno/0/</=');
+        $this->get(1)->__toString()->shouldReturn('dos/1/</=');
+        $this->get(2)->__toString()->shouldReturn('tres/2/</=');
 
         $this->count()->shouldReturn(3);
     }
@@ -77,9 +77,9 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldHaveType(Collection::class);
 
-        $response->itemGet(0)->shouldReturn('uno/0/</=');
-        $response->itemGet(1)->shouldReturn('dos/1/</=');
-        $response->itemGet(2)->shouldReturn('tres/2/</=');
+        $response->get(0)->shouldReturn('uno/0/</=');
+        $response->get(1)->shouldReturn('dos/1/</=');
+        $response->get(2)->shouldReturn('tres/2/</=');
 
         $response->count()->shouldReturn(3);
     }
@@ -111,12 +111,12 @@ class Each_Map_FilterSpec extends ObjectBehavior
         $response->getType()->shouldReturn(Word::class);
 
         $response->count()->shouldReturn(1);
-        $response->itemGet(2)->__toString()->shouldReturn('tres');
+        $response->get(2)->__toString()->shouldReturn('tres');
     }
 
     protected function addSomeElements()
     {
-        $this->itemAppendAll([
+        $this->addAll([
             Word::fromString('uno'),
             Word::fromString('dos'),
             Word::fromString('tres')

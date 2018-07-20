@@ -170,7 +170,7 @@ abstract class Options
     private function buildResolver(): OptionsResolver
     {
         $resolver = new OptionsResolver();
-        $profile = $this->profiles->itemGet($this->currentProfile);
+        $profile = $this->profiles->get($this->currentProfile);
 
         call_user_func($profile, $resolver);
 

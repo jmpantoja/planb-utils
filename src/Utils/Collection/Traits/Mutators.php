@@ -41,10 +41,10 @@ trait Mutators
      *
      * @return $this
      */
-    public function itemAppend($value)
+    public function add($value)
     {
         $pair = KeyValue::fromValue($value);
-        $this->appendPair($pair);
+        $this->addPair($pair);
 
         return $this;
     }
@@ -56,10 +56,10 @@ trait Mutators
      *
      * @return $this
      */
-    public function itemAppendAll(iterable $items)
+    public function addAll(iterable $items)
     {
         foreach ($items as $value) {
-            $this->itemAppend($value);
+            $this->add($value);
         }
 
         return $this;
@@ -73,10 +73,10 @@ trait Mutators
      *
      * @return $this
      */
-    public function itemSet($key, $value)
+    public function set($key, $value)
     {
         $pair = KeyValue::fromPair($key, $value);
-        $this->appendPair($pair);
+        $this->addPair($pair);
 
         return $this;
     }
@@ -89,10 +89,10 @@ trait Mutators
      *
      * @return $this
      */
-    public function itemSetAll(iterable $items)
+    public function setAll(iterable $items)
     {
         foreach ($items as $key => $value) {
-            $this->itemSet($key, $value);
+            $this->set($key, $value);
         }
 
         return $this;
@@ -108,9 +108,9 @@ trait Mutators
      *
      * @return mixed
      */
-    public function itemGet($key, $default = null)
+    public function get($key, $default = null)
     {
-        $notExists = !$this->itemExists($key);
+        $notExists = !$this->exists($key);
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
@@ -127,9 +127,21 @@ trait Mutators
      *
      * @return bool
      */
-    public function itemExists($key): bool
+    public function exists($key): bool
     {
         return isset($this->items[$key]);
+    }
+
+    /**
+     * exists alias
+     *
+     * @param mixed $key
+     *
+     * @return bool
+     */
+    public function has($key): bool
+    {
+        return $this->exists($key);
     }
 
     /**
@@ -139,7 +151,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function itemUnset($key)
+    public function unset($key)
     {
         unset($this->items[$key]);
 
@@ -153,7 +165,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function appendPair(KeyValue $candidate)
+    private function addPair(KeyValue $candidate)
     {
 
         $pair = $this->getResolver()
@@ -163,8 +175,8 @@ trait Mutators
             return $this;
         }
 
-        $this->appendPairWithKey($pair);
-        $this->appendPairWithoutKey($pair);
+        $this->addPairWithKey($pair);
+        $this->addPairWithoutKey($pair);
 
 
         return $this;
@@ -178,7 +190,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function appendPairWithKey(KeyValue $pair)
+    private function addPairWithKey(KeyValue $pair)
     {
         if (!$pair->hasKey()) {
             return $this;
@@ -201,7 +213,7 @@ trait Mutators
      *
      * @return $this
      */
-    private function appendPairWithoutKey(KeyValue $pair)
+    private function addPairWithoutKey(KeyValue $pair)
     {
         if ($pair->hasKey()) {
             return $this;

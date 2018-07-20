@@ -72,7 +72,7 @@ class CollectionBuilder
         $collection = null;
         foreach ($input as $key => $value) {
             $collection = $collection ?? static::fromValueType($value);
-            $collection->itemSet($key, $value);
+            $collection->set($key, $value);
         }
 
         return $collection;

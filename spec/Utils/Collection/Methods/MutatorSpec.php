@@ -29,7 +29,7 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_append_one_item()
     {
-        $this->itemAppend('value');
+        $this->add('value');
 
         $this->count()->shouldReturn(1);
         $this->isEmpty()->shouldReturn(false);
@@ -37,8 +37,8 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_append_two_item()
     {
-        $this->itemAppend('value 1');
-        $this->itemAppend('value 2');
+        $this->add('value 1');
+        $this->add('value 2');
 
         $this->count()->shouldReturn(2);
         $this->isEmpty()->shouldReturn(false);
@@ -46,49 +46,49 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_indicate_if_an_item_exists()
     {
-        $this->itemAppend('value');
+        $this->add('value');
 
-        $this->itemExists(0)->shouldReturn(true);
+        $this->exists(0)->shouldReturn(true);
     }
 
     public function it_indicate_if_an_item_dont_exists()
     {
-        $this->itemAppend('value');
-        $this->itemExists('missing-key')->shouldReturn(false);
+        $this->add('value');
+        $this->exists('missing-key')->shouldReturn(false);
     }
 
     public function it_can_retrive_an_item_by_index()
     {
-        $this->itemAppend('value 1');
-        $this->itemAppend('value 2');
+        $this->add('value 1');
+        $this->add('value 2');
 
-        $this->itemGet(0)->shouldReturn('value 1');
-        $this->itemGet(1)->shouldReturn('value 2');
+        $this->get(0)->shouldReturn('value 1');
+        $this->get(1)->shouldReturn('value 2');
     }
 
     public function it_can_append_some_items_at_time()
     {
-        $this->itemAppendAll([
+        $this->addAll([
             'A' => 'value 1',
             'B' => 'value 2'
         ]);
 
-        $this->itemGet(0)->shouldReturn('value 1');
-        $this->itemGet(1)->shouldReturn('value 2');
+        $this->get(0)->shouldReturn('value 1');
+        $this->get(1)->shouldReturn('value 2');
     }
 
 
     public function it_throws_an_exception_accesing_a_missing_item()
     {
-        $this->itemAppend('value');
+        $this->add('value');
 
-        $this->shouldThrow(\OutOfRangeException::class)->duringItemGet('missing-key');
-        $this->shouldThrow(ItemNotFoundException::class)->duringItemGet('missing-key');
+        $this->shouldThrow(\OutOfRangeException::class)->duringGet('missing-key');
+        $this->shouldThrow(ItemNotFoundException::class)->duringGet('missing-key');
     }
 
     public function it_can_set_one_item()
     {
-        $this->itemSet('key', 'value');
+        $this->set('key', 'value');
 
         $this->count()->shouldReturn(1);
         $this->isEmpty()->shouldReturn(false);
@@ -96,8 +96,8 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_set_two_item()
     {
-        $this->itemSet('key A', 'value A');
-        $this->itemSet('key B', 'value B');
+        $this->set('key A', 'value A');
+        $this->set('key B', 'value B');
 
         $this->count()->shouldReturn(2);
         $this->isEmpty()->shouldReturn(false);
@@ -105,46 +105,46 @@ class MutatorSpec extends ObjectBehavior
 
     public function it_can_set_some_items_at_time()
     {
-        $this->itemSetAll([
+        $this->setAll([
             'A' => 'value 1',
             'B' => 'value 2'
         ]);
 
-        $this->itemGet('A')->shouldReturn('value 1');
-        $this->itemGet('B')->shouldReturn('value 2');
+        $this->get('A')->shouldReturn('value 1');
+        $this->get('B')->shouldReturn('value 2');
     }
 
     public function it_can_retrive_an_item_by_key()
     {
-        $this->itemSet('A', 'value 1');
-        $this->itemSet('B', 'value 2');
+        $this->set('A', 'value 1');
+        $this->set('B', 'value 2');
 
-        $this->itemGet('A')->shouldReturn('value 1');
-        $this->itemGet('B')->shouldReturn('value 2');
+        $this->get('A')->shouldReturn('value 1');
+        $this->get('B')->shouldReturn('value 2');
     }
 
     public function it_can_retrive_an_item_or_defaults()
     {
-        $this->itemGet('A', 'defaults')->shouldReturn('defaults');
+        $this->get('A', 'defaults')->shouldReturn('defaults');
     }
 
     public function it_can_unset_an_item_by_key()
     {
         $this->count()->shouldReturn(0);
-        $this->itemSet('A', 'value 1');
+        $this->set('A', 'value 1');
         $this->count()->shouldReturn(1);
 
-        $this->itemUnset('A');
+        $this->unset('A');
         $this->count()->shouldReturn(0);
     }
 
     public function it_can_unset_an_item_by_index()
     {
         $this->count()->shouldReturn(0);
-        $this->itemAppend('value');
+        $this->add('value');
         $this->count()->shouldReturn(1);
 
-        $this->itemUnset(0);
+        $this->unset(0);
         $this->count()->shouldReturn(0);
     }
 
@@ -157,7 +157,7 @@ class MutatorSpec extends ObjectBehavior
     {
         $this->beAnInstanceOf(LenghtCollection::class);
 
-        $this->itemAppend('cadena demasiado larga');
+        $this->add('cadena demasiado larga');
         $this->count()->shouldReturn(0);
     }
 
@@ -165,20 +165,20 @@ class MutatorSpec extends ObjectBehavior
     {
         $this->beAnInstanceOf(LenghtCollection::class);
 
-        $this->itemAppend('corta');
+        $this->add('corta');
         $this->count()->shouldReturn(1);
 
-        $this->itemGet('xxxxx')->shouldReturn(5);
+        $this->get('xxxxx')->shouldReturn(5);
     }
 
     public function it_can_normalize_the_value_and_the_key()
     {
         $this->beAnInstanceOf(LenghtCollection::class);
 
-        $this->itemAppend('corta');
+        $this->add('corta');
         $this->count()->shouldReturn(1);
 
-        $this->itemGet('xxxxx')->shouldReturn(5);
+        $this->get('xxxxx')->shouldReturn(5);
     }
 
 

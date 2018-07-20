@@ -56,9 +56,9 @@ class CollectionBuilderSpec extends ObjectBehavior
         $response->getType()->shouldReturn(Word::class);
         $response->count()->shouldReturn(3);
 
-        $response->itemGet(0)->__toString('item A');
-        $response->itemGet(1)->__toString('item B');
-        $response->itemGet(2)->__toString('item C');
+        $response->get(0)->__toString('item A');
+        $response->get(1)->__toString('item B');
+        $response->get(2)->__toString('item C');
     }
 
 

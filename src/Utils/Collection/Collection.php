@@ -113,7 +113,7 @@ class Collection implements \Countable
             $item = $callable($value, $key, ...$userdata);
 
             $mapped = $mapped ?? CollectionBuilder::fromValueType($item);
-            $mapped->itemSet($key, $item);
+            $mapped->set($key, $item);
         }
 
         return $mapped;
@@ -136,7 +136,7 @@ class Collection implements \Countable
                 continue;
             }
 
-            $filtered->itemSet($key, $value);
+            $filtered->set($key, $value);
         }
 
         return $filtered;

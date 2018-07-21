@@ -9,14 +9,16 @@
 * [PlanB\DS\ArrayList\Exception](PlanB/DS/ArrayList/Exception.md)
 * [PlanB\DS\ArrayList\Traits](PlanB/DS/ArrayList/Traits.md)
 * [PlanB\DS\Collection](PlanB/DS/Collection.md)
-* [PlanB\DS\Collection\Exception](PlanB/DS/Collection/Exception.md)
+* [PlanB\DS\ItemResolver](PlanB/DS/ItemResolver.md)
+* [PlanB\DS\ItemResolver\Exception](PlanB/DS/ItemResolver/Exception.md)
 * [PlanB\Utils](PlanB/Utils.md)
 * [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
-* [PlanB\Utils\Path](PlanB/Utils/Path.md)
-* [PlanB\Utils\Path\Exception](PlanB/Utils/Path/Exception.md)
-* [PlanB\Utils\Text](PlanB/Utils/Text.md)
+* [PlanB\ValueObject](PlanB/ValueObject.md)
+* [PlanB\ValueObject\Path](PlanB/ValueObject/Path.md)
+* [PlanB\ValueObject\Path\Exception](PlanB/ValueObject/Path/Exception.md)
+* [PlanB\ValueObject\Text](PlanB/ValueObject/Text.md)
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

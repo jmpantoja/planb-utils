@@ -14,8 +14,8 @@ namespace PlanB\DS\ArrayList\Traits;
 
 use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
-use PlanB\DS\ArrayList\ItemResolver;
-use PlanB\DS\ArrayList\KeyValue;
+use PlanB\DS\ItemResolver\ItemResolver;
+use PlanB\DS\KeyValue;
 
 /**
  * Aporta la capacidad de agregar y obtener elementos de la colección
@@ -31,7 +31,7 @@ trait Mutators
     protected $items = [];
 
     /**
-     * @var \PlanB\DS\ArrayList\ItemResolver
+     * @var \PlanB\DS\ItemResolver\ItemResolver
      */
     private $itemResolver;
 
@@ -152,7 +152,7 @@ trait Mutators
      *
      * @return $this
      */
-    public function unset($key): ArrayList
+    public function remove($key): ArrayList
     {
         unset($this->items[$key]);
 
@@ -162,7 +162,7 @@ trait Mutators
     /**
      * Agrega una pareja clave/valor a la colección
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $candidate
+     * @param \PlanB\DS\KeyValue $candidate
      *
      * @return $this
      */
@@ -187,7 +187,7 @@ trait Mutators
      * Agrega una pareja clave/valor a la colección,
      * en el caso de que la clave esté definida
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $pair
+     * @param \PlanB\DS\KeyValue $pair
      *
      * @return $this
      */
@@ -210,7 +210,7 @@ trait Mutators
      * Agrega una pareja clave/valor a la colección,
      * en el caso de que la clave no esté definida
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $pair
+     * @param \PlanB\DS\KeyValue $pair
      *
      * @return $this
      */
@@ -235,9 +235,9 @@ trait Mutators
      * Si, como parece lógico de primeras, se instanciara en el constructor de la clase, no se puede recuperar desde unserialize
      * y o bien perderiamos esa información, o bien tenemos que serializar datos + resolver
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $first
+     * @param \PlanB\DS\KeyValue $first
      *
-     * @return \PlanB\DS\ArrayList\ItemResolver
+     * @return \PlanB\DS\ItemResolver\ItemResolver
      */
     protected function getResolverFor(KeyValue $first): ItemResolver
     {
@@ -255,7 +255,7 @@ trait Mutators
     /**
      * Personaliza el resolver de esta colección,
      *
-     * @param \PlanB\DS\ArrayList\ItemResolver $resolver
+     * @param \PlanB\DS\ItemResolver\ItemResolver $resolver
      *
      * @@SuppressWarnings(PMD.UnusedFormalParameter)
      *

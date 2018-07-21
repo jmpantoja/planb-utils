@@ -4,7 +4,7 @@ namespace spec\PlanB\DS\Collection;
 
 use PlanB\DS\Collection\Collection;
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\Collection\Exception\InvalidValueTypeException;
+use PlanB\DS\ItemResolver\Exception\InvalidValueTypeException;
 use Prophecy\Argument;
 
 class CollectionSpec extends ObjectBehavior

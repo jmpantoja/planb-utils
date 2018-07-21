@@ -135,23 +135,23 @@ class MutatorSpec extends ObjectBehavior
         $this->get('A', 'defaults')->shouldReturn('defaults');
     }
 
-    public function it_can_unset_an_item_by_key()
+    public function it_can_remove_an_item_by_key()
     {
         $this->count()->shouldReturn(0);
         $this->set('A', 'value 1');
         $this->count()->shouldReturn(1);
 
-        $this->unset('A');
+        $this->remove('A');
         $this->count()->shouldReturn(0);
     }
 
-    public function it_can_unset_an_item_by_index()
+    public function it_can_remove_an_item_by_index()
     {
         $this->count()->shouldReturn(0);
         $this->add('value');
         $this->count()->shouldReturn(1);
 
-        $this->unset(0);
+        $this->remove(0);
         $this->count()->shouldReturn(0);
     }
 

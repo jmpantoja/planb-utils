@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace PlanB\DS\ArrayList;
 
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
+use PlanB\DS\ItemResolver\ItemResolver;
+use PlanB\DS\KeyValue;
 
 /**
  * Generic Collection
@@ -34,9 +36,9 @@ class ArrayList implements \Countable
      * Hacer que la construcción del objeto ItemResolver dependa un KeyValue, nos permite ajustarlo al primer elemento
      * de la colección, y por consecuencia, crear colecciones agnosticas que tomen el tipo del primer elemento
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $first
+     * @param \PlanB\DS\KeyValue $first
      *
-     * @return \PlanB\DS\ArrayList\ItemResolver
+     * @return \PlanB\DS\ItemResolver\ItemResolver
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */

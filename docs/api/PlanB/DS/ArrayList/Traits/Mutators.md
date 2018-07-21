@@ -119,11 +119,11 @@ exists alias
 ---
 
 
-### unset
+### remove
 Elimina un elemento
 
 
-**Mutators::unset**(mixed $key) : [$this](../../../../$this.md)
+**Mutators::remove**(mixed $key) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |

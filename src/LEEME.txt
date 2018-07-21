@@ -1,0 +1,11 @@
+Interfaces
+
+Añadir IteratorAggregate, JsonSerializable, Traversable a ArrayList
+
+Interfaz Stringfy
+
+(Var Symfony | Zend Validator para mis clases Assurance)
+
+
+
+

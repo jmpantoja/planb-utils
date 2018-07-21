@@ -1,9 +1,19 @@
 
                                                                                                                                             
     
-# Interfaces
+# PlanB\ValueObject\Text
 
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+
+## Classes
+| | |
+| --- | --- |
+| [PlanB\ValueObject\Text\Text](../../PlanB/ValueObject/Text/Text.md) | Representa una cadena de texto |
+
+
+
+
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

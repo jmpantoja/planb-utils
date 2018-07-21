@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace PlanB\DS\Collection;
 
 use PlanB\DS\ArrayList\ArrayList;
-use PlanB\DS\ArrayList\ItemResolver as BaseItemResolver;
-use PlanB\DS\ArrayList\KeyValue;
+use PlanB\DS\ItemResolver\ItemResolver;
+use PlanB\DS\KeyValue;
 
 /**
  * Conjunto de datos del mismo tipo
@@ -24,7 +24,7 @@ class Collection extends ArrayList
 {
 
     /**
-     * @var string
+     * @var null|string
      */
     private $type;
 
@@ -62,7 +62,7 @@ class Collection extends ArrayList
      *
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -73,11 +73,11 @@ class Collection extends ArrayList
      * Hacer que la construcción del objeto ItemResolver dependa un KeyValue, nos permite ajustarlo al primer elemento
      * de la colección, y por consecuencia, crear colecciones agnosticas que tomen el tipo del primer elemento
      *
-     * @param \PlanB\DS\ArrayList\KeyValue $first
+     * @param \PlanB\DS\KeyValue $first
      *
-     * @return \PlanB\DS\Collection\ItemResolver
+     * @return \PlanB\DS\ItemResolver\ItemResolver
      */
-    protected function buildItemResolver(KeyValue $first): BaseItemResolver
+    protected function buildItemResolver(KeyValue $first): ItemResolver
     {
         $this->type = $this->type ?? $first->getType();
 

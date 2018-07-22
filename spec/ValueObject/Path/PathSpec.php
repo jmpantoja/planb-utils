@@ -44,7 +44,6 @@ class PathSpec extends ObjectBehavior
             ->shouldReturn('/tmp/dir/subdir');
     }
 
-
     public function it_can_recognize_an_absolute_path()
     {
         $this->beConstructedThrough('create', ['/tmp', 'dir']);
@@ -127,6 +126,23 @@ class PathSpec extends ObjectBehavior
             ->shouldReturn(false);
     }
 
+
+    public function it_can_recognize_if_a_path_is_readable()
+    {
+        $this->beConstructedThrough('create', [__DIR__]);
+
+        $this->isReadable()
+            ->shouldReturn(true);
+    }
+
+    public function it_can_recognize_if_a_path_is_writable()
+    {
+        $this->beConstructedThrough('create', [__DIR__]);
+
+        $this->isWritable()
+            ->shouldReturn(true);
+    }
+
     public function it_can_retrive_the_basename()
     {
         $this->beConstructedThrough('create', [__FILE__]);
@@ -173,7 +189,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [__FILE__]);
 
-        $this->haveExtension('php')
+        $this->hasExtension('php')
             ->shouldReturn(true);
     }
 
@@ -181,7 +197,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [__FILE__]);
 
-        $this->haveExtension('txt')
+        $this->hasExtension('txt')
             ->shouldReturn(false);
     }
 
@@ -190,7 +206,7 @@ class PathSpec extends ObjectBehavior
         $basename = pathinfo(__FILE__, PATHINFO_FILENAME);
         $this->beConstructedThrough('create', [__DIR__, $basename]);
 
-        $this->haveExtension()
+        $this->hasExtension()
             ->shouldReturn(false);
     }
 
@@ -199,7 +215,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [__FILE__]);
 
-        $this->haveExtension('txt', 'php', 'xml')
+        $this->hasExtension('txt', 'php', 'xml')
             ->shouldReturn(true);
     }
 
@@ -207,7 +223,7 @@ class PathSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [__FILE__]);
 
-        $this->haveExtension('txt', 'html', 'xml')
+        $this->hasExtension('txt', 'html', 'xml')
             ->shouldReturn(false);
     }
 

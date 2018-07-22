@@ -59,55 +59,125 @@ static **PathAssurance::fromString**(string ...$segments) : [PathAssurance](../.
 ---
 
 
-### getPath
+### end
 Devuelve la ruta
 
 
-**PathAssurance::getPath**() : [Path](../../../Path.md)
+**PathAssurance::end**() : [Path](../../../Path.md)
 
 
 
 ---
 
 
-### ensureThatIsADirectory
+### stringify
+
+
+
+**PathAssurance::stringify**() : string
+
+
+
+---
+
+
+### __toString
+
+
+
+**PathAssurance::__toString**() : string
+
+
+
+---
+
+
+### isDirectory
 Verifica que la ruta es un directorio, o lanza una excepción si no lo es
 
 
-**PathAssurance::ensureThatIsADirectory**() : [PathAssurance](../../../PathAssurance.md)
+**PathAssurance::isDirectory**() : [PathAssurance](../../../PathAssurance.md)
 
 
 
 ---
 
 
-### ensureThatIsAFile
+### isFile
 * Verifica que la ruta es un archivo, o lanza una excepción si no lo es
 
 
-**PathAssurance::ensureThatIsAFile**() : [$this](../../../$this.md)
+**PathAssurance::isFile**() : [$this](../../../$this.md)
 
 
 
 ---
 
 
-### ensureThatIsALink
+### isLink
 * Verifica que la ruta es un enlace simbólico, o lanza una excepción si no lo es
 
 
-**PathAssurance::ensureThatIsALink**() : [$this](../../../$this.md)
+**PathAssurance::isLink**() : [$this](../../../$this.md)
 
 
 
 ---
 
 
-### ensureThatHaveExtension
+### isReadable
+* Verifica si la ruta tiene permisos de lectura, o lanza una excepción en caso contrario
+
+
+**PathAssurance::isReadable**() : [$this](../../../$this.md)
+
+
+
+---
+
+
+### isReadableFile
+Verifica si la ruta es un archivo con permisos de lectura, o lanza una excepción en caso contrario
+
+
+**PathAssurance::isReadableFile**() : [PathAssurance](../../../PathAssurance.md)
+
+
+
+---
+
+
+### isReadableFileWithExtension
+Verifica si la ruta es un archivo con permisos de lectura y con una (o varias) determinada extensión,
+o lanza una excepción en caso contrario
+
+
+**PathAssurance::isReadableFileWithExtension**(string ...$expected) : [PathAssurance](../../../PathAssurance.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$expected |  |
+
+---
+
+
+### isWritable
+* Verifica si la ruta tiene permisos de escritura, o lanza una excepción en caso contrario
+
+
+**PathAssurance::isWritable**() : [$this](../../../$this.md)
+
+
+
+---
+
+
+### hasExtension
 Verifica que una ruta tiene extensión, o si tiene una de entre las pasadas como argumento
 
 
-**PathAssurance::ensureThatHaveExtension**(string ...$expected) : [PathAssurance](../../../PathAssurance.md)
+**PathAssurance::hasExtension**(string ...$expected) : [PathAssurance](../../../PathAssurance.md)
 
 
 |Parameters: | | |

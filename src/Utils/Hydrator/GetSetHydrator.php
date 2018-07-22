@@ -82,6 +82,7 @@ class GetSetHydrator
      */
     private function sanitize(iterable $values): array
     {
+
         $sanitized = [];
         foreach ($values as $key => $value) {
             $newKey = camelCase((string) $key);

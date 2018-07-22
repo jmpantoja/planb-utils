@@ -13,7 +13,8 @@
     "autoload": {
         "files": [
             "src/Utils/Resources/functions/all.php",
-            "src/ValueObject/Resources/functions/all.php"
+            "src/ValueObject/Resources/functions/ensure.php",
+            "src/ValueObject/Resources/functions/text.php"
         ],
         "psr-4": {
             "PlanB\\": "src/"

@@ -71,6 +71,39 @@ class InvalidPathException extends \DomainException
     }
 
     /**
+     * No tiene permisos de lectura
+     *
+     * @param \PlanB\ValueObject\Path\Path $path
+     * @param null|\Throwable              $previous
+     *
+     * @return \PlanB\ValueObject\Path\Exception\InvalidPathException
+     */
+    public static function isNotReadable(Path $path, ?\Throwable $previous = null): self
+    {
+
+        $message = sprintf("path '%s' isn't readable", (string) $path);
+
+        return new static($message, 100, $previous);
+    }
+
+
+    /**
+     * No tiene permisos de lectura
+     *
+     * @param \PlanB\ValueObject\Path\Path $path
+     * @param null|\Throwable              $previous
+     *
+     * @return \PlanB\ValueObject\Path\Exception\InvalidPathException
+     */
+    public static function isNotWritable(Path $path, ?\Throwable $previous = null): self
+    {
+
+        $message = sprintf("path '%s' isn't writable", (string) $path);
+
+        return new static($message, 100, $previous);
+    }
+
+    /**
      * No tiene niguna extensión
      *
      * @param \PlanB\ValueObject\Path\Path $path

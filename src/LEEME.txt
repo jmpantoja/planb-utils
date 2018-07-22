@@ -1,10 +1,25 @@
-Interfaces
+Mejorar las Clases Ensure para hacer cosas asi
 
-Añadir IteratorAggregate, JsonSerializable, Traversable a ArrayList
+PathAssurance::fromString($configFile)
+    ->isFile()
+    ->haveExtension('yml')
+    ->build();
 
-Interfaz Stringfy
+o en versión function
 
-(Var Symfony | Zend Validator para mis clases Assurance)
+ensure_path($configFile)
+    ->isFile()
+    ->haveExtension('yml')
+    ->build();
+
+
+StringAssurance::fromString('asdadd')
+    ->isEmpty()
+    ->isNotBlank()
+    ->isMinorThan(5)
+
+
+(Var Symfony | Zend Validator
 
 
 

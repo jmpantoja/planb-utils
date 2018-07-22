@@ -11,5 +11,13 @@
 
 declare(strict_types=1);
 
-include_once 'path.php';
-include_once 'text.php';
+use \PlanB\ValueObject\Path\PathAssurance;
+
+if (!function_exists('ensure_path')) {
+
+    function ensure_path(string ...$segments): PathAssurance
+    {
+        return PathAssurance::fromString(...$segments);
+    }
+}
+

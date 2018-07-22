@@ -161,6 +161,26 @@ class Path implements Stringifable
         return is_link($this->path);
     }
 
+    /**
+     * Indica si tenemos permisos de lectura sobre la ruta
+     *
+     * @return bool
+     */
+    public function isReadable(): bool
+    {
+        return is_readable($this->path);
+    }
+
+
+    /**
+     * Indica si tenemos permisos de escritura sobre la ruta
+     *
+     * @return bool
+     */
+    public function isWritable(): bool
+    {
+        return is_writable($this->path);
+    }
 
     /**
      * Devuelve el directorio padre del nivel indicado
@@ -249,7 +269,7 @@ class Path implements Stringifable
      *
      * @return bool
      */
-    public function haveExtension(string ...$expected): bool
+    public function hasExtension(string ...$expected): bool
     {
         $extension = $this->getExtension();
 

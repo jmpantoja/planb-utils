@@ -153,6 +153,28 @@ Indica si la ruta es de un enlace simbolico
 ---
 
 
+### isReadable
+Indica si tenemos permisos de lectura sobre la ruta
+
+
+**Path::isReadable**() : bool
+
+
+
+---
+
+
+### isWritable
+Indica si tenemos permisos de escritura sobre la ruta
+
+
+**Path::isWritable**() : bool
+
+
+
+---
+
+
 ### getParent
 Devuelve el directorio padre del nivel indicado
 0: devuelve la ruta actual
@@ -214,7 +236,7 @@ Devuelve extension
 ---
 
 
-### haveExtension
+### hasExtension
 Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como argumento
 ´´´
 /path/to/file | hasExtension() => false
@@ -223,7 +245,7 @@ Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como arg
 /path/to/file.txt | hasExtension('php', 'txt') => true
 ´´´
 
-**Path::haveExtension**(string ...$expected) : bool
+**Path::hasExtension**(string ...$expected) : bool
 
 
 |Parameters: | | |

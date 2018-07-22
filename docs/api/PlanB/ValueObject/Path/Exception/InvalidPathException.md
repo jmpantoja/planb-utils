@@ -63,6 +63,36 @@ static **InvalidPathException::isNotALink**([Path](../../../../Path.md) $path, [
 ---
 
 
+### isNotReadable
+No tiene permisos de lectura
+
+
+static **InvalidPathException::isNotReadable**([Path](../../../../Path.md) $path, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidPathException](../../../../InvalidPathException.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Path](../../../../Path.md) |$path |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
+### isNotWritable
+No tiene permisos de lectura
+
+
+static **InvalidPathException::isNotWritable**([Path](../../../../Path.md) $path, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidPathException](../../../../InvalidPathException.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Path](../../../../Path.md) |$path |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### hasNotExtension
 No tiene niguna extensión
 

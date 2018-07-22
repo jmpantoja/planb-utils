@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# GetSetHydrator
+# NameConverter
 
 
-> Convierte un array en un objeto o viceversa
+> Convierte nombres de propiedades
 >
 > 
 
@@ -18,70 +18,57 @@
 ## Methods
 
 ### __construct
-GetSetHydrator constructor.
+NameConverter constructor.
 
 
-**GetSetHydrator::__construct**() : 
-
-
-
----
-
-
-### create
-Crea una nueva instancia
-
-
-static **GetSetHydrator::create**() : [GetSetHydrator](../../../GetSetHydrator.md)
-
-
-
----
-
-
-### hydrate
-Crea un objeto a partir de un array
-
-
-**GetSetHydrator::hydrate**(string $className, [iterable](../../../iterable.md) $values) : object
+**NameConverter::__construct**(string $snakeCaseSeparator = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$className |  |
-|[iterable](../../../iterable.md) |$values |  |
-
----
-
-
-### extract
-Crea un array a partir de un objeto
-
-
-**GetSetHydrator::extract**([object](../../../object.md) $object, string $snakeCaseSeparator = &#039;_&#039;) : mixed[]
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[object](../../../object.md) |$object |  |
 |string |$snakeCaseSeparator |  |
 
 ---
 
 
-### isAllowedAttribute
+### setSnakeCaseSeparator
+Asigna el separador que vamos a usar para snakeCase
 
 
-
-protected **GetSetHydrator::isAllowedAttribute**($classOrObject, $attribute, $format = null, array $context = array()) : 
+**NameConverter::setSnakeCaseSeparator**(string $snakeCaseSeparator = null) : [NameConverter](../../../NameConverter.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$classOrObject |  |
-| |$attribute |  |
-| |$format |  |
-|array |$context |  |
+|string |$snakeCaseSeparator |  |
+
+---
+
+
+### normalize
+Converts a property name to its normalized value.
+
+
+**NameConverter::normalize**(mixed $propertyName) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$propertyName |  |
+
+---
+
+
+### denormalize
+Converts a property name to its denormalized value.
+
+
+**NameConverter::denormalize**(mixed $propertyName) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$propertyName |  |
 
 ---
 

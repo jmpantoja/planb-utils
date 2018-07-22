@@ -18,34 +18,16 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 /**
  * Convierte un array en un objeto o viceversa
  */
-class GetSetHydrator
+class GetSetHydrator extends GetSetMethodNormalizer
 {
-
-    /**
-     * @var \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-     */
-    private $normalizer;
 
     /**
      * GetSetHydrator constructor.
      */
     public function __construct()
     {
-        $normalizer = new GetSetMethodNormalizer();
-
-        $this->configure($normalizer);
-        $this->normalizer = $normalizer;
-    }
-
-    /**
-     * Configura el objeto normalizer
-     *
-     * @param \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer $normalizer
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function configure(GetSetMethodNormalizer $normalizer): void
-    {
+        $nameConverter = new NameConverter();
+        parent::__construct(null, $nameConverter);
     }
 
     /**
@@ -68,66 +50,35 @@ class GetSetHydrator
      */
     public function hydrate(string $className, iterable $values): object
     {
-        $values = $this->sanitize($values);
-
-        return $this->normalizer->denormalize($values, $className);
-    }
-
-    /**
-     * Prepara las claves, para que sean compatibles con nombres de método camelCase
-     *
-     * @param mixed[] $values
-     *
-     * @return mixed[]
-     */
-    private function sanitize(iterable $values): array
-    {
-
-        $sanitized = [];
-        foreach ($values as $key => $value) {
-            $newKey = camelCase((string) $key);
-            $sanitized[$newKey] = $value;
-        }
-
-        return $sanitized;
+        return $this->denormalize($values, $className);
     }
 
     /**
      * Crea un array a partir de un objeto
      *
-     * @param object      $object
+     * @param object $object
      *
-     * @param null|string $snakeCaseSeparator
+     * @param string $snakeCaseSeparator
      *
      * @return mixed[]
      */
-    public function extract(object $object, ?string $snakeCaseSeparator = null): array
+    public function extract(object $object, string $snakeCaseSeparator = '_'): array
     {
-        $values = $this->normalizer->normalize($object);
+        $this->nameConverter->setSnakeCaseSeparator($snakeCaseSeparator);
 
-        if (is_null($snakeCaseSeparator)) {
-            return $values;
-        }
-
-        return $this->reverseSanitize($values, $snakeCaseSeparator);
+        return $this->normalize($object);
     }
 
     /**
-     * * Convierte las claves al formato snake-case
-     *
-     * @param mixed[] $values
-     * @param string  $separator
-     *
-     * @return mixed[]
+     * @inheritDoc
      */
-    private function reverseSanitize(iterable $values, string $separator): array
+    protected function isAllowedAttribute($classOrObject, $attribute, $format = null, array $context = array())
     {
-        $sanitized = [];
-        foreach ($values as $key => $value) {
-            $newKey = snakeCase((string) $key, $separator);
-            $sanitized[$newKey] = $value;
+
+        if (is_subclass_of($classOrObject, \IteratorAggregate::class) && 'iterator' === $attribute) {
+            return false;
         }
 
-        return $sanitized;
+        return parent::isAllowedAttribute($classOrObject, $attribute, $format, $context);
     }
 }

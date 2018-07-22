@@ -14,6 +14,7 @@
 * [PlanB\DS\ItemResolver\TypeAssertionFactory](PlanB/DS/ItemResolver/TypeAssertionFactory.md)
 * [PlanB\DS\KeyValue](PlanB/DS/KeyValue.md)
 * [PlanB\Utils\Hydrator\GetSetHydrator](PlanB/Utils/Hydrator/GetSetHydrator.md)
+* [PlanB\Utils\Hydrator\NameConverter](PlanB/Utils/Hydrator/NameConverter.md)
 * [PlanB\Utils\Options\Exception\UndefinedProfileException](PlanB/Utils/Options/Exception/UndefinedProfileException.md)
 * [PlanB\Utils\Options\Options](PlanB/Utils/Options/Options.md)
 * [PlanB\ValueObject\Path\Exception\EmptyPathException](PlanB/ValueObject/Path/Exception/EmptyPathException.md)

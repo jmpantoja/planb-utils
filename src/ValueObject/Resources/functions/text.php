@@ -42,7 +42,7 @@ if (!function_exists('camelCase')) {
 
 if (!function_exists('snakeCase')) {
 
-    function snakeCase(string $text, string $separator = '-'): string
+    function snakeCase(string $text, string $separator = '_'): string
     {
         return (string)Text::create($text)->toSnakeCase($separator);
     }

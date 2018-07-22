@@ -13,12 +13,17 @@ declare(strict_types=1);
 
 use \PlanB\Utils\Hydrator\GetSetHydrator;
 
-if (!function_exists('hydrate')) {
+if (!function_exists('array_to_object')) {
 
-    function hydrate(string $className, iterable $values): object
+    function array_to_object(iterable $values, string $className): object
     {
         return GetSetHydrator::create()->hydrate($className, $values);
     }
-
 }
+if (!function_exists('object_to_array')) {
 
+    function object_to_array(object $object, ?string $snakeCaseSeparator = null): array
+    {
+        return GetSetHydrator::create()->extract($object, $snakeCaseSeparator);
+    }
+}

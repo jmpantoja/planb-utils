@@ -46,7 +46,7 @@ class GetSetHydratorSpec extends ObjectBehavior
         $this->extract($dummy)
             ->shouldReturn([
                 'name' => 'pepe',
-                'lastName' => 'garcia'
+                'last_name' => 'garcia'
             ]);
     }
 

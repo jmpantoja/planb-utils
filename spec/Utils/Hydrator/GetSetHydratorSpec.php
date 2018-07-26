@@ -50,6 +50,20 @@ class GetSetHydratorSpec extends ObjectBehavior
             ]);
     }
 
+    public function it_can_converts_an_iterable_object_into_an_array()
+    {
+        $dummy = new DummyIterator();
+        $dummy->setName('pepe');
+        $dummy->setLastName('garcia');
+
+        $this->extract($dummy)
+            ->shouldReturn([
+                'name' => 'pepe',
+                'last_name' => 'garcia'
+            ]);
+    }
+
+
     public function it_can_converts_an_object_into_an_array_formating_keys_to_snake_case()
     {
         $dummy = new Dummy ();

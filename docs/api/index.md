@@ -16,9 +16,12 @@
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
 * [PlanB\ValueObject](PlanB/ValueObject.md)
+* [PlanB\ValueObject\ClassName](PlanB/ValueObject/ClassName.md)
+* [PlanB\ValueObject\ClassName\Exception](PlanB/ValueObject/ClassName/Exception.md)
 * [PlanB\ValueObject\Path](PlanB/ValueObject/Path.md)
 * [PlanB\ValueObject\Path\Exception](PlanB/ValueObject/Path/Exception.md)
 * [PlanB\ValueObject\Text](PlanB/ValueObject/Text.md)
+* [PlanB\ValueObject\Text\Exception](PlanB/ValueObject/Text/Exception.md)
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

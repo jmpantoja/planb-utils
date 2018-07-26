@@ -17,7 +17,7 @@ use PhpSpec\ObjectBehavior;
 use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
 use spec\PlanB\DS\ArrayList\ArrayListSpec;
-use spec\PlanB\DS\ArrayList\Stub\Word;
+use spec\PlanB\DS\Stub\Word;
 
 
 class Seach_FindSpec extends ObjectBehavior

@@ -19,11 +19,15 @@ use PlanB\DS\KeyValue;
  * Generic Collection
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class ArrayList implements \Countable
+class ArrayList implements \Countable, \IteratorAggregate, \JsonSerializable
 {
 
     use Traits\Mutators;
+    use Traits\ConfigureResolver;
+
 
     /**
      * @var mixed[]
@@ -58,6 +62,16 @@ class ArrayList implements \Countable
     }
 
     /**
+     * Crea una lista vacia
+     *
+     * @return \PlanB\DS\ArrayList\ArrayList
+     */
+    public static function blank(): self
+    {
+        return new static();
+    }
+
+    /**
      * Crea una instancia a partir de un conjunto de valores
      *
      * @param mixed[] $input
@@ -66,11 +80,30 @@ class ArrayList implements \Countable
      */
     public static function fromArray(iterable $input): ArrayList
     {
-        $collection = new static();
-        $collection->setAll($input);
+        $list = new static();
+        $list->setAll($input);
 
-        return $collection;
+        return $list;
     }
+
+    /**
+     * Crea una lista a partir de un itemResolver
+     *
+     * @param \PlanB\DS\ItemResolver\ItemResolver $resolver
+     * @param mixed[]                             $input
+     *
+     * @return \PlanB\DS\ArrayList\ArrayList
+     */
+    public static function bind(ItemResolver $resolver, iterable $input = []): ArrayList
+    {
+        $list = new static();
+        $list->itemResolver = $resolver;
+
+        $list->setAll($input);
+
+        return $list;
+    }
+
 
     /**
      * Devuelve el número total de elementos
@@ -130,7 +163,6 @@ class ArrayList implements \Countable
         foreach ($this->items as $key => $value) {
             $item = $callable($value, $key, ...$userdata);
 
-//            $mapped = $mapped ?? CollectionBuilder::fromValueType($item);
             $mapped->set($key, $item);
         }
 
@@ -237,5 +269,56 @@ class ArrayList implements \Countable
         }
 
         return $map;
+    }
+
+    /**
+     * Retrieve an external iterator
+     *
+     * @return \Traversable An instance of an object implementing <b>Iterator</b> or
+     */
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->items);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     */
+    public function jsonSerialize()
+    {
+        return $this->items;
+    }
+
+    /**
+     * Convierte el array en una cadena json
+     *
+     * @param int $options [optional] <p>
+     *
+     *                     Bitmask consisting of <b>JSON_HEX_QUOT</b>,
+     *                     <b>JSON_HEX_TAG</b>,
+     *                     <b>JSON_HEX_AMP</b>,
+     *                     <b>JSON_HEX_APOS</b>,
+     *                     <b>JSON_NUMERIC_CHECK</b>,
+     *                     <b>JSON_PRETTY_PRINT</b>,
+     *                     <b>JSON_UNESCAPED_SLASHES</b>,
+     *                     <b>JSON_FORCE_OBJECT</b>,
+     *                     <b>JSON_UNESCAPED_UNICODE</b>. The behaviour of these
+     *                     constants is described on
+     *                     the JSON constants page.
+     *                     </p>
+     * @param int $depth   [optional] <p>
+     *                     Set the
+     *                     maximum depth.
+     *                     Must be
+     *                     greater than
+     *                     zero.
+     *
+     * @return string
+     */
+    public function toJson(int $options = 0, int $depth = 512): string
+    {
+        return json_encode($this, $options, $depth);
     }
 }

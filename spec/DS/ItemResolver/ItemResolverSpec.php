@@ -6,20 +6,23 @@ use PhpSpec\ObjectBehavior;
 use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ItemResolver\Exception\InvalidTypeException;
 use PlanB\DS\ItemResolver\Exception\InvalidValueTypeException;
+use PlanB\DS\ItemResolver\Hook;
 use PlanB\DS\ItemResolver\ItemResolver;
 use PlanB\DS\KeyValue;
 use Prophecy\Argument as p;
-use spec\PlanB\DS\ItemResolver\Stub\ShortStringArrayList;
+use spec\PlanB\DS\Stub\StubList;
 
 
 class ItemResolverSpec extends ObjectBehavior
 {
 
-    private const NORMALIZED_VALUE = 'cadena-transformada';
-
+    private const NORMALIZED_DUMMY_TEXT = 'cadena-de-texto';
+    private const DUMMY_TEXT = 'CAdeNA de TExTo';
     private const NORMALIZED_KEY = 'key-transformada';
-
-    private const SOME_DUMMY_TEXT = 'cadena-de-texto';
+//
+//    private const LONG_DUMMY_TEXT = 'cadena-de-texto';
+//
+//    private const SHORT_DUMMY_TEXT = 'short';
 
     public function let()
     {
@@ -30,106 +33,6 @@ class ItemResolverSpec extends ObjectBehavior
     {
         $this->shouldHaveType(ItemResolver::class);
     }
-
-    public function it_can_configure_for_default_behaviour()
-    {
-        $collection = new ArrayList('string');
-
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
-
-        $this->configure($collection);
-        $this->resolve($pair)->getValue()->shouldReturn(self::SOME_DUMMY_TEXT);
-    }
-
-
-    public function it_can_configure_for_accept_a_valid_value(ShortStringArrayList $collection)
-    {
-
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
-        $this->prepareForConfigure($collection);
-
-        $collection->validate(p::any(), p::any())
-            ->willReturn(true);
-
-        $this->configure($collection);
-        $this->resolve($pair)->shouldHaveType(KeyValue::class);
-    }
-
-    public function it_can_configure_for_ignoring_an_invalid_value(ShortStringArrayList $collection)
-    {
-
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
-        $this->prepareForConfigure($collection);
-
-        $collection->validate(p::any(), p::any())
-            ->willReturn(false);
-
-        $this->configure($collection);
-        $this->resolve($pair)->shouldReturn(null);
-    }
-
-
-    public function it_can_configure_for_refuse_an_invalid_value(ShortStringArrayList $collection)
-    {
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
-        $this->prepareForConfigure($collection);
-
-        $collection->validate(p::any(), p::any())
-            ->willThrow(\DomainException::class);
-
-        $this->configure($collection);
-        $this->shouldThrow(\DomainException::class)
-            ->duringResolve($pair);
-
-    }
-
-
-    public function it_can_configure_for_trasnsform_the_value(ShortStringArrayList $collection)
-    {
-        $pair = KeyValue::fromValue(10);
-        $this->prepareForConfigure($collection);
-
-        $this->configure($collection);
-        $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_VALUE);
-
-    }
-
-    public function it_can_configure_for_trasnsform_the_key(ShortStringArrayList $collection)
-    {
-        $pair = KeyValue::fromPair('key', 10);
-        $this->prepareForConfigure($collection);
-
-        $collection->normalizeKey(p::any(), p::any())
-            ->willReturn(self::NORMALIZED_KEY);
-
-        $this->configure($collection);
-        $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
-
-    }
-
-    public function it_can_configure_custom_hooks()
-    {
-        $pair = KeyValue::fromPair('key', 10);
-
-        $this->setValidator(function () {
-            return true;
-        });
-
-        $this->setNormalizer(function () {
-            return self::NORMALIZED_VALUE;
-        });
-
-        $this->setKeyNormalizer(function () {
-            return self::NORMALIZED_KEY;
-        });
-
-        $this->resolve($pair)->shouldHaveType(KeyValue::class);
-        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_VALUE);
-        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
-    }
-
 
     public function it_throw_an_exception_when_initialze_with_an_invalid_type()
     {
@@ -158,7 +61,7 @@ class ItemResolverSpec extends ObjectBehavior
     public function it_accept_resolve_an_valid_native()
     {
         $this->beConstructedWithType('string');
-        $pair = KeyValue::fromValue(self::SOME_DUMMY_TEXT);
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
 
         $this->shouldNotThrow(\Exception::class)->duringResolve($pair);
     }
@@ -169,20 +72,95 @@ class ItemResolverSpec extends ObjectBehavior
         $this->getType()->shouldReturn(ItemResolver::class);
     }
 
-    /**
-     * @param ShortStringArrayList $collection
-     */
-    private function prepareForConfigure(ShortStringArrayList $collection): void
+
+    //Configurar desde un collection
+
+    public function it_can_configure_for_accept_a_valid_value()
     {
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
 
-        $collection->validate(p::any(), p::any())
-            ->willReturn(true);
+        $this->setValidator(function () {
+            return true;
+        });
 
-        $collection->normalize(p::any(), p::any())
-            ->willReturn(self::NORMALIZED_VALUE);
-
-        $collection->normalizeKey(p::any(), p::any())
-            ->willReturn(null);
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
     }
+
+    public function it_can_configure_for_ignoring_an_invalid_value()
+    {
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
+
+        $this->setValidator(function () {
+            return false;
+        });
+
+        $this->resolve($pair)->shouldBeNull();
+    }
+
+    public function it_can_configure_for_refuse_an_invalid_value()
+    {
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
+
+        $this->setValidator(function () {
+            throw new \InvalidArgumentException();
+            return false;
+        });
+
+        $this->shouldThrow(\InvalidArgumentException::class)
+            ->duringResolve($pair);
+    }
+
+
+    public function it_can_configure_for_trasnsform_the_value()
+    {
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
+
+        $this->setNormalizer(function (string $value) {
+            return snakeCase(strtolower($value), '-');
+        });
+
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_DUMMY_TEXT);
+
+    }
+
+    public function it_can_configure_for_trasnsform_the_key()
+    {
+        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
+
+        $this->setKeyNormalizer(function (string $value) {
+            return self::NORMALIZED_KEY;
+        });
+
+        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
+
+    }
+
+//
+//    public function it_can_configure_from_an_array_list()
+//    {
+//        $pair = KeyValue::fromValue(self::DUMMY_TEXT);
+//
+//        $list = ArrayList::blank()
+//            ->setValidator(function () {
+//                return true;
+//            })
+//            ->setNormalizer(function (string $value) {
+//                return snakeCase(strtolower($value), '-');
+//            })
+//            ->setKeyNormalizer(function () {
+//                return self::NORMALIZED_KEY;
+//            });
+//
+//        $this->configure($list);
+//
+//        $this->resolve($pair)->shouldHaveType(KeyValue::class);
+//
+//
+//        $this->resolve($pair)->getValue()->shouldReturn(self::NORMALIZED_DUMMY_TEXT);
+//        $this->resolve($pair)->getKey()->shouldReturn(self::NORMALIZED_KEY);
+//
+//    }
 
 }

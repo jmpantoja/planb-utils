@@ -16,7 +16,6 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ArrayList\ArrayList;
 use PlanB\DS\ArrayList\Exception\ItemNotFoundException;
-use spec\PlanB\DS\ArrayList\Stub\LenghtArrayList;
 
 
 class MutatorSpec extends ObjectBehavior
@@ -154,35 +153,5 @@ class MutatorSpec extends ObjectBehavior
         $this->remove(0);
         $this->count()->shouldReturn(0);
     }
-
-
-    public function it_can_ignore_invalid_values()
-    {
-        $this->beAnInstanceOf(LenghtArrayList::class);
-
-        $this->add('cadena demasiado larga');
-        $this->count()->shouldReturn(0);
-    }
-
-    public function it_can_accept_valid_values()
-    {
-        $this->beAnInstanceOf(LenghtArrayList::class);
-
-        $this->add('corta');
-        $this->count()->shouldReturn(1);
-
-        $this->get('xxxxx')->shouldReturn(5);
-    }
-
-    public function it_can_normalize_the_value_and_the_key()
-    {
-        $this->beAnInstanceOf(LenghtArrayList::class);
-
-        $this->add('corta');
-        $this->count()->shouldReturn(1);
-
-        $this->get('xxxxx')->shouldReturn(5);
-    }
-
 
 }

@@ -15,7 +15,7 @@ namespace spec\PlanB\DS\ArrayList\Methods;
 
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ArrayList\ArrayList;
-use spec\PlanB\DS\ArrayList\Stub\Word;
+use spec\PlanB\DS\Stub\Word;
 
 
 class Each_Map_FilterSpec extends ObjectBehavior

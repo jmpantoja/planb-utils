@@ -103,7 +103,6 @@ class ItemResolver
         return $this->type;
     }
 
-
     /**
      * Asigna el validador personalizado
      *
@@ -158,6 +157,7 @@ class ItemResolver
      */
     public function configure(ArrayList $collection): self
     {
+
         $this->validator = Hook::fromArray([$collection, 'validate']);
         $this->normalizer = Hook::fromArray([$collection, 'normalize']);
         $this->keyNormalizer = Hook::fromArray([$collection, 'normalizeKey']);
@@ -215,7 +215,7 @@ class ItemResolver
      *
      * @return \PlanB\DS\ItemResolver\ItemResolver
      */
-    private function assertType(KeyValue $pair): self
+    private function ensureType(KeyValue $pair): self
     {
 
         if (!($this->typeValidator instanceof Hook)) {
@@ -242,7 +242,7 @@ class ItemResolver
     public function resolve(KeyValue $pair): ?KeyValue
     {
         $pair = $this->normalize($pair);
-        $this->assertType($pair);
+        $this->ensureType($pair);
         $pair = $this->normalizeKey($pair);
 
         if (!$this->validate($pair)) {

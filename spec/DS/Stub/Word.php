@@ -10,7 +10,7 @@
 
 declare(strict_types=1);
 
-namespace spec\PlanB\DS\ArrayList\Stub;
+namespace spec\PlanB\DS\Stub;
 
 
 class Word

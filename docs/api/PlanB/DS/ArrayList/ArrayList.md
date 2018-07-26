@@ -11,12 +11,14 @@
 
 ## Traits
 - PlanB\DS\ArrayList\Traits\Mutators
+- PlanB\DS\ArrayList\Traits\ConfigureResolver
 
 
 
 
 ## Properties
 - items
+- itemResolver
 
 
 ## Methods
@@ -121,11 +123,11 @@ exists alias
 ---
 
 
-### unset
+### remove
 Elimina un elemento
 
 
-**ArrayList::unset**(mixed $key) : [$this](../../../$this.md)
+**ArrayList::remove**(mixed $key) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -193,6 +195,17 @@ ArrayList constructor.
 ---
 
 
+### blank
+Crea una lista vacia
+
+
+static **ArrayList::blank**() : [ArrayList](../../../ArrayList.md)
+
+
+
+---
+
+
 ### fromArray
 Crea una instancia a partir de un conjunto de valores
 
@@ -202,6 +215,21 @@ static **ArrayList::fromArray**([iterable](../../../iterable.md) $input) : [Arra
 
 |Parameters: | | |
 | --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### bind
+Crea una lista a partir de un itemResolver
+
+
+static **ArrayList::bind**([ItemResolver](../../../ItemResolver.md) $resolver, [iterable](../../../iterable.md) $input = []) : [ArrayList](../../../ArrayList.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[ItemResolver](../../../ItemResolver.md) |$resolver |  |
 |[iterable](../../../iterable.md) |$input |  |
 
 ---
@@ -333,6 +361,66 @@ Devuelve un array con los elementos de la colección
 | --- | --- | --- |
 |callable |$callable |  |
 |mixed |...$userdata |  |
+
+---
+
+
+### getIterator
+Retrieve an external iterator
+
+
+**ArrayList::getIterator**() : [Traversable](../../../Traversable.md)
+
+
+
+---
+
+
+### jsonSerialize
+Specify data which should be serialized to JSON
+
+
+**ArrayList::jsonSerialize**() : mixed
+
+
+
+---
+
+
+### toJson
+Convierte el array en una cadena json
+
+
+**ArrayList::toJson**(int $options = 0, int $depth = 512) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$options | [optional]</p>
+
+<p>
+
+                    Bitmask consisting of <b>JSON_HEX_QUOT</b>,
+                    <b>JSON_HEX_TAG</b>,
+                    <b>JSON_HEX_AMP</b>,
+                    <b>JSON_HEX_APOS</b>,
+                    <b>JSON_NUMERIC_CHECK</b>,
+                    <b>JSON_PRETTY_PRINT</b>,
+                    <b>JSON_UNESCAPED_SLASHES</b>,
+                    <b>JSON_FORCE_OBJECT</b>,
+                    <b>JSON_UNESCAPED_UNICODE</b>. The behaviour of these
+                    constants is described on
+                    the JSON constants page. |
+|int |$depth | [optional]</p>
+
+<p>&lt;</p>
+
+<p>p>
+                    Set the
+                    maximum depth.
+                    Must be
+                    greater than
+                    zero. |
 
 ---
 

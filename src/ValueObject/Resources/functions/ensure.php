@@ -12,6 +12,8 @@
 declare(strict_types=1);
 
 use \PlanB\ValueObject\Path\PathAssurance;
+use \PlanB\ValueObject\ClassName\ClassNameAssurance;
+use \PlanB\ValueObject\Text\TextAssurance;
 
 if (!function_exists('ensure_path')) {
 
@@ -21,3 +23,19 @@ if (!function_exists('ensure_path')) {
     }
 }
 
+
+if (!function_exists('ensure_class')) {
+
+    function ensure_class(string $classname): ClassNameAssurance
+    {
+        return ClassNameAssurance::fromString($classname);
+    }
+}
+
+if (!function_exists('ensure_text')) {
+
+    function ensure_text(string $text): TextAssurance
+    {
+        return TextAssurance::fromString($text);
+    }
+}

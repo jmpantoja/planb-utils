@@ -38,7 +38,7 @@ abstract class Options
     private $currentProfile;
 
     /**
-     * @var \PlanB\Utils\Collection\Collection
+     * @var \PlanB\DS\Collection\Collection
      */
     private $profiles;
 

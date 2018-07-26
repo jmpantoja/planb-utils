@@ -118,7 +118,7 @@ class Text implements Stringifable
      *
      * @return \PlanB\ValueObject\Text\Text
      */
-    public function trim(?string $charlist = " \t\n\r\0\x0B"): self
+    public function trim(string $charlist = " \t\n\r\0\x0B"): self
     {
         return self::create(trim($this->text, $charlist));
     }
@@ -131,7 +131,7 @@ class Text implements Stringifable
      *
      * @return \PlanB\ValueObject\Text\Text
      */
-    public function rtrim(?string $charlist = " \t\n\r\0\x0B"): self
+    public function rtrim(string $charlist = " \t\n\r\0\x0B"): self
     {
         return self::create(rtrim($this->text, $charlist));
     }
@@ -144,7 +144,7 @@ class Text implements Stringifable
      *
      * @return \PlanB\ValueObject\Text\Text
      */
-    public function ltrim(?string $charlist = " \t\n\r\0\x0B"): self
+    public function ltrim(string $charlist = " \t\n\r\0\x0B"): self
     {
         return self::create(ltrim($this->text, $charlist));
     }

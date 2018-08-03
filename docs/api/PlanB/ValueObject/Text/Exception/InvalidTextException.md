@@ -18,6 +18,21 @@
 
 ## Methods
 
+### __construct
+InvalidTextException constructor.
+
+
+**InvalidTextException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$message |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### isEmpty
 Es una cadena vacia
 

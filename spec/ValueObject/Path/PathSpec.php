@@ -261,8 +261,31 @@ class PathSpec extends ObjectBehavior
     public function it_throw_an_exception_if_overflow_root_dir()
     {
         $this->beConstructedThrough('create', ['/level0/level1/level2/']);
-
         $this->shouldThrow(OverFlowRootDirException::class)->duringGetParent(4);
+    }
 
+    public function it_can_ensure_that_path_is_a_readable_file(Path $path)
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+        $this->isReadableFile()->shouldReturn(true);
+    }
+
+    public function it_can_ensure_that_path_is_not_a_readable_file(Path $path)
+    {
+        $this->beConstructedThrough('create', [__FILE__ . 'XX']);
+        $this->isReadableFile()->shouldReturn(false);
+    }
+
+
+    public function it_can_ensure_that_path_is_a_readable_file_with_extension(Path $path)
+    {
+        $this->beConstructedThrough('create', [__FILE__]);
+        $this->isReadableFileWithExtension('php')->shouldReturn(true);
+    }
+
+    public function it_can_ensure_that_path_is_not_a_readable_file_with_extension(Path $path)
+    {
+        $this->beConstructedThrough('create', [__FILE__ . '.xxx']);
+        $this->isReadableFileWithExtension('php')->shouldReturn(false);
     }
 }

@@ -164,6 +164,31 @@ Indica si tenemos permisos de lectura sobre la ruta
 ---
 
 
+### isReadableFile
+Indica si tenemos un fichero con permisos de lectura
+
+
+**Path::isReadableFile**() : bool
+
+
+
+---
+
+
+### isReadableFileWithExtension
+Indica si tenemos un fichero con una determinada extensión con permisos de lectura
+
+
+**Path::isReadableFileWithExtension**(string ...$expected) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$expected |  |
+
+---
+
+
 ### isWritable
 Indica si tenemos permisos de escritura sobre la ruta
 
@@ -256,12 +281,15 @@ Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como arg
 
 
 ### stringify
-__toString alias
 
 
-**Path::stringify**() : string
+
+**Path::stringify**(string $format = null) : string
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
 
 ---
 

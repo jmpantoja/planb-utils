@@ -19,6 +19,18 @@ class EmptyPathException extends \DomainException
 {
 
     /**
+     * EmptyPathException constructor.
+     *
+     * @param string                                           $message
+     * @param null|\PlanB\ValueObject\Path\Exception\Throwable $previous
+     */
+    public function __construct(string $message, ?Throwable $previous = null)
+    {
+        parent::__construct($message, 100, $previous);
+    }
+
+
+    /**
      * No se pueden crear Paths desde cadenas vacias
      *
      * @param \Throwable|null $previous
@@ -29,6 +41,6 @@ class EmptyPathException extends \DomainException
     {
         $message = 'No se pueden crear Paths desde cadenas vacias';
 
-        return new self($message, 0, $previous);
+        return new self($message, $previous);
     }
 }

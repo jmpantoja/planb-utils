@@ -60,12 +60,15 @@ Cambia el valor del texto (inmutable)
 
 
 ### stringify
-__toString alias
 
 
-**Text::stringify**() : string
+
+**Text::stringify**(string $format = null) : string
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
 
 ---
 
@@ -188,7 +191,7 @@ Transforma la cadena de texto a formato snake_case
 Divide una cadena mediante una expresión regular
 
 
-**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [Collection](../../../Collection.md)
+**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |
@@ -204,7 +207,7 @@ Divide una cadena mediante una expresión regular
 Divide una cadena en varias, mediante un delimitador
 
 
-**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [Collection](../../../Collection.md)
+**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |

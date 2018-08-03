@@ -2,6 +2,7 @@
 
 namespace spec\PlanB\ValueObject\Text;
 
+use PlanB\Utils\Assurance\Exception\FailAssuranceException;
 use PlanB\ValueObject\Path\Path;
 use PlanB\ValueObject\Text\Exception\InvalidTextException;
 use PlanB\ValueObject\Text\Text;
@@ -16,13 +17,14 @@ class TextAssuranceSpec extends ObjectBehavior
     public function let(Text $text)
     {
         $text->stringify()->willReturn(self::SOME_TEXT);
+        $text->__toString()->willReturn(self::SOME_TEXT);
 
         $this->beConstructedThrough('fromText', [$text]);
     }
 
     public function it_is_initializable_from_string()
     {
-        $this->beConstructedThrough('fromString', [self::SOME_TEXT]);
+        $this->beConstructedThrough('create', [self::SOME_TEXT]);
         $this->shouldHaveType(TextAssurance::class);
 
         $this->stringify()
@@ -64,7 +66,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_can_retrieve_the_text_object()
     {
-        $this->beConstructedThrough('fromString', [self::SOME_TEXT]);
+        $this->beConstructedThrough('create', [self::SOME_TEXT]);
 
 
         $this->end()
@@ -74,7 +76,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_can_retrieve_the_text_object_as_string()
     {
-        $this->beConstructedThrough('fromString', [self::SOME_TEXT]);
+        $this->beConstructedThrough('create', [self::SOME_TEXT]);
 
         $this->__toString()
             ->shouldReturn(self::SOME_TEXT);
@@ -96,7 +98,7 @@ class TextAssuranceSpec extends ObjectBehavior
         $text->isEmpty()
             ->willReturn(true);
 
-        $this->shouldThrow(InvalidTextException::class)->duringIsNotEmpty();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsNotEmpty();
     }
 
 
@@ -113,6 +115,6 @@ class TextAssuranceSpec extends ObjectBehavior
         $text->isBlank()
             ->willReturn(true);
 
-        $this->shouldThrow(InvalidTextException::class)->duringIsNotBlank();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsNotBlank();
     }
 }

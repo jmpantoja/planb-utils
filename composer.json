@@ -12,9 +12,11 @@
     ],
     "autoload": {
         "files": [
-            "src/Utils/Resources/functions/all.php",
-            "src/ValueObject/Resources/functions/ensure.php",
-            "src/ValueObject/Resources/functions/text.php"
+            "src/Resources/functions/hydrator.php",
+            "src/Resources/functions/path.php",
+            "src/Resources/functions/text.php",
+            "src/Resources/functions/type.php",
+            "src/Resources/functions/utils.php"
         ],
         "psr-4": {
             "PlanB\\": "src/"

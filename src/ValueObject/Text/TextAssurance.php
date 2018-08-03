@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace PlanB\ValueObject\Text;
 
+use PlanB\Utils\Assurance\Assurance;
 use PlanB\ValueObject\Stringifable;
-use PlanB\ValueObject\Text\Exception\InvalidTextException;
 
 /**
  * Comprueba que una cadena de texto cumpla con  una serie de condiciones
  */
-class TextAssurance implements Stringifable
+class TextAssurance extends Assurance implements Stringifable
 {
     /**
      * @var \PlanB\ValueObject\Text\Text
@@ -67,6 +67,7 @@ class TextAssurance implements Stringifable
         return new self($text);
     }
 
+
     /**
      * Crea una nueva instancia a partir de una cadena de texto
      *
@@ -74,7 +75,7 @@ class TextAssurance implements Stringifable
      *
      * @return \PlanB\ValueObject\Text\TextAssurance
      */
-    public static function fromString(string $string): self
+    public static function create(string $string): self
     {
         $text = Text::create($string);
 
@@ -82,19 +83,20 @@ class TextAssurance implements Stringifable
     }
 
     /**
-     * Devuelve la ruta
+     * Devuelve el objeto sujeto a evaluación
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return mixed
      */
-    public function end(): Text
+    protected function getEvaluatedObject(): object
     {
         return $this->text;
     }
 
+
     /**
      * @inheritDoc
      */
-    public function stringify(): string
+    public function stringify(?string $format = null): string
     {
         return $this->end()->stringify();
     }
@@ -105,33 +107,5 @@ class TextAssurance implements Stringifable
     public function __toString(): string
     {
         return $this->stringify();
-    }
-
-    /**
-     * Garantiza que una cadena no esté vacia
-     *
-     * @return \PlanB\ValueObject\Text\TextAssurance
-     */
-    public function isNotEmpty(): self
-    {
-        if ($this->text->isEmpty()) {
-            throw InvalidTextException::isEmpty();
-        }
-
-        return $this;
-    }
-
-    /**
-     * Garantiza que una cadena no esté en blanco
-     *
-     * @return \PlanB\ValueObject\Text\TextAssurance
-     */
-    public function isNotBlank(): self
-    {
-        if ($this->text->isBlank()) {
-            throw InvalidTextException::isBlank($this->text);
-        }
-
-        return $this;
     }
 }

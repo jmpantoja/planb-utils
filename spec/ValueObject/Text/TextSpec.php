@@ -2,7 +2,7 @@
 
 namespace spec\PlanB\ValueObject\Text;
 
-use PlanB\DS\ArrayList\ArrayList;
+use PlanB\DS\ItemList\ItemList;
 use PlanB\DS\Collection\Collection;
 use PlanB\ValueObject\Text\Text;
 use PhpSpec\ObjectBehavior;

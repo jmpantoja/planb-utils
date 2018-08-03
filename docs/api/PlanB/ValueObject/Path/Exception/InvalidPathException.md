@@ -18,6 +18,21 @@
 
 ## Methods
 
+### __construct
+InvalidPathException constructor.
+
+
+**InvalidPathException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$message |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### isNotADirectory
 No es un directorio
 

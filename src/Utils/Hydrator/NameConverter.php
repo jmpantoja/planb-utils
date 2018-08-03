@@ -59,7 +59,7 @@ class NameConverter implements NameConverterInterface
      */
     public function normalize($propertyName): string
     {
-        return snakeCase((string) $propertyName, $this->snakeCaseSeparator);
+        return to_snake_case((string) $propertyName, $this->snakeCaseSeparator);
     }
 
     /**
@@ -71,6 +71,6 @@ class NameConverter implements NameConverterInterface
      */
     public function denormalize($propertyName): string
     {
-        return camelCase((string) $propertyName);
+        return to_camel_case((string) $propertyName);
     }
 }

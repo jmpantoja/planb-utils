@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\ValueObject\Text;
 
-use PlanB\DS\Collection\Collection;
+use PlanB\DS\ItemList\ItemList;
 use PlanB\ValueObject\Stringifable;
 
 /**
@@ -61,11 +61,9 @@ class Text implements Stringifable
     }
 
     /**
-     * __toString alias
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function stringify(): string
+    public function stringify(?string $format = null): string
     {
         return $this->__toString();
     }
@@ -188,13 +186,13 @@ class Text implements Stringifable
      * @param int    $limit
      * @param int    $flags
      *
-     * @return \PlanB\DS\Collection\Collection
+     * @return \PlanB\DS\ItemList\ItemList
      */
-    public function split(string $pattern, int $limit = -1, int $flags = 0): Collection
+    public function split(string $pattern, int $limit = -1, int $flags = 0): ItemList
     {
         $pieces = preg_split($pattern, $this->text, $limit, $flags);
 
-        return Collection::fromArray($pieces);
+        return ItemList::create($pieces);
     }
 
     /**
@@ -204,13 +202,13 @@ class Text implements Stringifable
      *
      * @param int    $limit
      *
-     * @return \PlanB\DS\Collection\Collection
+     * @return \PlanB\DS\ItemList\ItemList
      */
-    public function explode(string $delimiter, int $limit = PHP_INT_MAX): Collection
+    public function explode(string $delimiter, int $limit = PHP_INT_MAX): ItemList
     {
         $pieces = explode($delimiter, $this->text, $limit);
 
-        return Collection::fromArray($pieces);
+        return ItemList::create($pieces);
     }
 
     /**

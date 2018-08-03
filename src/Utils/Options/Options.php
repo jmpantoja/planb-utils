@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Options;
 
-use PlanB\DS\Collection\Collection;
+use PlanB\DS\TypedList\TypedList;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,7 +38,7 @@ abstract class Options
     private $currentProfile;
 
     /**
-     * @var \PlanB\DS\Collection\Collection
+     * @var \PlanB\DS\TypedList\TypedList
      */
     private $profiles;
 
@@ -62,7 +62,7 @@ abstract class Options
      */
     protected function __construct(string $profile = self::DEFAULT_PROFILE)
     {
-        $this->profiles = Collection::fromType('callable');
+        $this->profiles = TypedList::create('callable');
 
         $this->addProfile(self::DEFAULT_PROFILE, [$this, 'configure']);
         $this->customize();

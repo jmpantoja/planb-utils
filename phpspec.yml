@@ -20,6 +20,4 @@ extensions:
       whitelist:
         - src
       blacklist:
-        - src/DS/Resources
-        - src/Utils/Resources
-        - src/ValueObject/Resources
+        - src/Resources

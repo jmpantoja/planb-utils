@@ -21,9 +21,11 @@ interface Stringifable
     /**
      * __toString alias
      *
+     * @param string $format
+     *
      * @return string
      */
-    public function stringify(): string;
+    public function stringify(?string $format = null): string;
 
     /**
      * Devuelve la cadena de texto

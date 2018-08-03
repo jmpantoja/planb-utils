@@ -21,12 +21,23 @@ namespace PlanB\Utils\Options\Exception;
 class UndefinedProfileException extends \OutOfRangeException
 {
     /**
+     * UndefinedProfileException constructor.
+     *
+     * @param string                                        $message
+     * @param null|\PlanB\Utils\Options\Exception\Throwable $previous
+     */
+    public function __construct(string $message, ?Throwable $previous = null)
+    {
+        parent::__construct($message, 100, $previous);
+    }
+
+    /**
      * Crea una instancia, con un mensae que indica que el perfil indicado no existe
      *
      * @param string          $name
      * @param null|\Throwable $previous
      *
-     * @return \PlanB\Utils\Dictionary\Exception\UndefinedProfileException
+     * @return \PlanB\Utils\Options\Exception\UndefinedProfileException
      */
     public static function forProfile(string $name, ?\Throwable $previous = null): self
     {
@@ -44,6 +55,6 @@ eof;
 
         $message = sprintf("Undefined profile: %s\n%s", $name, $example);
 
-        return new static($message, 100, $previous);
+        return new static($message, $previous);
     }
 }

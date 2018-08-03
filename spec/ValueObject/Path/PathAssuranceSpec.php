@@ -2,6 +2,7 @@
 
 namespace spec\PlanB\ValueObject\Path;
 
+use PlanB\Utils\Assurance\Exception\FailAssuranceException;
 use PlanB\ValueObject\Path\Exception\InvalidPathException;
 use PlanB\ValueObject\Path\Path;
 use PlanB\ValueObject\Path\PathAssurance;
@@ -22,7 +23,7 @@ class PathAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable_from_string()
     {
-        $this->beConstructedThrough('fromString', [__DIR__]);
+        $this->beConstructedThrough('create', [__DIR__]);
         $this->shouldHaveType(PathAssurance::class);
     }
 
@@ -46,13 +47,14 @@ class PathAssuranceSpec extends ObjectBehavior
     {
         $path->isDirectory()->willReturn(true);
         $this->shouldNotThrow(\Throwable::class)->duringIsDirectory();
+
         $this->isDirectory()->shouldReturn($this);
     }
 
     public function it_can_ensure_that_path_is_not_a_directory(Path $path)
     {
         $path->isDirectory()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringIsDirectory();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsDirectory();
     }
 
     public function it_can_ensure_that_path_is_a_file(Path $path)
@@ -64,7 +66,7 @@ class PathAssuranceSpec extends ObjectBehavior
     public function it_can_ensure_that_path_is_not_a_file(Path $path)
     {
         $path->isFile()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringIsFile();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsFile();
     }
 
     public function it_can_ensure_that_path_is_a_link(Path $path)
@@ -76,7 +78,7 @@ class PathAssuranceSpec extends ObjectBehavior
     public function it_can_ensure_that_path_is_not_a_link(Path $path)
     {
         $path->isLink()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringIsLink();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsLink();
     }
 
     public function it_can_ensure_that_path_is_readable(Path $path)
@@ -88,7 +90,7 @@ class PathAssuranceSpec extends ObjectBehavior
     public function it_can_ensure_that_path_is_not_readable(Path $path)
     {
         $path->isReadable()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringIsReadable();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsReadable();
     }
 
 
@@ -101,7 +103,7 @@ class PathAssuranceSpec extends ObjectBehavior
     public function it_can_ensure_that_path_is_not_writable(Path $path)
     {
         $path->isWritable()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringIsWritable();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsWritable();
     }
 
 
@@ -120,55 +122,49 @@ class PathAssuranceSpec extends ObjectBehavior
     public function it_can_ensure_that_path_have_not_any_extension(Path $path)
     {
         $path->hasExtension()->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringHasExtension();
+        $this->shouldThrow(FailAssuranceException::class)->duringHasExtension();
     }
 
     public function it_can_ensure_that_path_have_not_expected_extension(Path $path)
     {
         $path->hasExtension('php')->willReturn(false);
 
-        $this->shouldThrow(InvalidPathException::class)->duringHasExtension('php');
+        $this->shouldThrow(FailAssuranceException::class)->duringHasExtension('php');
     }
 
     public function it_can_ensure_that_path_without_extension_have_not_expected_extension(Path $path)
     {
         $path->hasExtension(Argument::any())->willReturn(false);
-        $this->shouldThrow(InvalidPathException::class)->duringHasExtension('php');
+        $this->shouldThrow(FailAssuranceException::class)->duringHasExtension('php');
     }
 
 
     public function it_can_ensure_that_path_is_a_readable_file(Path $path)
     {
-        $path->isFile()->willReturn(true);
-        $path->isReadable()->willReturn(true);
+        $path->isReadableFile()->willReturn(true);
 
         $this->isReadableFile()->shouldReturn($this);
     }
 
     public function it_can_ensure_that_path_is_not_a_readable_file(Path $path)
     {
-        $path->isFile()->willReturn(false);
-        $path->isReadable()->willReturn(true);
+        $path->isReadableFile()->willReturn(false);
 
-        $this->shouldThrow(InvalidPathException::class)->duringIsReadableFile();
+        $this->shouldThrow(FailAssuranceException::class)->duringIsReadableFile();
     }
 
 
     public function it_can_ensure_that_path_is_a_readable_file_with_extension(Path $path)
     {
-        $path->isFile()->willReturn(true);
-        $path->isReadable()->willReturn(true);
-        $path->hasExtension('php')->willReturn(true);
+        $path->isReadableFileWithExtension('php')->willReturn(true);
 
         $this->isReadableFileWithExtension('php')->shouldReturn($this);
     }
 
     public function it_can_ensure_that_path_is_not_a_readable_file_with_extension(Path $path)
     {
-        $path->isFile()->willReturn(true);
-        $path->isReadable()->willReturn(false);
-        $path->hasExtension('php')->willReturn(true);
+        $path->isReadableFileWithExtension('php')->willReturn(false);
 
-        $this->shouldThrow(InvalidPathException::class)->duringIsReadableFileWithExtension('php');
+        $this->shouldThrow(FailAssuranceException::class)->duringIsReadableFileWithExtension('php');
     }
 }

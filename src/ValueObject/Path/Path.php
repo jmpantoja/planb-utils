@@ -171,6 +171,28 @@ class Path implements Stringifable
         return is_readable($this->path);
     }
 
+    /**
+     * Indica si tenemos un fichero con permisos de lectura
+     *
+     * @return bool
+     */
+    public function isReadableFile(): bool
+    {
+        return $this->isFile() && $this->isReadable();
+    }
+
+    /**
+     * Indica si tenemos un fichero con una determinada extensión con permisos de lectura
+     *
+     * @param string ...$expected
+     *
+     * @return bool
+     */
+    public function isReadableFileWithExtension(string ...$expected): bool
+    {
+        return $this->isReadableFile() && $this->hasExtension(...$expected);
+    }
+
 
     /**
      * Indica si tenemos permisos de escritura sobre la ruta
@@ -282,11 +304,9 @@ class Path implements Stringifable
 
 
     /**
-     * __toString alias
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function stringify(): string
+    public function stringify(?string $format = null): string
     {
         return $this->__toString();
     }

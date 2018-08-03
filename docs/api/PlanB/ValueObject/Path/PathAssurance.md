@@ -17,6 +17,43 @@
 
 ## Methods
 
+### getEvaluatedObject
+Devuelve el objeto sujeto a evaluación
+
+
+protected **PathAssurance::getEvaluatedObject**() : mixed
+
+
+
+---
+
+
+### end
+Devuelve el objeto sujeto a evaluación
+getWrappedObject alias
+
+**PathAssurance::end**() : object
+
+
+
+---
+
+
+### __call
+Captura las llamadas a métodos
+
+
+**PathAssurance::__call**(string $name, array $arguments = []) : [Assurance](../../../Assurance.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$name |  |
+|array |$arguments |  |
+
+---
+
+
 ### __construct
 PathAssurance constructor.
 
@@ -45,11 +82,11 @@ static **PathAssurance::fromPath**([Path](../../../Path.md) $path) : [PathAssura
 ---
 
 
-### fromString
+### create
 Crea una nueva instancia a partir de una (o varias) cadena de texto
 
 
-static **PathAssurance::fromString**(string ...$segments) : [PathAssurance](../../../PathAssurance.md)
+static **PathAssurance::create**(string ...$segments) : [PathAssurance](../../../PathAssurance.md)
 
 
 |Parameters: | | |
@@ -59,24 +96,16 @@ static **PathAssurance::fromString**(string ...$segments) : [PathAssurance](../.
 ---
 
 
-### end
-Devuelve la ruta
-
-
-**PathAssurance::end**() : [Path](../../../Path.md)
-
-
-
----
-
-
 ### stringify
 
 
 
-**PathAssurance::stringify**() : string
+**PathAssurance::stringify**(string $format = null) : string
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
 
 ---
 
@@ -88,101 +117,6 @@ Devuelve la ruta
 **PathAssurance::__toString**() : string
 
 
-
----
-
-
-### isDirectory
-Verifica que la ruta es un directorio, o lanza una excepción si no lo es
-
-
-**PathAssurance::isDirectory**() : [PathAssurance](../../../PathAssurance.md)
-
-
-
----
-
-
-### isFile
-* Verifica que la ruta es un archivo, o lanza una excepción si no lo es
-
-
-**PathAssurance::isFile**() : [$this](../../../$this.md)
-
-
-
----
-
-
-### isLink
-* Verifica que la ruta es un enlace simbólico, o lanza una excepción si no lo es
-
-
-**PathAssurance::isLink**() : [$this](../../../$this.md)
-
-
-
----
-
-
-### isReadable
-* Verifica si la ruta tiene permisos de lectura, o lanza una excepción en caso contrario
-
-
-**PathAssurance::isReadable**() : [$this](../../../$this.md)
-
-
-
----
-
-
-### isReadableFile
-Verifica si la ruta es un archivo con permisos de lectura, o lanza una excepción en caso contrario
-
-
-**PathAssurance::isReadableFile**() : [PathAssurance](../../../PathAssurance.md)
-
-
-
----
-
-
-### isReadableFileWithExtension
-Verifica si la ruta es un archivo con permisos de lectura y con una (o varias) determinada extensión,
-o lanza una excepción en caso contrario
-
-
-**PathAssurance::isReadableFileWithExtension**(string ...$expected) : [PathAssurance](../../../PathAssurance.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |...$expected |  |
-
----
-
-
-### isWritable
-* Verifica si la ruta tiene permisos de escritura, o lanza una excepción en caso contrario
-
-
-**PathAssurance::isWritable**() : [$this](../../../$this.md)
-
-
-
----
-
-
-### hasExtension
-Verifica que una ruta tiene extensión, o si tiene una de entre las pasadas como argumento
-
-
-**PathAssurance::hasExtension**(string ...$expected) : [PathAssurance](../../../PathAssurance.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |...$expected | Las extensiones que se consideran válidas |
 
 ---
 

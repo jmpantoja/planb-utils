@@ -21,9 +21,12 @@
 __toString alias
 
 
-**Stringifable::stringify**() : string
+**Stringifable::stringify**(string $format = null) : string
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
 
 ---
 

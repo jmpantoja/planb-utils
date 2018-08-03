@@ -17,6 +17,43 @@
 
 ## Methods
 
+### getEvaluatedObject
+Devuelve el objeto sujeto a evaluación
+
+
+protected **TextAssurance::getEvaluatedObject**() : mixed
+
+
+
+---
+
+
+### end
+Devuelve el objeto sujeto a evaluación
+getWrappedObject alias
+
+**TextAssurance::end**() : object
+
+
+
+---
+
+
+### __call
+Captura las llamadas a métodos
+
+
+**TextAssurance::__call**(string $name, array $arguments = []) : [Assurance](../../../Assurance.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$name |  |
+|array |$arguments |  |
+
+---
+
+
 ### __construct
 PathAssurance constructor.
 
@@ -59,11 +96,11 @@ static **TextAssurance::fromText**([Text](../../../Text.md) $text) : [TextAssura
 ---
 
 
-### fromString
+### create
 Crea una nueva instancia a partir de una cadena de texto
 
 
-static **TextAssurance::fromString**(string $string) : [TextAssurance](../../../TextAssurance.md)
+static **TextAssurance::create**(string $string) : [TextAssurance](../../../TextAssurance.md)
 
 
 |Parameters: | | |
@@ -73,24 +110,16 @@ static **TextAssurance::fromString**(string $string) : [TextAssurance](../../../
 ---
 
 
-### end
-Devuelve la ruta
-
-
-**TextAssurance::end**() : [Text](../../../Text.md)
-
-
-
----
-
-
 ### stringify
 
 
 
-**TextAssurance::stringify**() : string
+**TextAssurance::stringify**(string $format = null) : string
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
 
 ---
 
@@ -100,28 +129,6 @@ Devuelve la ruta
 
 
 **TextAssurance::__toString**() : string
-
-
-
----
-
-
-### isNotEmpty
-Garantiza que una cadena no esté vacia
-
-
-**TextAssurance::isNotEmpty**() : [TextAssurance](../../../TextAssurance.md)
-
-
-
----
-
-
-### isNotBlank
-Garantiza que una cadena no esté en blanco
-
-
-**TextAssurance::isNotBlank**() : [TextAssurance](../../../TextAssurance.md)
 
 
 

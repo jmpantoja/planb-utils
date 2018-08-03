@@ -17,6 +17,21 @@
 
 ## Methods
 
+### __construct
+OverFlowRootDirException constructor.
+
+
+**OverFlowRootDirException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$message |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### create
 Crea un objeto OverFlowRootDirException
 

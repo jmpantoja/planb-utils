@@ -17,6 +17,21 @@
 
 ## Methods
 
+### __construct
+UndefinedProfileException constructor.
+
+
+**UndefinedProfileException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$message |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### forProfile
 Crea una instancia, con un mensae que indica que el perfil indicado no existe
 

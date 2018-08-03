@@ -17,6 +17,21 @@
 
 ## Methods
 
+### __construct
+EmptyPathException constructor.
+
+
+**EmptyPathException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$message |  |
+|[Throwable](../../../../Throwable.md) |$previous |  |
+
+---
+
+
 ### create
 No se pueden crear Paths desde cadenas vacias
 

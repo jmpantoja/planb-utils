@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\TypeName;
 
+use PlanB\DS\ItemList\ItemList;
 use PlanB\ValueObject\Stringifable;
 
 /**
@@ -136,11 +137,13 @@ class TypeName implements Stringifable
      */
     public function isTypeOf(string ...$allowed): bool
     {
-        return at_least_one($allowed, function ($type) {
-            return $this->isClassOf($type);
-        });
 
-        return false;
+        $found = ItemList::create($allowed)
+            ->search(function ($type) {
+                return $this->isClassOf($type);
+            });
+
+        return boolval($found);
     }
 
     /**

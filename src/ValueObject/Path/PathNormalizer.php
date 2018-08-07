@@ -117,7 +117,7 @@ final class PathNormalizer
     private function isNotEmpty(string $piece): bool
     {
 
-        $isEmpty = isBlankText($piece);
+        $isEmpty = is_blank_text($piece);
         $isDot = ('.' === $piece);
 
         return !($isEmpty || $isDot);

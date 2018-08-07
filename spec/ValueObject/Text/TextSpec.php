@@ -4,6 +4,7 @@ namespace spec\PlanB\ValueObject\Text;
 
 use PlanB\DS\ItemList\ItemList;
 use PlanB\DS\Collection\Collection;
+use PlanB\Utils\Assurance\Exception\AssertException;
 use PlanB\ValueObject\Text\Text;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -16,6 +17,14 @@ class TextSpec extends ObjectBehavior
 
         $this->shouldHaveType(Text::class);
     }
+
+    public function it_throw_an_exception_when_create_with_invalid_value()
+    {
+        $this->beConstructedThrough('create', [new \stdClass()]);
+
+        $this->shouldThrow(AssertException::class)->duringInstantiation();
+    }
+
 
     public function it_can_recognize_if_a_string_is_empty()
     {

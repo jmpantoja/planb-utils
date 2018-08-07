@@ -35,12 +35,12 @@ Text constructor.
 Crea una nueva instancia
 
 
-static **Text::create**(string $text = &#039;&#039;) : [Text](../../../Text.md)
+static **Text::create**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$text |  |
+|mixed |$text |  |
 
 ---
 

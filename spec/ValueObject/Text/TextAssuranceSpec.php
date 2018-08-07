@@ -2,9 +2,9 @@
 
 namespace spec\PlanB\ValueObject\Text;
 
-use PlanB\Utils\Assurance\Exception\FailAssuranceException;
+use PlanB\Utils\Assurance\Assurance;
+use PlanB\Utils\Assurance\Exception\AssertException;
 use PlanB\ValueObject\Path\Path;
-use PlanB\ValueObject\Text\Exception\InvalidTextException;
 use PlanB\ValueObject\Text\Text;
 use PlanB\ValueObject\Text\TextAssurance;
 use PhpSpec\ObjectBehavior;
@@ -31,9 +31,9 @@ class TextAssuranceSpec extends ObjectBehavior
             ->shouldReturn(self::SOME_TEXT);
     }
 
-    public function it_is_initializable_from_stringifable()
+    public function it_is_initializable_from_stringifable(Path $path)
     {
-        $path = Path::create('/tmp/../tmp');
+        $path->stringify()->willReturn('/tmp');
 
         $this->beConstructedThrough('fromStringifable', [$path]);
         $this->shouldHaveType(TextAssurance::class);
@@ -62,6 +62,12 @@ class TextAssuranceSpec extends ObjectBehavior
 
         $this->stringify()
             ->shouldReturn(self::SOME_TEXT);
+    }
+
+
+    public function it_is_assurance()
+    {
+        $this->shouldHaveType(Assurance::class);
     }
 
     public function it_can_retrieve_the_text_object()
@@ -98,7 +104,7 @@ class TextAssuranceSpec extends ObjectBehavior
         $text->isEmpty()
             ->willReturn(true);
 
-        $this->shouldThrow(FailAssuranceException::class)->duringIsNotEmpty();
+        $this->shouldThrow(AssertException::class)->duringIsNotEmpty();
     }
 
 
@@ -115,6 +121,6 @@ class TextAssuranceSpec extends ObjectBehavior
         $text->isBlank()
             ->willReturn(true);
 
-        $this->shouldThrow(FailAssuranceException::class)->duringIsNotBlank();
+        $this->shouldThrow(AssertException::class)->duringIsNotBlank();
     }
 }

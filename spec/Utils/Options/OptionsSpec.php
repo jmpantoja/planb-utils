@@ -7,13 +7,21 @@ use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Prophecy\Argument;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-
+use \spec\PlanB\Utils\Options\Fake\FakeOptions;
 
 class OptionsSpec extends ObjectBehavior
 {
+    private const VALUES = ['color' => 'rojo', 'number' => 10];
+
+    private const NORMALIZED_VALUES = ['color' => 'ROJO', 'number' => 10];
+
+    private const UNDEFINED_PROFILE = 'undefined-profile';
+
+    private const INVALID_VALUES = ['color' => 'esto debería ser un color', 'number' => 'esto debería ser un número'];
+
     public function let()
     {
-        $this->beAnInstanceOf(DummyOptions::class);
+        $this->beAnInstanceOf(FakeOptions::class);
         $this->beConstructedThrough('create');
     }
 
@@ -29,48 +37,39 @@ class OptionsSpec extends ObjectBehavior
 
     public function it_can_initialize_with_a_custom_profile()
     {
-        $this->beConstructedThrough('create', ['positive-numbers']);
-        $this->getCurrentProfile()->shouldReturn('positive-numbers');
+        $this->beConstructedThrough('create', [FakeOptions::POSITIVE_PROFILE]);
+        $this->getCurrentProfile()->shouldReturn(FakeOptions::POSITIVE_PROFILE);
     }
 
     public function it_can_throw_an_exception_if_create_with_an_invalid_profile()
     {
-        $this->beConstructedThrough('create', ['undefined-profile']);
+        $this->beConstructedThrough('create', [self::UNDEFINED_PROFILE]);
+
         $this->shouldThrow(UndefinedProfileException::class)->duringInstantiation();
     }
 
     public function it_can_resolve_a_dataset_with_default_profile()
     {
-        $values = ['color' => 'rojo', 'number' => 10];
-
-        $this->resolve($values)->shouldReturn(['color' => 'ROJO', 'number' => 10]);
-        $this->resolve($values)->shouldReturn(['color' => 'ROJO', 'number' => 10]);
+        $this->resolve(self::VALUES)->shouldReturn(self::NORMALIZED_VALUES);
+        $this->resolve(self::VALUES)->shouldReturn(self::NORMALIZED_VALUES);
 
     }
 
     public function it_can_resolve_a_invalid_dataset_with_default_profile()
     {
-        $values = ['color' => 'esto debería ser un color', 'number' => 'esto debería ser un número'];
-
-        $this->shouldThrow(InvalidOptionsException::class)->duringResolve($values);
+        $this->shouldThrow(InvalidOptionsException::class)->duringResolve(self::INVALID_VALUES);
     }
 
     public function it_can_resolve_a_dataset_with_custom_profile()
     {
-        $this->beConstructedThrough('create', ['positive-numbers']);
-
-        $values = ['color' => 'rojo', 'number' => 10];
-
-        $this->resolve($values)->shouldReturn(['color' => 'ROJO', 'number' => 10]);
+        $this->beConstructedThrough('create', [FakeOptions::POSITIVE_PROFILE]);
+        $this->resolve(self::VALUES)->shouldReturn(self::NORMALIZED_VALUES);
     }
 
     public function it_can_resolve_a_invalid_dataset_with_custom_profile()
     {
-        $this->beConstructedThrough('create', ['positive-numbers']);
-
-        $values = ['color' => 'rojo', 'number' => -100];
-
-        $this->shouldThrow(InvalidOptionsException::class)->duringResolve($values);
+        $this->beConstructedThrough('create', [FakeOptions::POSITIVE_PROFILE]);
+        $this->shouldThrow(InvalidOptionsException::class)->duringResolve(self::INVALID_VALUES);
     }
 
 }

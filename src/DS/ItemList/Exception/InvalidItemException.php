@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ItemList\Exception;
 
-use PlanB\DS\ItemList\KeyValue;
+use PlanB\DS\ItemList\Item;
 
 /**
  * Se lanza cuando se trata de añadir un elemento considerado no valido
@@ -34,15 +34,15 @@ class InvalidItemException extends \InvalidArgumentException
     /**
      * Crea una instancia
      *
-     * @param \PlanB\DS\ItemList\KeyValue $pair
-     * @param null|\Throwable             $previous
+     * @param \PlanB\DS\ItemList\Item $item
+     * @param null|\Throwable         $previous
      *
      * @return \PlanB\DS\ItemList\Exception\InvalidItemException
      */
-    public static function create(KeyValue $pair, ?\Throwable $previous = null): self
+    public static function create(Item $item, ?\Throwable $previous = null): self
     {
 
-        $message = sprintf('Element %s is not valid', (string) $pair);
+        $message = sprintf('Element [%s] is not valid', (string) $item);
 
         return new static($message, $previous);
     }

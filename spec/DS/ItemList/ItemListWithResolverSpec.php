@@ -6,15 +6,25 @@ namespace spec\PlanB\DS\ItemList;
 
 
 use PhpSpec\ObjectBehavior;
+use PlanB\DS\ItemList\Exception\InvalidItemException;
+use PlanB\DS\ItemList\Item;
 use PlanB\DS\ItemList\ItemList;
-use PlanB\DS\ItemList\Exception\ReconfigureFullyListException;
-use PlanB\DS\ItemList\Resolver\Exception\InvalidResolverException;
-use PlanB\DS\ItemResolver\Exception\InvalidValueTypeException;
-use PlanB\DS\ItemResolver\ItemResolver;
-use spec\PlanB\DS\ItemList\Stub\Word;
+use PlanB\ValueObject\Text\Text;
 
 class ItemListWithResolverSpec extends ObjectBehavior
 {
+
+    private const UPPER_VALUE = 'ABC';
+
+    private const LOWER_VALUE = 'abc';
+
+    private const KEY = 'a';
+
+    private const UPPER_KEY = 'A';
+
+    private const LAST_ORDER = 2;
+
+    private const FIRST_ORDER = 1;
 
     public function let()
     {
@@ -22,125 +32,108 @@ class ItemListWithResolverSpec extends ObjectBehavior
         $this->beConstructedThrough('create');
     }
 
-    public function it_can_add_a_custom_resolver()
+    public function it_can_validate()
     {
-        $this->addResolver(function ($value) {
-            //no hace nada
-        })->shouldReturn($this);
-
-
-        $this->add('cadena');
-        $this->get(0)->shouldReturn('cadena');
-    }
-
-
-    public function it_refuse_add_a_custom_resolver_on_fully_list()
-    {
-        $values = ['a' => 1, 'b' => 2, 'c' => 3];
-        $this->beConstructedThrough('create', [$values]);
-
-        $this->shouldThrow(ReconfigureFullyListException::class)->duringAddResolver(function () {
-        });
-    }
-
-    public function it_can_ignore_a_value()
-    {
-        $this
-            ->ignoreOnInvalid()
-            ->addResolver(function ($value) {
-                $this->markAsInvalid();
-            })
-            ->addResolver(function () {
-                throw new \Exception('Nunca deberia entrar por aqui');
-            });
-
-        $this->add('cadena');
-        $this->count()->shouldReturn(0);
-    }
-
-
-    public function it_can_normalize_a_value()
-    {
-        $this->addResolver(function ($value) {
-            return strtoupper($value);
-        });
-
-        $this->add('cadena');
-        $this->get(0)->shouldReturn('CADENA');
-    }
-
-
-    public function it_can_normalize_a_key()
-    {
-        $this->addResolver(function ($value, $key) {
-            $this->setKey(strtoupper($key));
-            return $value;
-
-        });
-
-        $this->set('a', 'cadena');
-
-        $this->has('a')->shouldReturn(false);
-        $this->get('A')->shouldReturn('cadena');
-    }
-
-    public function it_can_set_null_value()
-    {
-        $this->addResolver(function ($value, $key) {
-            $value = null;
-            $this->setValue($value);
-            return $value;
-        });
-
-        $this->set('a', 'cadena');
-        $this->get('a')->shouldReturn(null);
-    }
-
-    public function it_can_normalize_key_and_value()
-    {
-        $this->addResolver(function ($value, $key) {
-            $value = strtoupper($value);
-            $key = strtoupper($key);
-
-            $this->setPair($key, $value);
-            return $value;
-
-        });
-
-        $this->set('a', 'cadena');
-
-        $this->has('a')->shouldReturn(false);
-        $this->get('A')->shouldReturn('CADENA');
-    }
-
-
-    public function it_can_normalize_a_value_using_context()
-    {
-        $this->addResolver(function (string $value, $key, ItemList $context) {
-            $ordinal = $context->count() + 1;
-            return sprintf('Entry #%d => %s', $ordinal, $value);
-        });
-
-        $this->add('juan');
-        $this->add('maria');
-        $this->add('luisa');
-
-        $this->get(0)->shouldReturn('Entry #1 => juan');
-        $this->get(1)->shouldReturn('Entry #2 => maria');
-        $this->get(2)->shouldReturn('Entry #3 => luisa');
-    }
-
-
-    public function it_refuse_an_invalid_resolver()
-    {
-        $resolver= new class {
-            public function __invoke()
-            {
-
-            }
+        $onlyUpperCase = function ($value) {
+            return preg_match('/^[A-Z]*$/', $value);
         };
 
-        $this->shouldThrow(InvalidResolverException::class)->duringAddResolver($resolver);
+        $this->addValidator($onlyUpperCase);
+
+        $this->add(self::UPPER_VALUE);
+        $this->count()->shouldReturn(1);
+
+        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::LOWER_VALUE);
+
+        $this->count()->shouldReturn(1);
+
+    }
+
+    public function it_can_normalize_value()
+    {
+        $toUpperCase = function ($value) {
+            return strtoupper($value);
+        };
+
+        $this->addNormalizer($toUpperCase);
+
+        $this->add(self::LOWER_VALUE);
+        $this->get(0)->shouldReturn(self::UPPER_VALUE);
+    }
+
+    public function it_can_normalize_key()
+    {
+        $toUpperCase = function ($key) {
+            return strtoupper($key);
+        };
+
+        $this->addKeyNormalizer($toUpperCase);
+
+        $this->set(self::KEY, self::UPPER_VALUE);
+        $this->get(self::UPPER_KEY)->shouldReturn(self::UPPER_VALUE);
+
+        $this->has(self::KEY)->shouldReturn(false);
+    }
+
+    public function it_can_chain_resolvers()
+    {
+        $toText = function (string $value) {
+            return Text::create($value);
+        };
+
+        $noBlank = function (Text $value) {
+            return !$value->isBlank();
+        };
+
+        $this
+            ->addNormalizer($toText)
+            ->addValidator($noBlank);
+
+        $this->set(self::KEY, self::UPPER_VALUE);
+        $this->get(self::KEY)
+            ->shouldHaveType(Text::class);
+
+        $this->get(self::KEY)
+            ->stringify()
+            ->shouldReturn(self::UPPER_VALUE);
+
+    }
+
+
+    public function it_can_chain_resolvers_with_priority()
+    {
+        $toText = function (string $value) {
+            return Text::create($value);
+        };
+
+        $noBlank = function (Text $value) {
+            return !$value->isBlank();
+        };
+
+        $this
+            ->addValidator($noBlank, self::LAST_ORDER)
+            ->addNormalizer($toText, self::FIRST_ORDER);
+
+        $this->set(self::KEY, self::UPPER_VALUE);
+        $this->get(self::KEY)
+            ->shouldHaveType(Text::class);
+
+        $this->get(self::KEY)
+            ->stringify()
+            ->shouldReturn(self::UPPER_VALUE);
+
+    }
+
+    public function it_can_silent_the_invalid_item_exception(Item $item)
+    {
+        $validator = function(){
+            return false;
+        };
+
+        $this->silentExceptions();
+        $this->addValidator($validator);
+
+        $this->shouldNotThrow(InvalidItemException::class)->duringAdd(self::LOWER_VALUE);
     }
 
 }

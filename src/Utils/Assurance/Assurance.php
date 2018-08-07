@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Assurance;
 
-use PlanB\Utils\Assurance\Exception\FailAssuranceException;
+use PlanB\Utils\Assurance\Exception\AssertException;
 
 /**
  * Proxy para capturar las llamadas a métodos assurance (isXXX, hasXXX, isNotXXX...)
@@ -56,7 +56,7 @@ abstract class Assurance
         $call = AssuranceCall::create($wrapped);
 
         if (!$call->execute($name, ...$arguments)) {
-            throw FailAssuranceException::create($wrapped, $name);
+            throw AssertException::create($wrapped, $name);
         }
 
         return $this;

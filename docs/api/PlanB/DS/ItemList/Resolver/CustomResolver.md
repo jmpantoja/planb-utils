@@ -1,0 +1,23 @@
+
+                                                                                                                                            
+    
+# CustomResolver
+
+
+> 
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+                                                                                                                                                                                                                                                                                                                                                                                                            
+    
+                                                                                                                                                                                                                                                                             
+                

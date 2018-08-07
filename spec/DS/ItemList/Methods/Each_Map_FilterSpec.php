@@ -15,7 +15,7 @@ namespace spec\PlanB\DS\ItemList\Methods;
 
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\ItemList;
-use spec\PlanB\DS\ItemList\Stub\Word;
+use spec\PlanB\DS\ItemList\Fake\Word;
 
 
 class Each_Map_FilterSpec extends ObjectBehavior
@@ -59,7 +59,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
         $response->shouldHaveType(ItemList::class);
-    //    $response->getType()->shouldReturn(Word::class);
+
         $response->count()->shouldReturn(0);
     }
 

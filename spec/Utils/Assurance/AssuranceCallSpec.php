@@ -10,6 +10,8 @@ use Prophecy\Argument;
 
 class AssuranceCallSpec extends ObjectBehavior
 {
+    private const INVALID_METHOD = 'InvalidMethod';
+
     public function let(Text $text)
     {
         $this->beConstructedThrough('create', [$text]);
@@ -41,7 +43,7 @@ class AssuranceCallSpec extends ObjectBehavior
     public function it_refuse_an_invalid_method()
     {
         $this->shouldThrow(InvalidAssuranceMethodException::class)
-            ->duringExecute('InvalidMethod');
+            ->duringExecute(self::INVALID_METHOD);
     }
 
     public function it_refuse_an_unexists_method()

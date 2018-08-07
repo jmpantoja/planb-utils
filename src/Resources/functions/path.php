@@ -15,9 +15,15 @@ use PlanB\ValueObject\Path\PathAssurance;
 
 if (!function_exists('ensure_path')) {
 
+    /**
+     * Assurance para Path
+     *
+     * @param string ...$segments
+     * @return PathAssurance
+     */
     function ensure_path(string ...$segments): PathAssurance
     {
-        return PathAssurance::fromString(...$segments);
+        return PathAssurance::create(...$segments);
     }
 }
 

@@ -36,12 +36,12 @@ InvalidItemException constructor.
 Crea una instancia
 
 
-static **InvalidItemException::create**([KeyValue](../../../../KeyValue.md) $pair, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidItemException](../../../../InvalidItemException.md)
+static **InvalidItemException::create**([Item](../../../../Item.md) $item, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidItemException](../../../../InvalidItemException.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[KeyValue](../../../../KeyValue.md) |$pair |  |
+|[Item](../../../../Item.md) |$item |  |
 |[Throwable](../../../../Throwable.md) |$previous |  |
 
 ---

@@ -4,7 +4,7 @@
 # Accessors
 
 
-> Aporta la capacidad de agregar y obtener elementos de la colección
+> Agrupa los métodos relacionados con agregar o devolver elementos de la lista
 >
 > 
 
@@ -15,16 +15,16 @@
 
 ## Properties
 - items
-- resolverBag
+- resolution
 
 
 ## Methods
 
 ### add
-Agrega un elemento a la colección
 
 
-**Accessors::add**(mixed $value) : [$this](../../../../$this.md)
+
+**Accessors::add**(mixed $value) : [ListInterface](../../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -35,7 +35,7 @@ Agrega un elemento a la colección
 
 
 ### addAll
-Agrega un conjunto de elementos
+
 
 
 **Accessors::addAll**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
@@ -49,7 +49,7 @@ Agrega un conjunto de elementos
 
 
 ### set
-Agrega una pareja clave/valor a la colección
+
 
 
 **Accessors::set**(mixed $key, mixed $value) : [$this](../../../../$this.md)
@@ -64,7 +64,7 @@ Agrega una pareja clave/valor a la colección
 
 
 ### setAll
-Agrega un conjunto de parejas clave/valor
+
 
 
 **Accessors::setAll**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
@@ -78,7 +78,7 @@ Agrega un conjunto de parejas clave/valor
 
 
 ### get
-Devuelve un elemento
+
 
 
 **Accessors::get**(mixed $key, mixed|null $default = null) : mixed
@@ -93,7 +93,7 @@ Devuelve un elemento
 
 
 ### exists
-Indica si un elemento existe
+
 
 
 **Accessors::exists**(mixed $key) : bool
@@ -107,7 +107,7 @@ Indica si un elemento existe
 
 
 ### has
-exists alias
+
 
 
 **Accessors::has**(mixed $key) : bool
@@ -121,7 +121,7 @@ exists alias
 
 
 ### remove
-Elimina un elemento
+
 
 
 **Accessors::remove**(mixed $key) : [$this](../../../../$this.md)

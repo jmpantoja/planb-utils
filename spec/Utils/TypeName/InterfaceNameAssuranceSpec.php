@@ -3,7 +3,7 @@
 namespace spec\PlanB\Utils\TypeName;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Assurance\Exception\FailAssuranceException;
+use PlanB\Utils\Assurance\Exception\AssertException;
 use PlanB\Utils\TypeName\TypeNameAssurance;
 
 class InterfaceNameAssuranceSpec extends ObjectBehavior
@@ -30,17 +30,17 @@ class InterfaceNameAssuranceSpec extends ObjectBehavior
 
     public function it_can_show_if_typename_is_not_the_same_class_of_another()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsSameOf(ObjectBehavior::class);
+        $this->shouldThrow(AssertException::class)->duringIsSameOf(ObjectBehavior::class);
     }
 
     public function it_can_show_if_typename_is_a_subclass_of_parent()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsChildOf(ObjectBehavior::class);
+        $this->shouldThrow(AssertException::class)->duringIsChildOf(ObjectBehavior::class);
     }
 
     public function it_can_show_if_typename_is_a_subclass_or_sameclass_of_parent()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsClassOf(ObjectBehavior::class);
+        $this->shouldThrow(AssertException::class)->duringIsClassOf(ObjectBehavior::class);
     }
 
     public function it_can_show_if_typename_is_a_subclass_or_sameclass_of_itself()
@@ -51,7 +51,7 @@ class InterfaceNameAssuranceSpec extends ObjectBehavior
 
     public function it_can_show_if_typename_is_a_classname()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsClassName();
+        $this->shouldThrow(AssertException::class)->duringIsClassName();
     }
 
     public function it_can_show_if_typename_is_a_class_or_interfacename()
@@ -68,12 +68,12 @@ class InterfaceNameAssuranceSpec extends ObjectBehavior
 
     public function it_can_show_if_typename_is_a_traitname()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsTraitName();
+        $this->shouldThrow(AssertException::class)->duringIsTraitName();
     }
 
     public function it_can_show_if_typename_is_a_native()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsNativeTypeName();
+        $this->shouldThrow(AssertException::class)->duringIsNativeTypeName();
     }
 
     public function it_can_show_if_typename_is_valid()

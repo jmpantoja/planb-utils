@@ -39,13 +39,15 @@ class Text implements Stringifable
     /**
      * Crea una nueva instancia
      *
-     * @param string $text
+     * @param mixed $text
      *
      * @return \PlanB\ValueObject\Text\Text
      */
-    public static function create(string $text = ''): self
+    public static function create($text = ''): self
     {
-        return new self($text);
+        ensure_type($text)->isConvertibleToString();
+
+        return new self((string) $text);
     }
 
     /**

@@ -41,7 +41,7 @@ class ReconfigureFullyListException extends \DomainException
      */
     public static function create(?\Throwable $previous = null): ReconfigureFullyListException
     {
-        $message = "You cann't change the configuration on a fully ItemList";
+        $message = "You cann't change the configuration on a locked List";
 
         return new static($message, $previous);
     }

@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Type;
 
+use PlanB\DS\ItemList\ItemList;
 use PlanB\Utils\TypeName\TypeName;
 use PlanB\ValueObject\Stringifable;
 
@@ -19,6 +20,31 @@ use PlanB\ValueObject\Stringifable;
  */
 class Type implements Stringifable
 {
+
+    public const ARRAY = 'array';
+    public const BOOLEAN = 'boolean';
+    public const CALLABLE = 'callable';
+    public const COUNTABLE = 'countable';
+    public const FLOAT = 'float';
+    public const INTEGER = 'integer';
+    public const ITERABLE = 'iterable';
+    public const NULL = 'null';
+    public const NUMERIC = 'numeric';
+    public const OBJECT = 'object';
+    public const RESOURCE = 'resource';
+    public const SCALAR = 'scalar';
+    public const STRING = 'string';
+
+
+    private const EQUIVALENT_TYPES_METHODS = [
+        'scalar' => 'isScalar',
+        'numeric' => 'isNumeric',
+        'countable' => 'isCountable',
+        'callable' => 'isCallable',
+        'iterable' => 'isIterable',
+        'object' => 'isObject',
+    ];
+
     /**
      * Type constructor.
      *
@@ -188,7 +214,7 @@ class Type implements Stringifable
 
 
     /**
-     * Indica si la variable es una instancia de una clase o interfaz
+     * Comprueba si la variable es de un tipo (o subtipo) de los permitidos
      *
      * @param string ...$allowed
      *
@@ -197,33 +223,55 @@ class Type implements Stringifable
     public function isTypeOf(string ...$allowed): bool
     {
 
-        return at_least_one($allowed, function ($typeName) {
+        $typeName = $this->getTypeName();
+        if ($typeName->isTypeOf(...$allowed)) {
+            return true;
+        }
 
-            $isNative = TypeName::create($typeName)->isNativeTypeName();
 
-            if ($isNative) {
-                $function = sprintf('is_%s', strtolower($typeName));
-
-                return call_user_func($function, $this->variable);
-            }
-
-            return $this->isInstanceOf($typeName);
-        });
+        return (bool) ItemList::create($allowed)
+            ->search(function ($type) {
+                return $this->isEquivalentTo($type);
+            }, $allowed);
     }
 
+    /**
+     * Indica si el tipo de la variable es equivalente al dado
+     *
+     * @param string $type
+     *
+     * @return bool
+     */
+    private function isEquivalentTo(string $type): bool
+    {
+
+        $equivalents = self::EQUIVALENT_TYPES_METHODS;
+
+        if (!isset($equivalents[$type])) {
+            return false;
+        }
+
+        $method = $equivalents[$type];
+
+        return call_user_func([$this, $method]);
+    }
 
     /**
-     * Devuelve el nombre del tipo, o de la clase
+     * Devuelve el TypeName
      *
      * @return string
      */
-    public function getTypeName(): string
+    public function getTypeName(): TypeName
     {
         if (is_object($this->variable)) {
-            return get_class($this->variable);
+            $typeName = get_class($this->variable);
+
+            return TypeName::create($typeName);
         }
 
-        return gettype($this->variable);
+        $typeName = gettype($this->variable);
+
+        return TypeName::create($typeName);
     }
 
     /**
@@ -234,19 +282,20 @@ class Type implements Stringifable
     public function stringify(?string $format = null): string
     {
 
-        if ($this->isConvertableToString()) {
-            return (string) $this->variable;
+        if (!$this->isConvertibleToString()) {
+            return $this->getTypeName()->stringify();
         }
 
-        return $this->getTypeName();
+        return (string) $this->variable;
     }
+
 
     /**
      * Indica si la variable se puede expresar como una cadena de texto
      *
      * @return bool
      */
-    private function isConvertableToString(): bool
+    public function isConvertibleToString(): bool
     {
 
         $isScalar = is_scalar($this->variable);
@@ -256,7 +305,7 @@ class Type implements Stringifable
     }
 
     /**
-     * Devuelve la cadena de texto
+     * Devuelve el valor como una cadena de texto
      *
      * @return string
      */

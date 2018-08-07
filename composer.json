@@ -15,8 +15,7 @@
             "src/Resources/functions/hydrator.php",
             "src/Resources/functions/path.php",
             "src/Resources/functions/text.php",
-            "src/Resources/functions/type.php",
-            "src/Resources/functions/utils.php"
+            "src/Resources/functions/type.php"
         ],
         "psr-4": {
             "PlanB\\": "src/"

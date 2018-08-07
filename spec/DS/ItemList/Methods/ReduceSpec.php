@@ -15,7 +15,7 @@ namespace spec\PlanB\DS\ItemList\Methods;
 
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\ItemList;
-use spec\PlanB\DS\ItemList\Stub\Word;
+use spec\PlanB\DS\ItemList\Fake\Word;
 
 
 class ReduceSpec extends ObjectBehavior

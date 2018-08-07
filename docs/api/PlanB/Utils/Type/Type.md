@@ -11,6 +11,21 @@
 
 
 
+## Constants
+- ARRAY
+- BOOLEAN
+- CALLABLE
+- COUNTABLE
+- FLOAT
+- INTEGER
+- ITERABLE
+- NULL
+- NUMERIC
+- OBJECT
+- RESOURCE
+- SCALAR
+- STRING
+- EQUIVALENT_TYPES_METHODS
 
 
 
@@ -203,7 +218,7 @@ Indica si la variable es una instancia de una clase o interfaz
 
 
 ### isTypeOf
-Indica si la variable es una instancia de una clase o interfaz
+Comprueba si la variable es de un tipo (o subtipo) de los permitidos
 
 
 **Type::isTypeOf**(string ...$allowed) : bool
@@ -217,7 +232,7 @@ Indica si la variable es una instancia de una clase o interfaz
 
 
 ### getTypeName
-Devuelve el nombre del tipo, o de la clase
+Devuelve el TypeName
 
 
 **Type::getTypeName**() : string
@@ -241,8 +256,19 @@ __toString alias
 ---
 
 
+### isConvertibleToString
+Indica si la variable se puede expresar como una cadena de texto
+
+
+**Type::isConvertibleToString**() : bool
+
+
+
+---
+
+
 ### __toString
-Devuelve la cadena de texto
+Devuelve el valor como una cadena de texto
 
 
 **Type::__toString**() : string

@@ -35,7 +35,7 @@ class Path implements Stringifable
      */
     public function __construct(string $path)
     {
-        $isEmpty = isBlankText($path);
+        $isEmpty = is_blank_text($path);
 
         if ($isEmpty) {
             throw EmptyPathException::create();
@@ -270,7 +270,7 @@ class Path implements Stringifable
     {
         $exentension = pathinfo($this->path, PATHINFO_EXTENSION);
 
-        if (isBlankText($exentension)) {
+        if (is_blank_text($exentension)) {
             return null;
         };
 

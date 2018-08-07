@@ -3,7 +3,7 @@
 namespace spec\PlanB\Utils\TypeName;
 
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Assurance\Exception\FailAssuranceException;
+use PlanB\Utils\Assurance\Exception\AssertException;
 use PlanB\Utils\TypeName\TypeNameAssurance;
 
 class NativeNameAssuranceSpec extends ObjectBehavior
@@ -24,7 +24,7 @@ class NativeNameAssuranceSpec extends ObjectBehavior
 
     public function it_can_show_if_typename_is_a_class_or_interfacename()
     {
-        $this->shouldThrow(FailAssuranceException::class)->duringIsClassOrInterfaceName();
+        $this->shouldThrow(AssertException::class)->duringIsClassOrInterfaceName();
     }
 
     public function it_can_show_if_typename_is_valid()
@@ -38,7 +38,7 @@ class NativeNameAssuranceSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', ['xxxx']);
 
-        $this->shouldThrow(FailAssuranceException::class)->duringIsValid();
+        $this->shouldThrow(AssertException::class)->duringIsValid();
     }
 
 

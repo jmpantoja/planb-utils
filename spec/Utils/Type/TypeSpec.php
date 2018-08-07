@@ -5,9 +5,24 @@ namespace spec\PlanB\Utils\Type;
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Wrapper\ObjectWrapper;
 use PlanB\Utils\Type\Type;
+use PlanB\Utils\TypeName\TypeName;
 
 class TypeSpec extends ObjectBehavior
 {
+    private const NULL = null;
+
+    private const INTEGER = 1232;
+
+    private const FLOAT = 1232.234;
+
+    private const ARRAY = ['a' => 1, 'b' => 2];
+
+    private const BOOL = true;
+
+    private const STRING = Type::STRING;
+
+    private const TEXT = 'cadena-de-texto';
+
     public function let()
     {
         $this->build();
@@ -72,7 +87,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_null()
     {
-        $this->build(null);
+        $this->build(self::NULL);
 
         $this->isArray()
             ->shouldReturn(false);
@@ -120,7 +135,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_integer()
     {
-        $this->build(1232);
+        $this->build(self::INTEGER);
 
         $this->isArray()
             ->shouldReturn(false);
@@ -170,7 +185,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_float()
     {
-        $this->build(1232.234);
+        $this->build(self::FLOAT);
 
         $this->isArray()
             ->shouldReturn(false);
@@ -275,7 +290,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_countable_array()
     {
-        $this->build(['a' => 1, 'b' => 2]);
+        $this->build(self::ARRAY);
 
         $this->isArray()
             ->shouldReturn(true);
@@ -376,7 +391,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_boolean()
     {
-        $this->build(true);
+        $this->build(self::BOOL);
 
         $this->isArray()
             ->shouldReturn(false);
@@ -426,7 +441,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_array()
     {
-        $this->build(['a' => 1, 'b' => 2]);
+        $this->build(self::ARRAY);
 
         $this->isArray()
             ->shouldReturn(true);
@@ -476,7 +491,7 @@ class TypeSpec extends ObjectBehavior
 
     public function it_can_determine_if_is_string()
     {
-        $this->build('string');
+        $this->build(self::STRING);
 
         $this->isArray()
             ->shouldReturn(false);
@@ -538,23 +553,86 @@ class TypeSpec extends ObjectBehavior
         $this->isTypeOf(\Exception::class, ObjectWrapper::class)
             ->shouldReturn(true);
 
+        $this->isTypeOf(Type::SCALAR)
+            ->shouldReturn(false);
+
+        $this->isTypeOf(Type::CALLABLE)
+            ->shouldReturn(false);
+
     }
 
     public function it_can_determine_if_is_an_type_of_native()
     {
-        $this->build('cadena-de-texto');
+        $this->build(self::TEXT);
 
-        $this->isTypeOf('string')
+        $this->isTypeOf(Type::STRING)
             ->shouldReturn(true);
+
+        $this->isTypeOf(Type::SCALAR)
+            ->shouldReturn(true);
+
 
     }
 
+    public function it_can_determine_if_is_countable(\Countable $object)
+    {
+
+        $this->build($object);
+
+        $this->isTypeOf(Type::STRING, Type::COUNTABLE, Type::INTEGER)
+            ->shouldReturn(true);
+    }
+
+
+    public function it_can_determine_if_is_iterable(\ArrayIterator $object)
+    {
+
+        $this->build($object);
+
+        $this->isTypeOf(Type::COUNTABLE)
+            ->shouldReturn(true);
+
+        $this->isTypeOf(Type::ITERABLE)
+            ->shouldReturn(true);
+
+        $this->isTypeOf(Type::SCALAR)
+            ->shouldReturn(false);
+
+
+        $this->isTypeOf(Type::CALLABLE)
+            ->shouldReturn(false);
+    }
+
+    public function it_can_determine_if_is_typeof_callable()
+    {
+
+        $this->build(function () {
+        });
+
+        $this->isTypeOf(Type::COUNTABLE)
+            ->shouldReturn(false);
+
+        $this->isTypeOf(Type::ITERABLE)
+            ->shouldReturn(false);
+
+        $this->isTypeOf(Type::SCALAR)
+            ->shouldReturn(false);
+
+        $this->isTypeOf(Type::CALLABLE)
+            ->shouldReturn(true);
+    }
+
+
     public function it_can_return_the_typename_on_scalar()
     {
-        $this->build('cadena-de-texto');
+        $this->build(self::TEXT);
 
         $this->getTypeName()
-            ->shouldReturn('string');
+            ->shouldHaveType(TypeName::class);
+
+        $this->getTypeName()
+            ->stringify()
+            ->shouldReturn(Type::STRING);
 
     }
 
@@ -563,12 +641,34 @@ class TypeSpec extends ObjectBehavior
         $this->build(new \stdClass());
 
         $this->getTypeName()
+            ->shouldHaveType(TypeName::class);
+
+        $this->getTypeName()
+            ->stringify()
             ->shouldReturn(\stdClass::class);
 
     }
 
+    public function it_can_determine_if_value_is_convertible_to_string()
+    {
+        $this->build();
 
-    private function build($variable = 'cadena-de-texto'): void
+        $this->isConvertibleToString()
+            ->shouldReturn(true);
+
+    }
+
+
+    public function it_can_determine_if_value_is_not_convertible_to_string()
+    {
+        $this->build(new \stdClass());
+
+        $this->isConvertibleToString()
+            ->shouldReturn(false);
+
+    }
+
+    private function build($variable = self::TEXT): void
     {
         $this->beConstructedThrough('create', [$variable]);
     }

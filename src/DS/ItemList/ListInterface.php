@@ -21,7 +21,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
 
 
     /**
-     * Agrega un elemento a la colección
+     * Agrega un nuevo item a la lista, sin clave
      *
      * @param mixed $value
      *
@@ -30,7 +30,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     public function add($value): ListInterface;
 
     /**
-     * Agrega un conjunto de elementos
+     * Agrega un conjunto de items sin clave
      *
      * @param mixed[]|iterable $items
      *
@@ -38,8 +38,19 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      */
     public function addAll(iterable $items): ListInterface;
 
+
     /**
-     * Agrega una pareja clave/valor a la colección
+     * Elimina todos los elemntos de la lista  y
+     * agrega un nuevo conjunto de Items sin clave
+     *
+     * @param mixed[]|iterable $items
+     *
+     * @return $this
+     */
+    public function clearAndAdd(iterable $items): ListInterface;
+
+    /**
+     * Agrega un nuevo Item a la lista, con clave
      *
      * @param mixed $key
      * @param mixed $value
@@ -50,7 +61,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
 
 
     /**
-     * Agrega un conjunto de parejas clave/valor
+     * Agrega un conjunto de Items con clave
      *
      * @param mixed[]|iterable $items
      *
@@ -58,11 +69,21 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      */
     public function setAll(iterable $items): ListInterface;
 
+    /**
+     * Elimina todos los elemntos de la lista  y
+     * agrega un nuevo conjunto de Items con clave
+     *
+     * @param mixed[]|iterable $items
+     *
+     * @return $this
+     */
+    public function clearAndSet(iterable $items): ListInterface;
+
 
     /**
      * Devuelve un elemento
      *
-     * @param mixed      $key
+     * @param mixed $key
      *
      * @param mixed|null $default
      *
@@ -99,6 +120,13 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
 
 
     /**
+     * Elimina todos los elementos de la lista
+     *
+     * @return ListInterface
+     */
+    public function clear(): ListInterface;
+
+    /**
      * Devuelve el número total de elementos
      *
      * @return int
@@ -106,17 +134,17 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     public function count(): int;
 
     /**
-     * Indica si la colección está vacia
+     * Indica si la lista está vacia
      *
      * @return bool
      */
     public function isEmpty(): bool;
 
     /**
-     * Ejecuta una acción para cada elemento de la colección
+     * Ejecuta una acción para cada elemento de la lista
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -124,22 +152,22 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
 
 
     /**
-     * Devuelve el resultado de aplicar una acción a cada elemento de la colección
+     * Devuelve el resultado de aplicar una acción a cada elemento de la lista
      *
-     * La colección original permanece inmutable
+     * La lista original permanece inmutable
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
     public function map(callable $callable, ...$userdata): self;
 
     /**
-     * Devuelve una colección con los elementos que cumplen un criterio
+     * Devuelve una lista con los elementos que cumplen un criterio
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -150,7 +178,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * o nulo si no encuentra ninguno
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed|null
      */
@@ -161,28 +189,28 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * o lanza una excepción si no encuentra ninguno
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed
      */
     public function find(callable $callable, ...$userdata);
 
     /**
-     * Reduce una colección, a un unico valor
+     * Reduce una lista, a un unico valor
      *
-     * @param callable   $callable
+     * @param callable $callable
      * @param mixed|null $initial
-     * @param mixed      ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed
      */
     public function reduce(callable $callable, $initial = null, ...$userdata);
 
     /**
-     * Devuelve un array con los elementos de la colección
+     * Devuelve un array con los elementos de la lista
      *
      * @param callable|null $callable
-     * @param mixed         ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed[]
      */
@@ -211,4 +239,41 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * @return string
      */
     public function toJson(int $options = 0, int $depth = 512): string;
+
+    /**
+     * Silencia las excepciones
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function silentExceptions(): ListInterface;
+
+    /**
+     * Añade un validador
+     *
+     * @param callable $validator
+     * @param int $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addValidator(callable $validator, int $order = 1): ListInterface;
+
+    /**
+     * Añade un normalizador
+     *
+     * @param callable $normalizer
+     * @param int $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addNormalizer(callable $normalizer, int $order = 1): ListInterface;
+
+    /**
+     * Añade un normalizador de clave
+     *
+     * @param callable $validator
+     * @param int $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addKeyNormalizer(callable $validator, int $order = 1): ListInterface;
 }

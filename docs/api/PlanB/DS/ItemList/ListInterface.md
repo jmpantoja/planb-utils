@@ -18,7 +18,7 @@
 ## Methods
 
 ### add
-Agrega un elemento a la colección
+Agrega un nuevo item a la lista, sin clave
 
 
 **ListInterface::add**(mixed $value) : [$this](../../../$this.md)
@@ -32,7 +32,7 @@ Agrega un elemento a la colección
 
 
 ### addAll
-Agrega un conjunto de elementos
+Agrega un conjunto de items sin clave
 
 
 **ListInterface::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -46,7 +46,7 @@ Agrega un conjunto de elementos
 
 
 ### set
-Agrega una pareja clave/valor a la colección
+Agrega un nuevo Item a la lista, con clave
 
 
 **ListInterface::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
@@ -61,7 +61,7 @@ Agrega una pareja clave/valor a la colección
 
 
 ### setAll
-Agrega un conjunto de parejas clave/valor
+Agrega un conjunto de Items con clave
 
 
 **ListInterface::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -143,7 +143,7 @@ Devuelve el número total de elementos
 
 
 ### isEmpty
-Indica si la colección está vacia
+Indica si la lista está vacia
 
 
 **ListInterface::isEmpty**() : bool
@@ -154,7 +154,7 @@ Indica si la colección está vacia
 
 
 ### each
-Ejecuta una acción para cada elemento de la colección
+Ejecuta una acción para cada elemento de la lista
 
 
 **ListInterface::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -169,8 +169,8 @@ Ejecuta una acción para cada elemento de la colección
 
 
 ### map
-Devuelve el resultado de aplicar una acción a cada elemento de la colección
-La colección original permanece inmutable
+Devuelve el resultado de aplicar una acción a cada elemento de la lista
+La lista original permanece inmutable
 
 **ListInterface::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
@@ -184,7 +184,7 @@ La colección original permanece inmutable
 
 
 ### filter
-Devuelve una colección con los elementos que cumplen un criterio
+Devuelve una lista con los elementos que cumplen un criterio
 
 
 **ListInterface::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -231,7 +231,7 @@ o lanza una excepción si no encuentra ninguno
 
 
 ### reduce
-Reduce una colección, a un unico valor
+Reduce una lista, a un unico valor
 
 
 **ListInterface::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -247,7 +247,7 @@ Reduce una colección, a un unico valor
 
 
 ### toArray
-Devuelve un array con los elementos de la colección
+Devuelve un array con los elementos de la lista
 
 
 **ListInterface::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
@@ -294,6 +294,62 @@ Convierte el array en una cadena json
 | --- | --- | --- |
 |int |$options |  |
 |int |$depth |  |
+
+---
+
+
+### silentExceptions
+Silencia las excepciones
+
+
+**ListInterface::silentExceptions**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### addValidator
+Añade un validador
+
+
+**ListInterface::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizador
+
+
+**ListInterface::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### addKeyNormalizer
+Añade un normalizador de clave
+
+
+**ListInterface::addKeyNormalizer**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
 
 ---
 

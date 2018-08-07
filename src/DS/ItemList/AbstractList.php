@@ -12,7 +12,13 @@ declare(strict_types=1);
 namespace PlanB\DS\ItemList;
 
 use PlanB\DS\ItemList\Exception\ItemNotFoundException;
-use PlanB\DS\ItemList\Resolver\ResolverBag;
+use PlanB\DS\ItemList\Resolver\CustomKeyNormalizer;
+use PlanB\DS\ItemList\Resolver\CustomNormalizer;
+use PlanB\DS\ItemList\Resolver\CustomValidator;
+use PlanB\DS\ItemList\Resolver\KeyNormalizer;
+use PlanB\DS\ItemList\Resolver\Normalizer;
+use PlanB\DS\ItemList\Resolver\Resolution;
+use PlanB\DS\ItemList\Resolver\Validator;
 
 /**
  * Generic Collection
@@ -32,69 +38,33 @@ abstract class AbstractList implements ListInterface
     protected $items = [];
 
     /**
-     * @var \SplPriorityQueue
+     * @var \PlanB\DS\ItemList\Resolver\Resolution
      */
-    protected $resolverBag;
+    protected $resolution;
 
 
     /**
-     * ArrayList constructor.
+     * List constructor.
      */
     public function __construct()
     {
         $this->items = [];
-        $this->resolverBag = new ResolverBag();
+        $this->resolution = Resolution::create($this);
 
-        $this->customize($this->resolverBag);
+        $this->customize();
     }
 
-
     /**
-     * Añade un nuevo resolver
-     *
-     * @param callable|\PlanB\DS\ItemList\Resolver\ResolverInterface $resolver
-     * @param int                                                    $priority
-     *
-     * @return \PlanB\DS\ItemList\ListInterface
-     */
-    public function addResolver($resolver, int $priority = 0): ListInterface
-    {
-        $this->resolverBag->addResolver($resolver, $priority);
-
-        return $this;
-    }
-
-
-    /**
-     * Configura la lista
-     *
-     * @param \PlanB\DS\ItemList\Resolver\ResolverBag $resolverBag
+     * Configura el comportamiento de  la lista
      *
      * @return void
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function customize(ResolverBag $resolverBag): void
+    protected function customize(): void
     {
     }
 
-
     /**
-     * Configura la Lista para que no se lanzen excepciones
-     * cuando se trata de añadir un valor invalido
-     *
-     * @return \PlanB\DS\ItemList\ListInterface
-     */
-    public function ignoreOnInvalid(): self
-    {
-        $this->resolverBag->ignoreOnInvalid();
-
-        return $this;
-    }
-
-
-    /**
-     * Devuelve el número total de elementos
+     * @inheritdoc
      *
      * @return int
      */
@@ -104,7 +74,7 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Indica si la colección está vacia
+     * @inheritdoc
      *
      * @return bool
      */
@@ -114,10 +84,10 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Ejecuta una acción para cada elemento de la colección
+     * @inheritdoc
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -132,12 +102,10 @@ abstract class AbstractList implements ListInterface
 
 
     /**
-     * Devuelve el resultado de aplicar una acción a cada elemento de la colección
-     *
-     * La colección original permanece inmutable
+     * @inheritdoc
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -158,10 +126,10 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Devuelve una colección con los elementos que cumplen un criterio
+     * @inheritdoc
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -181,11 +149,10 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Devuelve el primer elemento que cumpla con el criterio,
-     * o nulo si no encuentra ninguno
+     * @inheritdoc
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed|null
      */
@@ -200,11 +167,10 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Devuelve el primer elemento que cumpla con el criterio,
-     * o lanza una excepción si no encuentra ninguno
+     * @inheritdoc
      *
      * @param callable $callable
-     * @param mixed    ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed
      */
@@ -220,11 +186,11 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Reduce una colección, a un unico valor
+     * @inheritdoc
      *
-     * @param callable   $callable
+     * @param callable $callable
      * @param mixed|null $initial
-     * @param mixed      ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed
      */
@@ -238,10 +204,10 @@ abstract class AbstractList implements ListInterface
     }
 
     /**
-     * Devuelve un array con los elementos de la colección
+     * @inheritdoc
      *
      * @param callable|null $callable
-     * @param mixed         ...$userdata
+     * @param mixed ...$userdata
      *
      * @return mixed[]
      */
@@ -308,5 +274,76 @@ abstract class AbstractList implements ListInterface
     public function toJson(int $options = 0, int $depth = 512): string
     {
         return json_encode($this, $options, $depth);
+    }
+
+    /**
+     * Silencia las excepciones
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function silentExceptions(): ListInterface
+    {
+        $this->resolution->silentExceptions();
+
+        return $this;
+    }
+
+
+    /**
+     * Añade un validador
+     *
+     * @param callable $validator
+     * @param int      $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addValidator(callable $validator, int $order = 1): ListInterface
+    {
+        if (!($validator instanceof Validator)) {
+            $validator = CustomValidator::create($validator);
+        }
+
+        $this->resolution->add($validator, $order);
+
+        return $this;
+    }
+
+    /**
+     * Añade un normalizador
+     *
+     * @param callable $normalizer
+     * @param int      $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addNormalizer(callable $normalizer, int $order = 1): ListInterface
+    {
+        if (!($normalizer instanceof Normalizer)) {
+            $normalizer = CustomNormalizer::create($normalizer);
+        }
+
+        $this->resolution->add($normalizer, $order);
+
+        return $this;
+    }
+
+
+    /**
+     * Añade un normalizador de clave
+     *
+     * @param callable $normalizer
+     * @param int      $order
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addKeyNormalizer(callable $normalizer, int $order = 1): ListInterface
+    {
+        if (!($normalizer instanceof KeyNormalizer)) {
+            $normalizer = CustomKeyNormalizer::create($normalizer);
+        }
+
+        $this->resolution->add($normalizer, $order);
+
+        return $this;
     }
 }

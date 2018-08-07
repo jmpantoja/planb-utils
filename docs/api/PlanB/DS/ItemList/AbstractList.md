@@ -17,16 +17,16 @@
 
 ## Properties
 - items
-- resolverBag
+- resolution
 
 
 ## Methods
 
 ### add
-Agrega un elemento a la colección
 
 
-**AbstractList::add**(mixed $value) : [$this](../../../$this.md)
+
+**AbstractList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -37,7 +37,7 @@ Agrega un elemento a la colección
 
 
 ### addAll
-Agrega un conjunto de elementos
+
 
 
 **AbstractList::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -51,7 +51,7 @@ Agrega un conjunto de elementos
 
 
 ### set
-Agrega una pareja clave/valor a la colección
+
 
 
 **AbstractList::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
@@ -66,7 +66,7 @@ Agrega una pareja clave/valor a la colección
 
 
 ### setAll
-Agrega un conjunto de parejas clave/valor
+
 
 
 **AbstractList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -80,7 +80,7 @@ Agrega un conjunto de parejas clave/valor
 
 
 ### get
-Devuelve un elemento
+
 
 
 **AbstractList::get**(mixed $key, mixed|null $default = null) : mixed
@@ -95,7 +95,7 @@ Devuelve un elemento
 
 
 ### exists
-Indica si un elemento existe
+
 
 
 **AbstractList::exists**(mixed $key) : bool
@@ -109,7 +109,7 @@ Indica si un elemento existe
 
 
 ### has
-exists alias
+
 
 
 **AbstractList::has**(mixed $key) : bool
@@ -123,7 +123,7 @@ exists alias
 
 
 ### remove
-Elimina un elemento
+
 
 
 **AbstractList::remove**(mixed $key) : [$this](../../../$this.md)
@@ -137,7 +137,7 @@ Elimina un elemento
 
 
 ### __construct
-ArrayList constructor.
+List constructor.
 
 
 **AbstractList::__construct**() : 
@@ -147,41 +147,11 @@ ArrayList constructor.
 ---
 
 
-### addResolver
-Añade un nuevo resolver
-
-
-**AbstractList::addResolver**(callable|[ResolverInterface](../../../ResolverInterface.md) $resolver, int $priority = 0) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
-|int |$priority |  |
-
----
-
-
 ### customize
-Configura la lista
+Configura el comportamiento de  la lista
 
 
-protected **AbstractList::customize**([ResolverBag](../../../ResolverBag.md) $resolverBag) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[ResolverBag](../../../ResolverBag.md) |$resolverBag |  |
-
----
-
-
-### ignoreOnInvalid
-Configura la Lista para que no se lanzen excepciones
-cuando se trata de añadir un valor invalido
-
-
-**AbstractList::ignoreOnInvalid**() : [ListInterface](../../../ListInterface.md)
+protected **AbstractList::customize**() : void
 
 
 
@@ -189,7 +159,7 @@ cuando se trata de añadir un valor invalido
 
 
 ### count
-Devuelve el número total de elementos
+
 
 
 **AbstractList::count**() : int
@@ -200,7 +170,7 @@ Devuelve el número total de elementos
 
 
 ### isEmpty
-Indica si la colección está vacia
+
 
 
 **AbstractList::isEmpty**() : bool
@@ -211,7 +181,7 @@ Indica si la colección está vacia
 
 
 ### each
-Ejecuta una acción para cada elemento de la colección
+
 
 
 **AbstractList::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -226,8 +196,8 @@ Ejecuta una acción para cada elemento de la colección
 
 
 ### map
-Devuelve el resultado de aplicar una acción a cada elemento de la colección
-La colección original permanece inmutable
+
+
 
 **AbstractList::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
@@ -241,7 +211,7 @@ La colección original permanece inmutable
 
 
 ### filter
-Devuelve una colección con los elementos que cumplen un criterio
+
 
 
 **AbstractList::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -256,8 +226,7 @@ Devuelve una colección con los elementos que cumplen un criterio
 
 
 ### search
-Devuelve el primer elemento que cumpla con el criterio,
-o nulo si no encuentra ninguno
+
 
 
 **AbstractList::search**(callable $callable, mixed ...$userdata) : mixed|null
@@ -272,8 +241,7 @@ o nulo si no encuentra ninguno
 
 
 ### find
-Devuelve el primer elemento que cumpla con el criterio,
-o lanza una excepción si no encuentra ninguno
+
 
 
 **AbstractList::find**(callable $callable, mixed ...$userdata) : mixed
@@ -288,7 +256,7 @@ o lanza una excepción si no encuentra ninguno
 
 
 ### reduce
-Reduce una colección, a un unico valor
+
 
 
 **AbstractList::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -304,7 +272,7 @@ Reduce una colección, a un unico valor
 
 
 ### toArray
-Devuelve un array con los elementos de la colección
+
 
 
 **AbstractList::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
@@ -351,6 +319,62 @@ Convierte el array en una cadena json
 | --- | --- | --- |
 |int |$options |  |
 |int |$depth |  |
+
+---
+
+
+### silentExceptions
+Silencia las excepciones
+
+
+**AbstractList::silentExceptions**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### addValidator
+Añade un validador
+
+
+**AbstractList::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizador
+
+
+**AbstractList::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### addKeyNormalizer
+Añade un normalizador de clave
+
+
+**AbstractList::addKeyNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
 
 ---
 

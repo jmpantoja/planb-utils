@@ -6,8 +6,15 @@ use PlanB\Utils\Hydrator\GetSetHydrator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+use \spec\PlanB\Utils\Hydrator\Fake\FakePerson;
+use \spec\PlanB\Utils\Hydrator\Fake\FakeIterator;
+
 class GetSetHydratorSpec extends ObjectBehavior
 {
+    private const NAME = 'pepe';
+
+    private const LAST_NAME = 'garcia';
+
     public function let()
     {
         $this->beConstructedThrough('create');
@@ -21,59 +28,68 @@ class GetSetHydratorSpec extends ObjectBehavior
 
     public function it_can_converts_an_array_into_an_object()
     {
-        $this->hydrate(Dummy::class, [
-            'name' => 'pepe'
+        $this->hydrate(FakePerson::class, [
+            'name' => self::NAME
         ])
             ->getName()
-            ->shouldReturn('pepe');
+            ->shouldReturn(self::NAME);
+    }
+
+    public function it_can_hydrate_an_exists_object(FakePerson $person)
+    {
+        $person->setName(self::NAME)->shouldBeCalledTimes(1);
+
+        $this->hydrate($person, [
+            'name' => self::NAME
+        ]);
     }
 
     public function it_converts_keys_to_camelcase_before_hydrate()
     {
-        $this->hydrate(Dummy::class, [
-            'last-name' => 'garcia'
+        $this->hydrate(FakePerson::class, [
+            'last-name' => self::LAST_NAME
         ])
             ->getLastName()
-            ->shouldReturn('garcia');
+            ->shouldReturn(self::LAST_NAME);
     }
 
     public function it_can_converts_an_object_into_an_array()
     {
-        $dummy = new Dummy ();
-        $dummy->setName('pepe');
-        $dummy->setLastName('garcia');
+        $dummy = new FakePerson ();
+        $dummy->setName(self::NAME);
+        $dummy->setLastName(self::LAST_NAME);
 
         $this->extract($dummy)
             ->shouldReturn([
-                'name' => 'pepe',
-                'last_name' => 'garcia'
+                'name' => self::NAME,
+                'last_name' => self::LAST_NAME
             ]);
     }
 
     public function it_can_converts_an_iterable_object_into_an_array()
     {
-        $dummy = new DummyIterator();
-        $dummy->setName('pepe');
-        $dummy->setLastName('garcia');
+        $dummy = new FakeIterator();
+        $dummy->setName(self::NAME);
+        $dummy->setLastName(self::LAST_NAME);
 
         $this->extract($dummy)
             ->shouldReturn([
-                'name' => 'pepe',
-                'last_name' => 'garcia'
+                'name' => self::NAME,
+                'last_name' => self::LAST_NAME
             ]);
     }
 
 
     public function it_can_converts_an_object_into_an_array_formating_keys_to_snake_case()
     {
-        $dummy = new Dummy ();
-        $dummy->setName('pepe');
-        $dummy->setLastName('garcia');
+        $dummy = new FakePerson ();
+        $dummy->setName(self::NAME);
+        $dummy->setLastName(self::LAST_NAME);
 
         $this->extract($dummy, '-')
             ->shouldReturn([
-                'name' => 'pepe',
-                'last-name' => 'garcia'
+                'name' => self::NAME,
+                'last-name' => self::LAST_NAME
             ]);
     }
 

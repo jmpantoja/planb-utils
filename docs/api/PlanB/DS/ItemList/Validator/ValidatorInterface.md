@@ -1,0 +1,23 @@
+
+                                                                                                                                            
+    
+# ValidatorInterface
+
+
+> 
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+                                                                                                                                                                                                                                                                                                                                                                                                            
+    
+                                                                                                                                                                                                                                                                             
+                

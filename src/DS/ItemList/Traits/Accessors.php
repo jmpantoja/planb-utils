@@ -13,11 +13,11 @@ declare(strict_types=1);
 namespace PlanB\DS\ItemList\Traits;
 
 use PlanB\DS\ItemList\Exception\ItemNotFoundException;
-use PlanB\DS\ItemList\KeyValue;
+use PlanB\DS\ItemList\Item;
 use PlanB\DS\ItemList\ListInterface;
 
 /**
- * Aporta la capacidad de agregar y obtener elementos de la colección
+ * Agrupa los métodos relacionados con agregar o devolver elementos de la lista
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
@@ -30,27 +30,27 @@ trait Accessors
     protected $items = [];
 
     /**
-     * @var \PlanB\DS\ItemList\Resolver\ResolverBag
+     * @var \PlanB\DS\ItemList\Resolver
      */
-    protected $resolverBag;
+    protected $resolution;
 
     /**
-     * Agrega un elemento a la colección
+     * @inheritdoc
      *
      * @param mixed $value
      *
-     * @return $this
+     * @return \PlanB\DS\ItemList\ListInterface
      */
     public function add($value): ListInterface
     {
-        $pair = KeyValue::fromValue($value);
-        $this->addPair($pair);
+        $item = Item::fromValue($value);
+        $this->tryAddItem($item);
 
         return $this;
     }
 
     /**
-     * Agrega un conjunto de elementos
+     * @inheritdoc
      *
      * @param mixed[]|iterable $items
      *
@@ -65,8 +65,23 @@ trait Accessors
         return $this;
     }
 
+
     /**
-     * Agrega una pareja clave/valor a la colección
+     * @inheritdoc
+     *
+     * @param mixed[]|iterable $items
+     *
+     * @return $this
+     */
+    public function clearAndAdd(iterable $items): ListInterface
+    {
+        return $this
+            ->clear()
+            ->addAll($items);
+    }
+
+    /**
+     * @inheritdoc
      *
      * @param mixed $key
      * @param mixed $value
@@ -75,15 +90,15 @@ trait Accessors
      */
     public function set($key, $value): ListInterface
     {
-        $pair = KeyValue::fromPair($key, $value);
-        $this->addPair($pair);
+        $item = Item::fromKeyValue($key, $value);
+        $this->tryAddItem($item);
 
         return $this;
     }
 
 
     /**
-     * Agrega un conjunto de parejas clave/valor
+     * @inheritdoc
      *
      * @param mixed[]|iterable $items
      *
@@ -100,9 +115,23 @@ trait Accessors
 
 
     /**
-     * Devuelve un elemento
+     * @inheritdoc
      *
-     * @param mixed      $key
+     * @param mixed[]|iterable $items
+     *
+     * @return $this
+     */
+    public function clearAndSet(iterable $items): ListInterface
+    {
+        return $this
+            ->clear()
+            ->setAll($items);
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @param mixed $key
      *
      * @param mixed|null $default
      *
@@ -114,14 +143,14 @@ trait Accessors
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string) $key);
+            throw ItemNotFoundException::forKey((string)$key);
         }
 
         return $this->items[$key] ?? $default;
     }
 
     /**
-     * Indica si un elemento existe
+     * @inheritdoc
      *
      * @param mixed $key
      *
@@ -133,7 +162,7 @@ trait Accessors
     }
 
     /**
-     * exists alias
+     * @inheritdoc
      *
      * @param mixed $key
      *
@@ -145,11 +174,11 @@ trait Accessors
     }
 
     /**
-     * Elimina un elemento
+     * @inheritdoc
      *
      * @param mixed $key
      *
-     * @return $this
+     * @return ListInterface
      */
     public function remove($key): ListInterface
     {
@@ -159,43 +188,52 @@ trait Accessors
     }
 
     /**
-     * Agrega una pareja clave/valor a la colección
+     * @inheritdoc
      *
-     * @param \PlanB\DS\ItemList\KeyValue $pair
+     * @return ListInterface
+     */
+    public function clear(): ListInterface
+    {
+        $this->items = [];
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * @param \PlanB\DS\ItemList\Item $item
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
-    private function addPair(KeyValue $pair): ListInterface
+    private function tryAddItem(Item $item): ListInterface
     {
-        $this->resolverBag->resolve($pair, $this);
+        $valid = $this->resolution->resolve($item);
 
-        if ($pair->isInvalid()) {
-            return $this;
+        if ($valid) {
+            $this->addItemWithKey($item);
+            $this->addItemWithoutKey($item);
         }
-
-        $this->addPairWithKey($pair);
-        $this->addPairWithoutKey($pair);
 
         return $this;
     }
 
 
     /**
-     * Agrega una pareja clave/valor a la colección,
+     * Agrega un nuevo Item a la lista
      * en el caso de que la clave esté definida
      *
-     * @param \PlanB\DS\ItemList\KeyValue $pair
+     * @param \PlanB\DS\ItemList\Item $item
      *
      * @return $this
      */
-    private function addPairWithKey(KeyValue $pair): ListInterface
+    private function addItemWithKey(Item $item): ListInterface
     {
-        if (!$pair->hasKey()) {
+        if (!$item->hasKey()) {
             return $this;
         }
 
-        $value = $pair->getValue();
-        $key = $pair->getKey();
+        $value = $item->getValue();
+        $key = $item->getKey();
 
         $this->items[$key] = $value;
 
@@ -204,20 +242,20 @@ trait Accessors
 
 
     /**
-     * Agrega una pareja clave/valor a la colección,
+     * Agrega un nuevo Item a la lista
      * en el caso de que la clave no esté definida
      *
-     * @param \PlanB\DS\ItemList\KeyValue $pair
+     * @param \PlanB\DS\ItemList\Item $item
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
-    private function addPairWithoutKey(KeyValue $pair): ListInterface
+    private function addItemWithoutKey(Item $item): ListInterface
     {
-        if ($pair->hasKey()) {
+        if ($item->hasKey()) {
             return $this;
         }
 
-        $value = $pair->getValue();
+        $value = $item->getValue();
         $this->items[] = $value;
 
         return $this;

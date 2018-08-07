@@ -12,6 +12,8 @@ use Prophecy\Argument;
 
 class AssuranceMethodSpec extends ObjectBehavior
 {
+    private const FAKE_METHOD = 'FakeMethod';
+
     public function it_is_initializable(Path $path)
     {
         $this->beConstructedThrough('create', [$path, 'isEmpty']);
@@ -59,7 +61,7 @@ class AssuranceMethodSpec extends ObjectBehavior
 
     public function it_reject_an_unexits_method(Path $path)
     {
-        $this->beConstructedThrough('create', [$path, 'FakeMethod']);
+        $this->beConstructedThrough('create', [$path, self::FAKE_METHOD]);
         $this->shouldThrow(InvalidAssuranceMethodException::class)->duringInstantiation();
     }
 

@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# Resolvable
+# Hydrator
 
 
-> Representa a una acción que se realiza antes de añadir un valor a la lista
+> Valida un Item, mediante un callback
 >
 > 
 
@@ -17,16 +17,62 @@
 
 ## Methods
 
+### __construct
+CustomValidator constructor.
+
+
+**Hydrator::__construct**(string $type, callable $callback) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$callback |  |
+
+---
+
+
+### create
+Crea una nueva instancia
+
+
+static **Hydrator::create**(string $type, callable $callback) : [Hydrator](../../../../Hydrator.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$callback |  |
+
+---
+
+
 ### __invoke
-Resuelve un item, indicando si es valido o no para continuar con el
+Resuelve un Item, normalizando el valor
 
 
-**Resolvable::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
+**Hydrator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[Item](../../../../Item.md) |$item |  |
+|[ListInterface](../../../../ListInterface.md) |$context |  |
+
+---
+
+
+### normalize
+Devuelve el valor normalizado
+
+
+**Hydrator::normalize**(mixed $value, null $key = null, [ListInterface](../../../../ListInterface.md) $context = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+|null |$key | |mixed                           $key |
 |[ListInterface](../../../../ListInterface.md) |$context |  |
 
 ---

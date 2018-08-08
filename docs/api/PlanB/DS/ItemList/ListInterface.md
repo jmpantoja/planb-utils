@@ -45,6 +45,21 @@ Agrega un conjunto de items sin clave
 ---
 
 
+### clearAndAdd
+Elimina todos los elemntos de la lista  y
+agrega un nuevo conjunto de Items sin clave
+
+
+**ListInterface::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
 Agrega un nuevo Item a la lista, con clave
 
@@ -65,6 +80,21 @@ Agrega un conjunto de Items con clave
 
 
 **ListInterface::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+Elimina todos los elemntos de la lista  y
+agrega un nuevo conjunto de Items con clave
+
+
+**ListInterface::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -127,6 +157,17 @@ Elimina un elemento
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+
+---
+
+
+### clear
+Elimina todos los elementos de la lista
+
+
+**ListInterface::clear**() : [ListInterface](../../../ListInterface.md)
+
+
 
 ---
 
@@ -305,6 +346,21 @@ Silencia las excepciones
 **ListInterface::silentExceptions**() : [ListInterface](../../../ListInterface.md)
 
 
+
+---
+
+
+### addHydrator
+Añade un hydrator
+
+
+**ListInterface::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
 
 ---
 

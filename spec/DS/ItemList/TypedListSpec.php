@@ -3,6 +3,7 @@
 namespace spec\PlanB\DS\ItemList;
 
 use PlanB\DS\ItemList\Exception\InvalidItemException;
+use PlanB\DS\ItemList\InlineTypedList;
 use PlanB\DS\ItemList\ListInterface;
 use PlanB\DS\ItemList\TypableList;
 use PlanB\DS\ItemList\TypedList;
@@ -20,7 +21,7 @@ class TypedListSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create', [self::TYPE]);
+        $this->beConstructedThrough('ofType', [self::TYPE]);
     }
 
     public function it_is_initializable()
@@ -41,7 +42,7 @@ class TypedListSpec extends ObjectBehavior
 
     public function it_throw_an_exception_when_create_with_an_invalid_type()
     {
-        $this->beConstructedThrough('create', [self::INVALID_TYPE]);
+        $this->beConstructedThrough('ofType', [self::INVALID_TYPE]);
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
 

@@ -51,18 +51,11 @@ class ItemSpec extends ObjectBehavior
     }
 
 
-    public function it_can_retrive_the_value_primitive_type()
+    public function it_check_type_of()
     {
-        $this->getType()->shouldReturn('string');
+        $this->isTypeOf('string')->shouldReturn(true);
+        $this->isTypeOf('float')->shouldReturn(false);
     }
-
-    public function it_can_retrive_the_value_classname()
-    {
-        $this->beConstructedFromKeyValue(self::KEY, new \stdClass());
-
-        $this->getType()->shouldReturn(\stdClass::class);
-    }
-
 
     public function it_can_retrive_key()
     {

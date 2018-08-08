@@ -122,13 +122,16 @@ Asigna una nueva clave
 ---
 
 
-### getType
-Devuelve el tipo
+### isTypeOf
+Indica si el valor es de un tipo determinado
 
 
-**Item::getType**() : string
+**Item::isTypeOf**(string ...$allowed) : bool
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$allowed |  |
 
 ---
 

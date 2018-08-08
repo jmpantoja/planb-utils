@@ -143,7 +143,7 @@ trait Accessors
         $notPassDefault = (1 === func_num_args());
 
         if ($notExists && $notPassDefault) {
-            throw ItemNotFoundException::forKey((string)$key);
+            throw ItemNotFoundException::forKey((string) $key);
         }
 
         return $this->items[$key] ?? $default;
@@ -178,7 +178,7 @@ trait Accessors
      *
      * @param mixed $key
      *
-     * @return ListInterface
+     * @return \PlanB\DS\ItemList\ListInterface
      */
     public function remove($key): ListInterface
     {
@@ -190,11 +190,12 @@ trait Accessors
     /**
      * @inheritdoc
      *
-     * @return ListInterface
+     * @return \PlanB\DS\ItemList\ListInterface
      */
     public function clear(): ListInterface
     {
         $this->items = [];
+
         return $this;
     }
 

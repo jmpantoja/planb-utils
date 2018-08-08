@@ -16,7 +16,7 @@ use PlanB\ValueObject\Text\Text;
 /**
  * Lista de elementos tipo Text
  */
-class TextList extends AbstractList implements TypableList
+class TextList extends TypedList
 {
 
     /**
@@ -32,20 +32,6 @@ class TextList extends AbstractList implements TypableList
         $this->addNormalizer($normalizer, -PHP_INT_MAX);
     }
 
-    /**
-     * Crea una instancia a partir de un conjunto de valores
-     *
-     * @param mixed[] $input
-     *
-     * @return \PlanB\DS\ItemList\TextList
-     */
-    public static function create(iterable $input = []): self
-    {
-        $list = new static();
-        $list->setAll($input);
-
-        return $list;
-    }
 
     /**
      * Devuelve el tipo de la lista

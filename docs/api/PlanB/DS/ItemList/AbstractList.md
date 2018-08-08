@@ -50,6 +50,20 @@
 ---
 
 
+### clearAndAdd
+
+
+
+**AbstractList::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
 
 
@@ -70,6 +84,20 @@
 
 
 **AbstractList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+
+
+
+**AbstractList::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -126,12 +154,23 @@
 
 
 
-**AbstractList::remove**(mixed $key) : [$this](../../../$this.md)
+**AbstractList::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+
+---
+
+
+### clear
+
+
+
+**AbstractList::clear**() : [ListInterface](../../../ListInterface.md)
+
+
 
 ---
 
@@ -330,6 +369,21 @@ Silencia las excepciones
 **AbstractList::silentExceptions**() : [ListInterface](../../../ListInterface.md)
 
 
+
+---
+
+
+### addHydrator
+Añade un hydrator
+
+
+**AbstractList::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
 
 ---
 

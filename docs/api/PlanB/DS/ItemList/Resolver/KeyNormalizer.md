@@ -21,7 +21,7 @@
 Resuelve un Item, normalizando la clave
 
 
-**KeyNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**KeyNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |

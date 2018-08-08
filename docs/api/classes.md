@@ -13,6 +13,7 @@
 * [PlanB\DS\ItemList\Resolver\CustomKeyNormalizer](PlanB/DS/ItemList/Resolver/CustomKeyNormalizer.md)
 * [PlanB\DS\ItemList\Resolver\CustomNormalizer](PlanB/DS/ItemList/Resolver/CustomNormalizer.md)
 * [PlanB\DS\ItemList\Resolver\CustomValidator](PlanB/DS/ItemList/Resolver/CustomValidator.md)
+* [PlanB\DS\ItemList\Resolver\Hydrator](PlanB/DS/ItemList/Resolver/Hydrator.md)
 * [PlanB\DS\ItemList\Resolver\KeyNormalizer](PlanB/DS/ItemList/Resolver/KeyNormalizer.md)
 * [PlanB\DS\ItemList\Resolver\Normalizer](PlanB/DS/ItemList/Resolver/Normalizer.md)
 * [PlanB\DS\ItemList\Resolver\Resolution](PlanB/DS/ItemList/Resolver/Resolution.md)

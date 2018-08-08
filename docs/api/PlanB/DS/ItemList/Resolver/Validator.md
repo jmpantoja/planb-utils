@@ -21,7 +21,7 @@
 Resuelve un Item, asegurando que es válido
 
 
-**Validator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**Validator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |

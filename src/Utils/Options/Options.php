@@ -62,7 +62,7 @@ abstract class Options
      */
     protected function __construct(string $profile = self::DEFAULT_PROFILE)
     {
-        $this->profiles = TypedList::create('callable');
+        $this->profiles = TypedList::ofType('callable');
 
 
         $this->addProfile(self::DEFAULT_PROFILE, [$this, 'configure']);

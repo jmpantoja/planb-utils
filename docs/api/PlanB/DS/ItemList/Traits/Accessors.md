@@ -48,6 +48,20 @@
 ---
 
 
+### clearAndAdd
+
+
+
+**Accessors::clearAndAdd**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
 
 
@@ -68,6 +82,20 @@
 
 
 **Accessors::setAll**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+
+
+
+**Accessors::clearAndSet**([iterable](../../../../iterable.md) $items) : [$this](../../../../$this.md)
 
 
 |Parameters: | | |
@@ -124,12 +152,23 @@
 
 
 
-**Accessors::remove**(mixed $key) : [$this](../../../../$this.md)
+**Accessors::remove**(mixed $key) : [ListInterface](../../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+
+---
+
+
+### clear
+
+
+
+**Accessors::clear**() : [ListInterface](../../../../ListInterface.md)
+
+
 
 ---
 

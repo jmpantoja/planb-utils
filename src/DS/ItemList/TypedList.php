@@ -23,13 +23,15 @@ class TypedList extends AbstractList implements TypableList
      */
     private $innerType;
 
+
     /**
      * TypedList constructor.
      *
-     * @param string $innerType
+     * @param null|string $innerType
      */
-    public function __construct(string $innerType)
+    public function __construct(?string $innerType = null)
     {
+        $innerType = $innerType ?? $this->getInnerType();
 
         $validator = TypeValidator::create($innerType);
         $this->innerType = $innerType;
@@ -42,12 +44,27 @@ class TypedList extends AbstractList implements TypableList
     /**
      * Crea una instancia a partir de un conjunto de valores
      *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\ItemList\TypedList
+     */
+    public static function create(iterable $input = []): TypedList
+    {
+        $list = new static();
+        $list->setAll($input);
+
+        return $list;
+    }
+
+    /**
+     * Crea una instancia a partir de un conjunto de valores
+     *
      * @param string  $innerType
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\ItemList\ItemList
+     * @return \PlanB\DS\ItemList\TypedList
      */
-    public static function create(string $innerType, iterable $input = []): TypedList
+    public static function ofType(string $innerType, iterable $input = []): TypedList
     {
         $list = new static($innerType);
         $list->setAll($input);

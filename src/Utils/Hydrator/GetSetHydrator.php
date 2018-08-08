@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Hydrator;
 
-use PlanB\Utils\Type\Type;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 /**
@@ -49,8 +48,8 @@ class GetSetHydrator extends GetSetMethodNormalizer
     /**
      * Crea un objeto a partir de un array
      *
-     * @param mixed $className
-     * @param mixed[] $values
+     * @param string|object $classNameOrObject
+     * @param mixed[]       $values
      *
      * @return object
      */
@@ -93,6 +92,9 @@ class GetSetHydrator extends GetSetMethodNormalizer
         return parent::isAllowedAttribute($classOrObject, $attribute, $format, $context);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function denormalize($data, $class, $format = null, array $context = array())
     {
 
@@ -105,9 +107,9 @@ class GetSetHydrator extends GetSetMethodNormalizer
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    protected function instantiateObject(array &$data, $class, array &$context, \ReflectionClass $reflectionClass, $allowedAttributes, string $format = null)
+    protected function instantiateObject(array &$data, $class, array &$context, \ReflectionClass $reflectionClass, $allowedAttributes, ?string $format = null)
     {
         if (!is_null($this->object)) {
             $object = $this->object;
@@ -115,7 +117,7 @@ class GetSetHydrator extends GetSetMethodNormalizer
 
             return $object;
         }
+
         return parent::instantiateObject($data, $class, $context, $reflectionClass, $allowedAttributes, $format);
     }
-
 }

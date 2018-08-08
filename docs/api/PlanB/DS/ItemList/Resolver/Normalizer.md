@@ -21,7 +21,7 @@
 Resuelve un Item, normalizando el valor
 
 
-**Normalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**Normalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |

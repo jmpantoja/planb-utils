@@ -43,12 +43,12 @@ static **GetSetHydrator::create**() : [GetSetHydrator](../../../GetSetHydrator.m
 Crea un objeto a partir de un array
 
 
-**GetSetHydrator::hydrate**(string $className, [iterable](../../../iterable.md) $values) : object
+**GetSetHydrator::hydrate**(string|object $classNameOrObject, [iterable](../../../iterable.md) $values) : object
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$className |  |
+|string|object |$classNameOrObject |  |
 |[iterable](../../../iterable.md) |$values |  |
 
 ---
@@ -82,6 +82,42 @@ protected **GetSetHydrator::isAllowedAttribute**($classOrObject, $attribute, $fo
 | |$attribute |  |
 | |$format |  |
 |array |$context |  |
+
+---
+
+
+### denormalize
+
+
+
+**GetSetHydrator::denormalize**($data, $class, $format = null, array $context = array()) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+| |$data |  |
+| |$class |  |
+| |$format |  |
+|array |$context |  |
+
+---
+
+
+### instantiateObject
+
+
+
+protected **GetSetHydrator::instantiateObject**(array $data, $class, array $context, [ReflectionClass](../../../ReflectionClass.md) $reflectionClass, $allowedAttributes, string $format = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|array |$data |  |
+| |$class |  |
+|array |$context |  |
+|[ReflectionClass](../../../ReflectionClass.md) |$reflectionClass |  |
+| |$allowedAttributes |  |
+|string |$format |  |
 
 ---
 

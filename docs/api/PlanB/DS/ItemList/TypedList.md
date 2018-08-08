@@ -50,6 +50,20 @@
 ---
 
 
+### clearAndAdd
+
+
+
+**TypedList::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
 
 
@@ -70,6 +84,20 @@
 
 
 **TypedList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+
+
+
+**TypedList::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -126,7 +154,7 @@
 
 
 
-**TypedList::remove**(mixed $key) : [$this](../../../$this.md)
+**TypedList::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -136,11 +164,22 @@
 ---
 
 
+### clear
+
+
+
+**TypedList::clear**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
 ### __construct
 TypedList constructor.
 
 
-**TypedList::__construct**(string $innerType) : 
+**TypedList::__construct**(string $innerType = null) : 
 
 
 |Parameters: | | |
@@ -337,6 +376,21 @@ Silencia las excepciones
 ---
 
 
+### addHydrator
+Añade un hydrator
+
+
+**TypedList::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
+
+---
+
+
 ### addValidator
 Añade un validador
 
@@ -386,7 +440,21 @@ Añade un normalizador de clave
 Crea una instancia a partir de un conjunto de valores
 
 
-static **TypedList::create**(string $innerType, [iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
+static **TypedList::create**([iterable](../../../iterable.md) $input = []) : [TypedList](../../../TypedList.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### ofType
+Crea una instancia a partir de un conjunto de valores
+
+
+static **TypedList::ofType**(string $innerType, [iterable](../../../iterable.md) $input = []) : [TypedList](../../../TypedList.md)
 
 
 |Parameters: | | |

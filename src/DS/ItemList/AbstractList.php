@@ -15,6 +15,7 @@ use PlanB\DS\ItemList\Exception\ItemNotFoundException;
 use PlanB\DS\ItemList\Resolver\CustomKeyNormalizer;
 use PlanB\DS\ItemList\Resolver\CustomNormalizer;
 use PlanB\DS\ItemList\Resolver\CustomValidator;
+use PlanB\DS\ItemList\Resolver\Hydrator;
 use PlanB\DS\ItemList\Resolver\KeyNormalizer;
 use PlanB\DS\ItemList\Resolver\Normalizer;
 use PlanB\DS\ItemList\Resolver\Resolution;
@@ -288,6 +289,26 @@ abstract class AbstractList implements ListInterface
         return $this;
     }
 
+
+    /**
+     * Añade un hydrator
+     *
+     * @param string   $type
+     * @param callable $hydrator
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addHydrator(string $type, callable $hydrator): ListInterface
+    {
+
+        if (!($hydrator instanceof Hydrator)) {
+            $hydrator = Hydrator::create($type, $hydrator);
+        }
+
+        $this->resolution->add($hydrator, -PHP_INT_MAX);
+
+        return $this;
+    }
 
     /**
      * Añade un validador

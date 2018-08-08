@@ -25,13 +25,13 @@ abstract class Normalizer implements Resolvable
     /**
      * Resuelve un Item, normalizando el valor
      *
-     * @param \PlanB\DS\ItemList\Item          $item
+     * @param \PlanB\DS\ItemList\Item               $item
      *
-     * @param \PlanB\DS\ItemList\ListInterface $context
+     * @param null|\PlanB\DS\ItemList\ListInterface $context
      *
      * @return bool
      */
-    public function __invoke(Item $item, ListInterface $context): bool
+    public function __invoke(Item $item, ?ListInterface $context = null): bool
     {
         $value = $item->getValue();
         $key = $item->getKey();

@@ -83,7 +83,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     /**
      * Devuelve un elemento
      *
-     * @param mixed $key
+     * @param mixed      $key
      *
      * @param mixed|null $default
      *
@@ -122,7 +122,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     /**
      * Elimina todos los elementos de la lista
      *
-     * @return ListInterface
+     * @return \PlanB\DS\ItemList\ListInterface
      */
     public function clear(): ListInterface;
 
@@ -144,7 +144,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * Ejecuta una acción para cada elemento de la lista
      *
      * @param callable $callable
-     * @param mixed ...$userdata
+     * @param mixed    ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -157,7 +157,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * La lista original permanece inmutable
      *
      * @param callable $callable
-     * @param mixed ...$userdata
+     * @param mixed    ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -167,7 +167,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * Devuelve una lista con los elementos que cumplen un criterio
      *
      * @param callable $callable
-     * @param mixed ...$userdata
+     * @param mixed    ...$userdata
      *
      * @return \PlanB\DS\ItemList\ItemList
      */
@@ -178,7 +178,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * o nulo si no encuentra ninguno
      *
      * @param callable $callable
-     * @param mixed ...$userdata
+     * @param mixed    ...$userdata
      *
      * @return mixed|null
      */
@@ -189,7 +189,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * o lanza una excepción si no encuentra ninguno
      *
      * @param callable $callable
-     * @param mixed ...$userdata
+     * @param mixed    ...$userdata
      *
      * @return mixed
      */
@@ -198,9 +198,9 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     /**
      * Reduce una lista, a un unico valor
      *
-     * @param callable $callable
+     * @param callable   $callable
      * @param mixed|null $initial
-     * @param mixed ...$userdata
+     * @param mixed      ...$userdata
      *
      * @return mixed
      */
@@ -210,7 +210,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * Devuelve un array con los elementos de la lista
      *
      * @param callable|null $callable
-     * @param mixed ...$userdata
+     * @param mixed         ...$userdata
      *
      * @return mixed[]
      */
@@ -248,10 +248,20 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     public function silentExceptions(): ListInterface;
 
     /**
+     * Añade un hydrator
+     *
+     * @param string   $type
+     * @param callable $hydrator
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function addHydrator(string $type, callable $hydrator): ListInterface;
+
+    /**
      * Añade un validador
      *
      * @param callable $validator
-     * @param int $order
+     * @param int      $order
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
@@ -261,7 +271,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * Añade un normalizador
      *
      * @param callable $normalizer
-     * @param int $order
+     * @param int      $order
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
@@ -271,7 +281,7 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * Añade un normalizador de clave
      *
      * @param callable $validator
-     * @param int $order
+     * @param int      $order
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */

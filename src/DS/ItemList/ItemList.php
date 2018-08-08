@@ -35,5 +35,4 @@ class ItemList extends AbstractList
 
         return $list;
     }
-
 }

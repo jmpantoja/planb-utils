@@ -50,6 +50,20 @@
 ---
 
 
+### clearAndAdd
+
+
+
+**TextList::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
 
 
@@ -70,6 +84,20 @@
 
 
 **TextList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+
+
+
+**TextList::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
 
 
 |Parameters: | | |
@@ -126,12 +154,23 @@
 
 
 
-**TextList::remove**(mixed $key) : [$this](../../../$this.md)
+**TextList::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$key |  |
+
+---
+
+
+### clear
+
+
+
+**TextList::clear**() : [ListInterface](../../../ListInterface.md)
+
+
 
 ---
 
@@ -334,6 +373,21 @@ Silencia las excepciones
 ---
 
 
+### addHydrator
+Añade un hydrator
+
+
+**TextList::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
+
+---
+
+
 ### addValidator
 Añade un validador
 
@@ -383,11 +437,26 @@ Añade un normalizador de clave
 Crea una instancia a partir de un conjunto de valores
 
 
-static **TextList::create**([iterable](../../../iterable.md) $input = []) : [TextList](../../../TextList.md)
+static **TextList::create**([iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### ofType
+Crea una instancia a partir de un conjunto de valores
+
+
+static **TextList::ofType**(string $innerType, [iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$innerType |  |
 |[iterable](../../../iterable.md) |$input |  |
 
 ---

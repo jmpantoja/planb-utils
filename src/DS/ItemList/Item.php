@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ItemList;
 
+use PlanB\Utils\Type\Type;
+
 /**
  * Value Object que encapsula una pareja clave/valor
  *
@@ -127,13 +129,15 @@ class Item
     }
 
     /**
-     * Devuelve el tipo
+     * Indica si el valor es de un tipo determinado
      *
-     * @return string
+     * @param string ...$allowed
+     *
+     * @return bool
      */
-    public function getType(): string
+    public function isTypeOf(string ...$allowed): bool
     {
-        return is_object($this->value) ? get_class($this->value) : gettype($this->value);
+        return Type::create($this->value)->isTypeOf(...$allowed);
     }
 
     /**

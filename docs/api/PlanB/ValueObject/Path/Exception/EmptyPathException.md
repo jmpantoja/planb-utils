@@ -21,7 +21,7 @@
 EmptyPathException constructor.
 
 
-**EmptyPathException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **EmptyPathException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

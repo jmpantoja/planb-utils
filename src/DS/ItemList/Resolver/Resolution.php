@@ -49,7 +49,7 @@ class Resolution
      *
      * @param \PlanB\DS\ItemList\ListInterface $context
      */
-    public function __construct(ListInterface $context)
+    protected function __construct(ListInterface $context)
     {
         $this->context = $context;
         $this->resolvers = new \SplPriorityQueue();
@@ -64,7 +64,7 @@ class Resolution
      */
     public static function create(ListInterface $context): self
     {
-        return new self($context);
+        return new static($context);
     }
 
     /**

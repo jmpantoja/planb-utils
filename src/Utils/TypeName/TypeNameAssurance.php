@@ -32,7 +32,7 @@ class TypeNameAssurance extends Assurance implements Stringifable
      *
      * @param \PlanB\Utils\TypeName\TypeName $typeName
      */
-    public function __construct(TypeName $typeName)
+    protected function __construct(TypeName $typeName)
     {
         $this->typName = $typeName;
     }
@@ -59,7 +59,7 @@ class TypeNameAssurance extends Assurance implements Stringifable
     {
         $typeName = TypeName::create($typeName);
 
-        return new self($typeName);
+        return new static($typeName);
     }
 
 

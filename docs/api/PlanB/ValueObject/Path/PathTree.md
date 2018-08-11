@@ -21,7 +21,7 @@
 Path private constructor.
 
 
-**PathTree::__construct**([Path](../../../Path.md) $path) : 
+protected **PathTree::__construct**([Path](../../../Path.md) $path) : 
 
 
 |Parameters: | | |

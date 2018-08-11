@@ -35,7 +35,7 @@ static **AssuranceCall::create**([object](../../../object.md) $object) : [Assura
 AssuranceCall constructor.
 
 
-**AssuranceCall::__construct**([object](../../../object.md) $object) : 
+protected **AssuranceCall::__construct**([object](../../../object.md) $object) : 
 
 
 |Parameters: | | |

@@ -23,6 +23,8 @@ class ReduceSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ItemList::class);
+        $this->beConstructedThrough('create');
+
     }
 
     public function it_reduce_method_return_null_on_empty_if_not_initial_passed()

@@ -173,6 +173,20 @@
 ---
 
 
+### tryAddItem
+
+
+
+protected **Accessors::tryAddItem**([Item](../../../../Item.md) $item) : [ListInterface](../../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../../Item.md) |$item |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

@@ -21,7 +21,7 @@
 Resuelve un Item, normalizando la clave
 
 
-**CustomKeyNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**CustomKeyNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |
@@ -52,7 +52,7 @@ Devuelve la clave normalizada
 CustomNormalizer constructor.
 
 
-**CustomKeyNormalizer::__construct**(callable $callback) : 
+protected **CustomKeyNormalizer::__construct**(callable $callback) : 
 
 
 |Parameters: | | |

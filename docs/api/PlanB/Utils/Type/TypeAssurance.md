@@ -58,7 +58,7 @@ Captura las llamadas a métodos
 TypeAssurance constructor.
 
 
-**TypeAssurance::__construct**([Type](../../../Type.md) $type) : 
+protected **TypeAssurance::__construct**([Type](../../../Type.md) $type) : 
 
 
 |Parameters: | | |

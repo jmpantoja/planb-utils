@@ -58,7 +58,7 @@ Captura las llamadas a métodos
 PathAssurance constructor.
 
 
-**TextAssurance::__construct**([Text](../../../Text.md) $text) : 
+protected **TextAssurance::__construct**([Text](../../../Text.md) $text) : 
 
 
 |Parameters: | | |

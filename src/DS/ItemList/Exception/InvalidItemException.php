@@ -26,7 +26,7 @@ class InvalidItemException extends \InvalidArgumentException
      * @param string                                      $message
      * @param null|\PlanB\DS\ItemList\Exception\Throwable $previous
      */
-    public function __construct(string $message, ?\Throwable $previous = null)
+    protected function __construct(string $message, ?\Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }
@@ -42,8 +42,13 @@ class InvalidItemException extends \InvalidArgumentException
     public static function create(Item $item, ?\Throwable $previous = null): self
     {
 
-        $message = sprintf('Element [%s] is not valid', (string) $item);
+        $message = sprintf("Item %s \n\nis <options=bold,underscore>NOT VALID</>", (string) $item);
 
-        return new static($message, $previous);
+        if ($previous instanceof \Throwable) {
+            $message = sprintf("%s because: \n\n%s", $message, $previous->getMessage());
+        }
+
+
+        return new static($message);
     }
 }

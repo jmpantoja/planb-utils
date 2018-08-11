@@ -58,7 +58,7 @@ Captura las llamadas a métodos
 PathAssurance constructor.
 
 
-**PathAssurance::__construct**([Path](../../../Path.md) $path) : 
+protected **PathAssurance::__construct**([Path](../../../Path.md) $path) : 
 
 
 |Parameters: | | |

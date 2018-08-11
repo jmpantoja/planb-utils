@@ -29,7 +29,7 @@ class CustomValidator extends Validator
      *
      * @param callable $callback
      */
-    public function __construct(callable $callback)
+    protected function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
@@ -43,7 +43,7 @@ class CustomValidator extends Validator
      */
     public static function create(callable $callback): self
     {
-        return new self($callback);
+        return new static($callback);
     }
 
     /**

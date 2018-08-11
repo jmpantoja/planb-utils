@@ -175,11 +175,25 @@
 ---
 
 
+### tryAddItem
+
+
+
+protected **TextList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
 ### __construct
 TextList constructor.
 
 
-**TextList::__construct**() : 
+protected **TextList::__construct**() : 
 
 
 
@@ -437,7 +451,7 @@ Añade un normalizador de clave
 Crea una instancia a partir de un conjunto de valores
 
 
-static **TextList::create**([iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
+static **TextList::create**([iterable](../../../iterable.md) $input = []) : [TypedList](../../../TypedList.md)
 
 
 |Parameters: | | |
@@ -451,7 +465,7 @@ static **TextList::create**([iterable](../../../iterable.md) $input = []) : [Ite
 Crea una instancia a partir de un conjunto de valores
 
 
-static **TextList::ofType**(string $innerType, [iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
+static **TextList::ofType**(string $innerType, [iterable](../../../iterable.md) $input = []) : [TypedList](../../../TypedList.md)
 
 
 |Parameters: | | |
@@ -466,7 +480,7 @@ static **TextList::ofType**(string $innerType, [iterable](../../../iterable.md) 
 Devuelve el tipo de la lista
 
 
-**TextList::getInnerType**() : string
+**TextList::getInnerType**() : null|string
 
 
 

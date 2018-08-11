@@ -21,7 +21,7 @@ interface TypableList
     /**
      * Devuelve el tipo de la lista
      *
-     * @return string
+     * @return null|string
      */
-    public function getInnerType(): string;
+    public function getInnerType(): ?string;
 }

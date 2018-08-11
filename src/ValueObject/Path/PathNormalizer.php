@@ -34,9 +34,9 @@ final class PathNormalizer
      *
      * @return \PlanB\ValueObject\Path\PathNormalizer
      */
-    public static function newInstance(): self
+    public static function create(): self
     {
-        return new self();
+        return new static();
     }
 
     /**
@@ -44,7 +44,7 @@ final class PathNormalizer
      *
      * @param string[] ...$pieces
      */
-    public function __construct(string ...$pieces)
+    protected function __construct(string ...$pieces)
     {
         $this->stack = [];
 
@@ -186,7 +186,7 @@ final class PathNormalizer
      */
     public static function normalize(string ...$pieces): string
     {
-        return (new self(...$pieces))->toString();
+        return (new static(...$pieces))->toString();
     }
 
     /**

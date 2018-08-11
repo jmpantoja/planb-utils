@@ -36,7 +36,7 @@
 Type constructor.
 
 
-**Type::__construct**(mixed $variable) : 
+protected **Type::__construct**(mixed $variable) : 
 
 
 |Parameters: | | |

@@ -32,7 +32,7 @@ class TypeAssurance extends Assurance implements Stringifable
      *
      * @param \PlanB\Utils\Type\Type $type
      */
-    public function __construct(Type $type)
+    protected function __construct(Type $type)
     {
         $this->type = $type;
     }
@@ -68,7 +68,7 @@ class TypeAssurance extends Assurance implements Stringifable
     {
         $type = Type::create($variable);
 
-        return new self($type);
+        return new static($type);
     }
 
     /**

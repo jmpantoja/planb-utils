@@ -31,7 +31,7 @@ class TextAssurance extends Assurance implements Stringifable
      *
      * @param \PlanB\ValueObject\Text\Text $text
      */
-    public function __construct(Text $text)
+    protected function __construct(Text $text)
     {
         $this->text = $text;
     }
@@ -52,7 +52,7 @@ class TextAssurance extends Assurance implements Stringifable
 
         $text = Text::create($object->stringify());
 
-        return new self($text);
+        return new static($text);
     }
 
     /**
@@ -64,7 +64,7 @@ class TextAssurance extends Assurance implements Stringifable
      */
     public static function fromText(Text $text): self
     {
-        return new self($text);
+        return new static($text);
     }
 
 
@@ -79,7 +79,7 @@ class TextAssurance extends Assurance implements Stringifable
     {
         $text = Text::create($string);
 
-        return new self($text);
+        return new static($text);
     }
 
     /**

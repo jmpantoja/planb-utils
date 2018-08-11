@@ -23,8 +23,10 @@ class Each_Map_FilterSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ItemList::class);
-    //    $this->beConstructedWith(Word::class);
+        $this->beConstructedThrough('create');
+
     }
+
 
     public function it_each_method_return_instance_on_empty()
     {

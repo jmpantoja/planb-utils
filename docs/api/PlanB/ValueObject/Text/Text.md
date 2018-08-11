@@ -21,7 +21,7 @@
 Text constructor.
 
 
-**Text::__construct**(string $text) : 
+protected **Text::__construct**(string $text) : 
 
 
 |Parameters: | | |

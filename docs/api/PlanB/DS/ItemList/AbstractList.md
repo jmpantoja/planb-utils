@@ -175,11 +175,25 @@
 ---
 
 
+### tryAddItem
+
+
+
+protected **AbstractList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
 ### __construct
 List constructor.
 
 
-**AbstractList::__construct**() : 
+protected **AbstractList::__construct**() : 
 
 
 

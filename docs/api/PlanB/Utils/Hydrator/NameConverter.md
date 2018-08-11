@@ -21,7 +21,21 @@
 NameConverter constructor.
 
 
-**NameConverter::__construct**(string $snakeCaseSeparator = null) : 
+protected **NameConverter::__construct**(string $snakeCaseSeparator = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$snakeCaseSeparator |  |
+
+---
+
+
+### create
+Crea una nueva instancia
+
+
+static **NameConverter::create**(string $snakeCaseSeparator = null) : [NameConverter](../../../NameConverter.md)
 
 
 |Parameters: | | |

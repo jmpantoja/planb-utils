@@ -21,7 +21,7 @@
 ClassName constructor.
 
 
-**TypeName::__construct**(string $typeName) : 
+protected **TypeName::__construct**(string $typeName) : 
 
 
 |Parameters: | | |

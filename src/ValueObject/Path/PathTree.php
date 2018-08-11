@@ -28,7 +28,7 @@ final class PathTree
      *
      * @param \PlanB\ValueObject\Path\Path $path
      */
-    public function __construct(Path $path)
+    protected function __construct(Path $path)
     {
         $this->segments = explode(DIRECTORY_SEPARATOR, $path->stringify());
 
@@ -48,7 +48,7 @@ final class PathTree
     {
         $path = Path::create(...$parts);
 
-        return new self($path);
+        return new static($path);
     }
 
 

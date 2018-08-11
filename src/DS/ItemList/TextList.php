@@ -22,7 +22,7 @@ class TextList extends TypedList
     /**
      * TextList constructor.
      */
-    public function __construct()
+    protected function __construct()
     {
         $normalizer = function ($value) {
             return Text::create($value);

@@ -21,7 +21,7 @@
 InvalidAssuranceMethodException constructor.
 
 
-**InvalidAssuranceMethodException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **InvalidAssuranceMethodException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

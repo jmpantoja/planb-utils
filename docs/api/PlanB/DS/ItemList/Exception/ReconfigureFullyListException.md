@@ -22,7 +22,7 @@ que ya contiene datos
 ReconfigureFullyListException constructor.
 
 
-**ReconfigureFullyListException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **ReconfigureFullyListException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

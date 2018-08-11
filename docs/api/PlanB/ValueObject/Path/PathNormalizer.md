@@ -17,11 +17,11 @@
 
 ## Methods
 
-### newInstance
+### create
 Crea una nueva instancia
 
 
-static **PathNormalizer::newInstance**() : [PathNormalizer](../../../PathNormalizer.md)
+static **PathNormalizer::create**() : [PathNormalizer](../../../PathNormalizer.md)
 
 
 
@@ -32,7 +32,7 @@ static **PathNormalizer::newInstance**() : [PathNormalizer](../../../PathNormali
 PathNormalizer constructor.
 
 
-**PathNormalizer::__construct**(string ...$pieces) : 
+protected **PathNormalizer::__construct**(string ...$pieces) : 
 
 
 |Parameters: | | |

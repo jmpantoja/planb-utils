@@ -56,7 +56,7 @@ abstract class Assurance
         $call = AssuranceCall::create($wrapped);
 
         if (!$call->execute($name, ...$arguments)) {
-            throw AssertException::create($wrapped, $name);
+            throw AssertException::create($wrapped, $name, $arguments);
         }
 
         return $this;

@@ -25,6 +25,8 @@ class Seach_FindSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ItemList::class);
+        $this->beConstructedThrough('create');
+
     }
 
     public function it_search_method_return_null_on_empty()

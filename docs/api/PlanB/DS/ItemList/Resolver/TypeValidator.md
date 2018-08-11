@@ -21,7 +21,7 @@
 Resuelve un Item, asegurando que es válido
 
 
-**TypeValidator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**TypeValidator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |
@@ -52,7 +52,7 @@ Valida que el valor de un Item sea de un tipo concreto
 TypeValidator constructor.
 
 
-**TypeValidator::__construct**(string $innerType) : 
+protected **TypeValidator::__construct**(string $innerType) : 
 
 
 |Parameters: | | |

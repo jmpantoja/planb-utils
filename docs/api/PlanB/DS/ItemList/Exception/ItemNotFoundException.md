@@ -21,7 +21,7 @@
 ItemNotFoundException constructor.
 
 
-**ItemNotFoundException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **ItemNotFoundException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

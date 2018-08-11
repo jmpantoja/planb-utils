@@ -28,7 +28,7 @@ class CustomNormalizer extends Normalizer
      *
      * @param callable $callback
      */
-    public function __construct(callable $callback)
+    protected function __construct(callable $callback)
     {
         $this->callback = $callback;
     }
@@ -42,7 +42,7 @@ class CustomNormalizer extends Normalizer
      */
     public static function create(callable $callback): self
     {
-        return new self($callback);
+        return new static($callback);
     }
 
     /**

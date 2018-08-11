@@ -31,7 +31,7 @@ class PathAssurance extends Assurance implements Stringifable
      *
      * @param \PlanB\ValueObject\Path\Path $path
      */
-    public function __construct(Path $path)
+    protected function __construct(Path $path)
     {
         $this->path = $path;
     }
@@ -45,7 +45,7 @@ class PathAssurance extends Assurance implements Stringifable
      */
     public static function fromPath(Path $path): self
     {
-        return new self($path);
+        return new static($path);
     }
 
 
@@ -60,7 +60,7 @@ class PathAssurance extends Assurance implements Stringifable
     {
         $path = Path::create(...$segments);
 
-        return new self($path);
+        return new static($path);
     }
 
     /**

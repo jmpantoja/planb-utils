@@ -17,15 +17,15 @@ class ItemSpec extends ObjectBehavior
 
     private const NEW_KEY = 'nueva-key';
 
-    private const SERIALIZED_PAIR = 'key => value';
-
     private const NUMBER = 234242;
-
-    private const SERIALIZED_NUMBER = 'key => 234242';
 
     private const ARRAY = [];
 
-    private const SERIALIZED_ARRAY = 'key => array';
+    private const SERIALIZED_NUMBER = '<fg=cyan>Value</>: <fg=yellow>[integer: 234242]</>';
+    private const SERIALIZED_ARRAY = '<fg=cyan>Value</>: <fg=yellow>[array(0)]</>';
+
+    private const SERIALIZED_KEY = '<fg=cyan>Key</>: <fg=yellow>[string: "key"]</>';
+    private const SERIALIZED_VALUE = '<fg=cyan>Value</>: <fg=yellow>[string: "value"]</>';
 
     public function let()
     {
@@ -89,18 +89,15 @@ class ItemSpec extends ObjectBehavior
     {
         $this->beConstructedFromKeyValue(self::KEY, self::VALUE);
 
-        $this->__toString()
-            ->shouldReturn(self::SERIALIZED_PAIR);
+        $this->__toString()->shouldContain(self::SERIALIZED_KEY);
+        $this->__toString()->shouldContain(self::SERIALIZED_VALUE);
 
         $item = $this->setValue(self::NUMBER);
+        $item->__toString()->shouldContain(self::SERIALIZED_NUMBER);
 
-        $item->__toString()
-            ->shouldReturn(self::SERIALIZED_NUMBER);
 
         $item = $this->setValue(self::ARRAY);
-
-        $item->__toString()
-            ->shouldReturn(self::SERIALIZED_ARRAY);
+        $item->__toString()->shouldContain(self::SERIALIZED_ARRAY);
     }
 
 }

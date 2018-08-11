@@ -9,6 +9,11 @@ use Prophecy\Argument;
 
 class PathNormalizerSpec extends ObjectBehavior
 {
+    public function let()
+    {
+        $this->beConstructedThrough('create');
+    }
+
     public function it_is_initializable()
     {
 
@@ -25,9 +30,6 @@ class PathNormalizerSpec extends ObjectBehavior
 
     public function it_build_a_path_from_a_segment_with_double_dots()
     {
-        $this->beConstructedThrough('newInstance');
-
-
         $this->normalize('/tmp/dir/..')->shouldReturn('/tmp');
         $this->normalize('/tmp/dir/dir/../..')->shouldReturn('/tmp');
         $this->normalize('/tmp/dir/../dir/..')->shouldReturn('/tmp');
@@ -37,25 +39,18 @@ class PathNormalizerSpec extends ObjectBehavior
 
     public function it_build_a_path_from_a_segment_with_simple_dots()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->normalize('/tmp/.')->shouldReturn('/tmp');
         $this->normalize('/./tmp/.')->shouldReturn('/tmp');
     }
 
     public function it_build_a_path_from_a_segment_combining_simple_and_double_dots()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->normalize('/tmp/./..')->shouldReturn('/');
-
         $this->normalize('/./tmp/./../dir')->shouldReturn('/dir');
     }
 
     public function it_works_with_relative_paths()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->normalize('relative/path')->shouldReturn('relative/path');
         $this->normalize('relative/path/..')->shouldReturn('relative');
         $this->normalize('./relative/path/..')->shouldReturn('relative');
@@ -65,8 +60,6 @@ class PathNormalizerSpec extends ObjectBehavior
 
     public function it_works_with_segments()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->normalize('relative', 'path')->shouldReturn('relative/path');
         $this->normalize('.', 'relative', 'path')->shouldReturn('relative/path');
         $this->normalize('.', '/relative', 'path')->shouldReturn('relative/path');
@@ -76,8 +69,6 @@ class PathNormalizerSpec extends ObjectBehavior
 
     public function it_keep_absolute_paths()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->normalize('relative', 'path')->shouldReturn('relative/path');
         $this->normalize('./', 'relative', 'path')->shouldReturn('relative/path');
         $this->normalize('./', 'relative', 'path')->shouldReturn('relative/path');
@@ -89,14 +80,11 @@ class PathNormalizerSpec extends ObjectBehavior
 
     public function it_throw_an_exception_if_overflow_root_dir()
     {
-        $this->beConstructedThrough('newInstance');
-
         $this->shouldThrow(OverFlowRootDirException::class)->duringNormalize('/../absolute/path');
         $this->shouldThrow(OverFlowRootDirException::class)->duringNormalize('/', '../', 'absolute/path');
         $this->shouldThrow(OverFlowRootDirException::class)->duringNormalize('../', 'absolute/path');
 
         $this->shouldThrow(OverFlowRootDirException::class)->duringNormalize('/absolute/path/../../..');
-
         $this->shouldThrow(OverFlowRootDirException::class)->duringNormalize('relative/path/../../..');
 
     }

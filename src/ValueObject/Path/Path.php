@@ -33,7 +33,7 @@ class Path implements Stringifable
      *
      * @param string $path
      */
-    public function __construct(string $path)
+    protected function __construct(string $path)
     {
         $isEmpty = is_blank_text($path);
 
@@ -54,7 +54,7 @@ class Path implements Stringifable
     {
         $path = self::normalize(...$parts);
 
-        return new self($path);
+        return new static($path);
     }
 
     /**

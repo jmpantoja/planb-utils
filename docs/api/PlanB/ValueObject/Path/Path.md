@@ -21,7 +21,7 @@
 Path private constructor.
 
 
-**Path::__construct**(string $path) : 
+protected **Path::__construct**(string $path) : 
 
 
 |Parameters: | | |

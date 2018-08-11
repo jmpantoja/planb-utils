@@ -21,7 +21,7 @@
 GetSetHydrator constructor.
 
 
-**GetSetHydrator::__construct**() : 
+protected **GetSetHydrator::__construct**() : 
 
 
 

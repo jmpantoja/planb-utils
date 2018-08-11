@@ -34,6 +34,8 @@ class AccessorSpec extends ObjectBehavior
     public function let()
     {
         $this->beAnInstanceOf(ItemList::class);
+        $this->beConstructedThrough('create');
+
     }
 
     public function it_can_append_one_item()

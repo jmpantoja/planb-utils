@@ -30,7 +30,7 @@ class TypeName implements Stringifable
      *
      * @param string $typeName
      */
-    public function __construct(string $typeName)
+    protected function __construct(string $typeName)
     {
         $this->typeName = $typeName;
     }
@@ -44,7 +44,7 @@ class TypeName implements Stringifable
      */
     public static function create(string $typeName): self
     {
-        return new self($typeName);
+        return new static($typeName);
     }
 
 

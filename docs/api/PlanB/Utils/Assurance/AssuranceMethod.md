@@ -36,7 +36,7 @@ static **AssuranceMethod::create**([object](../../../object.md) $object, string 
 AssuranceMethod constructor.
 
 
-**AssuranceMethod::__construct**([object](../../../object.md) $object, string $original) : 
+protected **AssuranceMethod::__construct**([object](../../../object.md) $object, string $original) : 
 
 
 |Parameters: | | |

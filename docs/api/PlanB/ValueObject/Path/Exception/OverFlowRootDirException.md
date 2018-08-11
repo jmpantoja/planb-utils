@@ -21,7 +21,7 @@
 OverFlowRootDirException constructor.
 
 
-**OverFlowRootDirException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **OverFlowRootDirException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

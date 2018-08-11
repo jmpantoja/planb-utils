@@ -50,7 +50,7 @@ class Type implements Stringifable
      *
      * @param mixed $variable
      */
-    public function __construct($variable)
+    protected function __construct($variable)
     {
         $this->variable = $variable;
     }
@@ -64,7 +64,7 @@ class Type implements Stringifable
      */
     public static function create($variable): self
     {
-        return new self($variable);
+        return new static($variable);
     }
 
     /**
@@ -282,11 +282,23 @@ class Type implements Stringifable
     public function stringify(?string $format = null): string
     {
 
-        if (!$this->isConvertibleToString()) {
-            return $this->getTypeName()->stringify();
+        $typeName = $this->getTypeName()->stringify();
+
+        if ($this->isCountable()) {
+            $typeName = sprintf('%s(%s)', $typeName, count($this->variable));
         }
 
-        return (string) $this->variable;
+        if (!$this->isConvertibleToString()) {
+            return sprintf('[%s]', $typeName);
+        }
+
+        $variable = (string) $this->variable;
+
+        if (!$this->isNumeric()) {
+            $variable = sprintf('"%s"', $variable);
+        }
+
+        return sprintf('[%s: %s]', $typeName, $variable);
     }
 
 

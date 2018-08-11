@@ -35,7 +35,7 @@ class HydratorSpec extends ObjectBehavior
     public function it_refuse_an_invalid_type(FakeInvoke $callback)
     {
         $this->beConstructedThrough('create', [self::INVALID_TYPE, $callback]);
-        
+
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
 

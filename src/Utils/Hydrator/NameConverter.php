@@ -30,9 +30,21 @@ class NameConverter implements NameConverterInterface
      *
      * @param string $snakeCaseSeparator
      */
-    public function __construct(?string $snakeCaseSeparator = null)
+    protected function __construct(?string $snakeCaseSeparator = null)
     {
         $this->setSnakeCaseSeparator($snakeCaseSeparator);
+    }
+
+    /**
+     * Crea una nueva instancia
+     *
+     * @param null|string $snakeCaseSeparator
+     *
+     * @return \PlanB\Utils\Hydrator\NameConverter
+     */
+    public static function create(?string $snakeCaseSeparator = null): self
+    {
+        return new static($snakeCaseSeparator);
     }
 
     /**

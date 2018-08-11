@@ -141,6 +141,15 @@ class Item
     }
 
     /**
+     * Devuelve el tipo
+     *
+     * @return string
+     */
+    public function getTypeName(): string
+    {
+        return Type::create($this->value)->getTypeName()->stringify();
+    }
+    /**
      * Convierte el item en una cadena de texto
      *
      * @return  string
@@ -148,9 +157,14 @@ class Item
     public function __toString(): string
     {
 
-        $key = force_to_string($this->key);
-        $value = force_to_string($this->value);
+        $key = force_to_string($this->getKey());
+        $value = force_to_string($this->getValue());
 
-        return sprintf('%s => %s', $key, $value);
+        $pieces = [
+            sprintf('<fg=cyan>Key</>: <fg=yellow>%s</>', $key),
+            sprintf('<fg=cyan>Value</>: <fg=yellow>%s</>', $value),
+        ];
+
+        return sprintf("\n[\n\t%s\n]", implode("\n\t", $pieces));
     }
 }

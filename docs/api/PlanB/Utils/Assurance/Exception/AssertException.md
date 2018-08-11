@@ -21,7 +21,7 @@
 FailAssuranceException constructor.
 
 
-**AssertException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **AssertException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |
@@ -36,13 +36,14 @@ FailAssuranceException constructor.
 Crea una nueva instancia
 
 
-static **AssertException::create**([object](../../../../object.md) $wrapped, string $method, [Throwable](../../../../Throwable.md) $previous = null) : [AssertException](../../../../AssertException.md)
+static **AssertException::create**([object](../../../../object.md) $wrapped, string $method, array $arguments, [Throwable](../../../../Throwable.md) $previous = null) : [AssertException](../../../../AssertException.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[object](../../../../object.md) |$wrapped |  |
 |string |$method |  |
+|array |$arguments |  |
 |[Throwable](../../../../Throwable.md) |$previous |  |
 
 ---

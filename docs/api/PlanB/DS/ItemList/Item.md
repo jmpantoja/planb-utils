@@ -136,6 +136,17 @@ Indica si el valor es de un tipo determinado
 ---
 
 
+### getTypeName
+Devuelve el tipo
+
+
+**Item::getTypeName**() : string
+
+
+
+---
+
+
 ### __toString
 Convierte el item en una cadena de texto
 

@@ -29,14 +29,28 @@ class TypedList extends AbstractList implements TypableList
      *
      * @param null|string $innerType
      */
-    public function __construct(?string $innerType = null)
+    protected function __construct(?string $innerType = null)
     {
         $innerType = $innerType ?? $this->getInnerType();
 
+        parent::__construct();
+        $this->initialize($innerType);
+    }
+
+    /**
+     * Inicializa la lista para un tipo de dato
+     *
+     * @param null|string $innerType
+     */
+    private function initialize(?string $innerType): void
+    {
+
+        if (is_null($innerType)) {
+            return;
+        }
+
         $validator = TypeValidator::create($innerType);
         $this->innerType = $innerType;
-
-        parent::__construct();
 
         $this->addValidator($validator, PHP_INT_MAX);
     }
@@ -75,10 +89,22 @@ class TypedList extends AbstractList implements TypableList
     /**
      * Devuelve el tipo de la lista
      *
-     * @return string
+     * @return null|string
      */
-    public function getInnerType(): string
+    public function getInnerType(): ?string
     {
         return $this->innerType;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function tryAddItem(Item $item): ListInterface
+    {
+        if (is_null($this->innerType)) {
+            $this->initialize($item->getTypeName());
+        }
+
+        return parent::tryAddItem($item);
     }
 }

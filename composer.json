@@ -39,6 +39,7 @@
         "symfony/var-dumper": "^4.1"
     },
     "require": {
+        "marc-mabe/php-enum": "^3.0",
         "symfony/options-resolver": "^4.1",
         "symfony/serializer": "^4.1"
     }

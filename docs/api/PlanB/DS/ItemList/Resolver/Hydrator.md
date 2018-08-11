@@ -21,7 +21,7 @@
 CustomValidator constructor.
 
 
-**Hydrator::__construct**(string $type, callable $callback) : 
+protected **Hydrator::__construct**(string $type, callable $callback) : 
 
 
 |Parameters: | | |

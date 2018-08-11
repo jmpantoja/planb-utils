@@ -58,7 +58,7 @@ Captura las llamadas a métodos
 PathAssurance constructor.
 
 
-**TypeNameAssurance::__construct**([TypeName](../../../TypeName.md) $typeName) : 
+protected **TypeNameAssurance::__construct**([TypeName](../../../TypeName.md) $typeName) : 
 
 
 |Parameters: | | |

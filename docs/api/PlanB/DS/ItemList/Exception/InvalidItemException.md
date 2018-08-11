@@ -21,7 +21,7 @@
 InvalidItemException constructor.
 
 
-**InvalidItemException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **InvalidItemException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

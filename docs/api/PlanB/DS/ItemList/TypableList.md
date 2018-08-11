@@ -21,7 +21,7 @@
 Devuelve el tipo de la lista
 
 
-**TypableList::getInnerType**() : string
+**TypableList::getInnerType**() : null|string
 
 
 

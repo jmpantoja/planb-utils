@@ -24,7 +24,7 @@ class ItemNotFoundException extends \OutOfRangeException
      * @param string                                      $message
      * @param null|\PlanB\DS\ItemList\Exception\Throwable $previous
      */
-    public function __construct(string $message, ?Throwable $previous = null)
+    protected function __construct(string $message, ?Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }

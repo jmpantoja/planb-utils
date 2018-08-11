@@ -26,7 +26,7 @@ class AssertException extends \AssertionError
      * @param string          $message
      * @param \Throwable|null $previous
      */
-    public function __construct(string $message, ?Throwable $previous = null)
+    protected function __construct(string $message, ?Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }
@@ -36,18 +36,44 @@ class AssertException extends \AssertionError
      *
      * @param object          $wrapped
      * @param string          $method
+     * @param mixed[]         $arguments
      * @param null|\Throwable $previous
      *
      * @return \PlanB\Utils\Assurance\Exception\AssertException
      */
-    public static function create(object $wrapped, string $method, ?\Throwable $previous = null): self
+    public static function create(object $wrapped, string $method, array $arguments, ?\Throwable $previous = null): self
     {
 
         $wrapped = force_to_string($wrapped);
         $method = to_snake_case($method, ' ');
+        $params = self::parseParams($arguments);
 
-        $message = sprintf('%s fails when check if %s', $wrapped, $method);
+        $format = "<fg=cyan>%s</> "."<options=bold,underscore>fails ensuring</> that "."<options=bold,underscore>%s</> "."<fg=green>%s</>";
 
-        return new self($message, $previous);
+        $message = sprintf($format, $wrapped, $method, $params);
+
+        return new static($message, $previous);
+    }
+
+    /**
+     * Convierte los argumentos en una cadena de texto
+     *
+     * @param mixed[] $arguments
+     *
+     * @return string
+     */
+    private static function parseParams(array $arguments): string
+    {
+        if (0 === count($arguments)) {
+            return '';
+        }
+
+        $arguments = array_map(function ($argument) {
+            return force_to_string($argument);
+        }, $arguments);
+
+        $parameters = implode(', ', $arguments);
+
+        return sprintf('(%s)', $parameters);
     }
 }

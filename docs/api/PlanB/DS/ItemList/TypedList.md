@@ -175,11 +175,25 @@
 ---
 
 
+### tryAddItem
+
+
+
+protected **TypedList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
 ### __construct
 TypedList constructor.
 
 
-**TypedList::__construct**(string $innerType = null) : 
+protected **TypedList::__construct**(string $innerType = null) : 
 
 
 |Parameters: | | |
@@ -469,7 +483,7 @@ static **TypedList::ofType**(string $innerType, [iterable](../../../iterable.md)
 Devuelve el tipo de la lista
 
 
-**TypedList::getInnerType**() : string
+**TypedList::getInnerType**() : null|string
 
 
 

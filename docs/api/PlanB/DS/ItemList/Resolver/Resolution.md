@@ -21,7 +21,7 @@
 Resolver constructor.
 
 
-**Resolution::__construct**([ListInterface](../../../../ListInterface.md) $context) : 
+protected **Resolution::__construct**([ListInterface](../../../../ListInterface.md) $context) : 
 
 
 |Parameters: | | |

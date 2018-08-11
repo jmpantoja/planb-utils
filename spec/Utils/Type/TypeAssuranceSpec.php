@@ -12,7 +12,7 @@ class TypeAssuranceSpec extends ObjectBehavior
 {
     private const NUMBER = 123.745;
 
-    private const NUMBER_AS_STRING = '123.745';
+    private const NUMBER_AS_STRING = '[double: 123.745]';
 
     public function let()
     {
@@ -39,8 +39,7 @@ class TypeAssuranceSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [self::NUMBER]);
 
-        $message = sprintf('%s fails when check if is string', self::NUMBER);
-        $this->shouldThrow(new AssertException($message))->duringIsString();
+        $this->shouldThrow(AssertException::class)->duringIsString();
     }
 
     public function it_convert_to_string()

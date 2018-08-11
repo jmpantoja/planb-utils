@@ -21,7 +21,7 @@
 UndefinedProfileException constructor.
 
 
-**UndefinedProfileException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
+protected **UndefinedProfileException::__construct**(string $message, [Throwable](../../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |

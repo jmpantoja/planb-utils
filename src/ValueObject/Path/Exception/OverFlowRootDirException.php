@@ -23,7 +23,7 @@ class OverFlowRootDirException extends \DomainException
      * @param string                                           $message
      * @param null|\PlanB\ValueObject\Path\Exception\Throwable $previous
      */
-    public function __construct(string $message, ?Throwable $previous = null)
+    protected function __construct(string $message, ?Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }
@@ -40,6 +40,6 @@ class OverFlowRootDirException extends \DomainException
     {
         $message = 'No se puede crear la ruta porque va más allá del directorio raiz';
 
-        return new self($message, $previous);
+        return new static($message, $previous);
     }
 }

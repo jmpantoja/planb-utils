@@ -21,7 +21,7 @@
 Resuelve un Item, asegurando que es válido
 
 
-**CustomValidator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**CustomValidator::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |
@@ -52,7 +52,7 @@ Valida un item
 CustomValidator constructor.
 
 
-**CustomValidator::__construct**(callable $callback) : 
+protected **CustomValidator::__construct**(callable $callback) : 
 
 
 |Parameters: | | |

@@ -21,7 +21,7 @@
 Resuelve un Item, normalizando el valor
 
 
-**CustomNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context) : bool
+**CustomNormalizer::__invoke**([Item](../../../../Item.md) $item, [ListInterface](../../../../ListInterface.md) $context = null) : bool
 
 
 |Parameters: | | |
@@ -52,7 +52,7 @@ Devuelve el valor normalizado
 CustomNormalizer constructor.
 
 
-**CustomNormalizer::__construct**(callable $callback) : 
+protected **CustomNormalizer::__construct**(callable $callback) : 
 
 
 |Parameters: | | |

@@ -26,7 +26,7 @@ class UndefinedProfileException extends \OutOfRangeException
      * @param string                                        $message
      * @param null|\PlanB\Utils\Options\Exception\Throwable $previous
      */
-    public function __construct(string $message, ?Throwable $previous = null)
+    protected function __construct(string $message, ?Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }

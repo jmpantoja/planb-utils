@@ -32,7 +32,7 @@ class AssuranceCall
      */
     public static function create(object $object): self
     {
-        return new self($object);
+        return new static($object);
     }
 
     /**
@@ -40,7 +40,7 @@ class AssuranceCall
      *
      * @param object $object
      */
-    public function __construct(object $object)
+    protected function __construct(object $object)
     {
         $this->object = $object;
     }

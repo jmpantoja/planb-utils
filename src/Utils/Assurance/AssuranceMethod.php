@@ -57,7 +57,7 @@ class AssuranceMethod
      */
     public static function create(object $object, string $original): self
     {
-        return new self($object, $original);
+        return new static($object, $original);
     }
 
 
@@ -67,7 +67,7 @@ class AssuranceMethod
      * @param object $object
      * @param string $original
      */
-    public function __construct(object $object, string $original)
+    protected function __construct(object $object, string $original)
     {
         if (preg_match('/^(is|has)(not)?(.*)/i', $original, $matches)) {
             $this->object = $object;

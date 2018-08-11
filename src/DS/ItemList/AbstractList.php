@@ -47,7 +47,7 @@ abstract class AbstractList implements ListInterface
     /**
      * List constructor.
      */
-    public function __construct()
+    protected function __construct()
     {
         $this->items = [];
         $this->resolution = Resolution::create($this);

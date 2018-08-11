@@ -31,7 +31,7 @@ class Text implements Stringifable
      *
      * @param string $text
      */
-    public function __construct(string $text)
+    protected function __construct(string $text)
     {
         $this->text = $text;
     }
@@ -47,7 +47,7 @@ class Text implements Stringifable
     {
         ensure_type($text)->isConvertibleToString();
 
-        return new self((string) $text);
+        return new static((string) $text);
     }
 
     /**

@@ -206,7 +206,7 @@ trait Accessors
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
-    private function tryAddItem(Item $item): ListInterface
+    protected function tryAddItem(Item $item): ListInterface
     {
         $valid = $this->resolution->resolve($item);
 

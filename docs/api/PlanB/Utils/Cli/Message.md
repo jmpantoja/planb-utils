@@ -17,33 +17,19 @@
 
 ## Methods
 
-### __toString
-Devuelve la cadena de texto
+### __construct
+Message constructor.
 
 
-**Message::__toString**() : string
+protected **Message::__construct**() : 
 
 
-
----
-
-
-### style
-Asigna un estilo a este elemento
-
-
-**Message::style**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
 
 ---
 
 
 ### getStyle
-Devuelve el estilo
+Devuelve el estilo de este elemento
 
 
 **Message::getStyle**() : [Style](../../../Style.md)
@@ -53,11 +39,11 @@ Devuelve el estilo
 ---
 
 
-### apply
-Aplica un estilo y da por finalizada la definición de elemento
+### mergeStyle
+Mezcla el estilo de este elemento con otro
 
 
-**Message::apply**([Style](../../../Style.md) $style) : [OutputAggregate](../../../OutputAggregate.md)
+**Message::mergeStyle**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
@@ -67,36 +53,107 @@ Aplica un estilo y da por finalizada la definición de elemento
 ---
 
 
-### setParent
-Asigna un objeto OutputAggregate como padre de este elemento
+### render
+Devuelve el contenido expandido de esta linea, con el estilo aplicado
 
 
-protected **Message::setParent**([OutputAggregate](../../../OutputAggregate.md) $parent) : [Output](../../../Output.md)
+**Message::render**([Style](../../../Style.md) $style) : string
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[OutputAggregate](../../../OutputAggregate.md) |$parent |  |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 
 
-### end
-Da por finalizada la definición de este elemento, y devuelve el padre
+### foregroundColor
+Asigna el color del texto
 
 
-**Message::end**() : [OutputAggregate](../../../OutputAggregate.md)
+**Message::foregroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../Color.md) |$color |  |
+
+---
+
+
+### backgroundColor
+Asigna el color del fondo
+
+
+**Message::backgroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../Color.md) |$color |  |
+
+---
+
+
+### option
+Asigna una opción al texto
+
+
+**Message::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Option](../../../Option.md) |$option |  |
+
+---
+
+
+### align
+Asigna una alineación al texto
+
+
+**Message::align**([Align](../../../Align.md) $align) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Align](../../../Align.md) |$align |  |
+
+---
+
+
+### tab
+Asigna el número de tabulaciones a izquierda y derecha
+
+
+**Message::tab**(int $left, int $right = 0) : [Output](../../../Output.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$left |  |
+|int |$right |  |
+
+---
+
+
+### create
+Message camed constructor.
+
+
+static **Message::create**() : [Message](../../../Message.md)
 
 
 
 ---
 
 
-### __construct
+### count
+Devuelve el número de lineas que componen este mensaje
 
 
-
-protected **Message::__construct**() : 
+**Message::count**() : int
 
 
 
@@ -117,68 +174,50 @@ __toString alias
 ---
 
 
+### __toString
+Devuelve la cadena de texto
+
+
+**Message::__toString**() : string
+
+
+
+---
+
+
 ### add
+Añade una linea
 
 
-
-protected **Message::add**([Output](../../../Output.md) $output) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Output](../../../Output.md) |$output |  |
-
----
-
-
-### count
-Devuelve el número de elementos
-
-
-**Message::count**() : int
-
-
-
----
-
-
-### getSeparator
-Devuelve el caracter separador
-
-
-protected **Message::getSeparator**() : string
-
-
-
----
-
-
-### create
-Crea una nueva instancia
-
-
-static **Message::create**(string $format = null, string ...$arguments) : [Line](../../../Line.md)
+**Message::add**(string $format, mixed ...$arguments) : [Message](../../../Message.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |string |$format |  |
-|string |...$arguments |  |
+|mixed |...$arguments |  |
 
 ---
 
 
-### line
-Añade una nueva linea
+### length
+Devuelve la longitud de la línea más larga (sin etiquetas)
 
 
-**Message::line**(string $format = null, string ...$arguments) : [Line](../../../Line.md)
+**Message::length**() : int
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
-|string |...$arguments |  |
+
+---
+
+
+### expand
+
+
+
+**Message::expand**() : [Message](../../../Message.md)
+
+
 
 ---
 

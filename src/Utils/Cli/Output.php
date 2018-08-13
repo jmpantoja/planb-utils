@@ -1,108 +1,140 @@
 <?php
+
 /**
  * This file is part of the planb project.
  *
- * (c) Jose Manuel Pantoja <jmpantoja@gmail.com>
+ * (c) jmpantoja <jmpantoja@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
 namespace PlanB\Utils\Cli;
 
-use PlanB\ValueObject\Stringifable;
-
 /**
- * Clase abstracta comun a todos los elementos que se pueden mostar por consola
+ * Objetos capaces de mostrarse por consola con un estilo determinado
  */
-abstract class Output implements Stringifable
+abstract class Output
 {
-    /**
-     * @var \PlanB\Utils\Cli\OutputAggregate
-     */
-    private $parent;
-
     /**
      * @var \PlanB\Utils\Cli\Style
      */
     private $style;
 
+
     /**
-     * Devuelve la cadena de texto
-     *
-     * @return string
+     * Line constructor.
      */
-    public function __toString(): string
+    protected function __construct()
     {
-        return $this->stringify();
+        $this->style = Style::create();
     }
 
     /**
-     * Asigna un estilo a este elemento
-     *
-     * @param \PlanB\Utils\Cli\Style $style
-     *
-     * @return \PlanB\Utils\Cli\Output
-     */
-    public function style(Style $style): Output
-    {
-        $this->style = $style;
-
-        return $this;
-    }
-
-    /**
-     * Devuelve el estilo
+     * Devuelve el estilo de este elemento
      *
      * @return \PlanB\Utils\Cli\Style
      */
     public function getStyle(): Style
     {
-        if (is_null($this->style)) {
-            $this->style = Style::create();
-        }
-
         return $this->style;
     }
 
-
     /**
-     * Aplica un estilo y da por finalizada la definición de elemento
+     * Mezcla el estilo de este elemento con otro
      *
      * @param \PlanB\Utils\Cli\Style $style
      *
-     * @return \PlanB\Utils\Cli\OutputAggregate
-     */
-    public function apply(Style $style): OutputAggregate
-    {
-        $this->style($style);
-
-        return $this->end();
-    }
-
-    /**
-     * Asigna un objeto OutputAggregate como padre de este elemento
-     *
-     * @param \PlanB\Utils\Cli\OutputAggregate $parent
-     *
      * @return \PlanB\Utils\Cli\Output
      */
-    protected function setParent(OutputAggregate $parent): Output
+    public function mergeStyle(Style $style): self
     {
 
-        $this->parent = $parent;
+        $this->style->merge($style);
 
         return $this;
     }
 
     /**
-     * Da por finalizada la definición de este elemento, y devuelve el padre
+     * Devuelve el contenido expandido de esta linea, con el estilo aplicado
      *
-     * @return \PlanB\Utils\Cli\OutputAggregate
+     * @param \PlanB\Utils\Cli\Style $style
+     *
+     * @return  string
      */
-    public function end(): OutputAggregate
+    abstract public function render(Style $style): string;
+
+
+    /**
+     * Asigna el color del texto
+     *
+     * @param \PlanB\Utils\Cli\Color $color
+     *
+     * @return \PlanB\Utils\Cli\Output
+     */
+    public function foregroundColor(Color $color): self
     {
-        return $this->parent;
+        $this->style->foreGroundColor($color);
+
+        return $this;
+    }
+
+    /**
+     * Asigna el color del fondo
+     *
+     * @param \PlanB\Utils\Cli\Color $color
+     *
+     * @return \PlanB\Utils\Cli\Output
+     */
+    public function backgroundColor(Color $color): self
+    {
+        $this->style->backGroundColor($color);
+
+        return $this;
+    }
+
+    /**
+     * Asigna una opción al texto
+     *
+     * @param \PlanB\Utils\Cli\Option $option
+     *
+     * @return $this
+     */
+    public function option(Option $option)
+    {
+        $this->style->option($option);
+
+        return $this;
+    }
+
+    /**
+     * Asigna una alineación al texto
+     *
+     * @param \PlanB\Utils\Cli\Align $align
+     *
+     * @return $this
+     */
+    public function align(Align $align)
+    {
+        $this->style->align($align);
+
+        return $this;
+    }
+
+    /**
+     * Asigna el número de tabulaciones a izquierda y derecha
+     *
+     * @param int $left
+     * @param int $right
+     *
+     * @return \PlanB\Utils\Cli\Output
+     */
+    public function tab(int $left, int $right = 0): self
+    {
+        $this->style->tab($left, $right);
+
+        return $this;
     }
 }

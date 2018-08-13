@@ -12,64 +12,98 @@ declare(strict_types=1);
 namespace PlanB\Utils\Cli;
 
 /**
- * Representa a una linea con un estilo determinado
+ * Una linea singular del mensaje
  */
-class Line extends OutputAggregate
+class Line extends Output
 {
+    /**
+     * @var string
+     */
+    private $text;
 
     /**
-     * Crea una nueva instancia
-     *
-     * @param null|string $format
-     * @param string      ...$arguments
-     *
-     * @return \PlanB\Utils\Cli\Line
+     * @var string
      */
-    public static function create(?string $format = null, string ...$arguments): self
+    private $rawText;
+
+
+    /**
+     * Line constructor.
+     *
+     * @param string $content
+     */
+    protected function __construct(string $content)
     {
-        $line = new static();
-
-        if (!is_null($format)) {
-            $line->word($format, ...$arguments);
-        }
-
-        return $line;
+        parent::__construct();
+        $this->text = $this->normalize($content);
+        $this->rawText = $this->normalize(strip_tags($content));
     }
 
     /**
-     * Asigna un objeto Message como padre de este elemento
-     *
-     * @param \PlanB\Utils\Cli\Message $message
-     *
-     * @return \PlanB\Utils\Cli\Output
-     */
-    public function parent(Message $message): Output
-    {
-        return $this->setParent($message);
-    }
-
-    /**
-     * Agrega un objeto Word a la lista
-     *
-     * @param string $format
-     * @param string ...$arguments
-     *
-     * @return \PlanB\Utils\Cli\Word
-     */
-    public function word(string $format, string ...$arguments): Word
-    {
-        $word = Word::create($format, ...$arguments);
-
-        return $this->add($word);
-    }
-
-    /**
-     * Devuelve el caracter separador
+     * Devuelve el texto
      *
      * @return string
      */
-    protected function getSeparator(): string
+    public function getText(): string
     {
-        return ' ';
+        return $this->text;
+    }
+
+    /**
+     * Normaliza el texto
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    private function normalize(string $content): string
+    {
+        $content = trim($content, "\n ");
+
+        return $content = str_replace("\t", Style::TAB, $content);
+    }
+
+    /**
+     * Line Named constructor.
+     *
+     * @param string $content
+     *
+     * @return \PlanB\Utils\Cli\Line
+     */
+    public static function create(string $content): self
+    {
+        return new static($content);
+    }
+
+    /**
+     * Devuelve el ancho de la linea, sin contar etiquetas
+     *
+     * @return int
+     */
+    public function length(): int
+    {
+        return strlen($this->rawText);
+    }
+
+    /**
+     * Devuelve la longitud del texto que no se imprime por formar parte de las etiquetas
+     *
+     * @return int
+     */
+    public function taggedTextLength(): int
+    {
+        return strlen($this->text) - $this->length();
+    }
+
+    /**
+     * Devuelve el contenido expandido de esta linea, con el estilo aplicado
+     *
+     * @param \PlanB\Utils\Cli\Style $style
+     *
+     * @return  string
+     */
+    public function render(Style $style): string
+    {
+        return $style->decorate($this);
     }
 }

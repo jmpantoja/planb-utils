@@ -4,7 +4,7 @@
 # Output
 
 
-> Clase abstracta comun a todos los elementos que se pueden mostar por consola
+> Objetos capaces de mostrarse por consola con un estilo determinado
 >
 > 
 
@@ -17,33 +17,19 @@
 
 ## Methods
 
-### __toString
-Devuelve la cadena de texto
+### __construct
+Line constructor.
 
 
-**Output::__toString**() : string
+protected **Output::__construct**() : 
 
 
-
----
-
-
-### style
-Asigna un estilo a este elemento
-
-
-**Output::style**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
 
 ---
 
 
 ### getStyle
-Devuelve el estilo
+Devuelve el estilo de este elemento
 
 
 **Output::getStyle**() : [Style](../../../Style.md)
@@ -53,11 +39,11 @@ Devuelve el estilo
 ---
 
 
-### apply
-Aplica un estilo y da por finalizada la definición de elemento
+### mergeStyle
+Mezcla el estilo de este elemento con otro
 
 
-**Output::apply**([Style](../../../Style.md) $style) : [OutputAggregate](../../../OutputAggregate.md)
+**Output::mergeStyle**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
@@ -67,27 +53,87 @@ Aplica un estilo y da por finalizada la definición de elemento
 ---
 
 
-### setParent
-Asigna un objeto OutputAggregate como padre de este elemento
+### render
+Devuelve el contenido expandido de esta linea, con el estilo aplicado
 
 
-protected **Output::setParent**([OutputAggregate](../../../OutputAggregate.md) $parent) : [Output](../../../Output.md)
+abstract **Output::render**([Style](../../../Style.md) $style) : string
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[OutputAggregate](../../../OutputAggregate.md) |$parent |  |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 
 
-### end
-Da por finalizada la definición de este elemento, y devuelve el padre
+### foregroundColor
+Asigna el color del texto
 
 
-**Output::end**() : [OutputAggregate](../../../OutputAggregate.md)
+**Output::foregroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../Color.md) |$color |  |
+
+---
+
+
+### backgroundColor
+Asigna el color del fondo
+
+
+**Output::backgroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../Color.md) |$color |  |
+
+---
+
+
+### option
+Asigna una opción al texto
+
+
+**Output::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Option](../../../Option.md) |$option |  |
+
+---
+
+
+### align
+Asigna una alineación al texto
+
+
+**Output::align**([Align](../../../Align.md) $align) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Align](../../../Align.md) |$align |  |
+
+---
+
+
+### tab
+Asigna el número de tabulaciones a izquierda y derecha
+
+
+**Output::tab**(int $left, int $right = 0) : [Output](../../../Output.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$left |  |
+|int |$right |  |
 
 ---
 

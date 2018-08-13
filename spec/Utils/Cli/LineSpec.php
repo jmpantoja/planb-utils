@@ -2,25 +2,27 @@
 
 namespace spec\PlanB\Utils\Cli;
 
-use PlanB\Utils\Cli\Message;
-use PlanB\Utils\Cli\OutputAggregate;
-use PlanB\Utils\Cli\Output;
+use PlanB\Utils\Cli\Align;
+use PlanB\Utils\Cli\Color;
 use PlanB\Utils\Cli\Line;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Cli\Style;
-use PlanB\Utils\Cli\Word;
-use PlanB\ValueObject\Stringifable;
-use Prophecy\Argument as p;
-
+use Prophecy\Argument;
 
 class LineSpec extends ObjectBehavior
 {
-    public const ONE_WORD = 'WORD #1';
-    public const TWO_WORDS = 'WORD #1 WORD #2';
+
+    private const CONTENT = 'LINE #A';
+
+    private const UNTRIMMED_CONTENT = '    LINE #A    ';
+
+    private const TAGGED_CONTENT = '<fg=red;bg=black>LINE </>#A';
+
+    private const TAGGED_CONTENT_WITH_TABS = "<fg=red;bg=black>\tLINE </>#A";
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('create', [self::CONTENT]);
     }
 
     public function it_is_initializable()
@@ -28,64 +30,51 @@ class LineSpec extends ObjectBehavior
         $this->shouldHaveType(Line::class);
     }
 
-    public function it_extends_from_block()
+    public function it_can_retrieve_the_length()
     {
-        $this->shouldHaveType(Output::class);
+        $this->length()->shouldReturn(strlen(self::CONTENT));
     }
 
-    public function it_is_aggregable()
+    public function it_can_retrieve_the_length_from_tagged_content()
     {
-        $this->shouldHaveType(OutputAggregate::class);
+        $this->beConstructedThrough('create', [self::TAGGED_CONTENT]);
+        $this->length()->shouldReturn(strlen(self::CONTENT));
     }
 
-    public function it_is_stringifable()
+    public function it_can_retrieve_the_length_from_untrimmed_content()
     {
-        $this->shouldHaveType(Stringifable::class);
+        $this->beConstructedThrough('create', [self::UNTRIMMED_CONTENT]);
+        $this->length()->shouldReturn(strlen(self::CONTENT));
     }
 
-    public function it_can_be_created_with_a_word()
+    public function it_can_retrieve_the_length_from_untrimmed_tagged_content()
     {
-        $this->beConstructedThrough('create', [WordSpec::FORMAT, 1]);
-        $this->count()->shouldReturn(1);
-
+        $this->beConstructedThrough('create', [self::TAGGED_CONTENT_WITH_TABS]);
+        $this->length()->shouldReturn(strlen(self::CONTENT) + strlen(Style::TAB));
     }
 
-    public function it_can_be_added_to_message(Message $message)
+    public function it_can_render_simple_content()
     {
-        $this->parent($message)->shouldReturn($this);
-        $this->end()->shouldReturn($message);
+        $style = Style::create();
+
+        $this->beConstructedThrough('create', [self::CONTENT]);
+        $this->render($style)->shouldReturn(self::CONTENT);
     }
 
-    public function it_refuse_be_added_to_other_line(Line $line)
+    public function it_can_render_expanded_content(Style $style)
     {
-        $this->shouldThrow(\TypeError::class)->duringParent($line);
-    }
+        $this->beConstructedThrough('create', [self::CONTENT]);
 
-    public function it_can_add_a_word()
-    {
-        $word = $this->word(WordSpec::FORMAT, 1);
-        $word->shouldHaveType(Word::class);
+        $spaces = 10;
 
-        $word->end()->shouldReturn($this);
+        $maxLenght = strlen(self::CONTENT) + $spaces;
 
-        $this->count()->shouldReturn(1);
+        $style = Style::create();
+        $style->width($maxLenght);
 
-    }
+        $padding = str_repeat(' ', $spaces);
 
-    public function it_can_compose_a_single_word_message()
-    {
-        $this->word(WordSpec::FORMAT, 1);
-
-        $this->stringify()->shouldReturn(self::ONE_WORD);
-    }
-
-
-    public function it_can_compose_a_multile_words_message()
-    {
-        $this->word(WordSpec::FORMAT, 1);
-        $this->word(WordSpec::FORMAT, 2);
-
-        $this->stringify()->shouldReturn(self::TWO_WORDS);
+        $this->render($style)->shouldReturn(self::CONTENT . $padding);
     }
 
 }

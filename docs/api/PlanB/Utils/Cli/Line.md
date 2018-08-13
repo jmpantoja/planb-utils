@@ -4,7 +4,7 @@
 # Line
 
 
-> Representa a una linea con un estilo determinado
+> Una linea singular del mensaje
 >
 > 
 
@@ -17,33 +17,22 @@
 
 ## Methods
 
-### __toString
-Devuelve la cadena de texto
+### __construct
+Line constructor.
 
 
-**Line::__toString**() : string
-
-
-
----
-
-
-### style
-Asigna un estilo a este elemento
-
-
-**Line::style**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
+protected **Line::__construct**(string $content) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
+|string |$content |  |
 
 ---
 
 
 ### getStyle
-Devuelve el estilo
+Devuelve el estilo de este elemento
 
 
 **Line::getStyle**() : [Style](../../../Style.md)
@@ -53,11 +42,11 @@ Devuelve el estilo
 ---
 
 
-### apply
-Aplica un estilo y da por finalizada la definición de elemento
+### mergeStyle
+Mezcla el estilo de este elemento con otro
 
 
-**Line::apply**([Style](../../../Style.md) $style) : [OutputAggregate](../../../OutputAggregate.md)
+**Line::mergeStyle**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
@@ -67,86 +56,81 @@ Aplica un estilo y da por finalizada la definición de elemento
 ---
 
 
-### setParent
-Asigna un objeto OutputAggregate como padre de este elemento
+### render
+Devuelve el contenido expandido de esta linea, con el estilo aplicado
 
 
-protected **Line::setParent**([OutputAggregate](../../../OutputAggregate.md) $parent) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[OutputAggregate](../../../OutputAggregate.md) |$parent |  |
-
----
-
-
-### end
-Da por finalizada la definición de este elemento, y devuelve el padre
-
-
-**Line::end**() : [OutputAggregate](../../../OutputAggregate.md)
-
-
-
----
-
-
-### __construct
-
-
-
-protected **Line::__construct**() : 
-
-
-
----
-
-
-### stringify
-__toString alias
-
-
-**Line::stringify**(string $format = null) : string
+**Line::render**([Style](../../../Style.md) $style) : string
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$format |  |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 
 
-### add
+### foregroundColor
+Asigna el color del texto
 
 
-
-protected **Line::add**([Output](../../../Output.md) $output) : 
+**Line::foregroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Output](../../../Output.md) |$output |  |
+|[Color](../../../Color.md) |$color |  |
 
 ---
 
 
-### count
-Devuelve el número de elementos
+### backgroundColor
+Asigna el color del fondo
 
 
-**Line::count**() : int
+**Line::backgroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../Color.md) |$color |  |
 
 ---
 
 
-### getSeparator
-Devuelve el caracter separador
+### option
+Asigna una opción al texto
 
 
-protected **Line::getSeparator**() : string
+**Line::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Option](../../../Option.md) |$option |  |
+
+---
+
+
+### align
+Asigna una alineación al texto
+
+
+**Line::align**([Align](../../../Align.md) $align) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Align](../../../Align.md) |$align |  |
+
+---
+
+
+### getText
+Devuelve el texto
+
+
+**Line::getText**() : string
 
 
 
@@ -154,45 +138,37 @@ protected **Line::getSeparator**() : string
 
 
 ### create
-Crea una nueva instancia
+Line Named constructor.
 
 
-static **Line::create**(string $format = null, string ...$arguments) : [Line](../../../Line.md)
+static **Line::create**(string $content) : [Line](../../../Line.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$format |  |
-|string |...$arguments |  |
+|string |$content |  |
 
 ---
 
 
-### parent
-Asigna un objeto Message como padre de este elemento
+### length
+Devuelve el ancho de la linea, sin contar etiquetas
 
 
-**Line::parent**([Message](../../../Message.md) $message) : [Output](../../../Output.md)
+**Line::length**() : int
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|[Message](../../../Message.md) |$message |  |
 
 ---
 
 
-### word
-Agrega un objeto Word a la lista
+### taggedTextLength
+Devuelve la longitud del texto que no se imprime por formar parte de las etiquetas
 
 
-**Line::word**(string $format, string ...$arguments) : [Word](../../../Word.md)
+**Line::taggedTextLength**() : int
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
-|string |...$arguments |  |
 
 ---
 

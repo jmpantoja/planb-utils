@@ -174,7 +174,7 @@
 
 
 ### tryAddItem
-
+Resuelve y añade un item
 
 
 protected **Accessors::tryAddItem**([Item](../../../../Item.md) $item) : [ListInterface](../../../../ListInterface.md)

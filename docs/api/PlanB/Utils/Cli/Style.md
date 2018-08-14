@@ -13,7 +13,6 @@
 
 ## Constants
 - TAB
-- PADDING_CHARACTER
 
 
 
@@ -42,41 +41,16 @@ static **Style::create**() : [Style](../../../Style.md)
 ---
 
 
-### merge
-Combina este estilo con otro
+### applyAttributeString
+Aplica los atributos contenidos en una cadena de texto
 
 
-**Style::merge**([Style](../../../Style.md) $style) : [Style](../../../Style.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
-
----
-
-
-### width
-Devuelve el ancho de linea
-
-
-**Style::width**(int $width) : [Style](../../../Style.md)
+**Style::applyAttributeString**(string $attributes) : [Style](../../../Style.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|int |$width |  |
-
----
-
-
-### getWidth
-Devuelve el ancho de linea
-
-
-**Style::getWidth**() : int
-
-
+|string |$attributes |  |
 
 ---
 
@@ -123,56 +97,16 @@ Asigna una opción al texto
 ---
 
 
-### align
-Asigna una alineación
+### wrap
+Envuelve un texto con la etiqueta derivada de este estilo
 
 
-**Style::align**([Align](../../../Align.md) $align) : [Style](../../../Style.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Align](../../../Align.md) |$align |  |
-
----
-
-
-### tab
-Asigna el número de tabulaciones a izquierda y derecha
-
-
-**Style::tab**(int $left, int $right = 0) : [Style](../../../Style.md)
+**Style::wrap**([Text](../../../Text.md) $text) : [Text](../../../Text.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|int |$left |  |
-|int |$right |  |
-
----
-
-
-### decorate
-Envuelve el texto con el tag de estilo
-
-
-**Style::decorate**([Line](../../../Line.md) $line) : string
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Line](../../../Line.md) |$line |  |
-
----
-
-
-### isEmpty
-Indica si se ha establecido algun estilo
-
-
-**Style::isEmpty**() : bool
-
-
+|[Text](../../../Text.md) |$text |  |
 
 ---
 

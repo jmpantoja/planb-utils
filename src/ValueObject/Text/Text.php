@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\ValueObject\Text;
 
-use PlanB\DS\ItemList\ItemList;
 use PlanB\ValueObject\Stringifable;
 
 /**
@@ -21,6 +20,12 @@ use PlanB\ValueObject\Stringifable;
  */
 class Text implements Stringifable
 {
+    public const LINE_BREAK = "\n";
+
+    public const EMPTY_TEXT = '';
+
+    public const BLANK_TEXT = ' ';
+
     /**
      * @var string
      */
@@ -51,6 +56,35 @@ class Text implements Stringifable
     }
 
     /**
+     * Crea una nueva instancia
+     *
+     * @param string $format
+     * @param mixed  ...$arguments
+     *
+     * @return \PlanB\ValueObject\Text\Text
+     */
+    public static function format(string $format, ...$arguments): self
+    {
+        $text = sprintf($format, ...$arguments);
+
+        return new static($text);
+    }
+
+
+    /**
+     * Crea una nueva instancia concatenando varias cadenas de texto
+     *
+     * @param mixed ...$pieces
+     *
+     * @return \PlanB\ValueObject\Text\Text
+     */
+    public static function concat(...$pieces): self
+    {
+        return TextList::create($pieces)
+            ->concat();
+    }
+
+    /**
      * Cambia el valor del texto (inmutable)
      *
      * @param string $text
@@ -67,7 +101,7 @@ class Text implements Stringifable
      */
     public function stringify(?string $format = null): string
     {
-        return $this->__toString();
+        return $this->text;
     }
 
     /**
@@ -77,7 +111,7 @@ class Text implements Stringifable
      */
     public function __toString(): string
     {
-        return $this->text;
+        return $this->stringify();
     }
 
     /**
@@ -158,8 +192,8 @@ class Text implements Stringifable
     {
 
         return $this->split('/[_\s\W]+/')
-            ->reduce(function (string $piece, Text $carry) {
-                return $carry->append(ucfirst($piece));
+            ->reduce(function (Text $piece, Text $carry) {
+                return $carry->append($piece->toUpperFirst()->stringify());
             }, self::create())
             ->toLowerFirst();
     }
@@ -188,13 +222,13 @@ class Text implements Stringifable
      * @param int    $limit
      * @param int    $flags
      *
-     * @return \PlanB\DS\ItemList\ItemList
+     * @return \PlanB\ValueObject\Text\TextList
      */
-    public function split(string $pattern, int $limit = -1, int $flags = 0): ItemList
+    public function split(string $pattern, int $limit = -1, int $flags = 0): TextList
     {
         $pieces = preg_split($pattern, $this->text, $limit, $flags);
 
-        return ItemList::create($pieces);
+        return TextList::create($pieces);
     }
 
     /**
@@ -204,13 +238,13 @@ class Text implements Stringifable
      *
      * @param int    $limit
      *
-     * @return \PlanB\DS\ItemList\ItemList
+     * @return \PlanB\ValueObject\Text\TextList
      */
-    public function explode(string $delimiter, int $limit = PHP_INT_MAX): ItemList
+    public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextList
     {
         $pieces = explode($delimiter, $this->text, $limit);
 
-        return ItemList::create($pieces);
+        return TextList::create($pieces);
     }
 
     /**
@@ -288,5 +322,19 @@ class Text implements Stringifable
 
 
         return self::create($replaced);
+    }
+
+    /**
+     * Añade padding a la cadena
+     *
+     * @param int    $lenght
+     * @param string $char
+     * @param int    $mode
+     *
+     * @return \PlanB\ValueObject\Text\Text
+     */
+    public function padding(int $lenght, string $char = self::BLANK_TEXT, int $mode = STR_PAD_RIGHT): Text
+    {
+        return new self(str_pad($this->text, $lenght, $char, $mode));
     }
 }

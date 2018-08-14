@@ -17,17 +17,16 @@
 
 ## Properties
 - items
-- resolverBag
-- innerType
+- resolution
 
 
 ## Methods
 
 ### add
-Agrega un elemento a la colección
 
 
-**TypedList::add**(mixed $value) : [$this](../../../$this.md)
+
+**TypedList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -38,7 +37,7 @@ Agrega un elemento a la colección
 
 
 ### addAll
-Agrega un conjunto de elementos
+
 
 
 **TypedList::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -51,8 +50,22 @@ Agrega un conjunto de elementos
 ---
 
 
+### clearAndAdd
+
+
+
+**TypedList::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
-Agrega una pareja clave/valor a la colección
+
 
 
 **TypedList::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
@@ -67,7 +80,7 @@ Agrega una pareja clave/valor a la colección
 
 
 ### setAll
-Agrega un conjunto de parejas clave/valor
+
 
 
 **TypedList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -80,8 +93,22 @@ Agrega un conjunto de parejas clave/valor
 ---
 
 
+### clearAndSet
+
+
+
+**TypedList::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### get
-Devuelve un elemento
+
 
 
 **TypedList::get**(mixed $key, mixed|null $default = null) : mixed
@@ -96,7 +123,7 @@ Devuelve un elemento
 
 
 ### exists
-Indica si un elemento existe
+
 
 
 **TypedList::exists**(mixed $key) : bool
@@ -110,7 +137,7 @@ Indica si un elemento existe
 
 
 ### has
-exists alias
+
 
 
 **TypedList::has**(mixed $key) : bool
@@ -124,10 +151,10 @@ exists alias
 
 
 ### remove
-Elimina un elemento
 
 
-**TypedList::remove**(mixed $key) : [$this](../../../$this.md)
+
+**TypedList::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -137,8 +164,33 @@ Elimina un elemento
 ---
 
 
+### clear
+
+
+
+**TypedList::clear**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### tryAddItem
+Resuelve y añade un item
+
+
+protected **TypedList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
 ### __construct
-ArrayList constructor.
+TypedList constructor.
 
 
 **TypedList::__construct**(string $innerType) : 
@@ -151,41 +203,11 @@ ArrayList constructor.
 ---
 
 
-### addResolver
-Añade un nuevo resolver
-
-
-**TypedList::addResolver**(callable|[ResolverInterface](../../../ResolverInterface.md) $resolver, int $priority = 0) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
-|int |$priority |  |
-
----
-
-
 ### customize
+Configura el comportamiento de  la lista
 
 
-
-protected **TypedList::customize**([ResolverBag](../../../ResolverBag.md) $resolverBag) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[ResolverBag](../../../ResolverBag.md) |$resolverBag |  |
-
----
-
-
-### ignoreOnInvalid
-Configura la Lista para que no se lanzen excepciones
-cuando se trata de añadir un valor invalido
-
-
-**TypedList::ignoreOnInvalid**() : [ListInterface](../../../ListInterface.md)
+protected **TypedList::customize**() : void
 
 
 
@@ -193,7 +215,7 @@ cuando se trata de añadir un valor invalido
 
 
 ### count
-Devuelve el número total de elementos
+
 
 
 **TypedList::count**() : int
@@ -204,7 +226,7 @@ Devuelve el número total de elementos
 
 
 ### isEmpty
-Indica si la colección está vacia
+
 
 
 **TypedList::isEmpty**() : bool
@@ -215,7 +237,7 @@ Indica si la colección está vacia
 
 
 ### each
-Ejecuta una acción para cada elemento de la colección
+
 
 
 **TypedList::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -230,8 +252,8 @@ Ejecuta una acción para cada elemento de la colección
 
 
 ### map
-Devuelve el resultado de aplicar una acción a cada elemento de la colección
-La colección original permanece inmutable
+
+
 
 **TypedList::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
@@ -245,7 +267,7 @@ La colección original permanece inmutable
 
 
 ### filter
-Devuelve una colección con los elementos que cumplen un criterio
+
 
 
 **TypedList::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -260,8 +282,7 @@ Devuelve una colección con los elementos que cumplen un criterio
 
 
 ### search
-Devuelve el primer elemento que cumpla con el criterio,
-o nulo si no encuentra ninguno
+
 
 
 **TypedList::search**(callable $callable, mixed ...$userdata) : mixed|null
@@ -276,8 +297,7 @@ o nulo si no encuentra ninguno
 
 
 ### find
-Devuelve el primer elemento que cumpla con el criterio,
-o lanza una excepción si no encuentra ninguno
+
 
 
 **TypedList::find**(callable $callable, mixed ...$userdata) : mixed
@@ -292,7 +312,7 @@ o lanza una excepción si no encuentra ninguno
 
 
 ### reduce
-Reduce una colección, a un unico valor
+
 
 
 **TypedList::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -308,7 +328,7 @@ Reduce una colección, a un unico valor
 
 
 ### toArray
-Devuelve un array con los elementos de la colección
+
 
 
 **TypedList::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
@@ -359,11 +379,82 @@ Convierte el array en una cadena json
 ---
 
 
+### silentExceptions
+Silencia las excepciones
+
+
+**TypedList::silentExceptions**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### addHydrator
+Añade un hydrator
+
+
+**TypedList::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
+
+---
+
+
+### addValidator
+Añade un validador
+
+
+**TypedList::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizador
+
+
+**TypedList::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### addKeyNormalizer
+Añade un normalizador de clave
+
+
+**TypedList::addKeyNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
 ### create
 Crea una instancia a partir de un conjunto de valores
 
 
-static **TypedList::create**(string $innerType, [iterable](../../../iterable.md) $input = []) : [TypedList](../../../TypedList.md)
+static **TypedList::create**(string $innerType, [iterable](../../../iterable.md) $input = []) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -378,7 +469,7 @@ static **TypedList::create**(string $innerType, [iterable](../../../iterable.md)
 Devuelve el tipo de la lista
 
 
-**TypedList::getInnerType**() : string
+**TypedList::getInnerType**() : null|string
 
 
 

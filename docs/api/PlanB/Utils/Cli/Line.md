@@ -4,7 +4,7 @@
 # Line
 
 
-> Una linea singular del mensaje
+> Una linea con estilo
 >
 > 
 
@@ -31,106 +31,98 @@ protected **Line::__construct**(string $content) :
 ---
 
 
-### getStyle
-Devuelve el estilo de este elemento
+### stringify
+__toString alias
 
 
-**Line::getStyle**() : [Style](../../../Style.md)
+**Line::stringify**(string $format = null) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Line::__toString**() : string
 
 
 
 ---
 
 
-### mergeStyle
-Mezcla el estilo de este elemento con otro
+### parent
+Asigna el padre de este elemento
 
 
-**Line::mergeStyle**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
+**Line::parent**([ComposedOutput](../../../ComposedOutput.md) $parent) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
+|[ComposedOutput](../../../ComposedOutput.md) |$parent |  |
+
+---
+
+
+### end
+Finaliza la configuración,
+y devuelve el padre para seguir encadenando elementos
+
+
+**Line::end**() : [ComposedOutput](../../../ComposedOutput.md)
+
+
+
+---
+
+
+### append
+Añade un elemento a la lista
+
+
+protected **Line::append**([Output](../../../Output.md) $output) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Output](../../../Output.md) |$output |  |
+
+---
+
+
+### count
+Devuelve el número total de elementos de la lista
+
+
+**Line::count**() : int
+
+
+
+---
+
+
+### getIterator
+Retrieve an external iterator
+
+
+**Line::getIterator**() : 
+
+
 
 ---
 
 
 ### render
-Devuelve el contenido expandido de esta linea, con el estilo aplicado
+Devuelve el contenido con el estilo aplicado
 
 
-**Line::render**([Style](../../../Style.md) $style) : string
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
-
----
-
-
-### foregroundColor
-Asigna el color del texto
-
-
-**Line::foregroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
-
----
-
-
-### backgroundColor
-Asigna el color del fondo
-
-
-**Line::backgroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
-
----
-
-
-### option
-Asigna una opción al texto
-
-
-**Line::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Option](../../../Option.md) |$option |  |
-
----
-
-
-### align
-Asigna una alineación al texto
-
-
-**Line::align**([Align](../../../Align.md) $align) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Align](../../../Align.md) |$align |  |
-
----
-
-
-### getText
-Devuelve el texto
-
-
-**Line::getText**() : string
+**Line::render**() : string
 
 
 
@@ -138,7 +130,7 @@ Devuelve el texto
 
 
 ### create
-Line Named constructor.
+Message Named Constructor
 
 
 static **Line::create**(string $content) : [Line](../../../Line.md)
@@ -151,22 +143,11 @@ static **Line::create**(string $content) : [Line](../../../Line.md)
 ---
 
 
-### length
-Devuelve el ancho de la linea, sin contar etiquetas
+### getInnerType
+Devuelve el tipo de la lista
 
 
-**Line::length**() : int
-
-
-
----
-
-
-### taggedTextLength
-Devuelve la longitud del texto que no se imprime por formar parte de las etiquetas
-
-
-**Line::taggedTextLength**() : int
+**Line::getInnerType**() : null|string
 
 
 

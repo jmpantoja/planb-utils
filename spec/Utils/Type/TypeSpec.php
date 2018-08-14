@@ -23,6 +23,12 @@ class TypeSpec extends ObjectBehavior
 
     private const TEXT = 'cadena-de-texto';
 
+    private const FAKE_TYPE = 'fake-type';
+
+    private const INTEGER_TO_TEXT = '[integer: 1232]';
+
+    private const STRING_TO_TEXT = '[string: "cadena-de-texto"]';
+
     public function let()
     {
         $this->build();
@@ -601,6 +607,9 @@ class TypeSpec extends ObjectBehavior
 
         $this->isTypeOf(Type::CALLABLE)
             ->shouldReturn(false);
+
+        $this->isTypeOf(self::FAKE_TYPE)
+            ->shouldReturn(false);
     }
 
     public function it_can_determine_if_is_typeof_callable()
@@ -620,6 +629,27 @@ class TypeSpec extends ObjectBehavior
 
         $this->isTypeOf(Type::CALLABLE)
             ->shouldReturn(true);
+    }
+
+    public function it_can_be_convert_countable_to_string()
+    {
+        $this->build(['A', 'B']);
+
+        $this->stringify()->shouldReturn('[array(2)]');
+    }
+
+    public function it_can_be_convert_stringifable_to_string()
+    {
+        $this->build(self::TEXT);
+
+        $this->stringify()->shouldReturn(self::STRING_TO_TEXT);
+    }
+
+    public function it_can_be_convert_number_to_string()
+    {
+        $this->build(self::INTEGER);
+
+        $this->stringify()->shouldReturn(self::INTEGER_TO_TEXT);
     }
 
 

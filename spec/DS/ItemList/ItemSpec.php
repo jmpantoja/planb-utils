@@ -4,6 +4,8 @@ namespace spec\PlanB\DS\ItemList;
 
 use PlanB\DS\ItemList\Item;
 use PhpSpec\ObjectBehavior;
+use PlanB\Utils\Type\Type;
+use PlanB\Utils\TypeName\TypeName;
 use Prophecy\Argument;
 
 class ItemSpec extends ObjectBehavior
@@ -55,6 +57,12 @@ class ItemSpec extends ObjectBehavior
     {
         $this->isTypeOf('string')->shouldReturn(true);
         $this->isTypeOf('float')->shouldReturn(false);
+    }
+
+
+    public function it_can_retrive_the_typename()
+    {
+        $this->getTypeName()->shouldReturn(Type::STRING);
     }
 
     public function it_can_retrive_key()

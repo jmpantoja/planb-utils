@@ -1,14 +1,12 @@
 <?php
 
-namespace spec\PlanB\DS\ItemList;
+namespace spec\PlanB\ValueObject\Text;
 
+use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\ItemList\ListInterface;
-use PlanB\DS\ItemList\TextList;
-use PhpSpec\ObjectBehavior;
-use PlanB\DS\ItemList\TypableList;
 use PlanB\ValueObject\Text\Text;
-use Prophecy\Argument;
+use PlanB\ValueObject\Text\TextList;
 
 
 class TextListSpec extends ObjectBehavior
@@ -21,6 +19,14 @@ class TextListSpec extends ObjectBehavior
     private const BLANK_TEXT = '     ';
     private const EMPTY_TEXT = '';
     private const NULL_TEXT = null;
+
+    private const PIECES = [
+        'piece A',
+        'piece B',
+        'piece C'
+    ];
+
+    private const CONCATENADED_TEXT = 'piece A piece B piece C';
 
     public function let()
     {
@@ -35,11 +41,6 @@ class TextListSpec extends ObjectBehavior
     public function it_is_list()
     {
         $this->shouldHaveType(ListInterface::class);
-    }
-
-    public function it_is_typable()
-    {
-        $this->shouldHaveType(TypableList::class);
     }
 
     public function it_has_inner_type_text()
@@ -97,5 +98,22 @@ class TextListSpec extends ObjectBehavior
 
         $this->shouldThrow(InvalidItemException::class)->duringAdd(self::NULL_TEXT);
         $this->shouldThrow(InvalidItemException::class)->duringAdd(self::EMPTY_TEXT);
+    }
+
+    public function it_can_concat_its_items()
+    {
+        $this->beConstructedThrough('create', [self::PIECES]);
+
+        $this->concat()
+            ->stringify()
+            ->shouldReturn(self::CONCATENADED_TEXT);
+    }
+
+    public function it_can_be_converted_to_array_of_strings()
+    {
+        $this->beConstructedThrough('create', [self::PIECES]);
+
+        $this->toArray()
+            ->shouldIterateAs(self::PIECES);
     }
 }

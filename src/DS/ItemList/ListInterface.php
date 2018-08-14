@@ -19,15 +19,15 @@ namespace PlanB\DS\ItemList;
 interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializable
 {
 
-
     /**
-     * Agrega un nuevo item a la lista, sin clave
+     * @inheritdoc
      *
      * @param mixed $value
      *
-     * @return $this
+     * @return \PlanB\DS\ItemList\ListInterface
      */
     public function add($value): ListInterface;
+
 
     /**
      * Agrega un conjunto de items sin clave
@@ -49,8 +49,9 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      */
     public function clearAndAdd(iterable $items): ListInterface;
 
+
     /**
-     * Agrega un nuevo Item a la lista, con clave
+     * @inheritdoc
      *
      * @param mixed $key
      * @param mixed $value
@@ -58,7 +59,6 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
      * @return $this
      */
     public function set($key, $value): ListInterface;
-
 
     /**
      * Agrega un conjunto de Items con clave

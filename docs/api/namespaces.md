@@ -9,6 +9,8 @@
 * [PlanB\DS\ItemList\Exception](PlanB/DS/ItemList/Exception.md)
 * [PlanB\DS\ItemList\Resolver](PlanB/DS/ItemList/Resolver.md)
 * [PlanB\DS\ItemList\Traits](PlanB/DS/ItemList/Traits.md)
+* [PlanB\DS\TypedList](PlanB/DS/TypedList.md)
+* [PlanB\DS\TypedList\Resolver](PlanB/DS/TypedList/Resolver.md)
 * [PlanB\Utils](PlanB/Utils.md)
 * [PlanB\Utils\Assurance](PlanB/Utils/Assurance.md)
 * [PlanB\Utils\Assurance\Exception](PlanB/Utils/Assurance/Exception.md)

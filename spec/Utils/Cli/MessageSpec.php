@@ -2,30 +2,25 @@
 
 namespace spec\PlanB\Utils\Cli;
 
+use PlanB\DS\ItemList\TypableInterface;
+use PlanB\DS\ItemList\TypedList;
 use PlanB\Utils\Cli\Align;
+use PlanB\Utils\Cli\Block;
 use PlanB\Utils\Cli\Color;
 use PlanB\Utils\Cli\Line;
 use PlanB\Utils\Cli\Option;
 use PlanB\Utils\Cli\OutputAggregate;
-use PlanB\Utils\Cli\Output;
+use PlanB\Utils\Cli\ComposedOutput;
 use PlanB\Utils\Cli\Message;
 use PhpSpec\ObjectBehavior;
+use PlanB\Utils\Cli\Paragraph;
 use PlanB\ValueObject\Stringifable;
+use PlanB\ValueObject\Text\Text;
 use Prophecy\Argument;
 
 
 class MessageSpec extends ObjectBehavior
 {
-    private const SINGLE_LINE_A = "LINE #A";
-    private const LONG_LINE = 'this is a very long line';
-
-    private const MULTIPLE_LINES = "LINE #A\nLINE #B\nthis is a very long line";
-
-    private const MULTIPLE_LINES_CENTERED = "        LINE #A         \n        LINE #B         \nthis is a very long line";
-
-    private const MULTIPLE_LINES_WITH_TAB = "   LINE #A   \n   LINE #B   \n   this is a very long line   ";
-
-    private const MESSAGE_EXPANDED = "LINE #A                 \nLINE #B                 \nthis is a very long line";
 
     public function let()
     {
@@ -37,21 +32,10 @@ class MessageSpec extends ObjectBehavior
         $this->shouldHaveType(Message::class);
     }
 
-    public function it_is_stringifable()
-    {
-        $this->shouldHaveType(Stringifable::class);
-    }
-
-    public function it_is_countable()
-    {
-        $this->shouldHaveType(\Countable::class);
-    }
-
     public function it_count_zero_on_default()
     {
         $this->count()->shouldReturn(0);
     }
-
 
     public function it_return_an_empty_string_by_default()
     {
@@ -59,99 +43,49 @@ class MessageSpec extends ObjectBehavior
         $this->__toString()->shouldReturn('');
     }
 
-    public function it_can_calcule_the_max_lenght()
+    public function it_can_add_a_block()
     {
-
-        $this->add(self::SINGLE_LINE_A);
-        $this->add(self::LONG_LINE);
-
-        $this->length()->shouldReturn(strlen(self::LONG_LINE));
-    }
-
-    public function it_can_add_a_single_line()
-    {
-        $this->add(self::SINGLE_LINE_A);
-
+        $this->block('')->shouldHaveType(Paragraph::class);
         $this->count()->shouldReturn(1);
-        $this->stringify()->shouldReturn(self::SINGLE_LINE_A);
-
     }
 
-    public function it_can_add_a_multipe_line()
+    public function it_can_set_parent_of_added_child()
     {
-        $this->add(self::MULTIPLE_LINES);
-        $this->stringify()->shouldReturn(self::MULTIPLE_LINES);
+        $this->block('first block')->end()->shouldReturn($this);
     }
 
-    public function it_can_add_a_multipe_line_expanded()
+    public function it_retrieve_empty_text_when_is_empty()
     {
-        $this->expand();
-        $this->add(self::MULTIPLE_LINES);
 
-        //dump($this->getWrappedObject()->stringify(), self::MESSAGE_EXPANDED);
-        $this->stringify()->shouldReturn(self::MESSAGE_EXPANDED);
+        $this->stringify()
+            ->shouldReturn(Text::EMPTY_TEXT);
     }
 
-    public function it_can_add_a_text_with_foreground_color()
+    public function it_can_render_blocks()
     {
-        $this->expand();
+        $message = $this->block('first block')->end()
+            ->block('second block')->end();
 
-        $color = Color::RED();
-
-        $this->add(self::SINGLE_LINE_A)
-            ->foregroundColor($color);
-
-        $expected = sprintf('<fg=%s>%s</>', $color->getValue(), self::SINGLE_LINE_A);
-
-        $this->stringify()->shouldReturn($expected);
+        $message->stringify()
+            ->shouldReturn("first block \nsecond block");
     }
 
-    public function it_can_add_a_text_with_background_color()
+
+    public function it_can_calcule_max_length()
     {
-        $this->expand();
+        $message = $this
+            ->block('1234567')->end()
+            ->block('1234')->end()
+            ->block('12345678')->end()
+            ->block('123')->end();
 
-        $color = Color::RED();
-
-        $this->add(self::SINGLE_LINE_A)
-            ->backgroundColor($color);
-
-        $expected = sprintf('<bg=%s>%s</>', $color->getValue(), self::SINGLE_LINE_A);
-
-        $this->stringify()->shouldReturn($expected);
+        $message->getMaxLenght()
+            ->shouldReturn(8);
     }
 
-    public function it_can_add_a_text_with_option()
+    public function it_return_it_self_on_end()
     {
-        $this->expand();
-
-        $option = Option::BOLD();
-        $this->add(self::SINGLE_LINE_A)
-            ->option($option);
-
-        $expected = sprintf('<options=%s>%s</>', $option->getValue(), self::SINGLE_LINE_A);
-
-        $this->stringify()->shouldReturn($expected);
+        $this->end()->shouldReturn($this);
     }
 
-    public function it_can_add_a_text_with_align()
-    {
-        $this->expand();
-
-        $align = Align::CENTER();
-        $this->add(self::MULTIPLE_LINES)
-            ->align($align);
-
-        $this->stringify()->shouldReturn(self::MULTIPLE_LINES_CENTERED);
-    }
-
-    public function it_can_add_a_text_with_tab()
-    {
-        $this->add('1');
-        $this->add(self::MULTIPLE_LINES)
-            ->tab(1, 1);
-
-        $this->stringify();
-
-      //  $this->stringify()->shouldReturn(self::MULTIPLE_LINES_WITH_TAB);
-    }
 }

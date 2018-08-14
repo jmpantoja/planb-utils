@@ -34,6 +34,7 @@ trait Accessors
      */
     protected $resolution;
 
+
     /**
      * @inheritdoc
      *
@@ -43,11 +44,9 @@ trait Accessors
      */
     public function add($value): ListInterface
     {
-        $item = Item::fromValue($value);
-        $this->tryAddItem($item);
-
-        return $this;
+        return $this->tryAddItem(Item::fromValue($value));
     }
+
 
     /**
      * @inheritdoc
@@ -80,6 +79,7 @@ trait Accessors
             ->addAll($items);
     }
 
+
     /**
      * @inheritdoc
      *
@@ -90,12 +90,8 @@ trait Accessors
      */
     public function set($key, $value): ListInterface
     {
-        $item = Item::fromKeyValue($key, $value);
-        $this->tryAddItem($item);
-
-        return $this;
+        return $this->tryAddItem(Item::fromKeyValue($key, $value));
     }
-
 
     /**
      * @inheritdoc
@@ -106,6 +102,7 @@ trait Accessors
      */
     public function setAll(iterable $items): ListInterface
     {
+
         foreach ($items as $key => $value) {
             $this->set($key, $value);
         }
@@ -199,8 +196,9 @@ trait Accessors
         return $this;
     }
 
+
     /**
-     * @inheritdoc
+     * Resuelve y añade un item
      *
      * @param \PlanB\DS\ItemList\Item $item
      *

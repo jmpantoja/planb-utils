@@ -176,7 +176,7 @@
 
 
 ### tryAddItem
-
+Resuelve y añade un item
 
 
 protected **AbstractList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)

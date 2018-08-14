@@ -11,6 +11,10 @@
 
 
 
+## Constants
+- LINE_BREAK
+- EMPTY_TEXT
+- BLANK_TEXT
 
 
 
@@ -41,6 +45,35 @@ static **Text::create**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$text |  |
+
+---
+
+
+### format
+Crea una nueva instancia
+
+
+static **Text::format**(string $format, mixed ...$arguments) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
+|mixed |...$arguments |  |
+
+---
+
+
+### concat
+Crea una nueva instancia concatenando varias cadenas de texto
+
+
+static **Text::concat**(mixed ...$pieces) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |...$pieces |  |
 
 ---
 
@@ -191,7 +224,7 @@ Transforma la cadena de texto a formato snake_case
 Divide una cadena mediante una expresión regular
 
 
-**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [ItemList](../../../ItemList.md)
+**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [TextList](../../../TextList.md)
 
 
 |Parameters: | | |
@@ -207,7 +240,7 @@ Divide una cadena mediante una expresión regular
 Divide una cadena en varias, mediante un delimitador
 
 
-**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [ItemList](../../../ItemList.md)
+**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [TextList](../../../TextList.md)
 
 
 |Parameters: | | |
@@ -288,6 +321,22 @@ Usa una expresión regular para reemplazar segmentos de una cadena
 |string |$pattern |  |
 |callable |$callback |  |
 |int |$limit |  |
+
+---
+
+
+### padding
+Añade padding a la cadena
+
+
+**Text::padding**(int $lenght, string $char = self::BLANK_TEXT, int $mode = STR_PAD_RIGHT) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$lenght |  |
+|string |$char |  |
+|int |$mode |  |
 
 ---
 

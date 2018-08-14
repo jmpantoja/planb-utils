@@ -20,6 +20,7 @@ use PlanB\DS\ItemList\Resolver\KeyNormalizer;
 use PlanB\DS\ItemList\Resolver\Normalizer;
 use PlanB\DS\ItemList\Resolver\Resolution;
 use PlanB\DS\ItemList\Resolver\Validator;
+use PlanB\DS\TypedList\LazyList;
 
 /**
  * Generic Collection
@@ -112,19 +113,21 @@ abstract class AbstractList implements ListInterface
      */
     public function map(callable $callable, ...$userdata): ListInterface
     {
+
         if ($this->isEmpty()) {
             return clone $this;
         }
 
-        $mapped = new static();
+        $mapped = LazyList::create($this);
+
         foreach ($this->items as $key => $value) {
             $item = $callable($value, $key, ...$userdata);
-
             $mapped->set($key, $item);
         }
 
-        return $mapped;
+        return $mapped->getInnerList();
     }
+
 
     /**
      * @inheritdoc
@@ -136,8 +139,8 @@ abstract class AbstractList implements ListInterface
      */
     public function filter(callable $callable, ...$userdata): ListInterface
     {
-        $filtered = new static();
 
+        $filtered = new static();
         foreach ($this->items as $key => $value) {
             if (!$callable($value, $key, ...$userdata)) {
                 continue;

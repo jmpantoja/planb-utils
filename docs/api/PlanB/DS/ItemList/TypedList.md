@@ -4,7 +4,7 @@
 # TypedList
 
 
-> Una lista donde sus elementos son del mismo tipo
+> Lista de elementos del mismo tipo
 >
 > 
 
@@ -171,6 +171,35 @@
 **TypedList::clear**() : [ListInterface](../../../ListInterface.md)
 
 
+
+---
+
+
+### trySet
+Resuelve y añade una pareja clave / valor
+
+
+protected **TypedList::trySet**(mixed $key, mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed |$value |  |
+
+---
+
+
+### tryAdd
+Resuelve y añade un valor
+
+
+protected **TypedList::tryAdd**(mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
 
 ---
 
@@ -446,6 +475,17 @@ Añade un normalizador de clave
 | --- | --- | --- |
 |callable |$normalizer |  |
 |int |$order |  |
+
+---
+
+
+### newInstance
+
+
+
+protected **TypedList::newInstance**() : [AbstractList](../../../AbstractList.md)
+
+
 
 ---
 

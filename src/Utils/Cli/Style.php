@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Cli;
 
+use PlanB\ValueObject\Text\Text;
+
 /**
  * Define el estilo de un objeto
  */
@@ -23,37 +25,12 @@ class Style
      */
     private $attributes = [];
 
-    /**
-     * @var int
-     */
-    private $width = 0;
-
-    /**
-     * Style constructor.
-     */
-    private const PADDING_CHARACTER = ' ';
-
-    /**
-     * @var \PlanB\Utils\Cli\Align
-     */
-    private $align;
-
-    /**
-     * @var string
-     */
-    private $leftTab = '';
-
-    /**
-     * @var string
-     */
-    private $rightTab = '';
 
     /**
      * Style constructor.
      */
     protected function __construct()
     {
-        $this->align = Align::LEFT();
     }
 
     /**
@@ -67,50 +44,18 @@ class Style
     }
 
     /**
-     * Combina este estilo con otro
+     * Aplica los atributos contenidos en una cadena de texto
      *
-     * @param \PlanB\Utils\Cli\Style $style
-     *
-     * @return \PlanB\Utils\Cli\Style
-     */
-    public function merge(Style $style): self
-    {
-        $this->attributes = array_replace(
-            $style->attributes,
-            $this->attributes
-        );
-
-        if ($style->width > $this->width) {
-            $this->width = $style->width;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Devuelve el ancho de linea
-     *
-     * @param int $width
+     * @param string $attributes
      *
      * @return \PlanB\Utils\Cli\Style
      */
-    public function width(int $width): self
+    public function applyAttributeString(string $attributes): Style
     {
-        $this->width = $width;
 
-        return $this;
+        return StyleMerger::create($this)
+            ->parse($attributes);
     }
-
-    /**
-     * Devuelve el ancho de linea
-     *
-     * @return int
-     */
-    public function getWidth(): int
-    {
-        return $this->width;
-    }
-
 
     /**
      * Asigna el color del texto
@@ -135,6 +80,7 @@ class Style
      */
     public function backGroundColor(Color $color): Style
     {
+
         $this->attributes['bg'] = $color->getValue();
 
         return $this;
@@ -156,153 +102,64 @@ class Style
         return $this;
     }
 
-    /**
-     * Asigna una alineación
-     *
-     * @param \PlanB\Utils\Cli\Align $align
-     *
-     * @return \PlanB\Utils\Cli\Style
-     */
-    public function align(Align $align): Style
-    {
-        $this->align = $align;
-
-        return $this;
-    }
-
-    /**
-     * Asigna el número de tabulaciones a izquierda y derecha
-     *
-     * @param int $left
-     * @param int $right
-     *
-     * @return \PlanB\Utils\Cli\Style
-     */
-    public function tab(int $left, int $right = 0): self
-    {
-        $this->leftTab = str_repeat(self::TAB, $left);
-        $this->rightTab = str_repeat(self::TAB, $right);
-
-        return $this;
-    }
-
-    /**
-     * Envuelve el texto con el tag de estilo
-     *
-     * @param string $line
-     *
-     * @return string
-     */
-    public function decorate(Line $line): string
-    {
-        $text = $this->ajustSpacing($line);
-
-        return $this->addStyle($text);
-    }
-
-    /**
-     * Ajusta el ancho de la linea, al ancho del estilo
-     *
-     * @param \PlanB\Utils\Cli\Line $line
-     *
-     * @return string
-     */
-    private function ajustSpacing(Line $line): string
-    {
-        $text = $line->getText();
-
-
-        $width = $this->calculeAjustedWidth($line);
-
-        if ($width > 0) {
-            $align = $this->align->getValue();
-            $text = str_pad($line->getText(), $width, self::PADDING_CHARACTER, $align);
-        }
-
-        $text = sprintf('%s%s%s', $this->leftTab, $text, $this->rightTab);
-
-        return $text;
-    }
-
-    /**
-     * Calcula el ancho de la linea, teniendo en cuenta las etiquetas
-     *
-     * @param \PlanB\Utils\Cli\Line $line
-     *
-     * @return int
-     */
-    private function calculeAjustedWidth(Line $line): int
-    {
-
-        $width = $this->getWidth() + $line->taggedTextLength();
-
-        return $width;
-    }
-
-    /**
-     * Añade las etiquetas con el estilo
-     *
-     * @param string $text
-     *
-     * @return string
-     */
-    private function addStyle(string $text): string
-    {
-        if ($this->isEmpty()) {
-            return $text;
-        }
-
-        $attributes = $this->parseAttributes();
-
-        return sprintf('<%s>%s</>', $attributes, $text);
-    }
-
 
     /**
      * Indica si se ha establecido algun estilo
      *
      * @return bool
      */
-    public function isEmpty(): bool
+    private function isEmpty(): bool
     {
         return 0 === count($this->attributes);
     }
 
-
     /**
-     * Parsea los attributos
+     * Envuelve un texto con la etiqueta derivada de este estilo
      *
-     * @return string
+     * @param \PlanB\ValueObject\Text\Text $text
+     *
+     * @return \PlanB\ValueObject\Text\Text
      */
-    private function parseAttributes(): string
+    public function wrap(Text $text): Text
     {
-        $pieces = [];
+        if ($this->isEmpty()) {
+            return $text;
+        }
 
-        $pieces[] = $this->parseAttr('fg');
-        $pieces[] = $this->parseAttr('bg');
-        $pieces[] = $this->parseAttr('options');
+        $attributes = $this->parse();
 
-        $pieces = array_filter($pieces);
+        $tag = sprintf('<%s>%s</>', $attributes, $text->stringify());
 
-        return implode(';', $pieces);
+        return Text::create($tag);
     }
 
     /**
-     * Parsea un attributo
+     * Calcula los atributos de la etiqueta
      *
-     * @param string $name
-     *
-     * @return null|string
+     * @return string
      */
-    private function parseAttr(string $name): ?string
+    private function parse(): string
     {
-        if (!isset($this->attributes[$name])) {
-            return null;
+
+        ksort($this->attributes);
+        $attributes = [];
+        foreach ($this->attributes as $name => $value) {
+            $attributes[] = $this->parseAttribute($name, $value);
         }
 
+        return implode(';', $attributes);
+    }
 
-        $value = $this->attributes[$name];
-
+    /**
+     * Calcula un attribut de la etiqueta
+     *
+     * @param string          $name
+     * @param string|string[] $value
+     *
+     * @return string
+     */
+    private function parseAttribute(string $name, $value): string
+    {
         if (is_array($value)) {
             $value = implode(',', $value);
         }

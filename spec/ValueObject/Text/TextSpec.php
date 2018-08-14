@@ -2,11 +2,11 @@
 
 namespace spec\PlanB\ValueObject\Text;
 
-use PlanB\DS\ItemList\ItemList;
-use PlanB\DS\Collection\Collection;
+
 use PlanB\Utils\Assurance\Exception\AssertException;
 use PlanB\ValueObject\Text\Text;
 use PhpSpec\ObjectBehavior;
+use PlanB\ValueObject\Text\TextList;
 use Prophecy\Argument;
 
 class TextSpec extends ObjectBehavior
@@ -17,6 +17,23 @@ class TextSpec extends ObjectBehavior
 
         $this->shouldHaveType(Text::class);
     }
+
+    public function it_can_be_created_by_format_text()
+    {
+        $this->beConstructedThrough('format', ['hola %s y %s', 'pepe', 'juan']);
+
+        $this->stringify()
+            ->shouldReturn('hola pepe y juan');
+    }
+
+    public function it_can_be_created_by_concat_several_text()
+    {
+        $this->beConstructedThrough('concat', ['hola', 'pepe', 'y', 'juan']);
+
+        $this->stringify()
+            ->shouldReturn('hola pepe y juan');
+    }
+
 
     public function it_throw_an_exception_when_create_with_invalid_value()
     {
@@ -199,28 +216,29 @@ class TextSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', ['separa|por-espacios_o guiones']);
 
-        $this->split('/[_\s\W]+/')
-            ->toArray()
-            ->shouldIterateAs([
-                'separa',
-                'por',
-                'espacios',
-                'o',
-                'guiones'
-            ]);
+
+        $response = $this->split('/[_\s\W]+/');
+        $response->shouldHaveType(TextList::class);
+
+        $response->get(0)->stringify()->shouldReturn('separa');
+        $response->get(1)->stringify()->shouldReturn('por');
+        $response->get(2)->stringify()->shouldReturn('espacios');
+        $response->get(3)->stringify()->shouldReturn('o');
+        $response->get(4)->stringify()->shouldReturn('guiones');
     }
 
     public function it_can_split_a_string_using_a_delimiter()
     {
         $this->beConstructedThrough('create', ['separa-por-guiones']);
 
-        $this->explode('-')
-            ->toArray()
-            ->shouldIterateAs([
-                'separa',
-                'por',
-                'guiones'
-            ]);
+        $response = $this->explode('-');
+        $response->shouldHaveType(TextList::class);
+
+        $response->get(0)->stringify()->shouldReturn('separa');
+        $response->get(1)->stringify()->shouldReturn('por');
+        $response->get(2)->stringify()->shouldReturn('guiones');
+
+
     }
 
     public function it_can_convert_a_complete_string_to_lower_case()
@@ -280,4 +298,17 @@ class TextSpec extends ObjectBehavior
             ->stringify()
             ->shouldReturn('1(palabras)2(y)3(numeros)');
     }
+
+
+    public function it_can_add_padding_to_text()
+    {
+
+        $this->beConstructedThrough('create', ['000']);
+
+        $this->padding(7, '-', STR_PAD_BOTH)
+            ->stringify()
+            ->shouldReturn('--000--');
+    }
+
+
 }

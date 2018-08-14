@@ -9,137 +9,457 @@
 > 
 
 
+## Traits
+- PlanB\DS\ItemList\Traits\Accessors
 
 
 
 
+## Properties
+- items
+- resolution
 
 
 ## Methods
 
+### add
+
+
+
+**Message::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### addAll
+
+
+
+**Message::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndAdd
+
+
+
+**Message::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### set
+
+
+
+**Message::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed |$value |  |
+
+---
+
+
+### setAll
+
+
+
+**Message::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### clearAndSet
+
+
+
+**Message::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
+### get
+
+
+
+**Message::get**(mixed $key, mixed|null $default = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed|null |$default |  |
+
+---
+
+
+### exists
+
+
+
+**Message::exists**(mixed $key) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
+### has
+
+
+
+**Message::has**(mixed $key) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
+### remove
+
+
+
+**Message::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+
+---
+
+
+### clear
+
+
+
+**Message::clear**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### tryAddItem
+Resuelve y añade un item
+
+
+protected **Message::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
 ### __construct
-Message constructor.
+List constructor.
 
 
-protected **Message::__construct**() : 
-
-
-
----
-
-
-### getStyle
-Devuelve el estilo de este elemento
-
-
-**Message::getStyle**() : [Style](../../../Style.md)
+**Message::__construct**() : 
 
 
 
 ---
 
 
-### mergeStyle
-Mezcla el estilo de este elemento con otro
+### customize
+Configura el comportamiento de  la lista
 
 
-**Message::mergeStyle**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
+protected **Message::customize**() : void
+
+
+
+---
+
+
+### count
+
+
+
+**Message::count**() : int
+
+
+
+---
+
+
+### isEmpty
+
+
+
+**Message::isEmpty**() : bool
+
+
+
+---
+
+
+### each
+
+
+
+**Message::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### render
-Devuelve el contenido expandido de esta linea, con el estilo aplicado
+### map
 
 
-**Message::render**([Style](../../../Style.md) $style) : string
+
+**Message::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### foregroundColor
-Asigna el color del texto
+### filter
 
 
-**Message::foregroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
+
+**Message::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### backgroundColor
-Asigna el color del fondo
+### search
 
 
-**Message::backgroundColor**([Color](../../../Color.md) $color) : [Output](../../../Output.md)
+
+**Message::search**(callable $callable, mixed ...$userdata) : mixed|null
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### option
-Asigna una opción al texto
+### find
 
 
-**Message::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
+
+**Message::find**(callable $callable, mixed ...$userdata) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Option](../../../Option.md) |$option |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### align
-Asigna una alineación al texto
+### reduce
 
 
-**Message::align**([Align](../../../Align.md) $align) : [$this](../../../$this.md)
+
+**Message::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Align](../../../Align.md) |$align |  |
+|callable |$callable |  |
+|mixed|null |$initial |  |
+|mixed |...$userdata |  |
 
 ---
 
 
-### tab
-Asigna el número de tabulaciones a izquierda y derecha
+### toArray
 
 
-**Message::tab**(int $left, int $right = 0) : [Output](../../../Output.md)
+
+**Message::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|int |$left |  |
-|int |$right |  |
+|callable |$callable |  |
+|mixed |...$userdata |  |
+
+---
+
+
+### getIterator
+Retrieve an external iterator
+
+
+**Message::getIterator**() : [Traversable](../../../Traversable.md)
+
+
+
+---
+
+
+### jsonSerialize
+Specify data which should be serialized to JSON
+
+
+**Message::jsonSerialize**() : mixed
+
+
+
+---
+
+
+### toJson
+Convierte el array en una cadena json
+
+
+**Message::toJson**(int $options = 0, int $depth = 512) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$options |  |
+|int |$depth |  |
+
+---
+
+
+### silentExceptions
+Silencia las excepciones
+
+
+**Message::silentExceptions**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### addHydrator
+Añade un hydrator
+
+
+**Message::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
+
+---
+
+
+### addValidator
+Añade un validador
+
+
+**Message::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizador
+
+
+**Message::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### addKeyNormalizer
+Añade un normalizador de clave
+
+
+**Message::addKeyNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### getInnerType
+Devuelve el tipo de la lista
+
+
+**Message::getInnerType**() : null|string
+
+
 
 ---
 
 
 ### create
-Message camed constructor.
+Message Named Constructor
 
 
 static **Message::create**() : [Message](../../../Message.md)
@@ -149,11 +469,26 @@ static **Message::create**() : [Message](../../../Message.md)
 ---
 
 
-### count
-Devuelve el número de lineas que componen este mensaje
+### block
+Añade un párrafo
 
 
-**Message::count**() : int
+**Message::block**(string $format, mixed ...$arguments) : [Paragraph](../../../Paragraph.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
+|mixed |...$arguments |  |
+
+---
+
+
+### getMaxLenght
+Devuelve la longitud máxima
+
+
+**Message::getMaxLenght**() : int
 
 
 
@@ -185,37 +520,11 @@ Devuelve la cadena de texto
 ---
 
 
-### add
-Añade una linea
+### end
+Devuelve el propio mensaje
 
 
-**Message::add**(string $format, mixed ...$arguments) : [Message](../../../Message.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
-|mixed |...$arguments |  |
-
----
-
-
-### length
-Devuelve la longitud de la línea más larga (sin etiquetas)
-
-
-**Message::length**() : int
-
-
-
----
-
-
-### expand
-
-
-
-**Message::expand**() : [Message](../../../Message.md)
+**Message::end**() : [$this](../../../$this.md)
 
 
 

@@ -10,6 +10,8 @@
 
 
 ## Traits
+- PlanB\DS\ItemList\Traits\Setters
+- PlanB\DS\ItemList\Traits\Setters
 - PlanB\DS\ItemList\Traits\Accessors
 
 
@@ -21,20 +23,6 @@
 
 
 ## Methods
-
-### add
-
-
-
-**TextList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$value |  |
-
----
-
 
 ### addAll
 
@@ -60,21 +48,6 @@
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$items |  |
-
----
-
-
-### set
-
-
-
-**TextList::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-|mixed |$value |  |
 
 ---
 
@@ -175,8 +148,37 @@
 ---
 
 
-### tryAddItem
+### trySet
+Resuelve y añade una pareja clave / valor
 
+
+protected **TextList::trySet**(mixed $key, mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed |$value |  |
+
+---
+
+
+### tryAdd
+Resuelve y añade un valor
+
+
+protected **TextList::tryAdd**(mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### tryAddItem
+Resuelve y añade un item
 
 
 protected **TextList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
@@ -325,7 +327,7 @@ protected **TextList::customize**() : void
 
 
 ### toArray
-
+Convierte la lista en un array de strings
 
 
 **TextList::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
@@ -447,6 +449,35 @@ Añade un normalizador de clave
 ---
 
 
+### add
+
+
+
+**TextList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### set
+
+
+
+**TextList::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$key |  |
+|mixed |$value |  |
+
+---
+
+
 ### create
 Crea una instancia a partir de un conjunto de valores
 
@@ -505,6 +536,20 @@ Impide que se puedan añadir cadenas vacias
 **TextList::disallowEmpty**() : [TextList](../../../TextList.md)
 
 
+
+---
+
+
+### concat
+Concatena los textos
+
+
+**TextList::concat**(string $delimiter = Text::BLANK_TEXT) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$delimiter |  |
 
 ---
 

@@ -11,45 +11,41 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Cli;
 
-use PlanB\DS\ItemList\TypedList;
-use PlanB\Utils\Type\Type;
+use PlanB\DS\TypedList\AbstractTypedList;
 use PlanB\ValueObject\Stringifable;
+use PlanB\ValueObject\Text\Text;
 
 /**
  * Un mensaje de texto, formateado para mostrarlo por consola
  */
-class Message extends Output implements Stringifable, \Countable
+class Message extends AbstractTypedList implements Stringifable
 {
 
     /**
-     * @var int
+     * Devuelve el tipo de la lista
+     *
+     * @return null|string
      */
-    private $maxLength = 0;
-
-    /**
-     * @var bool
-     */
-    private $expanded = false;
-
-    /**
-     * Message constructor.
-     */
-    protected function __construct()
+    public function getInnerType(): string
     {
-        parent::__construct();
-        $this->lines = TypedList::ofType(Output::class)
-            ->addHydrator(Type::STRING, function (string $content) {
-                return Line::create($content);
-            })
-            ->addNormalizer(function (Output $line) {
-                $this->maxLength = max([$this->maxLength, $line->length()]);
-
-                return $line;
-            });
+        return Paragraph::class;
     }
 
     /**
-     * Message camed constructor.
+     * Configura el comportamiento de  la lista
+     *
+     * @return void
+     */
+    protected function customize(): void
+    {
+        $this->addNormalizer(function (Paragraph $paragraph) {
+            return $paragraph->parent($this);
+        });
+    }
+
+
+    /**
+     * Message Named Constructor
      *
      * @return \PlanB\Utils\Cli\Message
      */
@@ -58,15 +54,36 @@ class Message extends Output implements Stringifable, \Countable
         return new static();
     }
 
+    /**
+     * Añade un párrafo
+     *
+     * @param string $format
+     * @param mixed  ...$arguments
+     *
+     * @return \PlanB\Utils\Cli\Paragraph
+     */
+    public function block(string $format, ...$arguments): Paragraph
+    {
+
+        $paragraph = Paragraph::create($format, ...$arguments);
+        $this->add($paragraph);
+
+        return $paragraph;
+    }
+
 
     /**
-     * Devuelve el número de lineas que componen este mensaje
+     * Devuelve la longitud máxima
      *
      * @return int
      */
-    public function count(): int
+    public function getMaxLenght(): int
     {
-        return $this->lines->count();
+        return $this->reduce(function (Paragraph $paragraph, $max) {
+            $length = $paragraph->getMaxLenght();
+
+            return max([$length, $max]);
+        }, 0);
     }
 
     /**
@@ -78,42 +95,17 @@ class Message extends Output implements Stringifable, \Countable
      */
     public function stringify(?string $format = null): string
     {
-        $width = $this->getWidth();
-        $style = $this->getStyle()->width($width);
 
-        return $this->render($style);
-    }
-
-
-    /**
-     * Devuelve el contenido expandido de esta linea, con el estilo aplicado
-     *
-     * @param \PlanB\Utils\Cli\Style $style
-     *
-     * @return  string
-     */
-    public function render(Style $style): string
-    {
-        $this->mergeStyle($style);
-        $pieces = $this->lines->map(function (Output $output) {
-            return $output->render($this->getStyle());
-        });
-
-        return implode("\n", $pieces->toArray());
-    }
-
-    /**
-     * Devuelve el ancho de cada linea
-     *
-     * @return int
-     */
-    private function getWidth(): int
-    {
-        if (!$this->expanded) {
-            return 0;
+        if ($this->isEmpty()) {
+            return Text::EMPTY_TEXT;
         }
 
-        return $this->maxLength;
+        return $this
+            ->map(function (Paragraph $paragraph) {
+                return $paragraph->render();
+            })
+            ->concat(Text::LINE_BREAK)
+            ->stringify();
     }
 
     /**
@@ -126,46 +118,13 @@ class Message extends Output implements Stringifable, \Countable
         return $this->stringify();
     }
 
-
     /**
-     * Añade una linea
+     * Devuelve el propio mensaje
      *
-     * @param string $format
-     * @param mixed  ...$arguments
-     *
-     * @return \PlanB\Utils\Cli\Message
+     * @return $this
      */
-    public function add(string $format, ...$arguments): Output
+    public function end()
     {
-
-        $block = self::create();
-
-        $content = sprintf($format, ...$arguments);
-        $lines = explode("\n", $content);
-
-        $block->lines->addAll($lines);
-        $this->lines->add($block);
-
-        return $block;
-    }
-
-    /**
-     * Devuelve la longitud de la línea más larga (sin etiquetas)
-     *
-     * @return int
-     */
-    public function length(): int
-    {
-        return $this->maxLength;
-    }
-
-    /**
-     * @return \PlanB\Utils\Cli\Message
-     */
-    public function expand(): self
-    {
-        $this->expanded = true;
-
         return $this;
     }
 }

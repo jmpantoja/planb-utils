@@ -8,93 +8,29 @@ use PlanB\Utils\Cli\Line;
 use PlanB\Utils\Cli\Option;
 use PlanB\Utils\Cli\Style;
 use PhpSpec\ObjectBehavior;
+use PlanB\ValueObject\Text\Text;
 use Prophecy\Argument;
 
 class StyleSpec extends ObjectBehavior
 {
 
-    private const CONTENT = 'LINE #A';
-    private const LEFT_CONTENT = 'LINE #A             ';
-    private const CENTER_CONTENT = '      LINE #A       ';
+    private const TEXT = 'inner content';
+    private const TEXT_WITH_FOREGROUND = '<fg=red>inner content</>';
+    private const TEXT_WITH_BACKGROUND = '<bg=red>inner content</>';
+    private const TEXT_WITH_BOLD_OPTION = '<options=bold>inner content</>';
+    private const TEXT_WITH_BOLD_AND_BLINK_OPTION = '<options=bold,blink>inner content</>';
+    private const TEXT_WITH_ALL_TOGETHER = '<bg=blue;fg=red;options=bold,blink>inner content</>';
 
-    private const PATTERN = '|<(.*)>\s*%s\s*</>|';
 
-    private const TAGGED_LENGTH = 20;
+    private const BAD_FORMAT = 'bad-format';
 
-    private function parse(string $subject): ?array
+    private const UNCHANGED_TEXT = '<bg=blue;fg=yellow;options=bold>inner content</>';
+
+    private const BAD_VALUES = 'fg=rXXX;options=XXX';
+
+    public function let(Text $text)
     {
-        $pattern = sprintf(self::PATTERN, self::CONTENT);
-
-
-        if (preg_match($pattern, $subject, $matches)) {
-
-            $all = [
-                'fg' => null,
-                'bg' => null,
-                'options' => null
-            ];
-            $pieces = explode(';', $matches[1]);
-
-            foreach ($pieces as $piece) {
-                parse_str($piece, $args);
-                $all = array_replace($all, $args);
-            }
-            $options = $all['options'] ?? '';
-
-            $all['options'] = array_filter(explode(',', $options));
-
-            return $all;
-        }
-
-        return null;
-    }
-
-    public function getMatchers(): array
-    {
-
-        return [
-            'haveStyle' => function (string $subject) {
-                $pattern = sprintf(self::PATTERN, self::CONTENT);
-                return preg_match($pattern, $subject);
-            },
-            'haveForeGround' => function (string $subject, string $color = null) {
-
-                $parsed = $this->parse($subject);
-
-                if (is_null($color)) {
-                    return !is_null($parsed['fg']);
-                }
-
-                return $parsed['fg'] == $color;
-
-            },
-            'haveBackGround' => function (string $subject, string $color = null) {
-                $parsed = $this->parse($subject);
-
-                if (is_null($color)) {
-                    return !is_null($parsed['bg']);
-                }
-
-                return $parsed['bg'] == $color;
-            },
-            'haveOption' => function (string $subject, ?string $option = null) {
-                $parsed = $this->parse($subject);
-
-                if (is_null($parsed)) {
-                    return false;
-                }
-
-                return in_array($option, $parsed['options']);
-            }
-
-        ];
-    }
-
-
-    public function let(Line $line)
-    {
-        $line->getText()->willReturn(self::CONTENT);
-        $line->taggedTextLength()->willReturn(self::TAGGED_LENGTH);
+        $text->stringify()->willReturn(self::TEXT);
 
         $this->beConstructedThrough('create');
     }
@@ -104,43 +40,95 @@ class StyleSpec extends ObjectBehavior
         $this->shouldHaveType(Style::class);
     }
 
-    public function it_can_render_simple_content_with_ajust(Line $line)
+    public function it_can_wrap_a_text_with_no_style(Text $text)
     {
-        $this->decorate($line)->shouldReturn(self::LEFT_CONTENT);
+        $this
+            ->wrap($text)
+            ->shouldReturn($text);
+    }
+
+    public function it_can_wrap_a_text_with_foreground_color(Text $text)
+    {
+        $this->foreGroundColor(Color::RED())
+            ->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_FOREGROUND);
+    }
+
+    public function it_can_wrap_a_text_with_background_color(Text $text)
+    {
+        $this->backGroundColor(Color::RED())
+            ->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_BACKGROUND);
+    }
+
+    public function it_can_wrap_a_text_with_one_option(Text $text)
+    {
+        $this->option(Option::BOLD())
+            ->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_BOLD_OPTION);
+    }
+
+    public function it_can_wrap_a_text_with_two_option(Text $text)
+    {
+        $this->option(Option::BOLD())
+            ->option(Option::BLINK())
+            ->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_BOLD_AND_BLINK_OPTION);
+    }
+
+    public function it_can_wrap_a_text_with_all_together(Text $text)
+    {
+        $this->option(Option::BOLD())
+            ->option(Option::BLINK())
+            ->foreGroundColor(Color::RED())
+            ->backGroundColor(Color::BLUE())
+            ->backGroundColor(Color::BLUE())
+            ->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_ALL_TOGETHER);
     }
 
 
-    public function it_can_render_simple_content_with_foreground_color(Line $line)
-    {
-        $this->foregroundColor(Color::RED());
-        $this->decorate($line)->shouldHaveForeGround(Color::RED);
-    }
-
-    public function it_can_render_simple_content_with_background_color(Line $line)
-    {
-        $this->backgroundColor(Color::BLUE());
-        $this->decorate($line)->shouldHaveBackGround(Color::BLUE);
-    }
-
-    public function it_can_render_simple_content_with_options(Line $line)
+    public function it_can_be_merged_from_string(Text $text)
     {
 
-        $this->option(Option::BLINK());
-        $this->option(Option::UNDERSCORE());
+        $style = $this->backGroundColor(Color::BLUE())
+            ->foreGroundColor(Color::YELLOW())
+            ->option(Option::BOLD())
+            ->applyAttributeString('fg=red;options=blink');
 
-        $decorated = $this->decorate($line);
-
-        $decorated->shouldHaveOption(Option::BLINK);
-        $decorated->shouldHaveOption(Option::UNDERSCORE);
+        $style->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::TEXT_WITH_ALL_TOGETHER);
     }
 
-    public function it_can_render_simple_content_with_align(Line $line)
+    public function it_can_be_merged_from_string_ignoring_bad_format(Text $text)
     {
-        $this->align(Align::CENTER());
-        $this->decorate($line)->shouldReturn(self::CENTER_CONTENT);
 
-        $this->align(Align::LEFT());
-        $this->decorate($line)->shouldReturn(self::LEFT_CONTENT);
+        $style = $this->backGroundColor(Color::BLUE())
+            ->foreGroundColor(Color::YELLOW())
+            ->option(Option::BOLD())
+            ->applyAttributeString(self::BAD_FORMAT);
+
+        $style->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::UNCHANGED_TEXT);
     }
 
+    public function it_can_be_merged_from_string_ignoring_bad_value(Text $text)
+    {
+
+        $style = $this->backGroundColor(Color::BLUE())
+            ->foreGroundColor(Color::YELLOW())
+            ->option(Option::BOLD())
+            ->applyAttributeString(self::BAD_VALUES);
+
+        $style->wrap($text)
+            ->stringify()
+            ->shouldReturn(self::UNCHANGED_TEXT);
+    }
 }

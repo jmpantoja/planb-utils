@@ -18,10 +18,10 @@
 ## Methods
 
 ### add
-Agrega un nuevo item a la lista, sin clave
 
 
-**ListInterface::add**(mixed $value) : [$this](../../../$this.md)
+
+**ListInterface::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -61,7 +61,7 @@ agrega un nuevo conjunto de Items sin clave
 
 
 ### set
-Agrega un nuevo Item a la lista, con clave
+
 
 
 **ListInterface::set**(mixed $key, mixed $value) : [$this](../../../$this.md)

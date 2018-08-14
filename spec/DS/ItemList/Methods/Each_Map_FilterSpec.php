@@ -39,8 +39,8 @@ class Each_Map_FilterSpec extends ObjectBehavior
     {
         $this->addSomeElements();
 
-        $this->each(function (Word $word, int $key, string $sufixA, string $sufixB): string {
-            return $word->concatAll((string)$key, $sufixA, $sufixB)->__toString();
+        $this->each(function (Word $word, int $key, string $sufixA, string $sufixB): void {
+            $word->concatAll((string)$key, $sufixA, $sufixB);
         }, '<', '=');
 
 
@@ -109,7 +109,7 @@ class Each_Map_FilterSpec extends ObjectBehavior
 
         $response->shouldNotReturn($this);
         $response->shouldHaveType(ItemList::class);
-     //   $response->getType()->shouldReturn(Word::class);
+        //   $response->getType()->shouldReturn(Word::class);
 
         $response->count()->shouldReturn(1);
         $response->get(2)->__toString()->shouldReturn('tres');

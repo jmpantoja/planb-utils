@@ -9,9 +9,10 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\DS\ItemList\Resolver;
+namespace PlanB\DS\TypedList\Resolver;
 
 use PlanB\DS\ItemList\ListInterface;
+use PlanB\DS\ItemList\Resolver\Validator;
 use PlanB\Utils\Type\Type;
 
 /**

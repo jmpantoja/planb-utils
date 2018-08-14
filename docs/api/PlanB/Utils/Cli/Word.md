@@ -4,7 +4,7 @@
 # Word
 
 
-> Representa a una palabra con un estilo determinado
+> Una palabra con estilo
 >
 > 
 
@@ -17,112 +17,30 @@
 
 ## Methods
 
-### __toString
-Devuelve la cadena de texto
-
-
-**Word::__toString**() : string
-
-
-
----
-
-
-### style
-Asigna un estilo a este elemento
-
-
-**Word::style**([Style](../../../Style.md) $style) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
-
----
-
-
-### getStyle
-Devuelve el estilo
-
-
-**Word::getStyle**() : [Style](../../../Style.md)
-
-
-
----
-
-
-### apply
-Aplica un estilo y da por finalizada la definición de elemento
-
-
-**Word::apply**([Style](../../../Style.md) $style) : [OutputAggregate](../../../OutputAggregate.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../Style.md) |$style |  |
-
----
-
-
-### setParent
-Asigna un objeto OutputAggregate como padre de este elemento
-
-
-protected **Word::setParent**([OutputAggregate](../../../OutputAggregate.md) $parent) : [Output](../../../Output.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[OutputAggregate](../../../OutputAggregate.md) |$parent |  |
-
----
-
-
-### end
-Da por finalizada la definición de este elemento, y devuelve el padre
-
-
-**Word::end**() : [OutputAggregate](../../../OutputAggregate.md)
-
-
-
----
-
-
 ### __construct
-Word constructor.
 
 
-protected **Word::__construct**(string $text) : 
+
+protected **Word::__construct**() : 
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$text |  |
 
 ---
 
 
 ### create
-Crea una nueva instancia
 
 
-static **Word::create**(string $format, string ...$arguments) : [Word](../../../Word.md)
+
+static **Word::create**() : 
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
-|string |...$arguments |  |
 
 ---
 
 
 ### stringify
-
+__toString alias
 
 
 **Word::stringify**(string $format = null) : string
@@ -135,16 +53,50 @@ static **Word::create**(string $format, string ...$arguments) : [Word](../../../
 ---
 
 
+### __toString
+Devuelve la cadena de texto
+
+
+**Word::__toString**() : string
+
+
+
+---
+
+
 ### parent
-Asigna un objeto Line como padre de este elemento
+Asigna el padre de este elemento
 
 
-**Word::parent**([Line](../../../Line.md) $line) : [Word](../../../Word.md)
+**Word::parent**([ComposedOutput](../../../ComposedOutput.md) $parent) : [Output](../../../Output.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Line](../../../Line.md) |$line |  |
+|[ComposedOutput](../../../ComposedOutput.md) |$parent |  |
+
+---
+
+
+### end
+Finaliza la configuración,
+y devuelve el padre para seguir encadenando elementos
+
+
+**Word::end**() : [ComposedOutput](../../../ComposedOutput.md)
+
+
+
+---
+
+
+### render
+Devuelve el contenido con el estilo aplicado
+
+
+**Word::render**() : string
+
+
 
 ---
 

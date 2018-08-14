@@ -26,13 +26,12 @@ class ItemList extends AbstractList
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\ItemList\ItemList
+     * @return \PlanB\DS\ItemList\ListInterface
      */
-    public static function create(iterable $input = []): ItemList
+    public static function create(iterable $input = []): ListInterface
     {
         $list = new static();
-        $list->setAll($input);
 
-        return $list;
+        return $list->setAll($input);
     }
 }

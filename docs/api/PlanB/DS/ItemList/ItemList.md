@@ -17,16 +17,16 @@
 
 ## Properties
 - items
-- resolverBag
+- resolution
 
 
 ## Methods
 
 ### add
-Agrega un elemento a la colección
 
 
-**ItemList::add**(mixed $value) : [$this](../../../$this.md)
+
+**ItemList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -37,7 +37,7 @@ Agrega un elemento a la colección
 
 
 ### addAll
-Agrega un conjunto de elementos
+
 
 
 **ItemList::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -50,8 +50,22 @@ Agrega un conjunto de elementos
 ---
 
 
+### clearAndAdd
+
+
+
+**ItemList::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### set
-Agrega una pareja clave/valor a la colección
+
 
 
 **ItemList::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
@@ -66,7 +80,7 @@ Agrega una pareja clave/valor a la colección
 
 
 ### setAll
-Agrega un conjunto de parejas clave/valor
+
 
 
 **ItemList::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
@@ -79,8 +93,22 @@ Agrega un conjunto de parejas clave/valor
 ---
 
 
+### clearAndSet
+
+
+
+**ItemList::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$items |  |
+
+---
+
+
 ### get
-Devuelve un elemento
+
 
 
 **ItemList::get**(mixed $key, mixed|null $default = null) : mixed
@@ -95,7 +123,7 @@ Devuelve un elemento
 
 
 ### exists
-Indica si un elemento existe
+
 
 
 **ItemList::exists**(mixed $key) : bool
@@ -109,7 +137,7 @@ Indica si un elemento existe
 
 
 ### has
-exists alias
+
 
 
 **ItemList::has**(mixed $key) : bool
@@ -123,10 +151,10 @@ exists alias
 
 
 ### remove
-Elimina un elemento
 
 
-**ItemList::remove**(mixed $key) : [$this](../../../$this.md)
+
+**ItemList::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -136,52 +164,47 @@ Elimina un elemento
 ---
 
 
-### __construct
-ArrayList constructor.
+### clear
 
 
-**ItemList::__construct**() : 
+
+**ItemList::clear**() : [ListInterface](../../../ListInterface.md)
 
 
 
 ---
 
 
-### addResolver
-Añade un nuevo resolver
+### tryAddItem
+Resuelve y añade un item
 
 
-**ItemList::addResolver**(callable|[ResolverInterface](../../../ResolverInterface.md) $resolver, int $priority = 0) : [ListInterface](../../../ListInterface.md)
+protected **ItemList::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|callable|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
-|int |$priority |  |
+|[Item](../../../Item.md) |$item |  |
+
+---
+
+
+### __construct
+List constructor.
+
+
+protected **ItemList::__construct**() : 
+
+
 
 ---
 
 
 ### customize
-Configura la lista
+Configura el comportamiento de  la lista
 
 
-protected **ItemList::customize**([ResolverBag](../../../ResolverBag.md) $resolverBag) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[ResolverBag](../../../ResolverBag.md) |$resolverBag |  |
-
----
-
-
-### ignoreOnInvalid
-Configura la Lista para que no se lanzen excepciones
-cuando se trata de añadir un valor invalido
-
-
-**ItemList::ignoreOnInvalid**() : [ListInterface](../../../ListInterface.md)
+protected **ItemList::customize**() : void
 
 
 
@@ -189,7 +212,7 @@ cuando se trata de añadir un valor invalido
 
 
 ### count
-Devuelve el número total de elementos
+
 
 
 **ItemList::count**() : int
@@ -200,7 +223,7 @@ Devuelve el número total de elementos
 
 
 ### isEmpty
-Indica si la colección está vacia
+
 
 
 **ItemList::isEmpty**() : bool
@@ -211,7 +234,7 @@ Indica si la colección está vacia
 
 
 ### each
-Ejecuta una acción para cada elemento de la colección
+
 
 
 **ItemList::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -226,8 +249,8 @@ Ejecuta una acción para cada elemento de la colección
 
 
 ### map
-Devuelve el resultado de aplicar una acción a cada elemento de la colección
-La colección original permanece inmutable
+
+
 
 **ItemList::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
@@ -241,7 +264,7 @@ La colección original permanece inmutable
 
 
 ### filter
-Devuelve una colección con los elementos que cumplen un criterio
+
 
 
 **ItemList::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -256,8 +279,7 @@ Devuelve una colección con los elementos que cumplen un criterio
 
 
 ### search
-Devuelve el primer elemento que cumpla con el criterio,
-o nulo si no encuentra ninguno
+
 
 
 **ItemList::search**(callable $callable, mixed ...$userdata) : mixed|null
@@ -272,8 +294,7 @@ o nulo si no encuentra ninguno
 
 
 ### find
-Devuelve el primer elemento que cumpla con el criterio,
-o lanza una excepción si no encuentra ninguno
+
 
 
 **ItemList::find**(callable $callable, mixed ...$userdata) : mixed
@@ -288,7 +309,7 @@ o lanza una excepción si no encuentra ninguno
 
 
 ### reduce
-Reduce una colección, a un unico valor
+
 
 
 **ItemList::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -304,7 +325,7 @@ Reduce una colección, a un unico valor
 
 
 ### toArray
-Devuelve un array con los elementos de la colección
+
 
 
 **ItemList::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
@@ -355,11 +376,82 @@ Convierte el array en una cadena json
 ---
 
 
+### silentExceptions
+Silencia las excepciones
+
+
+**ItemList::silentExceptions**() : [ListInterface](../../../ListInterface.md)
+
+
+
+---
+
+
+### addHydrator
+Añade un hydrator
+
+
+**ItemList::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$hydrator |  |
+
+---
+
+
+### addValidator
+Añade un validador
+
+
+**ItemList::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$order |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizador
+
+
+**ItemList::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
+### addKeyNormalizer
+Añade un normalizador de clave
+
+
+**ItemList::addKeyNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$order |  |
+
+---
+
+
 ### create
 Crea una instancia a partir de un conjunto de valores
 
 
-static **ItemList::create**([iterable](../../../iterable.md) $input = []) : [ItemList](../../../ItemList.md)
+static **ItemList::create**([iterable](../../../iterable.md) $input = []) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |

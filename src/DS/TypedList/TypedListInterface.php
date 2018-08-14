@@ -11,17 +11,19 @@
 
 declare(strict_types=1);
 
-namespace PlanB\DS\ItemList;
+namespace PlanB\DS\TypedList;
+
+use PlanB\DS\ItemList\ListInterface;
 
 /**
- * Listas que solo admiten elementos de un determinado tipo
+ * Intefaz para listas donde todos los elementos son del mismo tipo
  */
-interface TypableList
+interface TypedListInterface extends ListInterface
 {
     /**
      * Devuelve el tipo de la lista
      *
      * @return null|string
      */
-    public function getInnerType(): ?string;
+    public function getInnerType(): string;
 }

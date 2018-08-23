@@ -310,5 +310,20 @@ class TextSpec extends ObjectBehavior
             ->shouldReturn('--000--');
     }
 
+    public function it_can_strip_tags()
+    {
+
+        $input = 'before <a href="#">content</a> after';
+        $this->beConstructedThrough('create', [$input]);
+
+        $this->stripTags()
+            ->stringify()
+            ->shouldReturn('before content after');
+
+        $this->stripTags('<a>')
+            ->stringify()
+            ->shouldReturn($input);
+    }
+
 
 }

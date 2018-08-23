@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Utils\Cli;
+namespace PlanB\Utils\Cli\Style;
 
 /**
  * Utildad que añade los atributos inferidos de una cadena de texto a un objeto Style
@@ -34,7 +34,7 @@ class StyleMerger
     ];
 
     /**
-     * @var \PlanB\Utils\Cli\Style
+     * @var \PlanB\Utils\Cli\Style\Style
      */
     private $style;
 
@@ -42,9 +42,9 @@ class StyleMerger
     /**
      * StyleParser named constructor.
      *
-     * @param \PlanB\Utils\Cli\Style $style
+     * @param \PlanB\Utils\Cli\Style\Style $style
      *
-     * @return \PlanB\Utils\Cli\StyleMerger
+     * @return \PlanB\Utils\Cli\Style\StyleMerger
      */
     public static function create(Style $style): self
     {
@@ -54,7 +54,7 @@ class StyleMerger
     /**
      * StyleParser constructor.
      *
-     * @param \PlanB\Utils\Cli\Style $style
+     * @param \PlanB\Utils\Cli\Style\Style $style
      */
     protected function __construct(Style $style)
     {
@@ -66,7 +66,7 @@ class StyleMerger
      *
      * @param string $attributes
      *
-     * @return \PlanB\Utils\Cli\Style
+     * @return \PlanB\Utils\Cli\Style\Style
      */
     public function parse(string $attributes): Style
     {
@@ -162,7 +162,7 @@ class StyleMerger
      *
      * @param string $values
      *
-     * @return \PlanB\Utils\Cli\Option[]
+     * @return \PlanB\Utils\Cli\Style\Option[]
      */
     private function calculeOptions(string $values): array
     {
@@ -181,7 +181,7 @@ class StyleMerger
      *
      * @param string $value
      *
-     * @return null|\PlanB\Utils\Cli\Option
+     * @return null|\PlanB\Utils\Cli\Style\Option
      */
     private function calculeOption(string $value): ?Option
     {

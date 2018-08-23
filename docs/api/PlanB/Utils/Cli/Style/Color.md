@@ -1,13 +1,31 @@
 
                                                                                                                                             
     
-# Interfaces
+# Color
 
-* [PlanB\DS\ItemList\ListInterface](PlanB/DS/ItemList/ListInterface.md)
-* [PlanB\DS\ItemList\Resolver\Resolvable](PlanB/DS/ItemList/Resolver/Resolvable.md)
-* [PlanB\DS\TypedList\TypedListInterface](PlanB/DS/TypedList/TypedListInterface.md)
-* [PlanB\Utils\Cli\Decorator\DecoratorInterface](PlanB/Utils/Cli/Decorator/DecoratorInterface.md)
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+> Enum con los posibles colores
+>
+> 
+
+
+
+
+## Constants
+- DEFAULT
+- BLACK
+- RED
+- GREEN
+- YELLOW
+- BLUE
+- MAGENTA
+- CYAN
+- WHITE
+
+
+
+
+## Methods
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

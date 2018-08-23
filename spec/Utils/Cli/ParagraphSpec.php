@@ -2,13 +2,13 @@
 
 namespace spec\PlanB\Utils\Cli;
 
-use PlanB\Utils\Cli\Align;
-use PlanB\Utils\Cli\Color;
-use PlanB\Utils\Cli\Option;
+use PlanB\Utils\Cli\Style\Align;
+use PlanB\Utils\Cli\Style\Color;
+use PlanB\Utils\Cli\Style\Option;
 use PlanB\Utils\Cli\Paragraph;
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Cli\Renderer;
-use PlanB\Utils\Cli\Style;
+use PlanB\Utils\Cli\Decorators;
+use PlanB\Utils\Cli\Style\Style;
 use PlanB\ValueObject\Text\Text;
 use Prophecy\Argument as p;
 
@@ -19,7 +19,7 @@ class ParagraphSpec extends ObjectBehavior
     private const LINE_B = 'linea #B';
 
     private const TAB_LINE_A = "\tlinea #A";
-    private const SPACES_LINE_A = Renderer::TAB . "linea #A";
+    private const SPACES_LINE_A = Style::TAB . "linea #A";
 
     private const LINES = [
         self::LINE_A,
@@ -27,8 +27,8 @@ class ParagraphSpec extends ObjectBehavior
     ];
 
     private const LINES_WITH_PADDING = [
-        Renderer::TAB . self::LINE_A . Renderer::TAB,
-        Renderer::TAB . self::LINE_B . Renderer::TAB,
+        Style::TAB . self::LINE_A . Style::TAB,
+        Style::TAB . self::LINE_B . Style::TAB,
     ];
 
     private const INPUT = <<<eof
@@ -75,7 +75,6 @@ eof;
         ];
     }
 
-
     /**
      * Override this method to provide your own inline matchers
      *
@@ -121,7 +120,6 @@ eof;
         $this->beConstructedThrough('create', [$input]);
 
         $this->padding(1, 1);
-
         $this->render()->shouldReturnText($output);
     }
 
@@ -152,6 +150,7 @@ eof;
      */
     protected function getStyle()
     {
+
         $style = Style::create()
             ->foreGroundColor(Color::GREEN())
             ->backGroundColor(Color::WHITE())

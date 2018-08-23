@@ -1,12 +1,10 @@
 <?php
 
-namespace spec\PlanB\Utils\Cli;
+namespace spec\PlanB\Utils\Cli\Style;
 
 use MabeEnum\Enum;
-use PlanB\Utils\Cli\Align;
-use PlanB\Utils\Cli\Color;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PlanB\Utils\Cli\Style\Align;
 
 class AlignSpec extends ObjectBehavior
 {

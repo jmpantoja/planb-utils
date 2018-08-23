@@ -447,6 +447,36 @@ Añade un normalizador de clave
 ---
 
 
+### max
+Devuelve el valor máximo
+El valor a comparar se calcula con un callback
+
+
+**AbstractTypedList::max**(callable $callback) : null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
+### min
+Devuelve el valor mínimo
+El valor a comparar se calcula con un callback
+
+
+**AbstractTypedList::min**(callable $callback) : null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

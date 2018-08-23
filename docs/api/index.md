@@ -15,6 +15,8 @@
 * [PlanB\Utils\Assurance](PlanB/Utils/Assurance.md)
 * [PlanB\Utils\Assurance\Exception](PlanB/Utils/Assurance/Exception.md)
 * [PlanB\Utils\Cli](PlanB/Utils/Cli.md)
+* [PlanB\Utils\Cli\Decorator](PlanB/Utils/Cli/Decorator.md)
+* [PlanB\Utils\Cli\Style](PlanB/Utils/Cli/Style.md)
 * [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)

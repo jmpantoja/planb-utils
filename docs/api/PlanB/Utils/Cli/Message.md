@@ -190,7 +190,7 @@ protected **Message::tryAddItem**([Item](../../../Item.md) $item) : [ListInterfa
 
 
 ### __construct
-List constructor.
+TypedList constructor.
 
 
 **Message::__construct**() : 
@@ -447,6 +447,36 @@ Añade un normalizador de clave
 ---
 
 
+### max
+Devuelve el valor máximo
+El valor a comparar se calcula con un callback
+
+
+**Message::max**(callable $callback) : null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
+### min
+Devuelve el valor mínimo
+El valor a comparar se calcula con un callback
+
+
+**Message::min**(callable $callback) : null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
 ### getInnerType
 Devuelve el tipo de la lista
 
@@ -469,6 +499,17 @@ static **Message::create**() : [Message](../../../Message.md)
 ---
 
 
+### blank
+Añade una linea en blanco
+
+
+**Message::blank**() : [Paragraph](../../../Paragraph.md)
+
+
+
+---
+
+
 ### block
 Añade un párrafo
 
@@ -484,11 +525,11 @@ Añade un párrafo
 ---
 
 
-### getMaxLenght
-Devuelve la longitud máxima
+### __toString
+Devuelve la cadena de texto
 
 
-**Message::getMaxLenght**() : int
+**Message::__toString**() : string
 
 
 
@@ -505,17 +546,6 @@ __toString alias
 |Parameters: | | |
 | --- | --- | --- |
 |string |$format |  |
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**Message::__toString**() : string
-
-
 
 ---
 

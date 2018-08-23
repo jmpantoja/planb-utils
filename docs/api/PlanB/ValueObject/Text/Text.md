@@ -341,6 +341,20 @@ Añade padding a la cadena
 ---
 
 
+### stripTags
+Elimina html tags
+
+
+**Text::stripTags**(string $allowableTags = null) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$allowableTags |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

@@ -32,4 +32,46 @@ abstract class AbstractTypedList extends AbstractList implements TypedListInterf
         $validator = TypeValidator::create($this->getInnerType());
         $this->addValidator($validator, PHP_INT_MAX);
     }
+
+    /**
+     * Devuelve el valor máximo
+     * El valor a comparar se calcula con un callback
+     *
+     * @param callable $callback
+     *
+     * @return null |float
+     */
+    public function max(callable $callback): ?float
+    {
+        if ($this->isEmpty()) {
+            return null;
+        }
+
+        return $this->reduce(function ($item, $carry) use ($callback) {
+            $value = (float) call_user_func($callback, $item);
+
+            return max($carry, $value);
+        }, PHP_INT_MIN);
+    }
+
+    /**
+     * Devuelve el valor mínimo
+     * El valor a comparar se calcula con un callback
+     *
+     * @param callable $callback
+     *
+     * @return null |float
+     */
+    public function min(callable $callback): ?float
+    {
+        if ($this->isEmpty()) {
+            return null;
+        }
+
+        return $this->reduce(function ($item, $carry) use ($callback) {
+            $value = (float) call_user_func($callback, $item);
+
+            return min($carry, $value);
+        }, PHP_INT_MAX);
+    }
 }

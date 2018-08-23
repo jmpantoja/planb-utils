@@ -2,21 +2,15 @@
 
 namespace spec\PlanB\Utils\Cli;
 
+use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\TypableInterface;
 use PlanB\DS\ItemList\TypedList;
-use PlanB\Utils\Cli\Align;
 use PlanB\Utils\Cli\Block;
-use PlanB\Utils\Cli\Color;
-use PlanB\Utils\Cli\Line;
-use PlanB\Utils\Cli\Option;
-use PlanB\Utils\Cli\OutputAggregate;
 use PlanB\Utils\Cli\ComposedOutput;
 use PlanB\Utils\Cli\Message;
-use PhpSpec\ObjectBehavior;
+use PlanB\Utils\Cli\OutputAggregate;
 use PlanB\Utils\Cli\Paragraph;
-use PlanB\ValueObject\Stringifable;
 use PlanB\ValueObject\Text\Text;
-use Prophecy\Argument;
 
 
 class MessageSpec extends ObjectBehavior
@@ -43,6 +37,15 @@ class MessageSpec extends ObjectBehavior
         $this->__toString()->shouldReturn('');
     }
 
+    public function it_can_add_a_blank_line()
+    {
+        $this->blank()->shouldHaveType(Message::class);
+        $this->count()->shouldReturn(1);
+
+        $this->stringify()
+            ->shouldReturn(Text::EMPTY_TEXT);
+    }
+
     public function it_can_add_a_block()
     {
         $this->block('')->shouldHaveType(Paragraph::class);
@@ -56,7 +59,6 @@ class MessageSpec extends ObjectBehavior
 
     public function it_retrieve_empty_text_when_is_empty()
     {
-
         $this->stringify()
             ->shouldReturn(Text::EMPTY_TEXT);
     }
@@ -70,18 +72,6 @@ class MessageSpec extends ObjectBehavior
             ->shouldReturn("first block \nsecond block");
     }
 
-
-    public function it_can_calcule_max_length()
-    {
-        $message = $this
-            ->block('1234567')->end()
-            ->block('1234')->end()
-            ->block('12345678')->end()
-            ->block('123')->end();
-
-        $message->getMaxLenght()
-            ->shouldReturn(8);
-    }
 
     public function it_return_it_self_on_end()
     {

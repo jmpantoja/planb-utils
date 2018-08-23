@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# Renderer
+# StyleDecorator
 
 
-> Utilidad para aplicar formato a un texo
+> Añade las etiquetas de estilo
 >
 > 
 
@@ -12,8 +12,7 @@
 
 
 ## Constants
-- TAG_PATTERN
-- TAB
+- FORMAT
 
 
 
@@ -21,10 +20,10 @@
 ## Methods
 
 ### __construct
-Renderer constructor.
+AbstractDecorator constructor.
 
 
-protected **Renderer::__construct**() : 
+protected **StyleDecorator::__construct**() : 
 
 
 
@@ -32,27 +31,43 @@ protected **Renderer::__construct**() :
 
 
 ### create
-Renderer Named Constructor.
+Decorator named constructor
 
 
-static **Renderer::create**() : [Renderer](../../../Renderer.md)
+static **StyleDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
 
 
 
 ---
 
 
-### render
-Devuelve un texto con un estilo aplicado
+### decorate
 
 
-**Renderer::render**([Text](../../../Text.md) $text, [Style](../../../Style.md) $style) : [Text](../../../Text.md)
+
+**StyleDecorator::decorate**([Line](../../../../Line.md) $line, [Style](../../../../Style.md) $style, [Spacing](../../../../Spacing.md) $spacing) : [Line](../../../../Line.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Text](../../../Text.md) |$text |  |
-|[Style](../../../Style.md) |$style |  |
+|[Line](../../../../Line.md) |$line |  |
+|[Style](../../../../Style.md) |$style |  |
+|[Spacing](../../../../Spacing.md) |$spacing |  |
+
+---
+
+
+### wrap
+Envuelve una cadena de texto con las etiquetas de estilo
+
+
+protected **StyleDecorator::wrap**([Line](../../../../Line.md) $line, [Style](../../../../Style.md) $style) : [Line](../../../../Line.md)|[Text](../../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Line](../../../../Line.md) |$line |  |
+|[Style](../../../../Style.md) |$style |  |
 
 ---
 

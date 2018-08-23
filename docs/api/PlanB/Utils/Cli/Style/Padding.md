@@ -1,13 +1,73 @@
 
                                                                                                                                             
     
-# Interfaces
+# Padding
 
-* [PlanB\DS\ItemList\ListInterface](PlanB/DS/ItemList/ListInterface.md)
-* [PlanB\DS\ItemList\Resolver\Resolvable](PlanB/DS/ItemList/Resolver/Resolvable.md)
-* [PlanB\DS\TypedList\TypedListInterface](PlanB/DS/TypedList/TypedListInterface.md)
-* [PlanB\Utils\Cli\Decorator\DecoratorInterface](PlanB/Utils/Cli/Decorator/DecoratorInterface.md)
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+> Define el padding de una linea
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### create
+Padding named constructor.
+
+
+static **Padding::create**(int $left = 0, int $right = null) : [Padding](../../../../Padding.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$left |  |
+|int |$right |  |
+
+---
+
+
+### __construct
+Padding constructor.
+
+
+protected **Padding::__construct**(int $left, int $right) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$left |  |
+|int |$right |  |
+
+---
+
+
+### getLeft
+Devuelve el padding izquierdo
+
+
+**Padding::getLeft**() : string
+
+
+
+---
+
+
+### getRight
+Devuelve el padding derecho
+
+
+**Padding::getRight**() : string
+
+
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

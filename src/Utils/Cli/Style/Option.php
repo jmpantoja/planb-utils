@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Utils\Cli;
+namespace PlanB\Utils\Cli\Style;
 
 use MabeEnum\Enum;
 

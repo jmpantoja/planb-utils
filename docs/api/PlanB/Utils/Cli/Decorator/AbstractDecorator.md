@@ -1,13 +1,43 @@
 
                                                                                                                                             
     
-# Interfaces
+# AbstractDecorator
 
-* [PlanB\DS\ItemList\ListInterface](PlanB/DS/ItemList/ListInterface.md)
-* [PlanB\DS\ItemList\Resolver\Resolvable](PlanB/DS/ItemList/Resolver/Resolvable.md)
-* [PlanB\DS\TypedList\TypedListInterface](PlanB/DS/TypedList/TypedListInterface.md)
-* [PlanB\Utils\Cli\Decorator\DecoratorInterface](PlanB/Utils/Cli/Decorator/DecoratorInterface.md)
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+> Decorador Abstracto
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### __construct
+AbstractDecorator constructor.
+
+
+protected **AbstractDecorator::__construct**() : 
+
+
+
+---
+
+
+### create
+Decorator named constructor
+
+
+static **AbstractDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+
+
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

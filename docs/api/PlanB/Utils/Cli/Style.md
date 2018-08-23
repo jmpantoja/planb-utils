@@ -1,114 +1,22 @@
 
                                                                                                                                             
     
-# Style
-
-
-> Define el estilo de un objeto
->
-> 
+# PlanB\Utils\Cli\Style
 
 
 
-
-## Constants
-- TAB
-
-
-
-
-## Methods
-
-### __construct
-Style constructor.
-
-
-protected **Style::__construct**() : 
+## Classes
+| | |
+| --- | --- |
+| [PlanB\Utils\Cli\Style\Align](../../../PlanB/Utils/Cli/Style/Align.md) | Enum con las posibles alineaciones |
+| [PlanB\Utils\Cli\Style\Color](../../../PlanB/Utils/Cli/Style/Color.md) | Enum con los posibles colores |
+| [PlanB\Utils\Cli\Style\Option](../../../PlanB/Utils/Cli/Style/Option.md) | Enum con las posibles opciones |
+| [PlanB\Utils\Cli\Style\Style](../../../PlanB/Utils/Cli/Style/Style.md) | Define el estilo de un objeto |
+| [PlanB\Utils\Cli\Style\StyleMerger](../../../PlanB/Utils/Cli/Style/StyleMerger.md) | Utildad que añade los atributos inferidos de una cadena de texto a un objeto Style |
 
 
 
----
 
-
-### create
-Style Named Constructor
-
-
-static **Style::create**() : [Style](../../../Style.md)
-
-
-
----
-
-
-### applyAttributeString
-Aplica los atributos contenidos en una cadena de texto
-
-
-**Style::applyAttributeString**(string $attributes) : [Style](../../../Style.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$attributes |  |
-
----
-
-
-### foreGroundColor
-Asigna el color del texto
-
-
-**Style::foreGroundColor**([Color](../../../Color.md) $color) : [Style](../../../Style.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
-
----
-
-
-### backGroundColor
-Asigna el color del fondo
-
-
-**Style::backGroundColor**([Color](../../../Color.md) $color) : [Style](../../../Style.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Color](../../../Color.md) |$color |  |
-
----
-
-
-### option
-Asigna una opción al texto
-
-
-**Style::option**([Option](../../../Option.md) $option) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Option](../../../Option.md) |$option |  |
-
----
-
-
-### wrap
-Envuelve un texto con la etiqueta derivada de este estilo
-
-
-**Style::wrap**([Text](../../../Text.md) $text) : [Text](../../../Text.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Text](../../../Text.md) |$text |  |
-
----
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

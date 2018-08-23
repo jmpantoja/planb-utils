@@ -335,6 +335,19 @@ class Text implements Stringifable
      */
     public function padding(int $lenght, string $char = self::BLANK_TEXT, int $mode = STR_PAD_RIGHT): Text
     {
-        return new self(str_pad($this->text, $lenght, $char, $mode));
+        return new static(str_pad($this->text, $lenght, $char, $mode));
+    }
+
+
+    /**
+     * Elimina html tags
+     *
+     * @param string|null $allowableTags
+     *
+     * @return \PlanB\ValueObject\Text\Text
+     */
+    public function stripTags(?string $allowableTags = null): Text
+    {
+        return new static(strip_tags($this->text, $allowableTags));
     }
 }

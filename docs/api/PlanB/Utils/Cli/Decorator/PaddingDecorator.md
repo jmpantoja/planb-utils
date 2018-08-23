@@ -1,13 +1,59 @@
 
                                                                                                                                             
     
-# Interfaces
+# PaddingDecorator
 
-* [PlanB\DS\ItemList\ListInterface](PlanB/DS/ItemList/ListInterface.md)
-* [PlanB\DS\ItemList\Resolver\Resolvable](PlanB/DS/ItemList/Resolver/Resolvable.md)
-* [PlanB\DS\TypedList\TypedListInterface](PlanB/DS/TypedList/TypedListInterface.md)
-* [PlanB\Utils\Cli\Decorator\DecoratorInterface](PlanB/Utils/Cli/Decorator/DecoratorInterface.md)
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+> Añade padding al texto
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### __construct
+AbstractDecorator constructor.
+
+
+protected **PaddingDecorator::__construct**() : 
+
+
+
+---
+
+
+### create
+Decorator named constructor
+
+
+static **PaddingDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+
+
+
+---
+
+
+### decorate
+
+
+
+**PaddingDecorator::decorate**([Line](../../../../Line.md) $line, [Style](../../../../Style.md) $style, [Spacing](../../../../Spacing.md) $spacing) : [Text](../../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Line](../../../../Line.md) |$line |  |
+|[Style](../../../../Style.md) |$style |  |
+|[Spacing](../../../../Spacing.md) |$spacing |  |
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

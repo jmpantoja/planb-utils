@@ -11,33 +11,18 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Cli;
 
+use PlanB\DS\TypedList\AbstractTypedList;
+use PlanB\Utils\Cli\Style\Align;
+use PlanB\Utils\Cli\Style\Spacing;
+use PlanB\Utils\Cli\Style\Style;
 use PlanB\ValueObject\Text\Text;
 
 /**
  * Representa a un bloque de texto con un estilo comun
  */
-class Paragraph
+class Paragraph extends AbstractTypedList
 {
-    /**
-     * @var \PlanB\ValueObject\Text\TextList
-     */
-    private $lines;
 
-    /**
-     * @var \PlanB\Utils\Cli\Style
-     */
-    private $style;
-
-
-    /**
-     * @var \PlanB\Utils\Cli\Renderer
-     */
-    private $renderer;
-
-    /**
-     * @var int
-     */
-    private $paddingLength = 0;
 
     /**
      * @var \PlanB\Utils\Cli\Message
@@ -45,23 +30,15 @@ class Paragraph
     private $parent;
 
     /**
-     * Paragraph constructor.
-     *
-     * @param \PlanB\ValueObject\Text\Text $text
+     * @var \PlanB\Utils\Cli\Style\Style
      */
-    protected function __construct(Text $text)
-    {
+    private $style;
 
-        $this->style = Style::create();
-        $this->renderer = Renderer::create();
+    /**
+     * @var \PlanB\Utils\Cli\Style\Spacing
+     */
+    private $spacing;
 
-        $this->lines = $text->explode(Text::LINE_BREAK)
-            ->map(function (Text $text) {
-                return $text->replace("/\t/", function () {
-                    return Renderer::TAB;
-                });
-            });
-    }
 
     /**
      * Paragraph Named Constructor.
@@ -79,51 +56,42 @@ class Paragraph
     }
 
     /**
-     * Devuelve el texto formateado
+     * Paragraph constructor.
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @param \PlanB\ValueObject\Text\Text $text
      */
-    public function render(): Text
+    protected function __construct(Text $text)
     {
-        $this->prepare();
 
-        return $this->lines->map(function (Text $line) {
-            return $this->renderer->render($line, $this->style);
-        })->concat(Text::LINE_BREAK);
+        parent::__construct();
+
+        $this->style = Style::create();
+        $this->spacing = Spacing::create();
+
+        $this->addAll($text->explode(Text::LINE_BREAK));
     }
 
     /**
-     * Acciones previas a renderizar el parrafo
+     * Configura el comportamiento de  la lista
+     *
+     * @return void
      */
-    private function prepare(): void
+    protected function customize(): void
     {
-        $width = $this->getWidth();
-        $this->renderer->expandTo($width);
+        $this->addHydrator(Text::class, function (Text $text) {
+            return Line::create($text);
+        });
     }
 
-    /**
-     * Calcula el ancho efectivo de este párrafo
-     *
-     * @return int
-     */
-    private function getWidth(): int
-    {
-
-        if ($this->hasParent()) {
-            return $this->parent->getMaxLenght();
-        }
-
-        return $this->getMaxLenght() - $this->paddingLength;
-    }
 
     /**
-     * Indica si el párrafo esta asociado o no a un mensaje
+     * Devuelve el tipo de la lista
      *
-     * @return bool
+     * @return null|string
      */
-    private function hasParent(): bool
+    public function getInnerType(): string
     {
-        return !is_null($this->parent);
+        return Line::class;
     }
 
     /**
@@ -143,7 +111,7 @@ class Paragraph
     /**
      * Asigna el estilo
      *
-     * @param \PlanB\Utils\Cli\Style $style
+     * @param \PlanB\Utils\Cli\Style\Style $style
      *
      * @return \PlanB\Utils\Cli\Paragraph
      */
@@ -155,48 +123,72 @@ class Paragraph
     }
 
     /**
-     * Asigna una alineación para el texto
-     *
-     * @param \PlanB\Utils\Cli\Align $align
-     *
-     * @return \PlanB\Utils\Cli\Paragraph
-     */
-    public function align(Align $align): self
-    {
-        $this->renderer->align($align);
-
-        return $this;
-    }
-
-    /**
      * @param int      $left
      * @param int|null $right
      *
-     * @return \PlanB\Utils\Cli\Paragraph
+     * @return \PlanB\Utils\Cli\Style\Style
      */
     public function padding(int $left, ?int $right = null): self
     {
-
-        $this->renderer->padding($left, $right);
-        $this->paddingLength = ($left + $right) * strlen(Renderer::TAB);
+        $this->spacing->padding($left, $right);
 
         return $this;
     }
 
     /**
-     * Devuelve la longitud máxima
+     * Asigna una alineación para el texto
+     *
+     * @param \PlanB\Utils\Cli\Style\Align $align
+     *
+     * @return \PlanB\Utils\Cli\Style\Style
+     */
+    public function align(Align $align): self
+    {
+        $this->spacing->align($align);
+
+        return $this;
+    }
+
+    /**
+     * Asigna un nuevo ancho de párrafo
+     *
+     * @param int $width
+     *
+     * @return $this
+     */
+    public function expandTo(int $width)
+    {
+        $this->spacing->expandTo($width);
+
+        return $this;
+    }
+
+    /**
+     * Devuelve el texto formateado
+     *
+     * @return \PlanB\ValueObject\Text\Text
+     */
+    public function render(): Text
+    {
+        $width = $this->getMaxLength();
+        $this->spacing->expandTo($width);
+
+        return $this
+            ->map(function (Line $line) {
+                return $line->render($this->style, $this->spacing);
+            })->concat(Text::LINE_BREAK);
+    }
+
+    /**
+     * Devuelve la longitud máxima, sin incluir el padding
      *
      * @return int
      */
-    public function getMaxLenght(): int
+    public function getMaxLength(): int
     {
-        return $this->lines->reduce(function (Text $text, $max) {
-
-            $cleanContent = strip_tags($text->stringify());
-            $length = strlen($cleanContent) + $this->paddingLength;
-
-            return max([$length, $max]);
-        }, 0);
+        return (int) $this->max(function (Line $line) {
+            return $line->getContentLength();
+        });
     }
 
 

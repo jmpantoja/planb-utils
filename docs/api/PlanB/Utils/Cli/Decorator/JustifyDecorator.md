@@ -1,13 +1,59 @@
 
                                                                                                                                             
     
-# Interfaces
+# JustifyDecorator
 
-* [PlanB\DS\ItemList\ListInterface](PlanB/DS/ItemList/ListInterface.md)
-* [PlanB\DS\ItemList\Resolver\Resolvable](PlanB/DS/ItemList/Resolver/Resolvable.md)
-* [PlanB\DS\TypedList\TypedListInterface](PlanB/DS/TypedList/TypedListInterface.md)
-* [PlanB\Utils\Cli\Decorator\DecoratorInterface](PlanB/Utils/Cli/Decorator/DecoratorInterface.md)
-* [PlanB\ValueObject\Stringifable](PlanB/ValueObject/Stringifable.md)
+
+> Justifica el texto dentro de un ancho de linea
+>
+> 
+
+
+
+
+
+
+
+
+## Methods
+
+### __construct
+AbstractDecorator constructor.
+
+
+protected **JustifyDecorator::__construct**() : 
+
+
+
+---
+
+
+### create
+Decorator named constructor
+
+
+static **JustifyDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+
+
+
+---
+
+
+### decorate
+
+
+
+**JustifyDecorator::decorate**([Line](../../../../Line.md) $line, [Style](../../../../Style.md) $style, [Spacing](../../../../Spacing.md) $spacing) : [Line](../../../../Line.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Line](../../../../Line.md) |$line |  |
+|[Style](../../../../Style.md) |$style |  |
+|[Spacing](../../../../Spacing.md) |$spacing |  |
+
+---
+
 
                                                                                                                                                                                                                                                                                                                                                                                                             
     

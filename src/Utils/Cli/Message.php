@@ -54,6 +54,20 @@ class Message extends AbstractTypedList implements Stringifable
         return new static();
     }
 
+
+    /**
+     * Añade una linea en blanco
+     *
+     * @return \PlanB\Utils\Cli\Paragraph
+     */
+    public function blank(): Message
+    {
+        $paragraph = Paragraph::create(Text::EMPTY_TEXT);
+        $this->add($paragraph);
+
+        return $this;
+    }
+
     /**
      * Añade un párrafo
      *
@@ -71,19 +85,14 @@ class Message extends AbstractTypedList implements Stringifable
         return $paragraph;
     }
 
-
     /**
-     * Devuelve la longitud máxima
+     * Devuelve la cadena de texto
      *
-     * @return int
+     * @return string
      */
-    public function getMaxLenght(): int
+    public function __toString(): string
     {
-        return $this->reduce(function (Paragraph $paragraph, $max) {
-            $length = $paragraph->getMaxLenght();
-
-            return max([$length, $max]);
-        }, 0);
+        return $this->stringify();
     }
 
     /**
@@ -102,20 +111,39 @@ class Message extends AbstractTypedList implements Stringifable
 
         return $this
             ->map(function (Paragraph $paragraph) {
-                return $paragraph->render();
+                return $this->render($paragraph);
             })
             ->concat(Text::LINE_BREAK)
             ->stringify();
     }
 
+
     /**
-     * Devuelve la cadena de texto
+     * Devuelve un Texto con el párrafo renderizado
      *
-     * @return string
+     * @param \PlanB\Utils\Cli\Paragraph $paragraph
+     *
+     * @return \PlanB\ValueObject\Text\Text
      */
-    public function __toString(): string
+    private function render(Paragraph $paragraph): Text
     {
-        return $this->stringify();
+        $width = $this->getMaxLenght();
+        $paragraph->expandTo($width);
+
+        return $paragraph->render();
+    }
+
+    /**
+     * Devuelve la longitud máxima
+     *
+     * @return int
+     */
+    private function getMaxLenght(): int
+    {
+
+        return (int) $this->max(function (Paragraph $paragraph) {
+            return $paragraph->getMaxLength();
+        });
     }
 
     /**

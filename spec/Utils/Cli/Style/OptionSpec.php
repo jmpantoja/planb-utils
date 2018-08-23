@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\PlanB\Utils\Cli;
+namespace spec\PlanB\Utils\Cli\Style;
 
 use MabeEnum\Enum;
 use PlanB\Utils\Cli\Color;
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Cli\Option;
+use PlanB\Utils\Cli\Style\Option;
 use Prophecy\Argument;
 
 class OptionSpec extends ObjectBehavior
@@ -35,9 +35,3 @@ class OptionSpec extends ObjectBehavior
     }
 
 }
-//
-//
-//public const BLINK = 'blink';
-//public const BOLD = 'bold';
-//public const UNDERSCORE = 'underscore';
-//public const REVERSE = 'reverse';

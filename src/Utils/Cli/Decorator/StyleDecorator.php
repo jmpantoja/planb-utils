@@ -42,7 +42,7 @@ class StyleDecorator extends AbstractDecorator
      * @param \PlanB\Utils\Cli\Line        $line
      * @param \PlanB\Utils\Cli\Style\Style $style
      *
-     * @return \PlanB\Utils\Cli\Line|\PlanB\ValueObject\Text\Text
+     * @return \PlanB\Utils\Cli\Line|\PlanB\Type\Text\Text
      */
     protected function wrap(Line $line, Style $style)
     {

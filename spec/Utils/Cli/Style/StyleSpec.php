@@ -7,7 +7,7 @@ use PlanB\Utils\Cli\Style\Color;
 use PlanB\Utils\Cli\Style\Option;
 use PlanB\Utils\Cli\Style\Style;
 use PhpSpec\ObjectBehavior;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
 class StyleSpec extends ObjectBehavior

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace PlanB\ValueObject;
+namespace PlanB\Type;
 
 /**
  * Representa a los objetos que se pueden convertir en una cadena de texto

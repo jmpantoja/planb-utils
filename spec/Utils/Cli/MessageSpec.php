@@ -10,7 +10,7 @@ use PlanB\Utils\Cli\ComposedOutput;
 use PlanB\Utils\Cli\Message;
 use PlanB\Utils\Cli\OutputAggregate;
 use PlanB\Utils\Cli\Paragraph;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 
 class MessageSpec extends ObjectBehavior

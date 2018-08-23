@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace PlanB\Utils\TypeName;
 
 use PlanB\DS\ItemList\ItemList;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Representa al nombre de una clase

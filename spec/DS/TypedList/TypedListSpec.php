@@ -6,7 +6,7 @@ use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\TypedList\TypedList;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Type\Type;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 use spec\PlanB\DS\ItemList\Fake\Word;
 

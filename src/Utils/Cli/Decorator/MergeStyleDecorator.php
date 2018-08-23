@@ -16,7 +16,7 @@ namespace PlanB\Utils\Cli\Decorator;
 use PlanB\Utils\Cli\Line;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 /**
  * Mezcla los estilos de posibles etiquetas del texto, con el estilo global

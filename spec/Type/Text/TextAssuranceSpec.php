@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Text;
+namespace spec\PlanB\Type\Text;
 
 use PlanB\Utils\Assurance\Assurance;
 use PlanB\Utils\Assurance\Exception\AssertException;
-use PlanB\ValueObject\Path\Path;
-use PlanB\ValueObject\Text\Text;
-use PlanB\ValueObject\Text\TextAssurance;
+use PlanB\Type\Path\Path;
+use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextAssurance;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

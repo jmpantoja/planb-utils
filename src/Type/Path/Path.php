@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\ValueObject\Path;
+namespace PlanB\Type\Path;
 
-use PlanB\ValueObject\Path\Exception\EmptyPathException;
-use PlanB\ValueObject\Path\Exception\OverFlowRootDirException;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Path\Exception\EmptyPathException;
+use PlanB\Type\Path\Exception\OverFlowRootDirException;
+use PlanB\Type\Stringifable;
 
 /**
  * Clase de Utilidades para la manipulacion de rutas
@@ -48,7 +48,7 @@ class Path implements Stringifable
      *
      * @param string ...$parts
      *
-     * @return \PlanB\ValueObject\Path\Path
+     * @return \PlanB\Type\Path\Path
      */
     public static function create(string ...$parts): self
     {
@@ -75,7 +75,7 @@ class Path implements Stringifable
      *
      * @param string ...$parts
      *
-     * @return \PlanB\ValueObject\Path\Path
+     * @return \PlanB\Type\Path\Path
      */
     public function append(string ...$parts): self
     {
@@ -89,7 +89,7 @@ class Path implements Stringifable
      *
      * @param string ...$parts
      *
-     * @return \PlanB\ValueObject\Path\Path
+     * @return \PlanB\Type\Path\Path
      */
     public function prepend(string ...$parts): self
     {
@@ -214,9 +214,9 @@ class Path implements Stringifable
      *
      * @param int $level
      *
-     * @return \PlanB\ValueObject\Path\Path
+     * @return \PlanB\Type\Path\Path
      *
-     * @throws \PlanB\ValueObject\Path\Exception\OverFlowRootDirException
+     * @throws \PlanB\Type\Path\Exception\OverFlowRootDirException
      */
     public function getParent(int $level = 1): self
     {

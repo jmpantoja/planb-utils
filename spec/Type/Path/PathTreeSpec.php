@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Path;
+namespace spec\PlanB\Type\Path;
 
-use PlanB\ValueObject\Path\Path;
-use PlanB\ValueObject\Path\PathTree;
+use PlanB\Type\Path\Path;
+use PlanB\Type\Path\PathTree;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

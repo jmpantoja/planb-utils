@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\ValueObject\Path;
+namespace PlanB\Type\Path;
 
 /**
  * Gestiona un arbol de directorios
@@ -26,7 +26,7 @@ final class PathTree
     /**
      * Path private constructor.
      *
-     * @param \PlanB\ValueObject\Path\Path $path
+     * @param \PlanB\Type\Path\Path $path
      */
     protected function __construct(Path $path)
     {
@@ -42,7 +42,7 @@ final class PathTree
     /**
      * @param string[] ...$parts
      *
-     * @return \PlanB\ValueObject\Path\PathTree
+     * @return \PlanB\Type\Path\PathTree
      */
     public static function create(string ...$parts): self
     {
@@ -90,7 +90,7 @@ final class PathTree
      * Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
      * como un array de objetos Paths
      *
-     * @return \PlanB\ValueObject\Path\Path[]
+     * @return \PlanB\Type\Path\Path[]
      */
     public function getPathTree(): array
     {
@@ -106,7 +106,7 @@ final class PathTree
      * Devuelve el arbol de directorios, desde la raiz hasta la ruta actual,
      * como un array de objetos Path
      *
-     * @return \PlanB\ValueObject\Path\Path[]
+     * @return \PlanB\Type\Path\Path[]
      */
     public function getInversedPathTree(): array
     {

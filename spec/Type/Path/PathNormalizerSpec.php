@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Path;
+namespace spec\PlanB\Type\Path;
 
-use PlanB\ValueObject\Path\Exception\OverFlowRootDirException;
-use PlanB\ValueObject\Path\PathNormalizer;
+use PlanB\Type\Path\Exception\OverFlowRootDirException;
+use PlanB\Type\Path\PathNormalizer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

@@ -15,8 +15,8 @@ namespace PlanB\DS\TypedList;
 
 use PlanB\Utils\Type\Type;
 use PlanB\Utils\TypeName\TypeName;
-use PlanB\ValueObject\Text\Text;
-use PlanB\ValueObject\Text\TextList;
+use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextList;
 
 /**
  * Factory para crear Listas con Tipo

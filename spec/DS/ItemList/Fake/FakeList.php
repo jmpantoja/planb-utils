@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace spec\PlanB\DS\ItemList\Fake;
 
 use PlanB\DS\ItemList\ItemList;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 
 /**

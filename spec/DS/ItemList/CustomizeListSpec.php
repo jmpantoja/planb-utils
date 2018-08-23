@@ -8,7 +8,7 @@ namespace spec\PlanB\DS\ItemList;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\ItemList\ItemList;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use spec\PlanB\DS\ItemList\Fake\FakeList;
 
 class CustomizeListSpec extends ObjectBehavior

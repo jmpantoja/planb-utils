@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace PlanB\ValueObject\Text;
+namespace PlanB\Type\Text;
 
 use PlanB\Utils\Assurance\Assurance;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Comprueba que una cadena de texto cumpla con  una serie de condiciones
@@ -22,14 +22,14 @@ use PlanB\ValueObject\Stringifable;
 class TextAssurance extends Assurance implements Stringifable
 {
     /**
-     * @var \PlanB\ValueObject\Text\Text
+     * @var \PlanB\Type\Text\Text
      */
     private $text;
 
     /**
      * PathAssurance constructor.
      *
-     * @param \PlanB\ValueObject\Text\Text $text
+     * @param \PlanB\Type\Text\Text $text
      */
     protected function __construct(Text $text)
     {
@@ -40,9 +40,9 @@ class TextAssurance extends Assurance implements Stringifable
     /**
      * Crea una nueva instancia a partir de un objeto Stringifable
      *
-     * @param \PlanB\ValueObject\Stringifable $object
+     * @param \PlanB\Type\Stringifable $object
      *
-     * @return \PlanB\ValueObject\Text\TextAssurance
+     * @return \PlanB\Type\Text\TextAssurance
      */
     public static function fromStringifable(Stringifable $object): self
     {
@@ -58,9 +58,9 @@ class TextAssurance extends Assurance implements Stringifable
     /**
      * Crea una nueva instancia a partir de un objeto Text
      *
-     * @param \PlanB\ValueObject\Text\Text $text
+     * @param \PlanB\Type\Text\Text $text
      *
-     * @return \PlanB\ValueObject\Text\TextAssurance
+     * @return \PlanB\Type\Text\TextAssurance
      */
     public static function fromText(Text $text): self
     {
@@ -73,7 +73,7 @@ class TextAssurance extends Assurance implements Stringifable
      *
      * @param string $string
      *
-     * @return \PlanB\ValueObject\Text\TextAssurance
+     * @return \PlanB\Type\Text\TextAssurance
      */
     public static function create(string $string): self
     {

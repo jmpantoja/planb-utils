@@ -14,7 +14,7 @@ namespace spec\PlanB\DS\ItemList\Fake;
 
 use PlanB\DS\ItemList\ItemList;
 use PlanB\DS\ItemList\TypedList;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 
 /**

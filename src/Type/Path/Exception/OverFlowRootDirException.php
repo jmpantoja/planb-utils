@@ -8,21 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\ValueObject\Path\Exception;
+namespace PlanB\Type\Path\Exception;
 
 /**
- * Se lanza cuando se intenta crear un objeto path, con una ruta vacia
+ * Se lanza cuando se intenta acceder al nivel padre del directorio raiz
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class EmptyPathException extends \DomainException
+class OverFlowRootDirException extends \DomainException
 {
-
     /**
-     * EmptyPathException constructor.
+     * OverFlowRootDirException constructor.
      *
      * @param string                                           $message
-     * @param null|\PlanB\ValueObject\Path\Exception\Throwable $previous
+     * @param null|\PlanB\Type\Path\Exception\Throwable $previous
      */
     protected function __construct(string $message, ?Throwable $previous = null)
     {
@@ -31,15 +30,15 @@ class EmptyPathException extends \DomainException
 
 
     /**
-     * No se pueden crear Paths desde cadenas vacias
+     * Crea un objeto OverFlowRootDirException
      *
      * @param \Throwable|null $previous
      *
-     * @return \PlanB\ValueObject\Path\Exception\EmptyPathException
+     * @return \PlanB\Type\Path\Exception\OverFlowRootDirException
      */
-    public static function create(?\Throwable $previous = null): self
+    public static function create(?\Throwable $previous = null): OverFlowRootDirException
     {
-        $message = 'No se pueden crear Paths desde cadenas vacias';
+        $message = 'No se puede crear la ruta porque va más allá del directorio raiz';
 
         return new static($message, $previous);
     }

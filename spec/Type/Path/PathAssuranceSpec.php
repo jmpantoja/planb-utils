@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Path;
+namespace spec\PlanB\Type\Path;
 
 use PlanB\Utils\Assurance\Assurance;
 use PlanB\Utils\Assurance\Exception\AssertException;
-use PlanB\ValueObject\Path\Exception\InvalidPathException;
-use PlanB\ValueObject\Path\Path;
-use PlanB\ValueObject\Path\PathAssurance;
+use PlanB\Type\Path\Exception\InvalidPathException;
+use PlanB\Type\Path\Path;
+use PlanB\Type\Path\PathAssurance;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

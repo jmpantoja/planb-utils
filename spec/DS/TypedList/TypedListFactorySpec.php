@@ -9,7 +9,7 @@ use PlanB\DS\TypedList\TypedListFactory;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Type\Type;
 use PlanB\Utils\TypeName\TypeName;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
 class TypedListFactorySpec extends ObjectBehavior

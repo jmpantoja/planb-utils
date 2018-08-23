@@ -13,7 +13,7 @@ namespace PlanB\Utils\Type;
 
 use PlanB\DS\ItemList\ItemList;
 use PlanB\Utils\TypeName\TypeName;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Representa al tipo de una variable

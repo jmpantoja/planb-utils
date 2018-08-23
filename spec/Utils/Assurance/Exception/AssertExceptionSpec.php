@@ -4,7 +4,7 @@ namespace spec\PlanB\Utils\Assurance\Exception;
 
 use PlanB\Utils\Assurance\Exception\AssertException;
 use PhpSpec\ObjectBehavior;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
 
@@ -20,7 +20,7 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$text, 'isString', []]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\ValueObject\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</> <fg=green></>');
     }
@@ -30,7 +30,7 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$text, 'isString', ['A']]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\ValueObject\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
         $this->getMessage()->shouldContain('<fg=green>([string: "A"])</>');
@@ -42,7 +42,7 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('create', [$text, 'isString', ['A', 'B']]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\ValueObject\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
         $this->getMessage()->shouldContain('<fg=green>([string: "A"], [string: "B"])</>');

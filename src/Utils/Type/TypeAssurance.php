@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Utils\Type;
 
 use PlanB\Utils\Assurance\Assurance;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Assurance para Types

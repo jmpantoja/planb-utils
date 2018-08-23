@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Utils\TypeName;
 
 use PlanB\Utils\Assurance\Assurance;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Garantiza que un nombre de clase cumple con una serie de condiciones

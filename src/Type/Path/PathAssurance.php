@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace PlanB\ValueObject\Path;
+namespace PlanB\Type\Path;
 
 use PlanB\Utils\Assurance\Assurance;
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Garantiza que una ruta cumple una serie de condiciones
@@ -22,14 +22,14 @@ use PlanB\ValueObject\Stringifable;
 class PathAssurance extends Assurance implements Stringifable
 {
     /**
-     * @var \PlanB\ValueObject\Path\Path
+     * @var \PlanB\Type\Path\Path
      */
     private $path;
 
     /**
      * PathAssurance constructor.
      *
-     * @param \PlanB\ValueObject\Path\Path $path
+     * @param \PlanB\Type\Path\Path $path
      */
     protected function __construct(Path $path)
     {
@@ -39,9 +39,9 @@ class PathAssurance extends Assurance implements Stringifable
     /**
      * Crea una nueva instancia a partir de un Path
      *
-     * @param \PlanB\ValueObject\Path\Path $path
+     * @param \PlanB\Type\Path\Path $path
      *
-     * @return \PlanB\ValueObject\Path\PathAssurance
+     * @return \PlanB\Type\Path\PathAssurance
      */
     public static function fromPath(Path $path): self
     {
@@ -54,7 +54,7 @@ class PathAssurance extends Assurance implements Stringifable
      *
      * @param string ...$segments
      *
-     * @return \PlanB\ValueObject\Path\PathAssurance
+     * @return \PlanB\Type\Path\PathAssurance
      */
     public static function create(string ...$segments): self
     {

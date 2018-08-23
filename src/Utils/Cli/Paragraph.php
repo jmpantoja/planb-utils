@@ -15,7 +15,7 @@ use PlanB\DS\TypedList\AbstractTypedList;
 use PlanB\Utils\Cli\Style\Align;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 /**
  * Representa a un bloque de texto con un estilo comun
@@ -58,7 +58,7 @@ class Paragraph extends AbstractTypedList
     /**
      * Paragraph constructor.
      *
-     * @param \PlanB\ValueObject\Text\Text $text
+     * @param \PlanB\Type\Text\Text $text
      */
     protected function __construct(Text $text)
     {
@@ -166,7 +166,7 @@ class Paragraph extends AbstractTypedList
     /**
      * Devuelve el texto formateado
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function render(): Text
     {

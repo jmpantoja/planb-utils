@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Text;
+namespace spec\PlanB\Type\Text;
 
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\ItemList\ListInterface;
-use PlanB\ValueObject\Text\Text;
-use PlanB\ValueObject\Text\TextList;
+use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextList;
 
 
 class TextListSpec extends ObjectBehavior

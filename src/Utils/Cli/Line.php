@@ -21,7 +21,7 @@ use PlanB\Utils\Cli\Decorator\PaddingDecorator;
 use PlanB\Utils\Cli\Decorator\StyleDecorator;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 /**
  * Una linea que forma parte de un parrafo
@@ -60,7 +60,7 @@ class Line extends Text
      * @param \PlanB\Utils\Cli\Style\Style   $style
      * @param \PlanB\Utils\Cli\Style\Spacing $spacing
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function render(Style $style, Spacing $spacing): Text
     {

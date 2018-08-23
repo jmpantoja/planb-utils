@@ -5,9 +5,9 @@ namespace spec\PlanB\Utils\Assurance;
 use PlanB\Utils\Assurance\AssuranceMethod;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Assurance\Exception\InvalidAssuranceMethodException;
-use PlanB\ValueObject\Path\Path;
-use PlanB\ValueObject\Text\Text;
-use PlanB\ValueObject\Text\TextAssurance;
+use PlanB\Type\Path\Path;
+use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextAssurance;
 use Prophecy\Argument;
 
 class AssuranceMethodSpec extends ObjectBehavior

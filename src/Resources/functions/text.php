@@ -11,8 +11,8 @@
 
 declare(strict_types=1);
 
-use \PlanB\ValueObject\Text\Text;
-use \PlanB\ValueObject\Text\TextAssurance;
+use \PlanB\Type\Text\Text;
+use \PlanB\Type\Text\TextAssurance;
 use \PlanB\Utils\Type\Type;
 
 

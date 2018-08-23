@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\ValueObject\Text;
+namespace PlanB\Type\Text;
 
 use PlanB\DS\TypedList\AbstractTypedList;
 
@@ -37,7 +37,7 @@ class TextList extends AbstractTypedList
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\ValueObject\Text\ListInterface
+     * @return \PlanB\Type\Text\ListInterface
      */
     public static function create(iterable $input = []): TextList
     {
@@ -60,7 +60,7 @@ class TextList extends AbstractTypedList
     /**
      * Impide que se puedan añadir texto en blanco
      *
-     * @return \PlanB\ValueObject\Text\TextList
+     * @return \PlanB\Type\Text\TextList
      */
     public function disallowBlank(): self
     {
@@ -74,7 +74,7 @@ class TextList extends AbstractTypedList
     /**
      * Impide que se puedan añadir cadenas vacias
      *
-     * @return \PlanB\ValueObject\Text\TextList
+     * @return \PlanB\Type\Text\TextList
      */
     public function disallowEmpty(): self
     {
@@ -90,7 +90,7 @@ class TextList extends AbstractTypedList
      *
      * @param string $delimiter
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function concat(string $delimiter = Text::BLANK_TEXT): Text
     {

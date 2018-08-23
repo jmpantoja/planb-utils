@@ -9,9 +9,9 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\ValueObject\Text;
+namespace PlanB\Type\Text;
 
-use PlanB\ValueObject\Stringifable;
+use PlanB\Type\Stringifable;
 
 /**
  * Representa una cadena de texto
@@ -46,7 +46,7 @@ class Text implements Stringifable
      *
      * @param mixed $text
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public static function create($text = ''): self
     {
@@ -61,7 +61,7 @@ class Text implements Stringifable
      * @param string $format
      * @param mixed  ...$arguments
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public static function format(string $format, ...$arguments): self
     {
@@ -76,7 +76,7 @@ class Text implements Stringifable
      *
      * @param mixed ...$pieces
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public static function concat(...$pieces): self
     {
@@ -89,7 +89,7 @@ class Text implements Stringifable
      *
      * @param string $text
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function overwite(string $text): self
     {
@@ -150,7 +150,7 @@ class Text implements Stringifable
      *
      * @param string $charlist
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function trim(string $charlist = " \t\n\r\0\x0B"): self
     {
@@ -163,7 +163,7 @@ class Text implements Stringifable
      *
      * @param string $charlist
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function rtrim(string $charlist = " \t\n\r\0\x0B"): self
     {
@@ -176,7 +176,7 @@ class Text implements Stringifable
      *
      * @param string $charlist
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function ltrim(string $charlist = " \t\n\r\0\x0B"): self
     {
@@ -186,7 +186,7 @@ class Text implements Stringifable
     /**
      * Transforma la cadena de texto a formato camelCase
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toCamelCase(): self
     {
@@ -203,7 +203,7 @@ class Text implements Stringifable
      *
      * @param string $separator
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toSnakeCase(string $separator = '_'): self
     {
@@ -222,7 +222,7 @@ class Text implements Stringifable
      * @param int    $limit
      * @param int    $flags
      *
-     * @return \PlanB\ValueObject\Text\TextList
+     * @return \PlanB\Type\Text\TextList
      */
     public function split(string $pattern, int $limit = -1, int $flags = 0): TextList
     {
@@ -238,7 +238,7 @@ class Text implements Stringifable
      *
      * @param int    $limit
      *
-     * @return \PlanB\ValueObject\Text\TextList
+     * @return \PlanB\Type\Text\TextList
      */
     public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextList
     {
@@ -250,7 +250,7 @@ class Text implements Stringifable
     /**
      * Convierte una cadena a minusculas
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toLower(): self
     {
@@ -260,7 +260,7 @@ class Text implements Stringifable
     /**
      * Convierte el primer caracter de una cadena a minusculas
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toLowerFirst(): self
     {
@@ -270,7 +270,7 @@ class Text implements Stringifable
     /**
      * Convierte una cadena a mayusculas
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toUpper(): self
     {
@@ -280,7 +280,7 @@ class Text implements Stringifable
     /**
      * Convierte el primer caracter de una cadena a mayusculas
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function toUpperFirst(): self
     {
@@ -293,7 +293,7 @@ class Text implements Stringifable
      *
      * @param string ...$pieces
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function append(string ...$pieces): self
     {
@@ -309,7 +309,7 @@ class Text implements Stringifable
      * @param callable $callback
      * @param int      $limit
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function replace(string $pattern, callable $callback, int $limit = -1): self
     {
@@ -331,7 +331,7 @@ class Text implements Stringifable
      * @param string $char
      * @param int    $mode
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function padding(int $lenght, string $char = self::BLANK_TEXT, int $mode = STR_PAD_RIGHT): Text
     {
@@ -344,7 +344,7 @@ class Text implements Stringifable
      *
      * @param string|null $allowableTags
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     public function stripTags(?string $allowableTags = null): Text
     {

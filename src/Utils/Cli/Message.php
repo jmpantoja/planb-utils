@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace PlanB\Utils\Cli;
 
 use PlanB\DS\TypedList\AbstractTypedList;
-use PlanB\ValueObject\Stringifable;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Stringifable;
+use PlanB\Type\Text\Text;
 
 /**
  * Un mensaje de texto, formateado para mostrarlo por consola
@@ -123,7 +123,7 @@ class Message extends AbstractTypedList implements Stringifable
      *
      * @param \PlanB\Utils\Cli\Paragraph $paragraph
      *
-     * @return \PlanB\ValueObject\Text\Text
+     * @return \PlanB\Type\Text\Text
      */
     private function render(Paragraph $paragraph): Text
     {

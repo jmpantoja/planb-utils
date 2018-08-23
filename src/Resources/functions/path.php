@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-use PlanB\ValueObject\Path\PathAssurance;
+use PlanB\Type\Path\PathAssurance;
 
 if (!function_exists('ensure_path')) {
 

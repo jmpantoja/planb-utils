@@ -5,7 +5,7 @@ namespace spec\PlanB\Utils\Assurance;
 use PlanB\Utils\Assurance\AssuranceCall;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Assurance\Exception\InvalidAssuranceMethodException;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
 class AssuranceCallSpec extends ObjectBehavior

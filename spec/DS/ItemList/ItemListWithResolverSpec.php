@@ -9,7 +9,7 @@ use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\ItemList\Item;
 use PlanB\DS\ItemList\ItemList;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 
 class ItemListWithResolverSpec extends ObjectBehavior
 {

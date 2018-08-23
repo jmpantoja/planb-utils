@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace PlanB\ValueObject\Path;
+namespace PlanB\Type\Path;
 
-use PlanB\ValueObject\Path\Exception\OverFlowRootDirException;
+use PlanB\Type\Path\Exception\OverFlowRootDirException;
 
 /**
  * Construye una ruta normalizada a partir de uno o varios segmentos
@@ -32,7 +32,7 @@ final class PathNormalizer
     /**
      * Crea una nueva instancia
      *
-     * @return \PlanB\ValueObject\Path\PathNormalizer
+     * @return \PlanB\Type\Path\PathNormalizer
      */
     public static function create(): self
     {
@@ -57,7 +57,7 @@ final class PathNormalizer
      *
      * @param string[] $pieces
      *
-     * @return \PlanB\ValueObject\Path\PathNormalizer
+     * @return \PlanB\Type\Path\PathNormalizer
      */
     private function configureSlashPrefix(array $pieces): self
     {
@@ -76,7 +76,7 @@ final class PathNormalizer
      *
      * @param string[] ...$pieces
      *
-     * @return \PlanB\ValueObject\Path\PathNormalizer
+     * @return \PlanB\Type\Path\PathNormalizer
      */
     private function collect(string ...$pieces): self
     {
@@ -129,9 +129,9 @@ final class PathNormalizer
      *
      * @param string $piece
      *
-     * @return \PlanB\ValueObject\Path\PathNormalizer
+     * @return \PlanB\Type\Path\PathNormalizer
      *
-     * @throws \PlanB\ValueObject\Path\Exception\OverFlowRootDirException
+     * @throws \PlanB\Type\Path\Exception\OverFlowRootDirException
      */
     private function add(string $piece): self
     {

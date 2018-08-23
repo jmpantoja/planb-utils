@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Path;
+namespace spec\PlanB\Type\Path;
 
-use PlanB\ValueObject\Path\Exception\EmptyPathException;
-use PlanB\ValueObject\Path\Exception\OverFlowRootDirException;
-use PlanB\ValueObject\Path\Path;
+use PlanB\Type\Path\Exception\EmptyPathException;
+use PlanB\Type\Path\Exception\OverFlowRootDirException;
+use PlanB\Type\Path\Path;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

@@ -9,7 +9,7 @@ use PlanB\Utils\Cli\Paragraph;
 use PhpSpec\ObjectBehavior;
 use PlanB\Utils\Cli\Decorators;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use Prophecy\Argument as p;
 
 class ParagraphSpec extends ObjectBehavior

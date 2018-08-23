@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\PlanB\ValueObject\Text;
+namespace spec\PlanB\Type\Text;
 
 
 use PlanB\Utils\Assurance\Exception\AssertException;
-use PlanB\ValueObject\Text\Text;
+use PlanB\Type\Text\Text;
 use PhpSpec\ObjectBehavior;
-use PlanB\ValueObject\Text\TextList;
+use PlanB\Type\Text\TextList;
 use Prophecy\Argument;
 
 class TextSpec extends ObjectBehavior

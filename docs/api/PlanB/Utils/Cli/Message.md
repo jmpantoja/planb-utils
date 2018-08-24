@@ -540,12 +540,9 @@ Devuelve la cadena de texto
 __toString alias
 
 
-**Message::stringify**(string $format = null) : string
+**Message::stringify**() : string
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
 
 ---
 

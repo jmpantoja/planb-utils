@@ -130,12 +130,9 @@ Indica si pertenece a alguno de los tipos dados
 __toString alias
 
 
-**TypeName::stringify**(string $format = null) : string
+**TypeName::stringify**() : string
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
 
 ---
 

@@ -8,7 +8,8 @@ use PlanB\DS\TypedList\AbstractTypedList;
 use PlanB\DS\TypedList\LazyList;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\TypedList\TypedListInterface;
-use PlanB\Utils\Type\Type;
+use PlanB\Type\DataType\Type;
+use PlanB\Type\Value\Value;
 use Prophecy\Argument;
 
 class LazyListSpec extends ObjectBehavior

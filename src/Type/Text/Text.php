@@ -99,7 +99,7 @@ class Text implements Stringifable
     /**
      * @inheritdoc
      */
-    public function stringify(?string $format = null): string
+    public function stringify(): string
     {
         return $this->text;
     }

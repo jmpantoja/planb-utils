@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ItemList;
 
-use PlanB\Utils\Type\Type;
+use PlanB\Type\Value\Value;
 
 /**
  * Value Object que encapsula una pareja clave/valor
@@ -137,7 +137,7 @@ class Item
      */
     public function isTypeOf(string ...$allowed): bool
     {
-        return Type::create($this->value)->isTypeOf(...$allowed);
+        return Value::create($this->value)->isTypeOf(...$allowed);
     }
 
     /**
@@ -145,9 +145,9 @@ class Item
      *
      * @return string
      */
-    public function getTypeName(): string
+    public function getType(): string
     {
-        return Type::create($this->value)->getTypeName()->stringify();
+        return Value::create($this->value)->getType()->stringify();
     }
     /**
      * Convierte el item en una cadena de texto

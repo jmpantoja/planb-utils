@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace PlanB\DS\TypedList;
 
-use PlanB\Utils\Type\Type;
-use PlanB\Utils\TypeName\TypeName;
+use PlanB\Type\DataType\DataType;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextList;
+use PlanB\Type\Value\Value;
 
 /**
  * Factory para crear Listas con Tipo
@@ -32,9 +32,9 @@ class TypedListFactory
      */
     public static function fromType(string $type): TypedListInterface
     {
-        $typeName = TypeName::create($type);
+        $typeName = DataType::create($type);
 
-        return static::fromTypeName($typeName);
+        return static::fromTypeObject($typeName);
     }
 
     /**
@@ -46,19 +46,19 @@ class TypedListFactory
      */
     public static function fromValue($value): TypedListInterface
     {
-        $typeName = Type::create($value)->getTypeName();
+        $typeName = Value::create($value)->getType();
 
-        return static::fromTypeName($typeName);
+        return static::fromTypeObject($typeName);
     }
 
     /**
-     * Crea una lista a partir de un objeto TypeName
+     * Crea una lista a partir de un objeto DataType
      *
-     * @param \PlanB\Utils\TypeName\TypeName $typeName
+     * @param \PlanB\Type\DataType\DataType $typeName
      *
      * @return \PlanB\DS\TypedList\TypedListInterface
      */
-    public static function fromTypeName(TypeName $typeName): TypedListInterface
+    public static function fromTypeObject(DataType $typeName): TypedListInterface
     {
         if ($typeName->isClassOf(Text::class)) {
             return TextList::create();

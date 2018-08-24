@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Path;
 
-use PlanB\Utils\Assurance\Assurance;
+use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
 
 /**
@@ -66,7 +66,7 @@ class PathAssurance extends Assurance implements Stringifable
     /**
      * @inheritDoc
      */
-    public function stringify(?string $format = null): string
+    public function stringify(): string
     {
         return $this->end()->stringify();
     }

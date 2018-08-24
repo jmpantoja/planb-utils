@@ -4,7 +4,7 @@ namespace spec\PlanB\DS\TypedList\Resolver;
 
 use PlanB\DS\TypedList\Resolver\TypeValidator;
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Assurance\Exception\AssertException;
+use PlanB\Type\Assurance\Exception\AssertException;
 use Prophecy\Argument;
 
 class TypeValidatorSpec extends ObjectBehavior

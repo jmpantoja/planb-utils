@@ -136,11 +136,11 @@ Indica si el valor es de un tipo determinado
 ---
 
 
-### getTypeName
+### getType
 Devuelve el tipo
 
 
-**Item::getTypeName**() : string
+**Item::getType**() : string
 
 
 

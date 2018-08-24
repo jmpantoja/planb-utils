@@ -20,7 +20,7 @@ class OverFlowRootDirException extends \DomainException
     /**
      * OverFlowRootDirException constructor.
      *
-     * @param string                                           $message
+     * @param string                                    $message
      * @param null|\PlanB\Type\Path\Exception\Throwable $previous
      */
     protected function __construct(string $message, ?Throwable $previous = null)

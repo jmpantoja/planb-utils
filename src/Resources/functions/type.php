@@ -11,36 +11,36 @@
 
 declare(strict_types=1);
 
-use PlanB\Utils\TypeName\TypeNameAssurance;
-use PlanB\Utils\Type\TypeAssurance;
-use PlanB\Utils\Type\Type;
+use PlanB\Type\DataType\DataTypeAssurance;
+use PlanB\Type\Value\ValueAssurance;
+use PlanB\Type\Value\Value;
 
 
 if (!function_exists('ensure_typename')) {
 
     /**
-     * Assurance para TypeName
+     * Assurance para DataType
      *
      * @param string $classname
-     * @return TypeNameAssurance
+     * @return DataTypeAssurance
      */
-    function ensure_typename(string $classname): TypeNameAssurance
+    function ensure_typename(string $classname): DataTypeAssurance
     {
-        return TypeNameAssurance::create($classname);
+        return DataTypeAssurance::create($classname);
     }
 }
 
 if (!function_exists('ensure_type')) {
 
     /**
-     * Assurance para Type
+     * Assurance para Value
      *
      * @param $text
-     * @return TypeAssurance
+     * @return ValueAssurance
      */
-    function ensure_type($text): TypeAssurance
+    function ensure_type($text): ValueAssurance
     {
-        return TypeAssurance::create($text);
+        return ValueAssurance::create($text);
     }
 }
 
@@ -56,7 +56,7 @@ if (!function_exists('is_typeof')) {
      */
     function is_typeof($variable, string ...$allowed): bool
     {
-        return Type::create($variable)->isTypeOf(...$allowed);
+        return Value::create($variable)->isTypeOf(...$allowed);
     }
 }
 

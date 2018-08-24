@@ -4,8 +4,9 @@ namespace spec\PlanB\DS\ItemList;
 
 use PlanB\DS\ItemList\Item;
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Type\Type;
-use PlanB\Utils\TypeName\TypeName;
+use PlanB\Type\DataType\Type;
+use PlanB\Type\Value\Value;
+use PlanB\Type\DataType\DataType;
 use Prophecy\Argument;
 
 class ItemSpec extends ObjectBehavior
@@ -62,7 +63,7 @@ class ItemSpec extends ObjectBehavior
 
     public function it_can_retrive_the_typename()
     {
-        $this->getTypeName()->shouldReturn(Type::STRING);
+        $this->getType()->shouldReturn(Type::STRING);
     }
 
     public function it_can_retrive_key()

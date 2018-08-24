@@ -13,7 +13,7 @@ namespace PlanB\DS\TypedList\Resolver;
 
 use PlanB\DS\ItemList\ListInterface;
 use PlanB\DS\ItemList\Resolver\Validator;
-use PlanB\Utils\Type\Type;
+use PlanB\Type\Value\Value;
 
 /**
  * Valida que el valor de un Item sea de un tipo concreto
@@ -60,6 +60,6 @@ class TypeValidator extends Validator
      */
     public function validate($value, $key = null, ?ListInterface $context = null): bool
     {
-        return Type::create($value)->isTypeOf($this->innerType);
+        return Value::create($value)->isTypeOf($this->innerType);
     }
 }

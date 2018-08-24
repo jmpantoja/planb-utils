@@ -86,12 +86,9 @@ static **TypeNameAssurance::create**(string $typeName) : [TypeNameAssurance](../
 
 
 
-**TypeNameAssurance::stringify**(string $format = null) : string
+**TypeNameAssurance::stringify**() : string
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
 
 ---
 

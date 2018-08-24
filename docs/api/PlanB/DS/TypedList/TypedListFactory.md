@@ -45,16 +45,16 @@ static **TypedListFactory::fromValue**(mixed $value) : [TypedListInterface](../.
 ---
 
 
-### fromTypeName
-Crea una lista a partir de un objeto TypeName
+### fromTypeObject
+Crea una lista a partir de un objeto DataType
 
 
-static **TypedListFactory::fromTypeName**([TypeName](../../../TypeName.md) $typeName) : [TypedListInterface](../../../TypedListInterface.md)
+static **TypedListFactory::fromTypeObject**([DataType](../../../DataType.md) $typeName) : [TypedListInterface](../../../TypedListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[TypeName](../../../TypeName.md) |$typeName |  |
+|[DataType](../../../DataType.md) |$typeName |  |
 
 ---
 

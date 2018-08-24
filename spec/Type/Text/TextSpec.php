@@ -3,7 +3,7 @@
 namespace spec\PlanB\Type\Text;
 
 
-use PlanB\Utils\Assurance\Exception\AssertException;
+use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Text\Text;
 use PhpSpec\ObjectBehavior;
 use PlanB\Type\Text\TextList;

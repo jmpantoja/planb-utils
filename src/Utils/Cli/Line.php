@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Utils\Cli;
 
 use PlanB\DS\TypedList\TypedListFactory;
+use PlanB\Type\Text\Text;
 use PlanB\Utils\Cli\Decorator\DecoratorInterface;
 use PlanB\Utils\Cli\Decorator\JustifyDecorator;
 use PlanB\Utils\Cli\Decorator\MergeStyleDecorator;
@@ -21,7 +22,6 @@ use PlanB\Utils\Cli\Decorator\PaddingDecorator;
 use PlanB\Utils\Cli\Decorator\StyleDecorator;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\Type\Text\Text;
 
 /**
  * Una linea que forma parte de un parrafo

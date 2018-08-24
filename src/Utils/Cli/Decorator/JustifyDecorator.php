@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Cli\Decorator;
 
+use PlanB\Type\Text\Text;
 use PlanB\Utils\Cli\Line;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\Type\Text\Text;
 
 /**
  * Justifica el texto dentro de un ancho de linea

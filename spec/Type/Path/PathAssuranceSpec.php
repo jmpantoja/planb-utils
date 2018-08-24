@@ -2,8 +2,8 @@
 
 namespace spec\PlanB\Type\Path;
 
-use PlanB\Utils\Assurance\Assurance;
-use PlanB\Utils\Assurance\Exception\AssertException;
+use PlanB\Type\Assurance\Assurance;
+use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Path\Exception\InvalidPathException;
 use PlanB\Type\Path\Path;
 use PlanB\Type\Path\PathAssurance;

@@ -6,7 +6,7 @@ use PlanB\DS\ItemList\Item;
 use PlanB\DS\ItemList\ListInterface;
 use PlanB\DS\ItemList\Resolver\Hydrator;
 use PhpSpec\ObjectBehavior;
-use PlanB\Utils\Assurance\Exception\AssertException;
+use PlanB\Type\Assurance\Exception\AssertException;
 use Prophecy\Argument as p;
 use spec\PlanB\DS\ItemList\Resolver\Fake\FakeInvoke;
 

@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace PlanB\Utils\Options;
 
 use PlanB\DS\TypedList\TypedListFactory;
+use PlanB\Type\DataType\Type;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
-use PlanB\Utils\Type\Type;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

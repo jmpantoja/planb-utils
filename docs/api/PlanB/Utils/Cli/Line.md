@@ -96,12 +96,9 @@ Cambia el valor del texto (inmutable)
 
 
 
-**Line::stringify**(string $format = null) : string
+**Line::stringify**() : string
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|string |$format |  |
 
 ---
 
@@ -345,12 +342,12 @@ Añade padding a la cadena
 Elimina html tags
 
 
-**Line::stripTags**(string $allowable_tags = null) : [Text](../../../Text.md)
+**Line::stripTags**(string $allowableTags = null) : [Text](../../../Text.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$allowable_tags |  |
+|string |$allowableTags |  |
 
 ---
 

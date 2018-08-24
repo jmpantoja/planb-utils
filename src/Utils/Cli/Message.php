@@ -98,11 +98,9 @@ class Message extends AbstractTypedList implements Stringifable
     /**
      * __toString alias
      *
-     * @param string $format
-     *
      * @return string
      */
-    public function stringify(?string $format = null): string
+    public function stringify(): string
     {
 
         if ($this->isEmpty()) {

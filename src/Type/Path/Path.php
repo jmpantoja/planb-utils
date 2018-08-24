@@ -306,7 +306,7 @@ class Path implements Stringifable
     /**
      * @inheritdoc
      */
-    public function stringify(?string $format = null): string
+    public function stringify(): string
     {
         return $this->__toString();
     }

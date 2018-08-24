@@ -2,8 +2,8 @@
 
 namespace spec\PlanB\Type\Text;
 
-use PlanB\Utils\Assurance\Assurance;
-use PlanB\Utils\Assurance\Exception\AssertException;
+use PlanB\Type\Assurance\Assurance;
+use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Path\Path;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextAssurance;

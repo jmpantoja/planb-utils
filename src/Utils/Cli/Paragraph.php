@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace PlanB\Utils\Cli;
 
 use PlanB\DS\TypedList\AbstractTypedList;
+use PlanB\Type\Text\Text;
 use PlanB\Utils\Cli\Style\Align;
 use PlanB\Utils\Cli\Style\Spacing;
 use PlanB\Utils\Cli\Style\Style;
-use PlanB\Type\Text\Text;
 
 /**
  * Representa a un bloque de texto con un estilo comun

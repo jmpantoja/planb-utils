@@ -15,12 +15,14 @@ namespace PlanB\Type\DataType;
 
 use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Garantiza que un nombre de clase cumple con una serie de condiciones
  */
 class DataTypeAssurance extends Assurance implements Stringifable
 {
+    use Stringify;
 
     /**
      * @var \PlanB\Type\DataType\DataType
@@ -69,13 +71,5 @@ class DataTypeAssurance extends Assurance implements Stringifable
     public function stringify(): string
     {
         return $this->end()->stringify();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
     }
 }

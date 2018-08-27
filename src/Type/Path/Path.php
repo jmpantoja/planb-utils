@@ -13,6 +13,7 @@ namespace PlanB\Type\Path;
 use PlanB\Type\Path\Exception\EmptyPathException;
 use PlanB\Type\Path\Exception\OverFlowRootDirException;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Clase de Utilidades para la manipulacion de rutas
@@ -23,6 +24,8 @@ use PlanB\Type\Stringifable;
  */
 class Path implements Stringifable
 {
+    use Stringify;
+
     /**
      * @var string $path
      */
@@ -307,17 +310,6 @@ class Path implements Stringifable
      * @inheritdoc
      */
     public function stringify(): string
-    {
-        return $this->__toString();
-    }
-
-
-    /**
-     * Devuelve la ruta normalizada como una cadena de texto
-     *
-     * @return string
-     */
-    public function __toString(): string
     {
         return $this->path;
     }

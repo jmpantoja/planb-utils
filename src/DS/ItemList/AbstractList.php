@@ -292,6 +292,20 @@ abstract class AbstractList implements ListInterface
         return $this;
     }
 
+    /**
+     * Hook para lanzar una excepción personalizada
+     *
+     * @param callable $callback
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function throwException(callable $callback): ListInterface
+    {
+        $this->resolution->throwException($callback);
+
+        return $this;
+    }
+
 
     /**
      * Añade un hydrator
@@ -369,5 +383,10 @@ abstract class AbstractList implements ListInterface
         $this->resolution->add($normalizer, $order);
 
         return $this;
+    }
+
+    public function __debugInfo()
+    {
+        return $this->items;
     }
 }

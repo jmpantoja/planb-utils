@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -54,6 +56,28 @@ Captura las llamadas a métodos
 ---
 
 
+### stringify
+
+
+
+**DataTypeAssurance::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**DataTypeAssurance::__toString**() : string
+
+
+
+---
+
+
 ### __construct
 PathAssurance constructor.
 
@@ -78,28 +102,6 @@ static **DataTypeAssurance::create**(string $type) : [DataTypeAssurance](../../.
 |Parameters: | | |
 | --- | --- | --- |
 |string |$type |  |
-
----
-
-
-### stringify
-
-
-
-**DataTypeAssurance::stringify**() : string
-
-
-
----
-
-
-### __toString
-
-
-
-**DataTypeAssurance::__toString**() : string
-
-
 
 ---
 

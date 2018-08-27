@@ -12,7 +12,9 @@
     ],
     "autoload": {
         "files": [
+            "src/Resources/functions/cli.php",
             "src/Resources/functions/hydrator.php",
+            "src/Resources/functions/number.php",
             "src/Resources/functions/path.php",
             "src/Resources/functions/text.php",
             "src/Resources/functions/type.php"
@@ -39,7 +41,10 @@
         "symfony/var-dumper": "^4.1"
     },
     "require": {
+        "ext-ds": "^1.1",
         "marc-mabe/php-enum": "^3.0",
+        "opis/closure": "^3.0",
+        "php-ds/php-ds": "^1.2",
         "symfony/options-resolver": "^4.1",
         "symfony/serializer": "^4.1"
     }

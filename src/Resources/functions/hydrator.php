@@ -36,7 +36,7 @@ if (!function_exists('object_to_array')) {
      * @param null|string $snakeCaseSeparator
      * @return array
      */
-    function object_to_array(object $object, ?string $snakeCaseSeparator = null): array
+    function object_to_array(object $object, string $snakeCaseSeparator = '_'): array
     {
         return GetSetHydrator::create()->extract($object, $snakeCaseSeparator);
     }

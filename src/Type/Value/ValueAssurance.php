@@ -15,12 +15,14 @@ namespace PlanB\Type\Value;
 
 use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Assurance para Types
  */
 class ValueAssurance extends Assurance implements Stringifable
 {
+    use Stringify;
 
     /**
      * @var \PlanB\Utils\Type\Type
@@ -60,16 +62,6 @@ class ValueAssurance extends Assurance implements Stringifable
     protected function getEvaluatedObject(): object
     {
         return $this->type;
-    }
-
-    /**
-     * Devuelve la cadena de texto
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
     }
 
     /**

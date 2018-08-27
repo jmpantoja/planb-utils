@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 ## Constants
@@ -18,6 +20,28 @@
 
 
 ## Methods
+
+### stringify
+__toString alias
+
+
+**DataType::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**DataType::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 DataType constructor.
@@ -163,28 +187,6 @@ Indica si es un nombre de tipo nativo, de clase, de rasgo o de interfaz
 
 
 **DataType::isValid**() : bool
-
-
-
----
-
-
-### stringify
-__toString alias
-
-
-**DataType::stringify**() : string
-
-
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**DataType::__toString**() : string
 
 
 

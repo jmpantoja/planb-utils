@@ -15,12 +15,15 @@ namespace PlanB\Type\Text;
 
 use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Comprueba que una cadena de texto cumpla con  una serie de condiciones
  */
 class TextAssurance extends Assurance implements Stringifable
 {
+    use Stringify;
+
     /**
      * @var \PlanB\Type\Text\Text
      */
@@ -99,13 +102,5 @@ class TextAssurance extends Assurance implements Stringifable
     public function stringify(): string
     {
         return $this->end()->stringify();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
     }
 }

@@ -124,7 +124,7 @@ class ItemListWithResolverSpec extends ObjectBehavior
 
     }
 
-    public function it_can_silent_the_invalid_item_exception(Item $item)
+    public function it_can_silent_the_invalid_item_exception()
     {
         $validator = function () {
             return false;
@@ -135,6 +135,37 @@ class ItemListWithResolverSpec extends ObjectBehavior
 
         $this->shouldNotThrow(InvalidItemException::class)->duringAdd(self::LOWER_VALUE);
     }
+
+    public function it_can_customize_the_invalid_item_exception()
+    {
+        $validator = function () {
+            return false;
+        };
+
+        $this->throwException(function (Item $item) {
+            throw new \InvalidArgumentException();
+        });
+
+        $this->addValidator($validator);
+
+        $this->shouldThrow(\InvalidArgumentException::class)->duringAdd(self::LOWER_VALUE);
+    }
+
+    public function it_can_silent_the_invalid_item_exception_via_custom_exception()
+    {
+        $validator = function () {
+            return false;
+        };
+
+        $this->throwException(function (Item $item) {
+
+        });
+
+        $this->addValidator($validator);
+
+        $this->shouldNotThrow()->duringAdd(self::LOWER_VALUE);
+    }
+
 
     public function it_add_a_hydrator(Item $item)
     {

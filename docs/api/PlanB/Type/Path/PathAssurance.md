@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -54,6 +56,28 @@ Captura las llamadas a métodos
 ---
 
 
+### stringify
+
+
+
+**PathAssurance::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**PathAssurance::__toString**() : string
+
+
+
+---
+
+
 ### __construct
 PathAssurance constructor.
 
@@ -92,28 +116,6 @@ static **PathAssurance::create**(string ...$segments) : [PathAssurance](../../..
 |Parameters: | | |
 | --- | --- | --- |
 |string |...$segments |  |
-
----
-
-
-### stringify
-
-
-
-**PathAssurance::stringify**() : string
-
-
-
----
-
-
-### __toString
-
-
-
-**PathAssurance::__toString**() : string
-
-
 
 ---
 

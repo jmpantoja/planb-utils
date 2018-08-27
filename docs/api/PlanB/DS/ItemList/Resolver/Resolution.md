@@ -85,6 +85,20 @@ Silencia las excepciones
 ---
 
 
+### throwException
+Hook para lanzar una excepción personalizada
+
+
+**Resolution::throwException**(callable $callback) : [ListInterface](../../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
 ### count
 Devuelve el número total de resolvers
 

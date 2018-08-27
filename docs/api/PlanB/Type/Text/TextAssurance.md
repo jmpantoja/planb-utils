@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -50,6 +52,28 @@ Captura las llamadas a métodos
 | --- | --- | --- |
 |string |$name |  |
 |array |$arguments |  |
+
+---
+
+
+### stringify
+
+
+
+**TextAssurance::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**TextAssurance::__toString**() : string
+
+
 
 ---
 
@@ -106,28 +130,6 @@ static **TextAssurance::create**(string $string) : [TextAssurance](../../../Text
 |Parameters: | | |
 | --- | --- | --- |
 |string |$string |  |
-
----
-
-
-### stringify
-
-
-
-**TextAssurance::stringify**() : string
-
-
-
----
-
-
-### __toString
-
-
-
-**TextAssurance::__toString**() : string
-
-
 
 ---
 

@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 ## Constants
@@ -20,6 +22,28 @@
 
 
 ## Methods
+
+### stringify
+
+
+
+**Text::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Text::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 Text constructor.
@@ -78,6 +102,20 @@ static **Text::concat**(mixed ...$pieces) : [Text](../../../Text.md)
 ---
 
 
+### join
+Crea una nueva instancia concatenando varias cadenas de texto
+
+
+static **Text::join**(mixed ...$pieces) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |...$pieces |  |
+
+---
+
+
 ### overwite
 Cambia el valor del texto (inmutable)
 
@@ -88,28 +126,6 @@ Cambia el valor del texto (inmutable)
 |Parameters: | | |
 | --- | --- | --- |
 |string |$text |  |
-
----
-
-
-### stringify
-
-
-
-**Text::stringify**() : string
-
-
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**Text::__toString**() : string
-
-
 
 ---
 

@@ -56,7 +56,7 @@ class GetSetHydrator extends GetSetMethodNormalizer
     public function hydrate($classNameOrObject, iterable $values): object
     {
 
-        ensure_type($classNameOrObject)
+        ensure_value($classNameOrObject)
             ->isTypeOf('string', 'object');
 
 

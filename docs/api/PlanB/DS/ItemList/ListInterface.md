@@ -350,6 +350,20 @@ Silencia las excepciones
 ---
 
 
+### throwException
+Hook para lanzar una excepción personalizada
+
+
+**ListInterface::throwException**(callable $callback) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
 ### addHydrator
 Añade un hydrator
 

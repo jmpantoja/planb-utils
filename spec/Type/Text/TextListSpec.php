@@ -63,8 +63,8 @@ class TextListSpec extends ObjectBehavior
 
     public function it_can_add_validator()
     {
-        $this->addValidator(function (Text $text) {
-            return !$text->isBlank();
+        $this->addValidator(function ($entry) {
+            return !Text::create($entry)->isBlank();
         });
 
         $this->set(self::KEY, self::ENTRY);

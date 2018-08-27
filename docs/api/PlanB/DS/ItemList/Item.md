@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -16,6 +18,28 @@
 
 
 ## Methods
+
+### stringify
+__toString alias
+
+
+**Item::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Item::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 Item constructor.
@@ -141,17 +165,6 @@ Devuelve el tipo
 
 
 **Item::getType**() : string
-
-
-
----
-
-
-### __toString
-Convierte el item en una cadena de texto
-
-
-**Item::__toString**() : string
 
 
 

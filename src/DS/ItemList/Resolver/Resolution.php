@@ -39,6 +39,11 @@ class Resolution
     private $silentExceptions;
 
     /**
+     * @var callable
+     */
+    private $customException;
+
+    /**
      * @var bool
      */
     private $locked = false;
@@ -53,6 +58,10 @@ class Resolution
     {
         $this->context = $context;
         $this->resolvers = new \SplPriorityQueue();
+
+        $this->customException = function (Item $item, ?\Throwable $previous = null): void {
+            throw InvalidItemException::create($item, $previous);
+        };
     }
 
     /**
@@ -106,9 +115,9 @@ class Resolution
         try {
             $valid = call_user_func($resolver, $item, $this->context);
         } catch (\Throwable $exception) {
+            $valid = false;
             $this->throwExceptionIfAppropriate($item, $exception);
         }
-
 
         return $valid;
     }
@@ -124,7 +133,7 @@ class Resolution
         if ($this->silentExceptions) {
             return;
         }
-        throw InvalidItemException::create($item, $previous);
+        call_user_func($this->customException, $item, $previous);
     }
 
     /**
@@ -152,6 +161,20 @@ class Resolution
         $this->ensureIsNotLocked();
 
         $this->silentExceptions = true;
+
+        return $this;
+    }
+
+    /**
+     * Hook para lanzar una excepción personalizada
+     *
+     * @param callable $callback
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function throwException(callable $callback): self
+    {
+        $this->customException = $callback;
 
         return $this;
     }

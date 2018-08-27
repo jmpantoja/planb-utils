@@ -11,16 +11,20 @@ declare(strict_types=1);
 
 namespace PlanB\DS\ItemList;
 
+use PlanB\Type\Stringifable;
 use PlanB\Type\Value\Value;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Value Object que encapsula una pareja clave/valor
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
-class Item
+class Item implements Stringifable
 {
 
+    use Stringify;
+    
     /**
      * @var mixed
      */
@@ -149,14 +153,15 @@ class Item
     {
         return Value::create($this->value)->getType()->stringify();
     }
-    /**
-     * Convierte el item en una cadena de texto
-     *
-     * @return  string
-     */
-    public function __toString(): string
-    {
 
+
+    /**
+     * __toString alias
+     *
+     * @return string
+     */
+    public function stringify(): string
+    {
         $key = force_to_string($this->getKey());
         $value = force_to_string($this->getValue());
 

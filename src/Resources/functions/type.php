@@ -16,7 +16,7 @@ use PlanB\Type\Value\ValueAssurance;
 use PlanB\Type\Value\Value;
 
 
-if (!function_exists('ensure_typename')) {
+if (!function_exists('ensure_type')) {
 
     /**
      * Assurance para DataType
@@ -24,13 +24,13 @@ if (!function_exists('ensure_typename')) {
      * @param string $classname
      * @return DataTypeAssurance
      */
-    function ensure_typename(string $classname): DataTypeAssurance
+    function ensure_type(string $classname): DataTypeAssurance
     {
         return DataTypeAssurance::create($classname);
     }
 }
 
-if (!function_exists('ensure_type')) {
+if (!function_exists('ensure_value')) {
 
     /**
      * Assurance para Value
@@ -38,7 +38,7 @@ if (!function_exists('ensure_type')) {
      * @param $text
      * @return ValueAssurance
      */
-    function ensure_type($text): ValueAssurance
+    function ensure_value($text): ValueAssurance
     {
         return ValueAssurance::create($text);
     }

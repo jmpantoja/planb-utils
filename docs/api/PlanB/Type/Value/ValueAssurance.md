@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -54,6 +56,28 @@ Captura las llamadas a métodos
 ---
 
 
+### stringify
+__toString alias
+
+
+**ValueAssurance::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**ValueAssurance::__toString**() : string
+
+
+
+---
+
+
 ### __construct
 ValueAssurance constructor.
 
@@ -78,28 +102,6 @@ static **ValueAssurance::create**(mixed $variable) : [ValueAssurance](../../../V
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$variable |  |
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**ValueAssurance::__toString**() : string
-
-
-
----
-
-
-### stringify
-__toString alias
-
-
-**ValueAssurance::stringify**() : string
-
-
 
 ---
 

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Representa una cadena de texto
@@ -20,6 +21,9 @@ use PlanB\Type\Stringifable;
  */
 class Text implements Stringifable
 {
+
+    use Stringify;
+
     public const LINE_BREAK = "\n";
 
     public const EMPTY_TEXT = '';
@@ -50,7 +54,7 @@ class Text implements Stringifable
      */
     public static function create($text = ''): self
     {
-        ensure_type($text)->isConvertibleToString();
+        ensure_value($text)->isConvertibleToString();
 
         return new static((string) $text);
     }
@@ -85,6 +89,21 @@ class Text implements Stringifable
     }
 
     /**
+     * Crea una nueva instancia concatenando varias cadenas de texto
+     *
+     * @param mixed ...$pieces
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    public static function join(...$pieces): self
+    {
+        $temp = TextList::create($pieces)
+            ->concat(Text::EMPTY_TEXT);
+
+        return self::create($temp);
+    }
+
+    /**
      * Cambia el valor del texto (inmutable)
      *
      * @param string $text
@@ -102,16 +121,6 @@ class Text implements Stringifable
     public function stringify(): string
     {
         return $this->text;
-    }
-
-    /**
-     * Devuelve la cadena de texto
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
     }
 
     /**
@@ -313,13 +322,14 @@ class Text implements Stringifable
      */
     public function replace(string $pattern, callable $callback, int $limit = -1): self
     {
+
+
         $replaced = preg_replace_callback($pattern, function ($pieces) use ($callback) {
             $ocurrence = array_shift($pieces);
             array_push($pieces, $ocurrence);
 
             return call_user_func_array($callback, $pieces);
         }, $this->text, $limit);
-
 
         return self::create($replaced);
     }

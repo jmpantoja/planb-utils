@@ -41,13 +41,11 @@ class InvalidItemException extends \InvalidArgumentException
      */
     public static function create(Item $item, ?\Throwable $previous = null): self
     {
-
         $message = sprintf("Item %s \n\nis <options=bold,underscore>NOT VALID</>", (string) $item);
 
         if ($previous instanceof \Throwable) {
             $message = sprintf("%s because: \n\n%s", $message, $previous->getMessage());
         }
-
 
         return new static($message);
     }

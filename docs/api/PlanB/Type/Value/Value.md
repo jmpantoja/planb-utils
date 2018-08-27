@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 ## Constants
@@ -18,6 +20,28 @@
 
 
 ## Methods
+
+### stringify
+__toString alias
+
+
+**Value::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Value::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 Value constructor.
@@ -234,28 +258,6 @@ Indica si la variable se puede expresar como una cadena de texto
 
 
 **Value::isConvertibleToString**() : bool
-
-
-
----
-
-
-### __toString
-Devuelve el valor como una cadena de texto
-
-
-**Value::__toString**() : string
-
-
-
----
-
-
-### stringify
-__toString alias
-
-
-**Value::stringify**() : string
 
 
 

@@ -15,12 +15,14 @@ namespace PlanB\Type\Path;
 
 use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Garantiza que una ruta cumple una serie de condiciones
  */
 class PathAssurance extends Assurance implements Stringifable
 {
+    use Stringify;
     /**
      * @var \PlanB\Type\Path\Path
      */
@@ -71,13 +73,6 @@ class PathAssurance extends Assurance implements Stringifable
         return $this->end()->stringify();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
-    }
 
     /**
      * Devuelve el objeto sujeto a evaluación

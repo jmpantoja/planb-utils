@@ -38,13 +38,13 @@ trait Accessors
     /**
      * @inheritdoc
      *
-     * @param mixed $value
+     * @param mixed $paragraph
      *
      * @return \PlanB\DS\ItemList\ListInterface
      */
-    public function add($value): ListInterface
+    public function add($paragraph): ListInterface
     {
-        return $this->tryAddItem(Item::fromValue($value));
+        return $this->tryAddItem(Item::fromValue($paragraph));
     }
 
 

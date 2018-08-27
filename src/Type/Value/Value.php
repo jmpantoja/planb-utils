@@ -14,12 +14,15 @@ namespace PlanB\Type\Value;
 use PlanB\DS\ItemList\ItemList;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Representa al tipo de una variable
  */
 class Value implements Stringifable
 {
+    use Stringify;
+
     private const EQUIVALENT_TYPES_METHODS = [
         'scalar' => 'isScalar',
         'numeric' => 'isNumeric',
@@ -271,15 +274,6 @@ class Value implements Stringifable
         return $isScalar || $hasToStringMethod;
     }
 
-    /**
-     * Devuelve el valor como una cadena de texto
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
-    }
 
     /**
      * __toString alias

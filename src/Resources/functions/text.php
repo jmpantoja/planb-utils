@@ -37,7 +37,7 @@ if (!function_exists('is_empty_text')) {
      * @param string $text
      * @return bool
      */
-    function is_empty_textt(string $text): bool
+    function is_empty_text(string $text): bool
     {
         return Text::create($text)->isEmpty();
     }

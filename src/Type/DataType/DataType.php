@@ -13,12 +13,14 @@ namespace PlanB\Type\DataType;
 
 use PlanB\DS\ItemList\ItemList;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Representa al nombre de una clase
  */
 class DataType implements Stringifable
 {
+    use Stringify;
     /**
      * @var string
      */
@@ -192,15 +194,5 @@ class DataType implements Stringifable
     public function stringify(): string
     {
         return $this->type;
-    }
-
-    /**
-     * Devuelve la cadena de texto
-     *
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->stringify();
     }
 }

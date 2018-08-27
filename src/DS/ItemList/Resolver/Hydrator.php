@@ -38,7 +38,7 @@ class Hydrator implements Resolvable
      */
     protected function __construct(string $type, callable $callback)
     {
-        ensure_typename($type)->isValid();
+        ensure_type($type)->isValid();
 
         $this->type = $type;
         $this->callback = $callback;

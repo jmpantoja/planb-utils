@@ -32,7 +32,7 @@ class TypeValidator extends Validator
      */
     protected function __construct(string $innerType)
     {
-        ensure_typename($innerType)->isValid();
+        ensure_type($innerType)->isValid();
 
         $this->innerType = $innerType;
     }

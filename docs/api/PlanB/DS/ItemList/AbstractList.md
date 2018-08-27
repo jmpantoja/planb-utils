@@ -387,6 +387,20 @@ Silencia las excepciones
 ---
 
 
+### throwException
+Hook para lanzar una excepción personalizada
+
+
+**AbstractList::throwException**(callable $callback) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
 ### addHydrator
 Añade un hydrator
 

@@ -248,6 +248,15 @@ interface ListInterface extends \Countable, \IteratorAggregate, \JsonSerializabl
     public function silentExceptions(): ListInterface;
 
     /**
+     * Hook para lanzar una excepción personalizada
+     *
+     * @param callable $callback
+     *
+     * @return \PlanB\DS\ItemList\ListInterface
+     */
+    public function throwException(callable $callback): ListInterface;
+
+    /**
      * Añade un hydrator
      *
      * @param string   $type

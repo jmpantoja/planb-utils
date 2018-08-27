@@ -454,7 +454,7 @@ Añade un normalizador de clave
 LazyList Named Constructor
 
 
-static **LazyList::create**([ListInterface](../../../ListInterface.md) $list) : [LazyList](../../../LazyList.md)
+static **LazyList::create**([ListInterface](../../../ListInterface.md) $list = null) : [LazyList](../../../LazyList.md)
 
 
 |Parameters: | | |

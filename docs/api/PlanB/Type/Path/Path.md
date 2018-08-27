@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 
@@ -16,6 +18,28 @@
 
 
 ## Methods
+
+### stringify
+
+
+
+**Path::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Path::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 Path private constructor.
@@ -276,28 +300,6 @@ Indica si la ruta tiene extensión, o si tiene una de entre las pasadas como arg
 |Parameters: | | |
 | --- | --- | --- |
 |string |...$expected | Las extensiones que se consideran válidas |
-
----
-
-
-### stringify
-
-
-
-**Path::stringify**() : string
-
-
-
----
-
-
-### __toString
-Devuelve la ruta normalizada como una cadena de texto
-
-
-**Path::__toString**() : string
-
-
 
 ---
 

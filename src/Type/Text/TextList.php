@@ -29,7 +29,7 @@ class TextList extends AbstractTypedList
         };
 
         parent::__construct();
-        $this->addNormalizer($normalizer, -PHP_INT_MAX);
+        $this->addNormalizer($normalizer, PHP_INT_MAX - 1);
     }
 
     /**
@@ -66,7 +66,7 @@ class TextList extends AbstractTypedList
     {
         $this->addValidator(function (Text $text) {
             return !$text->isBlank();
-        });
+        }, PHP_INT_MAX);
 
         return $this;
     }
@@ -80,7 +80,7 @@ class TextList extends AbstractTypedList
     {
         $this->addValidator(function (Text $text) {
             return !$text->isEmpty();
-        });
+        }, PHP_INT_MAX);
 
         return $this;
     }

@@ -42,11 +42,11 @@ class LazyList extends AbstractList
     /**
      * LazyList Named Constructor
      *
-     * @param \PlanB\DS\ItemList\ListInterface $list
+     * @param null|\PlanB\DS\ItemList\ListInterface $list
      *
      * @return \PlanB\DS\TypedList\LazyList
      */
-    public static function create(ListInterface $list): LazyList
+    public static function create(?ListInterface $list = null): LazyList
     {
 
         if ($list instanceof TypedListInterface) {

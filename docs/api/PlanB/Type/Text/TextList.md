@@ -212,7 +212,7 @@ protected **TextList::customize**() : void
 
 
 ### count
-
+Devuelve el número total de elementos
 
 
 **TextList::count**() : int
@@ -223,7 +223,7 @@ protected **TextList::customize**() : void
 
 
 ### isEmpty
-
+Indica si la lista está vacia
 
 
 **TextList::isEmpty**() : bool
@@ -234,7 +234,7 @@ protected **TextList::customize**() : void
 
 
 ### each
-
+Ejecuta una acción para cada elemento de la lista
 
 
 **TextList::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -249,8 +249,8 @@ protected **TextList::customize**() : void
 
 
 ### map
-
-
+Devuelve el resultado de aplicar una acción a cada elemento de la lista
+La lista original permanece inmutable
 
 **TextList::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
 
@@ -264,7 +264,7 @@ protected **TextList::customize**() : void
 
 
 ### filter
-
+Devuelve una lista con los elementos que cumplen un criterio
 
 
 **TextList::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
@@ -279,7 +279,8 @@ protected **TextList::customize**() : void
 
 
 ### search
-
+Devuelve el primer elemento que cumpla con el criterio,
+o nulo si no encuentra ninguno
 
 
 **TextList::search**(callable $callable, mixed ...$userdata) : mixed|null
@@ -294,7 +295,8 @@ protected **TextList::customize**() : void
 
 
 ### find
-
+Devuelve el primer elemento que cumpla con el criterio,
+o lanza una excepción si no encuentra ninguno
 
 
 **TextList::find**(callable $callable, mixed ...$userdata) : mixed
@@ -309,7 +311,7 @@ protected **TextList::customize**() : void
 
 
 ### reduce
-
+Reduce una lista, a un unico valor
 
 
 **TextList::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -383,6 +385,20 @@ Silencia las excepciones
 **TextList::silentExceptions**() : [ListInterface](../../../ListInterface.md)
 
 
+
+---
+
+
+### throwException
+Hook para lanzar una excepción personalizada
+
+
+**TextList::throwException**(callable $callback) : [ListInterface](../../../ListInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
 
 ---
 

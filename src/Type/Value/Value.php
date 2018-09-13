@@ -33,7 +33,7 @@ class Value implements Stringifable
     ];
 
     /**
-     * Value constructor.
+     * Input constructor.
      *
      * @param mixed $variable
      */

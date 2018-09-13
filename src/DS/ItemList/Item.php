@@ -16,7 +16,7 @@ use PlanB\Type\Value\Value;
 use PlanB\Utils\Traits\Stringify;
 
 /**
- * Value Object que encapsula una pareja clave/valor
+ * Input Object que encapsula una pareja clave/valor
  *
  * @author Jose Manuel Pantoja <jmpantoja@gmail.com>
  */
@@ -167,7 +167,7 @@ class Item implements Stringifable
 
         $pieces = [
             sprintf('<fg=cyan>Key</>: <fg=yellow>%s</>', $key),
-            sprintf('<fg=cyan>Value</>: <fg=yellow>%s</>', $value),
+            sprintf('<fg=cyan>Input</>: <fg=yellow>%s</>', $value),
         ];
 
         return sprintf("\n[\n\t%s\n]", implode("\n\t", $pieces));

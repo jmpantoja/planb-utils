@@ -33,7 +33,7 @@ if (!function_exists('ensure_type')) {
 if (!function_exists('ensure_value')) {
 
     /**
-     * Assurance para Value
+     * Assurance para Input
      *
      * @param $text
      * @return ValueAssurance

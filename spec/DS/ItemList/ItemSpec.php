@@ -24,11 +24,11 @@ class ItemSpec extends ObjectBehavior
 
     private const ARRAY = [];
 
-    private const SERIALIZED_NUMBER = '<fg=cyan>Value</>: <fg=yellow>[integer: 234242]</>';
-    private const SERIALIZED_ARRAY = '<fg=cyan>Value</>: <fg=yellow>[array(0)]</>';
+    private const SERIALIZED_NUMBER = '<fg=cyan>Input</>: <fg=yellow>[integer: 234242]</>';
+    private const SERIALIZED_ARRAY = '<fg=cyan>Input</>: <fg=yellow>[array(0)]</>';
 
     private const SERIALIZED_KEY = '<fg=cyan>Key</>: <fg=yellow>[string: "key"]</>';
-    private const SERIALIZED_VALUE = '<fg=cyan>Value</>: <fg=yellow>[string: "value"]</>';
+    private const SERIALIZED_VALUE = '<fg=cyan>Input</>: <fg=yellow>[string: "value"]</>';
 
     public function let()
     {

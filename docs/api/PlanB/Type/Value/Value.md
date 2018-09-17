@@ -44,7 +44,7 @@ Devuelve la cadena de texto
 
 
 ### __construct
-Value constructor.
+Input constructor.
 
 
 protected **Value::__construct**(mixed $variable) : 

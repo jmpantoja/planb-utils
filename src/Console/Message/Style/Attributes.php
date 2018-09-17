@@ -56,9 +56,11 @@ class Attributes implements Stringifable
     /**
      * Attributes named constructor.
      *
+     * @param string $content
+     *
      * @return \PlanB\Console\Message\Style\Attributes
      */
-    public static function fromString(string $content)
+    public static function fromString(string $content): \PlanB\Console\Message\Style\Attributes
     {
         $parser = AttributeParser::create($content);
 
@@ -72,6 +74,10 @@ class Attributes implements Stringifable
 
     /**
      * Attributes constructor.
+     *
+     * @param \PlanB\Console\Message\Style\Color      $fgColor
+     * @param \PlanB\Console\Message\Style\Color      $bgColor
+     * @param \PlanB\Console\Message\Style\OptionList $options
      */
     protected function __construct(Color $fgColor, Color $bgColor, OptionList $options)
     {
@@ -80,8 +86,14 @@ class Attributes implements Stringifable
         $this->options = $options;
     }
 
-
-    public function merge(Attributes $attributes)
+    /**
+     * Devuelve el resultado de mezclar este objeto con otro
+     *
+     * @param \PlanB\Console\Message\Style\Attributes $attributes
+     *
+     * @return \PlanB\Console\Message\Style\Attributes
+     */
+    public function merge(Attributes $attributes): Attributes
     {
         $fgColor = $this->fgColor->merge($attributes->getForegroundColor());
         $bgColor = $this->bgColor->merge($attributes->getBackgroundColor());

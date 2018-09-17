@@ -13,13 +13,8 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 use PlanB\DS1\Resolver\Resolvable;
-use PlanB\DS1\Resolver\Rule\Exception\InvalidRuleReturnedType;
-use PlanB\Type\DataType\DataType;
-use PlanB\Type\DataType\Type;
-use PlanB\Type\Value\Value;
 
 /**
  * Regla que tiene que cumplir un valor antes de ser añadido
@@ -41,6 +36,9 @@ abstract class Rule implements Resolvable
 
     /**
      * Resolver constructor.
+     *
+     * @param callable    $callback
+     * @param null|string $type
      */
     protected function __construct(callable $callback, ?string $type = null)
     {
@@ -51,9 +49,12 @@ abstract class Rule implements Resolvable
     /**
      * Resolver named constructor.
      *
-     * @return Resolver
+     * @param string   $type
+     * @param callable $callback
+     *
+     * @return \PlanB\DS1\Resolver\Rule\Rule
      */
-    public static function typed(string $type, callable $callback)
+    public static function typed(string $type, callable $callback): Rule
     {
         return new static($callback, $type);
     }
@@ -61,8 +62,9 @@ abstract class Rule implements Resolvable
     /**
      * Ejecuta la regla
      *
-     * @param Input $input
-     * @return InputInterface
+     * @param \PlanB\DS1\Resolver\Input\Input $input
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function __invoke(InputInterface $input): InputInterface
     {
@@ -72,14 +74,16 @@ abstract class Rule implements Resolvable
 
         $value = $input->getValue();
         $response = call_user_func($this->callback, $value);
-        return $this->buildInput($response, $value);
 
+        return $this->buildInput($response, $value);
     }
 
     /**
      * Ejecuta la regla
-     * @param Input $input
-     * @return InputInterface
+     *
+     * @param \PlanB\DS1\Resolver\Input\Input $input
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function resolve(InputInterface $input): InputInterface
     {
@@ -92,7 +96,8 @@ abstract class Rule implements Resolvable
      *
      * @param mixed $response
      * @param mixed $value
-     * @return InputInterface
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     abstract public function buildInput($response, $value): InputInterface;
 }

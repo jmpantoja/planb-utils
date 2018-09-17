@@ -29,7 +29,8 @@ abstract class AbstractInput implements InputInterface
      * Input named constructor.
      *
      * @param mixed $value
-     * @return Input
+     *
+     * @return \PlanB\DS1\Resolver\Input\Input
      */
     public static function make($value): InputInterface
     {
@@ -38,6 +39,7 @@ abstract class AbstractInput implements InputInterface
 
     /**
      * Input constructor.
+     *
      * @param mixed $value
      */
     private function __construct($value)
@@ -53,7 +55,6 @@ abstract class AbstractInput implements InputInterface
     public function getValue()
     {
         return $this->value;
-
     }
 
     /**

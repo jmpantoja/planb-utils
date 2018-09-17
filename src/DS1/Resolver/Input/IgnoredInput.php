@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Input;
 
-
+/**
+ * El valor debe ser ignorado
+ */
 class IgnoredInput extends AbstractInput
 {
 

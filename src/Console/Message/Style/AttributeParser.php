@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
-use PlanB\Type\Text\Text;
-
 /**
  * Extrae las propiedades de un objeto Attribute de una cadena de texto
  */
@@ -24,9 +22,10 @@ class AttributeParser
      * AttributeParser named constructor.
      *
      * @param string $content
-     * @return AttributeParser
+     *
+     * @return \PlanB\Console\Message\Style\AttributeParser
      */
-    public static function create(string $content)
+    public static function create(string $content): AttributeParser
     {
         return new static($content);
     }
@@ -48,7 +47,6 @@ class AttributeParser
         foreach ($pieces as $piece) {
             $this->analize($piece);
         }
-
     }
 
     /**
@@ -56,7 +54,7 @@ class AttributeParser
      *
      * @param string $piece
      */
-    private function analize(string $piece)
+    private function analize(string $piece): void
     {
         $matches = [];
         if (!preg_match('/(fg|bg|options)=(.*)/', $piece, $matches)) {
@@ -93,7 +91,8 @@ class AttributeParser
      * Parsea la propiedad options
      *
      * @param string $options
-     * @return AttributeParser
+     *
+     * @return \PlanB\Console\Message\Style\AttributeParser
      */
     private function parseOptions(string $options): self
     {
@@ -103,6 +102,7 @@ class AttributeParser
         foreach ($pieces as $optionName) {
             $this->options->addIfIsValid($optionName);
         }
+
         return $this;
     }
 
@@ -110,11 +110,13 @@ class AttributeParser
      * Parsea la propiedad foreground color
      *
      * @param string $colorName
-     * @return AttributeParser
+     *
+     * @return \PlanB\Console\Message\Style\AttributeParser
      */
     private function parseForegroundColor(string $colorName): self
     {
         $this->fgColor = $this->buildColor($colorName);
+
         return $this;
     }
 
@@ -122,11 +124,13 @@ class AttributeParser
      * Parsea la propiedad background color
      *
      * @param string $colorName
-     * @return AttributeParser
+     *
+     * @return \PlanB\Console\Message\Style\AttributeParser
      */
     private function parseBackgroundColor(string $colorName): self
     {
         $this->bgColor = $this->buildColor($colorName);
+
         return $this;
     }
 
@@ -135,9 +139,10 @@ class AttributeParser
      * Devuelve el color representado por $colorName o Default si no es valid
      *
      * @param string $colorName
-     * @return Color
+     *
+     * @return \PlanB\Console\Message\Style\Color
      */
-    private function buildColor(string $colorName)
+    private function buildColor(string $colorName): Color
     {
         return Color::has($colorName) ? Color::get($colorName) : Color::DEFAULT();
     }
@@ -145,7 +150,7 @@ class AttributeParser
     /**
      * Devuelve el color de fondo
      *
-     * @return Color
+     * @return \PlanB\Console\Message\Style\Color
      */
     public function getBackgroundColor(): Color
     {
@@ -155,7 +160,7 @@ class AttributeParser
     /**
      * * Devuelve el color del texto
      *
-     * @return Color
+     * @return \PlanB\Console\Message\Style\Color
      */
     public function getForegroundColor(): Color
     {
@@ -165,12 +170,10 @@ class AttributeParser
     /**
      * Devuelve la lista de opciones
      *
-     * @return OptionList
+     * @return \PlanB\Console\Message\Style\OptionList
      */
     public function getOptions(): OptionList
     {
         return $this->options;
     }
-
-
 }

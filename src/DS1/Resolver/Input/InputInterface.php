@@ -25,6 +25,9 @@ interface InputInterface
 
     /**
      * Indica si el valor es de uno de los tipos pasados
+     *
+     * @param null|string $allowed
+     *
      * @return bool
      */
     public function isTypeOf(?string $allowed): bool;

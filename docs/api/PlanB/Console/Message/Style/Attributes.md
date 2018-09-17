@@ -41,17 +41,6 @@ Devuelve la cadena de texto
 ---
 
 
-### __construct
-Attributes constructor.
-
-
-protected **Attributes::__construct**() : 
-
-
-
----
-
-
 ### create
 Attributes named constructor.
 
@@ -59,6 +48,50 @@ Attributes named constructor.
 static **Attributes::create**() : [Attributes](../../../../Attributes.md)
 
 
+
+---
+
+
+### fromString
+Attributes named constructor.
+
+
+static **Attributes::fromString**(string $content) : [Attributes](../../../../Attributes.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$content |  |
+
+---
+
+
+### __construct
+Attributes constructor.
+
+
+protected **Attributes::__construct**([Color](../../../../Color.md) $fgColor, [Color](../../../../Color.md) $bgColor, [OptionList](../../../../OptionList.md) $options) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../../Color.md) |$fgColor |  |
+|[Color](../../../../Color.md) |$bgColor |  |
+|[OptionList](../../../../OptionList.md) |$options |  |
+
+---
+
+
+### merge
+Devuelve el resultado de mezclar este objeto con otro
+
+
+**Attributes::merge**([Attributes](../../../../Attributes.md) $attributes) : [Attributes](../../../../Attributes.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Attributes](../../../../Attributes.md) |$attributes |  |
 
 ---
 

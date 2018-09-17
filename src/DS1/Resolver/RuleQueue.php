@@ -13,23 +13,22 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver;
 
-use Ds;
-use phpDocumentor\Reflection\Types\Boolean;
-use PlanB\DS1\Resolver\Input\IgnoredInput;
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 use PlanB\DS1\Resolver\Rule\Rule;
-use PlanB\Type\Value\Value;
 
+/**
+ * Cola con prioridad que almacena un conjunto de reglas del mismo tipo que tiene que cumplir un input en cada fase
+ */
 class RuleQueue implements Resolvable
 {
     /**
-     * @var Ds\PriorityQueue
+     * @var \Ds\PriorityQueue
      */
     private $queue;
 
     /**
-     * @var Ds\PriorityQueue
+     * @var \Ds\PriorityQueue
      */
     private $copy;
 
@@ -38,16 +37,16 @@ class RuleQueue implements Resolvable
      */
     protected function __construct()
     {
-        $this->queue = new DS\PriorityQueue();
-        $this->copy = new DS\PriorityQueue();
+        $this->queue = new \DS\PriorityQueue();
+        $this->copy = new \DS\PriorityQueue();
     }
 
     /**
      * Resolver named constructor.
      *
-     * @return Resolver
+     * @return  \PlanB\DS1\Resolver\RuleQueue
      */
-    public static function make()
+    public static function make(): RuleQueue
     {
         return new static();
     }
@@ -55,21 +54,24 @@ class RuleQueue implements Resolvable
     /**
      * Añade una nueva regla a la cola
      *
-     * @param Rule $rule
-     * @param int $priority
-     * @return RuleQueue
+     * @param \PlanB\DS1\Resolver\Rule\Rule $rule
+     * @param int                           $priority
+     *
+     * @return \PlanB\DS1\Resolver\RuleQueue
      */
     public function push(Rule $rule, int $priority): self
     {
         $this->queue->push($rule, $priority);
+
         return $this;
     }
 
     /**
      * Resuelve un valor
      *
-     * @param InputInterface $input
-     * @return InputInterface
+     * @param \PlanB\DS1\Resolver\Input\InputInterface $input
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function resolve(InputInterface $input): InputInterface
     {
@@ -85,7 +87,7 @@ class RuleQueue implements Resolvable
     /**
      * Devuelve el cursor al inicio
      */
-    private function reset()
+    private function reset(): void
     {
         $this->copy = $this->queue->copy();
     }
@@ -93,7 +95,8 @@ class RuleQueue implements Resolvable
     /**
      * Devuelve la siguiente regla (o false si procede)
      *
-     * @param InputInterface $input
+     * @param \PlanB\DS1\Resolver\Input\InputInterface $input
+     *
      * @return bool|mixed
      */
     private function current(InputInterface $input)

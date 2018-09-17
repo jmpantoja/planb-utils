@@ -13,20 +13,24 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-
 use PlanB\DS1\Resolver\Input\FailedInput;
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 
+/**
+ * Regla que comprueba si un valor es valido
+ */
 class Validator extends Rule
 {
 
     /**
      * Resolver named constructor.
      *
-     * @return Resolver
+     * @param callable $callback
+     *
+     * @return \PlanB\DS1\Resolver\Rule\Validator
      */
-    public static function make(callable $callback)
+    public static function make(callable $callback): Validator
     {
         return new static($callback);
     }
@@ -36,7 +40,8 @@ class Validator extends Rule
      *
      * @param mixed $response
      * @param mixed $value
-     * @return InputInterface
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function buildInput($response, $value): InputInterface
     {

@@ -13,25 +13,24 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-
-use PlanB\DS1\Resolver\Input\InputInterface;
 use PlanB\Type\Value\Value;
 
+/**
+ * Crea un validator que comprueba que un valor sea del tipo esperado
+ */
 class TypeValidator
 {
-
-
     /**
      * TypeAssertion named constructor.
+     *
      * @param string $type
-     * @return TypeValidator
+     *
+     * @return \PlanB\DS1\Resolver\Rule\Validator
      */
     public static function make(string $type): Validator
     {
         return Validator::make(function ($input) use ($type) {
             return Value::create($input)->isTypeOf($type);
-
         });
-
     }
 }

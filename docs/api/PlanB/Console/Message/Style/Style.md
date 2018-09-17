@@ -13,6 +13,8 @@
 
 
 
+## Properties
+- padding
 
 
 ## Methods
@@ -32,7 +34,38 @@ static **Style::create**() : [Style](../../../../Style.md)
 Style constructor.
 
 
-protected **Style::__construct**() : 
+protected **Style::__construct**([HorizontalSpace](../../../../HorizontalSpace.md) $padding, [HorizontalSpace](../../../../HorizontalSpace.md) $margin, [Position](../../../../Position.md) $position, [Attributes](../../../../Attributes.md) $attributes) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[HorizontalSpace](../../../../HorizontalSpace.md) |$padding |  |
+|[HorizontalSpace](../../../../HorizontalSpace.md) |$margin |  |
+|[Position](../../../../Position.md) |$position |  |
+|[Attributes](../../../../Attributes.md) |$attributes |  |
+
+---
+
+
+### merge
+Devuelve el resultado de mezclar este objeto con otro
+
+
+**Style::merge**([Style](../../../../Style.md) $style) : [Style](../../../../Style.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Style](../../../../Style.md) |$style |  |
+
+---
+
+
+### clone
+Devuelve un clon de esta instancia
+
+
+**Style::clone**() : [Style](../../../../Style.md)
 
 
 
@@ -50,6 +83,17 @@ Asigna el padding
 | --- | --- | --- |
 |int |$left |  |
 |int |$right |  |
+
+---
+
+
+### getAttributes
+Devuelve los attributos
+
+
+**Style::getAttributes**() : [Attributes](../../../../Attributes.md)
+
+
 
 ---
 
@@ -133,6 +177,17 @@ Devuelve el ancho de la linea
 
 
 **Style::getWidth**() : int
+
+
+
+---
+
+
+### getSpacingLenght
+Devuelve la longitud asociada espacios en blanco, (padding y margin)
+
+
+**Style::getSpacingLenght**() : int
 
 
 

@@ -31,7 +31,7 @@ class HorizontalSpace
     /**
      * HorizontalSpace named constructor.
      *
-     * @param int $left
+     * @param int      $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Style\HorizontalSpace
@@ -108,7 +108,14 @@ class HorizontalSpace
         return str_repeat(Text::BLANK_TEXT, $this->right);
     }
 
-    public function merge(HorizontalSpace $space)
+    /**
+     * Devuelve el resultado de mezclar este objeto con otro
+     *
+     * @param \PlanB\Console\Message\Style\HorizontalSpace $space
+     *
+     * @return \PlanB\Console\Message\Style\HorizontalSpace
+     */
+    public function merge(HorizontalSpace $space): HorizontalSpace
     {
         return self::create(
             $this->left + $space->left,
@@ -116,6 +123,11 @@ class HorizontalSpace
         );
     }
 
+    /**
+     * Devuelve la longitud total
+     *
+     * @return int
+     */
     public function lenght(): int
     {
         return $this->left + $this->right;

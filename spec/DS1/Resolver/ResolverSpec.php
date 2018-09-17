@@ -148,7 +148,6 @@ class ResolverSpec extends ObjectBehavior
 
     public function it_normalize_a_value()
     {
-
         $this
             ->addFilter(function ($value) {
 
@@ -158,14 +157,14 @@ class ResolverSpec extends ObjectBehavior
                 return Text::create($value);
             })->addNormalizer(function (Text $value) {
 
-                return $value->toCamelCase();
+                return $value->toUpper();
             });
 
         $this->resolve([1, 2, 3])
             ->shouldHaveType(IgnoredInput::class);
 
         $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::create('holaQueTal')));
+            ->shouldBeLike(Input::make(Text::create('HOLA QUE TAL')));
 
     }
 
@@ -176,11 +175,11 @@ class ResolverSpec extends ObjectBehavior
                 return Text::create($value);
             })
             ->addTypedNormalizer(Text::class, function (Text $text) {
-                return $text->toCamelCase();
+                return $text->toUpper();
             });
 
         $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::create('holaQueTal')));
+            ->shouldBeLike(Input::make(Text::create('HOLA QUE TAL')));
     }
 
 }

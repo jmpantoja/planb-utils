@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 
+/**
+ * Regla que transforma un valor de un tipo dado, en otro
+ */
 class Converter extends Rule
 {
 
@@ -25,7 +27,8 @@ class Converter extends Rule
      *
      * @param mixed $response
      * @param mixed $value
-     * @return InputInterface
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function buildInput($response, $value): InputInterface
     {

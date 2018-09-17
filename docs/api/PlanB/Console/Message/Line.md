@@ -46,7 +46,7 @@ Devuelve la cadena de texto
 
 
 ### __construct
-Text constructor.
+Line constructor.
 
 
 **Line::__construct**(string $text) : 
@@ -368,6 +368,17 @@ Elimina html tags
 ---
 
 
+### blank
+Line named constructor.
+
+
+static **Line::blank**() : [Line](../../../Line.md)
+
+
+
+---
+
+
 ### getContentLength
 Devuelve la longitud del texto, ignorando las etiquetas
 
@@ -386,6 +397,20 @@ Devuelve la longitud de las etiquetas, ignorando el texto regular
 **Line::getTagsLength**() : int
 
 
+
+---
+
+
+### apply
+Aplica un estilo a esta linea, mezclando el estilo dado, con el que puede aparecer en tags ya existentes
+
+
+**Line::apply**([Style](../../../Style.md) $style) : [Line](../../../Line.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 

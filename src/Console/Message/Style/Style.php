@@ -55,11 +55,13 @@ class Style
 
     /**
      * Style constructor.
+     *
+     * @param \PlanB\Console\Message\Style\HorizontalSpace $padding
+     * @param \PlanB\Console\Message\Style\HorizontalSpace $margin
+     * @param \PlanB\Console\Message\Style\Position        $position
+     * @param \PlanB\Console\Message\Style\Attributes      $attributes
      */
-    protected function __construct(HorizontalSpace $padding,
-                                   HorizontalSpace $margin,
-                                   Position $position,
-                                   Attributes $attributes)
+    protected function __construct(HorizontalSpace $padding, HorizontalSpace $margin, Position $position, Attributes $attributes)
     {
         $this->padding = $padding;
         $this->margin = $margin;
@@ -68,6 +70,13 @@ class Style
     }
 
 
+    /**
+     * Devuelve el resultado de mezclar este objeto con otro
+     *
+     * @param \PlanB\Console\Message\Style\Style $style
+     *
+     * @return \PlanB\Console\Message\Style\Style
+     */
     public function merge(Style $style): self
     {
         $padding = $this->padding->merge($style->padding);
@@ -76,14 +85,17 @@ class Style
         $attributes = $this->attributes->merge($style->attributes);
 
         return new static(
-            $padding, $margin, $position, $attributes
+            $padding,
+            $margin,
+            $position,
+            $attributes
         );
     }
 
     /**
      * Devuelve un clon de esta instancia
      *
-     * @return Style
+     * @return \PlanB\Console\Message\Style\Style
      */
     public function clone(): self
     {
@@ -93,7 +105,7 @@ class Style
     /**
      * Asigna el padding
      *
-     * @param int $left
+     * @param int      $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Style\Style
@@ -107,6 +119,8 @@ class Style
 
     /**
      * Devuelve los attributos
+     *
+     * @return \PlanB\Console\Message\Style\Attributes
      */
     public function getAttributes(): Attributes
     {
@@ -136,7 +150,7 @@ class Style
     /**
      * Asigna el margin
      *
-     * @param int $left
+     * @param int      $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Style\Style
@@ -171,7 +185,7 @@ class Style
     /**
      * Asigna una posición
      *
-     * @param int $width
+     * @param int                                       $width
      * @param \PlanB\Console\Message\Style\Align|string $align
      *
      * @return \PlanB\Console\Message\Style\Style
@@ -194,6 +208,11 @@ class Style
         return $this->position->getWidth();
     }
 
+    /**
+     * Devuelve la longitud asociada espacios en blanco, (padding y margin)
+     *
+     * @return int
+     */
     public function getSpacingLenght(): int
     {
         return $this->padding->lenght() + $this->margin->lenght();

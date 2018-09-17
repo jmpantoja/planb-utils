@@ -26,12 +26,12 @@
 
 
 
-**AbstractList::add**(mixed $value) : [ListInterface](../../../ListInterface.md)
+**AbstractList::add**(mixed $paragraph) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$value |  |
+|mixed |$paragraph |  |
 
 ---
 
@@ -391,7 +391,7 @@ Silencia las excepciones
 Hook para lanzar una excepción personalizada
 
 
-**AbstractList::throwException**(callable $callback) : 
+**AbstractList::throwException**(callable $callback) : [ListInterface](../../../ListInterface.md)
 
 
 |Parameters: | | |
@@ -457,6 +457,17 @@ Añade un normalizador de clave
 | --- | --- | --- |
 |callable |$normalizer |  |
 |int |$order |  |
+
+---
+
+
+### __debugInfo
+Devuelve la informacion relevante para un debug
+
+
+**AbstractList::__debugInfo**() : array|mixed[]
+
+
 
 ---
 

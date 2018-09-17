@@ -13,13 +13,9 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-
 use PlanB\DS1\Resolver\Input\IgnoredInput;
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
-use PlanB\DS1\Resolver\Rule\Exception\InvalidRuleReturnedType;
-use PlanB\Type\DataType\Type;
-use PlanB\Type\Value\Value;
 
 /**
  * Discrimina los valores que se consideran validos de los que no
@@ -30,9 +26,11 @@ class Filter extends Rule
     /**
      * Resolver named constructor.
      *
-     * @return Resolver
+     * @param callable $callback
+     *
+     * @return \PlanB\DS1\Resolver\Rule\Filter
      */
-    public static function make(callable $callback)
+    public static function make(callable $callback): Filter
     {
         return new static($callback);
     }
@@ -48,5 +46,4 @@ class Filter extends Rule
 
         return Input::make($value);
     }
-
 }

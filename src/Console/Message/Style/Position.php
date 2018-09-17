@@ -29,7 +29,7 @@ class Position
     /**
      * Position named constructor.
      *
-     * @param int $width
+     * @param int                                       $width
      * @param \PlanB\Console\Message\Style\Align|string $align
      *
      * @return \PlanB\Console\Message\Style\Position
@@ -46,7 +46,7 @@ class Position
     /**
      * Position constructor.
      *
-     * @param int $width
+     * @param int                                       $width
      * @param \PlanB\Console\Message\Style\Align|string $align
      */
     private function __construct(int $width, $align)
@@ -58,13 +58,14 @@ class Position
     /**
      * Crea una nueva instancia a partir de una existente
      *
-     * @param Position $position
+     * @param \PlanB\Console\Message\Style\Position $position
+     *
      * @return \PlanB\Console\Message\Style\Position
      */
     public function merge(Position $position): Position
     {
         $align = $this->getAlign();
-        if($align->isDefault()){
+        if ($align->isDefault()) {
             $align = $position->getAlign();
         }
 

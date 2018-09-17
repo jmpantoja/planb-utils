@@ -13,19 +13,23 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
-
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 
+/**
+ * Regla capaz de tomar un valor valido y transformarlo en otro
+ */
 class Normalizer extends Rule
 {
 
     /**
      * Resolver named constructor.
      *
-     * @return Resolver
+     * @param callable $callback
+     *
+     * @return \PlanB\DS1\Resolver\Rule\Normalizer
      */
-    public static function make(callable $callback)
+    public static function make(callable $callback): Normalizer
     {
         return new static($callback);
     }
@@ -35,7 +39,8 @@ class Normalizer extends Rule
      *
      * @param mixed $response
      * @param mixed $value
-     * @return InputInterface
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
      */
     public function buildInput($response, $value): InputInterface
     {

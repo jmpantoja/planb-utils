@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver;
 
-
 use PlanB\DS1\Resolver\Input\InputInterface;
 
 /**
@@ -21,5 +20,12 @@ use PlanB\DS1\Resolver\Input\InputInterface;
  */
 interface Resolvable
 {
+    /**
+     * Resuelve un input
+     *
+     * @param \PlanB\DS1\Resolver\Input\InputInterface $input
+     *
+     * @return \PlanB\DS1\Resolver\Input\InputInterface
+     */
     public function resolve(InputInterface $input): InputInterface;
 }

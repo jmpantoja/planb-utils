@@ -4,7 +4,7 @@
 # Item
 
 
-> Value Object que encapsula una pareja clave/valor
+> Input Object que encapsula una pareja clave/valor
 >
 > 
 

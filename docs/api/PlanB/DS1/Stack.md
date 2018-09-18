@@ -28,7 +28,7 @@ value at the top of the structure and iterates in that order, destructively.
 Removes all values from the collection.
 
 
-**Stack::clear**() : 
+**Stack::clear**() : [Collection](../../Collection.md)
 
 
 
@@ -63,7 +63,7 @@ Returns a representation that can be natively converted to JSON, which is
 called when invoking json_encode.
 
 
-**Stack::jsonSerialize**() : mixed
+**Stack::jsonSerialize**() : mixed[]
 
 
 
@@ -87,7 +87,7 @@ The format of the returned array is implementation-dependent. Some
 implementations may throw an exception if an array representation
 could not be created (for example when object are used as keys).
 
-**Stack::toArray**() : array
+**Stack::toArray**() : mixed[]
 
 
 
@@ -98,7 +98,18 @@ could not be created (for example when object are used as keys).
 Invoked when calling var_dump.
 
 
-**Stack::__debugInfo**() : array
+**Stack::__debugInfo**() : mixed[]
+
+
+
+---
+
+
+### getIterator
+Retrieve an external iterator
+
+
+**Stack::getIterator**() : [Traversable](../../Traversable.md)
 
 
 
@@ -109,7 +120,7 @@ Invoked when calling var_dump.
 
 
 
-static **Stack::make**([iterable](../../iterable.md) $input = []) : 
+static **Stack::make**([iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -148,7 +159,7 @@ protected **Stack::makeInternal**([iterable](../../iterable.md) $input) :
 
 
 ### duplicate
-
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
 protected **Stack::duplicate**([iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
@@ -161,13 +172,140 @@ protected **Stack::duplicate**([iterable](../../iterable.md) $input = []) : [Col
 ---
 
 
-### getIterator
-Retrieve an external iterator
+### bind
+Asocia un nuevo resolver
 
 
-**Stack::getIterator**() : [Traversable](../../Traversable.md)
+**Stack::bind**([Resolver](../../Resolver.md) $resolver) : [Collection](../../Collection.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../Resolver.md) |$resolver |  |
+
+---
+
+
+### addFilter
+Añade un filtro a la cola
+
+
+**Stack::addFilter**(callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedFilter
+Añade un filtro para un tipo determinado
+
+
+**Stack::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addConverter
+Añade un converter
+
+
+**Stack::addConverter**(string $type, callable $converter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$converter |  |
+|int |$priority |  |
+
+---
+
+
+### addValidator
+Añade un validator
+
+
+**Stack::addValidator**(callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedValidator
+Añade un validator para un tipo determinado
+
+
+**Stack::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizer
+
+
+**Stack::addNormalizer**(callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedNormalizer
+Añade un normalizer para un tipo determinado
+
+
+**Stack::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### hook
+
+
+
+protected **Stack::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
 
 ---
 

@@ -62,7 +62,9 @@ class Stack implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function push(...$values): Stack
     {
-        $this->items->push(...$values);
+        $this->hook(function (...$values): void {
+            $this->items->push(...$values);
+        }, ...$values);
 
         return $this;
     }

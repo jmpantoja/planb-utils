@@ -98,6 +98,17 @@ Invoked when calling var_dump.
 ---
 
 
+### getIterator
+Retrieve an external iterator
+
+
+**TraitCollection::getIterator**() : [Traversable](../../../Traversable.md)
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

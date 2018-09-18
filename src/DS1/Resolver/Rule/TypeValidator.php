@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
+use PlanB\Type\DataType\DataType;
 use PlanB\Type\Value\Value;
 
 /**
@@ -27,10 +28,10 @@ class TypeValidator
      *
      * @return \PlanB\DS1\Resolver\Rule\Validator
      */
-    public static function make(string $type): Validator
+    public static function make(DataType $type): Validator
     {
         return Validator::make(function ($input) use ($type) {
-            return Value::create($input)->isTypeOf($type);
+            return Value::create($input)->isTypeOf($type->stringify());
         });
     }
 }

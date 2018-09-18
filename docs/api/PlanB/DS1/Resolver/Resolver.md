@@ -22,11 +22,22 @@
 
 ## Methods
 
-### __construct
-Resolver constructor.
+### make
+Resolver named constructor.
 
 
-protected **Resolver::__construct**(string $type) : 
+static **Resolver::make**() : [Resolver](../../../Resolver.md)
+
+
+
+---
+
+
+### typed
+Resolver named constructor.
+
+
+static **Resolver::typed**(string $type) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
@@ -36,16 +47,27 @@ protected **Resolver::__construct**(string $type) :
 ---
 
 
-### make
-Resolver named constructor.
+### __construct
+Resolver constructor.
 
 
-static **Resolver::make**(string $type = null) : [Resolver](../../../Resolver.md)
+protected **Resolver::__construct**([DataType](../../../DataType.md) $type = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
+|[DataType](../../../DataType.md) |$type |  |
+
+---
+
+
+### getInnerType
+Devuelve el tipo del resolver
+
+
+**Resolver::getInnerType**() : null|string
+
+
 
 ---
 

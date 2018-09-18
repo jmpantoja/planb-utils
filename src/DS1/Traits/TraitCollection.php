@@ -76,7 +76,7 @@ trait TraitCollection
      */
     public function copy(): Collection
     {
-        return new self($this->items);
+        return new static($this->items);
     }
 
     /**
@@ -101,5 +101,21 @@ trait TraitCollection
     public function __debugInfo(): array
     {
         return $this->items->toArray();
+    }
+
+
+    /**
+     * Retrieve an external iterator
+     *
+     * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
+     *
+     * @return \PlanB\DS1\Traits\Traversable An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     *
+     * @since 5.0.0
+     */
+    public function getIterator(): \Traversable
+    {
+        return $this->items;
     }
 }

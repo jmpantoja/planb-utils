@@ -10,6 +10,7 @@
 * [PlanB\Console\Message\Style](PlanB/Console/Message/Style.md)
 * [PlanB\DS](PlanB/DS.md)
 * [PlanB\DS1](PlanB/DS1.md)
+* [PlanB\DS1\Exception](PlanB/DS1/Exception.md)
 * [PlanB\DS1\Resolver](PlanB/DS1/Resolver.md)
 * [PlanB\DS1\Resolver\Input](PlanB/DS1/Resolver/Input.md)
 * [PlanB\DS1\Resolver\Rule](PlanB/DS1/Resolver/Rule.md)

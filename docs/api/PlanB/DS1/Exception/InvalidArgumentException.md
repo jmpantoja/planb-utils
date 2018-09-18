@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# TraitArray
+# InvalidArgumentException
 
 
-> Métodos relacionados con la interfaz ArrayAccess
+> Se lanza cuando se trata de añadir un valor considerado no valido
 >
 > 
 
@@ -17,62 +17,32 @@
 
 ## Methods
 
-### offsetExists
-Whether a offset exists
+### __construct
+InvalidItemException constructor.
 
 
-**TraitArray::offsetExists**(mixed $offset) : bool
+**InvalidArgumentException::__construct**(string $message, [Throwable](../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$offset | An offset to check for. |
+|string |$message |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 
 
-### offsetGet
-Offset to retrieve
+### make
+Crea una instancia
 
 
-**TraitArray::offsetGet**(mixed $offset) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to retrieve. |
-
----
-
-
-### offsetSet
-Offset to set
-
-
-**TraitArray::offsetSet**(mixed $offset, mixed $value) : void
+static **InvalidArgumentException::make**([FailedInput](../../../FailedInput.md) $input, [Throwable](../../../Throwable.md) $previous = null) : [InvalidArgumentException](../../../InvalidArgumentException.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
-### offsetUnset
-Offset to unset
-
-
-**TraitArray::offsetUnset**(mixed $offset) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to unset. |
+|[FailedInput](../../../FailedInput.md) |$input |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 

@@ -2,15 +2,14 @@
 
 namespace spec\PlanB\DS1;
 
-use PlanB\DS1\Collection;
-use PlanB\DS1\Queue;
+use PlanB\DS1\PriorityQueue;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use spec\PlanB\DS1\Traits\TraitCollection;
 use spec\PlanB\DS1\Traits\TraitConverts;
 use spec\PlanB\DS1\Traits\TraitNoArray;
 
-class QueueSpec extends ObjectBehavior
+class PriorityQueueSpec extends ObjectBehavior
 {
     protected const VALUE_A = 'value A';
     protected const VALUE_B = 'value B';
@@ -20,24 +19,22 @@ class QueueSpec extends ObjectBehavior
     protected const VALUE_F = 'value F';
 
     use TraitCollection;
-    use TraitConverts;
-    use TraitNoArray;
 
     public function let()
     {
         $this->beConstructedThrough('make');
     }
 
-    public function it_is_initializable()
+    public function populate(...$values)
     {
-        $this->shouldHaveType(Queue::class);
-        $this->shouldHaveType(Collection::class);
-
+        foreach ($values as $value) {
+            $this->push($value, 1);
+        }
     }
+
     public function it_returns_the_value_at_the_front_of_the_queue_without_removing_it()
     {
-        $this[] = self::VALUE_A;
-        $this[] = self::VALUE_B;
+        $this->populate(self::VALUE_A, self::VALUE_B);
 
         $this->count()->shouldReturn(2);
         $this->peek()->shouldReturn(self::VALUE_A);
@@ -48,8 +45,7 @@ class QueueSpec extends ObjectBehavior
 
     public function it_returns_the_value_at_the_top_of_the_stack_and_removing_it()
     {
-        $this[] = self::VALUE_A;
-        $this[] = self::VALUE_B;
+        $this->populate(self::VALUE_A, self::VALUE_B);
 
         $this->count()->shouldReturn(2);
 
@@ -63,23 +59,12 @@ class QueueSpec extends ObjectBehavior
 
     public function it_can_add_one_or_more_values_on_end_of_queue()
     {
-        $this[] = self::VALUE_A;
-        $this[] = self::VALUE_B;
-        $this[] = self::VALUE_C;
-
-        $this->push(...[
-            self::VALUE_D,
-            self::VALUE_E,
-            self::VALUE_F
-        ]);
+        $this->populate(self::VALUE_A, self::VALUE_B, self::VALUE_C);
 
         $this->shouldIterateAs([
             self::VALUE_A,
             self::VALUE_B,
-            self::VALUE_C,
-            self::VALUE_D,
-            self::VALUE_E,
-            self::VALUE_F,
+            self::VALUE_C
         ]);
     }
 }

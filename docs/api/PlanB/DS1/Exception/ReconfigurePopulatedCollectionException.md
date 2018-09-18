@@ -1,10 +1,11 @@
 
                                                                                                                                             
     
-# TraitArray
+# ReconfigurePopulatedCollectionException
 
 
-> Métodos relacionados con la interfaz ArrayAccess
+> Se lanza cuando se trata de cambiar la configuración de una lista
+que ya contiene datos
 >
 > 
 
@@ -17,62 +18,31 @@
 
 ## Methods
 
-### offsetExists
-Whether a offset exists
+### __construct
+ReconfigureFullyListException constructor.
 
 
-**TraitArray::offsetExists**(mixed $offset) : bool
+protected **ReconfigurePopulatedCollectionException::__construct**(string $message, [Throwable](../../../Throwable.md) $previous = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$offset | An offset to check for. |
+|string |$message |  |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 
 
-### offsetGet
-Offset to retrieve
+### make
+Crea una nueva instancia
 
 
-**TraitArray::offsetGet**(mixed $offset) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to retrieve. |
-
----
-
-
-### offsetSet
-Offset to set
-
-
-**TraitArray::offsetSet**(mixed $offset, mixed $value) : void
+static **ReconfigurePopulatedCollectionException::make**([Throwable](../../../Throwable.md) $previous = null) : [ReconfigureFullyListException](../../../ReconfigureFullyListException.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
-### offsetUnset
-Offset to unset
-
-
-**TraitArray::offsetUnset**(mixed $offset) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to unset. |
+|[Throwable](../../../Throwable.md) |$previous |  |
 
 ---
 

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PlanB\DS1;
 
 use Ds\Pair;
+use PlanB\DS1\Resolver\Resolver;
 use PlanB\DS1\Traits\TraitArray;
 use PlanB\DS1\Traits\TraitCollection;
 
@@ -28,6 +29,18 @@ class Map implements \IteratorAggregate, \ArrayAccess, Collection
     use TraitCollection;
     use Traits\TraitResolver;
     use TraitArray;
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function __construct(iterable $input = [], ?Resolver $resolver = null)
+    {
+        $this->resolver = $resolver ?? Resolver::make();
+        
+        $this->items = $this->makeInternal([]);
+        $this->putAll($input);
+    }
 
     /**
      * @inheritdoc
@@ -58,7 +71,9 @@ class Map implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function offsetSet($offset, $value): void
     {
-        $this->items[$offset] = $value;
+        $this->hook(function ($value) use ($offset): void {
+            $this->items[$offset] = $value;
+        }, $value);
     }
 
 
@@ -203,15 +218,22 @@ class Map implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function filter(?callable $callback = null): Map
     {
-        if (is_null($callback)) {
-            return $this->duplicate(
+        return $callback ?
+            $this->duplicate(
+                $this->items->filter($callback)
+            ) :
+            $this->duplicate(
                 $this->items->filter()
             );
-        }
-
-        return $this->duplicate(
-            $this->items->filter($callback)
-        );
+//        if (is_null($callback)) {
+//            return $this->duplicate(
+//                $this->items->filter()
+//            );
+//        }
+//
+//        return $this->duplicate(
+//            $this->items->filter($callback)
+//        );
     }
 
     /**
@@ -281,7 +303,9 @@ class Map implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function put($key, $value): Map
     {
-        $this[$key] = $value;
+        $this->hook(function ($value) use ($key): void {
+            $this->items->put($key, $value);
+        }, $value);
 
         return $this;
     }

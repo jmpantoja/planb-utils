@@ -18,5 +18,39 @@ namespace PlanB\DS1\Resolver\Input;
  */
 class FailedInput extends AbstractInput
 {
+    /**
+     * @var mixed
+     */
+    private $original;
 
+    /**
+     * FailedInput constructor.
+     *
+     * @param mixed $value
+     */
+    protected function __construct($value)
+    {
+        parent::__construct($value);
+        $this->original = $value;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginal()
+    {
+        return $this->original;
+    }
+
+    /**
+     * @param mixed $original
+     *
+     * @return \PlanB\DS1\Resolver\Input\FailedInput
+     */
+    public function setOriginal($original): FailedInput
+    {
+        $this->original = $original;
+
+        return $this;
+    }
 }

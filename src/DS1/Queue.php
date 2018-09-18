@@ -58,7 +58,9 @@ class Queue implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function push(...$values): Queue
     {
-        $this->items->push(...$values);
+        $this->hook(function (...$values): void {
+            $this->items->push(...$values);
+        }, ...$values);
 
         return $this;
     }

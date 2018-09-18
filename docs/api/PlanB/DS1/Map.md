@@ -105,6 +105,17 @@ Invoked when calling var_dump.
 ---
 
 
+### getIterator
+Retrieve an external iterator
+
+
+**Map::getIterator**() : [Traversable](../../Traversable.md)
+
+
+
+---
+
+
 ### make
 
 
@@ -119,16 +130,32 @@ static **Map::make**([iterable](../../iterable.md) $input = []) : [Collection](.
 ---
 
 
+### typed
+
+
+
+static **Map::typed**(string $type, [iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|[iterable](../../iterable.md) |$input |  |
+
+---
+
+
 ### __construct
 
 
 
-protected **Map::__construct**([iterable](../../iterable.md) $input = []) : 
+protected **Map::__construct**([iterable](../../iterable.md) $input = [], [Resolver](../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../iterable.md) |$input |  |
+|[Resolver](../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -161,13 +188,151 @@ protected **Map::duplicate**([iterable](../../iterable.md) $input = []) : [Colle
 ---
 
 
-### getIterator
-Retrieve an external iterator
+### bind
+Asocia un nuevo resolver
 
 
-**Map::getIterator**() : [Traversable](../../Traversable.md)
+**Map::bind**([Resolver](../../Resolver.md) $resolver) : [Collection](../../Collection.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../Resolver.md) |$resolver |  |
+
+---
+
+
+### addFilter
+Añade un filtro a la cola
+
+
+**Map::addFilter**(callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedFilter
+Añade un filtro para un tipo determinado
+
+
+**Map::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addConverter
+Añade un converter
+
+
+**Map::addConverter**(string $type, callable $converter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$converter |  |
+|int |$priority |  |
+
+---
+
+
+### addValidator
+Añade un validator
+
+
+**Map::addValidator**(callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedValidator
+Añade un validator para un tipo determinado
+
+
+**Map::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizer
+
+
+**Map::addNormalizer**(callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedNormalizer
+Añade un normalizer para un tipo determinado
+
+
+**Map::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### preventChangesOnFullyCollection
+
+
+
+protected **Map::preventChangesOnFullyCollection**() : 
+
+
+
+---
+
+
+### hook
+Resuelve los valores antes de ser añadidos desde algun método
+
+
+protected **Map::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
 
 ---
 

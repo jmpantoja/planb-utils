@@ -103,9 +103,11 @@ interface Sequence extends Collection
      * @param int   $index
      * @param mixed ...$values
      *
+     * @return \PlanB\DS1\Sequence
+     *
      * @throws \OutOfRangeException if the index is not in the range [0, n]
      */
-    public function insert(int $index, ...$values): void;
+    public function insert(int $index, ...$values): Sequence;
 
 
     /**

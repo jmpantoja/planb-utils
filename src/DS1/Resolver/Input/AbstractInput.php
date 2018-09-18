@@ -42,7 +42,7 @@ abstract class AbstractInput implements InputInterface
      *
      * @param mixed $value
      */
-    private function __construct($value)
+    protected function __construct($value)
     {
         $this->value = $value;
     }

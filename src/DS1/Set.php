@@ -57,7 +57,9 @@ class Set implements \IteratorAggregate, \ArrayAccess, Collection
     public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
-            $this->items[] = $value;
+            $this->hook(function ($value) use ($offset): void {
+                $this->items->add($value);
+            }, $value);
 
             return;
         }
@@ -74,9 +76,9 @@ class Set implements \IteratorAggregate, \ArrayAccess, Collection
      */
     public function add(...$values): Set
     {
-        foreach ($values as $value) {
-            $this[] = $value;
-        }
+        $this->hook(function (...$values): void {
+            $this->items->add(...$values);
+        }, ...$values);
 
         return $this;
     }

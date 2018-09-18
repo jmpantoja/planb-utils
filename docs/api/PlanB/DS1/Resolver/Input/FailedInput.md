@@ -31,8 +31,22 @@ static **FailedInput::make**(mixed $value) : [Input](../../../../Input.md)
 ---
 
 
-### getValue
+### __construct
+FailedInput constructor.
 
+
+protected **FailedInput::__construct**(mixed $value) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### getValue
+Devuelve el valor actual
 
 
 **FailedInput::getValue**() : mixed
@@ -43,7 +57,7 @@ static **FailedInput::make**(mixed $value) : [Input](../../../../Input.md)
 
 
 ### isTypeOf
-Indica si el valor es de uno de los tipos pasados
+
 
 
 **FailedInput::isTypeOf**(string $allowed) : bool
@@ -52,6 +66,31 @@ Indica si el valor es de uno de los tipos pasados
 |Parameters: | | |
 | --- | --- | --- |
 |string |$allowed |  |
+
+---
+
+
+### getOriginal
+
+
+
+**FailedInput::getOriginal**() : mixed
+
+
+
+---
+
+
+### setOriginal
+
+
+
+**FailedInput::setOriginal**(mixed $original) : [FailedInput](../../../../FailedInput.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$original |  |
 
 ---
 

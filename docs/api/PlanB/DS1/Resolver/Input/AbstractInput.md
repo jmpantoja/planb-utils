@@ -31,6 +31,20 @@ static **AbstractInput::make**(mixed $value) : [Input](../../../../Input.md)
 ---
 
 
+### __construct
+Input constructor.
+
+
+protected **AbstractInput::__construct**(mixed $value) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
 ### getValue
 Devuelve el valor actual
 

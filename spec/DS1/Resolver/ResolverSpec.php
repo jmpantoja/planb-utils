@@ -17,6 +17,7 @@ use PlanB\DS1\Resolver\Rule\Converter;
 use PlanB\DS1\Resolver\Rule\Exception\InvalidRuleReturnedType;
 use PlanB\DS1\Resolver\Rule\Filter;
 use PlanB\DS1\Resolver\Rule\Validator;
+use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Value\Value;
@@ -34,6 +35,19 @@ class ResolverSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType(Resolver::class);
+    }
+
+    public function it_can_make_a_non_typed_resolver()
+    {
+        $this->beConstructedThrough('make');
+
+        $this->getInnerType()->shouldReturn(null);
+    }
+
+    public function it_can_make_a_typed_resolver()
+    {
+        $this->beConstructedThrough('typed', [Type::STRING]);
+        $this->getInnerType()->shouldBeLike(DataType::create(Type::STRING));
     }
 
     public function it_ignore_a_value_when_filter_return_false()
@@ -119,7 +133,7 @@ class ResolverSpec extends ObjectBehavior
 
     public function it_return_a_failed_input_when_add_an_invalid_input_type()
     {
-        $this->beConstructedThrough('make', [Type::STRING]);
+        $this->beConstructedThrough('typed', [Type::STRING]);
 
         $this->resolve('cadena de texto')->shouldHaveType(Input::class);
         $this->resolve(9)->shouldHaveType(FailedInput::class);

@@ -21,12 +21,12 @@
 TypeAssertion named constructor.
 
 
-static **TypeValidator::make**(string $type) : [Validator](../../../../Validator.md)
+static **TypeValidator::make**([DataType](../../../../DataType.md) $type) : [Validator](../../../../Validator.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
+|[DataType](../../../../DataType.md) |$type |  |
 
 ---
 

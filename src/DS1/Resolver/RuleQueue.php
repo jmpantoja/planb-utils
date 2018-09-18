@@ -20,7 +20,7 @@ use PlanB\DS1\Resolver\Rule\Rule;
 /**
  * Cola con prioridad que almacena un conjunto de reglas del mismo tipo que tiene que cumplir un input en cada fase
  */
-class RuleQueue implements Resolvable
+class RuleQueue
 {
     /**
      * @var \Ds\PriorityQueue

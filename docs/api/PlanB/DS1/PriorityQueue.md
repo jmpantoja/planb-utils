@@ -1,11 +1,12 @@
 
                                                                                                                                             
     
-# Queue
+# PriorityQueue
 
 
-> A “first in, first out” or “FIFO” collection that only allows access to the
-value at the front of the queue and iterates in that order, destructively.
+> A PriorityQueue is very similar to a Queue. Values are pushed into the queue
+with an assigned priority, and the value with the highest priority will
+always be at the front of the queue.
 >
 > 
 
@@ -13,7 +14,6 @@ value at the front of the queue and iterates in that order, destructively.
 ## Traits
 - PlanB\DS1\Traits\TraitCollection
 - PlanB\DS1\Traits\TraitResolver
-- PlanB\DS1\Traits\TraitArray
 
 
 
@@ -28,7 +28,7 @@ value at the front of the queue and iterates in that order, destructively.
 Removes all values from the collection.
 
 
-**Queue::clear**() : [Collection](../../Collection.md)
+**PriorityQueue::clear**() : [Collection](../../Collection.md)
 
 
 
@@ -40,7 +40,7 @@ Returns whether the collection is empty.
 This should be equivalent to a count of zero, but is not required.
 Implementations should define what empty means in their own context.
 
-**Queue::isEmpty**() : bool
+**PriorityQueue::isEmpty**() : bool
 
 
 
@@ -51,7 +51,7 @@ Implementations should define what empty means in their own context.
 Returns the size of the collection.
 
 
-**Queue::count**() : int
+**PriorityQueue::count**() : int
 
 
 
@@ -63,7 +63,7 @@ Returns a representation that can be natively converted to JSON, which is
 called when invoking json_encode.
 
 
-**Queue::jsonSerialize**() : mixed[]
+**PriorityQueue::jsonSerialize**() : mixed[]
 
 
 
@@ -74,7 +74,7 @@ called when invoking json_encode.
 Creates a shallow copy of the collection.
 
 
-**Queue::copy**() : [Collection](../../Collection.md)
+**PriorityQueue::copy**() : [Collection](../../Collection.md)
 
 
 
@@ -87,7 +87,7 @@ The format of the returned array is implementation-dependent. Some
 implementations may throw an exception if an array representation
 could not be created (for example when object are used as keys).
 
-**Queue::toArray**() : mixed[]
+**PriorityQueue::toArray**() : mixed[]
 
 
 
@@ -98,7 +98,7 @@ could not be created (for example when object are used as keys).
 Invoked when calling var_dump.
 
 
-**Queue::__debugInfo**() : mixed[]
+**PriorityQueue::__debugInfo**() : mixed[]
 
 
 
@@ -109,7 +109,7 @@ Invoked when calling var_dump.
 Retrieve an external iterator
 
 
-**Queue::getIterator**() : [Traversable](../../Traversable.md)
+**PriorityQueue::getIterator**() : [Traversable](../../Traversable.md)
 
 
 
@@ -117,15 +117,12 @@ Retrieve an external iterator
 
 
 ### make
+PriorityQueue named constructor
 
 
+static **PriorityQueue::make**() : [Collection](../../Collection.md)
 
-static **Queue::make**([iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
 
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../iterable.md) |$input |  |
 
 ---
 
@@ -134,7 +131,7 @@ static **Queue::make**([iterable](../../iterable.md) $input = []) : [Collection]
 
 
 
-protected **Queue::__construct**([iterable](../../iterable.md) $input = []) : 
+protected **PriorityQueue::__construct**([iterable](../../iterable.md) $input = []) : 
 
 
 |Parameters: | | |
@@ -145,15 +142,12 @@ protected **Queue::__construct**([iterable](../../iterable.md) $input = []) :
 
 
 ### makeInternal
+Crea la estructura de datos interna
 
 
+protected **PriorityQueue::makeInternal**() : [Collection](../../Collection.md)
 
-protected **Queue::makeInternal**([iterable](../../iterable.md) $input) : 
 
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../iterable.md) |$input |  |
 
 ---
 
@@ -162,7 +156,7 @@ protected **Queue::makeInternal**([iterable](../../iterable.md) $input) :
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **Queue::duplicate**([iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
+protected **PriorityQueue::duplicate**([iterable](../../iterable.md) $input = []) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -176,7 +170,7 @@ protected **Queue::duplicate**([iterable](../../iterable.md) $input = []) : [Col
 Asocia un nuevo resolver
 
 
-**Queue::bind**([Resolver](../../Resolver.md) $resolver) : [Collection](../../Collection.md)
+**PriorityQueue::bind**([Resolver](../../Resolver.md) $resolver) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -190,7 +184,7 @@ Asocia un nuevo resolver
 Añade un filtro a la cola
 
 
-**Queue::addFilter**(callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addFilter**(callable $filter, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -205,7 +199,7 @@ Añade un filtro a la cola
 Añade un filtro para un tipo determinado
 
 
-**Queue::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -221,7 +215,7 @@ Añade un filtro para un tipo determinado
 Añade un converter
 
 
-**Queue::addConverter**(string $type, callable $converter, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addConverter**(string $type, callable $converter, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -237,7 +231,7 @@ Añade un converter
 Añade un validator
 
 
-**Queue::addValidator**(callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addValidator**(callable $validator, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -252,7 +246,7 @@ Añade un validator
 Añade un validator para un tipo determinado
 
 
-**Queue::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -268,7 +262,7 @@ Añade un validator para un tipo determinado
 Añade un normalizer
 
 
-**Queue::addNormalizer**(callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addNormalizer**(callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -283,7 +277,7 @@ Añade un normalizer
 Añade un normalizer para un tipo determinado
 
 
-**Queue::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+**PriorityQueue::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
 
 
 |Parameters: | | |
@@ -296,10 +290,10 @@ Añade un normalizer para un tipo determinado
 
 
 ### hook
+Resuelve los valores antes de ser añadidos desde algun método
 
 
-
-protected **Queue::hook**(callable $callback, mixed ...$values) : 
+protected **PriorityQueue::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -310,71 +304,11 @@ protected **Queue::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### offsetExists
-Whether a offset exists
-
-
-**Queue::offsetExists**(mixed $offset) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | An offset to check for. |
-
----
-
-
-### offsetGet
-Offset to retrieve
-
-
-**Queue::offsetGet**(mixed $offset) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to retrieve. |
-
----
-
-
-### offsetSet
-Offset to set
-
-
-**Queue::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
-### offsetUnset
-Offset to unset
-
-
-**Queue::offsetUnset**(mixed $offset) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to unset. |
-
----
-
-
 ### peek
-Returns the value at the front of the queue without removing it.
+Returns the value with the highest priority in the priority queue.
 
 
-**Queue::peek**() : mixed
+**PriorityQueue::peek**() : mixed
 
 
 
@@ -382,10 +316,10 @@ Returns the value at the front of the queue without removing it.
 
 
 ### pop
-Returns and removes the value at the front of the Queue.
+Returns and removes the value with the highest priority in the queue.
 
 
-**Queue::pop**() : mixed
+**PriorityQueue::pop**() : mixed
 
 
 
@@ -393,15 +327,16 @@ Returns and removes the value at the front of the Queue.
 
 
 ### push
-Pushes zero or more values into the front of the queue.
+Pushes a value into the queue, with a specified priority.
 
 
-**Queue::push**(mixed ...$values) : [Queue](../../Queue.md)
+**PriorityQueue::push**(mixed $value, int $priority = 0) : [PriorityQueue](../../PriorityQueue.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |...$values |  |
+|mixed |$value |  |
+|int |$priority |  |
 
 ---
 

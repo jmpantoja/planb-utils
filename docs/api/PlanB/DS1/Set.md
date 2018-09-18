@@ -104,6 +104,17 @@ Invoked when calling var_dump.
 ---
 
 
+### getIterator
+Retrieve an external iterator
+
+
+**Set::getIterator**() : [Traversable](../../Traversable.md)
+
+
+
+---
+
+
 ### make
 
 
@@ -160,13 +171,140 @@ protected **Set::duplicate**([iterable](../../iterable.md) $input = []) : [Colle
 ---
 
 
-### getIterator
-Retrieve an external iterator
+### bind
+Asocia un nuevo resolver
 
 
-**Set::getIterator**() : [Traversable](../../Traversable.md)
+**Set::bind**([Resolver](../../Resolver.md) $resolver) : [Collection](../../Collection.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../Resolver.md) |$resolver |  |
+
+---
+
+
+### addFilter
+Añade un filtro a la cola
+
+
+**Set::addFilter**(callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedFilter
+Añade un filtro para un tipo determinado
+
+
+**Set::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$filter |  |
+|int |$priority |  |
+
+---
+
+
+### addConverter
+Añade un converter
+
+
+**Set::addConverter**(string $type, callable $converter, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$converter |  |
+|int |$priority |  |
+
+---
+
+
+### addValidator
+Añade un validator
+
+
+**Set::addValidator**(callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedValidator
+Añade un validator para un tipo determinado
+
+
+**Set::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$validator |  |
+|int |$priority |  |
+
+---
+
+
+### addNormalizer
+Añade un normalizer
+
+
+**Set::addNormalizer**(callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### addTypedNormalizer
+Añade un normalizer para un tipo determinado
+
+
+**Set::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Collection](../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|callable |$normalizer |  |
+|int |$priority |  |
+
+---
+
+
+### hook
+
+
+
+protected **Set::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
 
 ---
 

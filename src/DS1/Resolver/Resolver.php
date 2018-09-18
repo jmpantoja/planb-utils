@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PlanB\DS1\Resolver;
 
 use Ds\Map;
+use PlanB\DS1\Resolver\Input\FailedInput;
 use PlanB\DS1\Resolver\Input\Input;
 use PlanB\DS1\Resolver\Input\InputInterface;
 use PlanB\DS1\Resolver\Rule\Converter;
@@ -20,6 +21,7 @@ use PlanB\DS1\Resolver\Rule\Normalizer;
 use PlanB\DS1\Resolver\Rule\Rule;
 use PlanB\DS1\Resolver\Rule\TypeValidator;
 use PlanB\DS1\Resolver\Rule\Validator;
+use PlanB\Type\DataType\DataType;
 
 /**
  * Procesa un valor antes de ser añadido a una colección
@@ -40,12 +42,46 @@ class Resolver
     private $mapOfRules;
 
     /**
+     * @var null|\PlanB\Type\DataType\DataType
+     */
+    private $innerType;
+
+    /**
+     * Resolver named constructor.
+     *
+     * @return \PlanB\DS1\Resolver\Resolver
+     */
+    public static function make(): Resolver
+    {
+        return new static();
+    }
+
+    /**
+     * Resolver named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS1\Resolver\Resolver
+     */
+    public static function typed(string $type): Resolver
+    {
+
+        $type = ensure_type($type)
+            ->isValid()
+            ->end();
+
+        return new static($type);
+    }
+
+    /**
      * Resolver constructor.
      *
-     * @param null|string $type
+     * @param null|\PlanB\Type\DataType\DataType $type
      */
-    protected function __construct(?string $type)
+    protected function __construct(?DataType $type = null)
     {
+        $this->innerType = $type;
+
         $this->mapOfRules = new Map();
         $this->mapOfRules[self::FILTERS] = RuleQueue::make();
         $this->mapOfRules[self::CONVERTERS] = RuleQueue::make();
@@ -60,15 +96,17 @@ class Resolver
     }
 
     /**
-     * Resolver named constructor.
+     * Devuelve el tipo del resolver
      *
-     * @param null|string $type
-     *
-     * @return \PlanB\DS1\Resolver\Resolver
+     * @return null|string
      */
-    public static function make(?string $type = null): Resolver
+    public function getInnerType(): ?string
     {
-        return new static($type);
+        if (is_null($this->innerType)) {
+            return null;
+        }
+
+        return $this->innerType->stringify();
     }
 
     /**
@@ -201,6 +239,10 @@ class Resolver
 
         foreach ($this->mapOfRules as $queue) {
             $input = $queue->resolve($input);
+        }
+
+        if ($input instanceof FailedInput) {
+            $input->setOriginal($value);
         }
 
         return $input;

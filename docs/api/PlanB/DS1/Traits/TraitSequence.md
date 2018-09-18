@@ -123,7 +123,7 @@ Inserts zero or more values at a given index.
 Each value after the index will be moved one position to the right.
 Values may be inserted at an index equal to the size of the sequence.
 
-**TraitSequence::insert**(int $index, mixed ...$values) : 
+**TraitSequence::insert**(int $index, mixed ...$values) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |

@@ -144,11 +144,18 @@ trait TraitSequence
      * @param int   $index
      * @param mixed ...$values
      *
+     * @return \PlanB\DS1\Sequence
+     *
      * @throws \OutOfRangeException if the index is not in the range [0, n]
      */
-    public function insert(int $index, ...$values): void
+    public function insert(int $index, ...$values): Sequence
     {
-        $this->items->insert($index, ...$values);
+
+        $this->hook(function (...$values) use ($index): void {
+            $this->items->insert($index, ...$values);
+        }, ...$values);
+
+        return $this;
     }
 
 
@@ -408,7 +415,9 @@ trait TraitSequence
      */
     public function unshift(...$values): Sequence
     {
-        $this->items->unshift(...$values);
+        $this->hook(function (...$values): void {
+            $this->items->unshift(...$values);
+        }, ...$values);
 
         return $this;
     }

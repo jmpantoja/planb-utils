@@ -13,14 +13,15 @@ declare(strict_types=1);
 
 namespace PlanB\DS1\Resolver\Rule;
 
+use PlanB\DS1\Exception\InvalidArgumentException;
+use PlanB\DS1\Resolver\Input\FailedInput;
 use PlanB\DS1\Resolver\Input\InputInterface;
-use PlanB\DS1\Resolver\Resolvable;
 
 /**
  * Regla que tiene que cumplir un valor antes de ser añadido
  * a una colección
  */
-abstract class Rule implements Resolvable
+abstract class Rule
 {
 
     /**
@@ -87,7 +88,12 @@ abstract class Rule implements Resolvable
      */
     public function resolve(InputInterface $input): InputInterface
     {
-        return $this->__invoke($input);
+        try {
+            return $this->__invoke($input);
+        } catch (\Throwable $throwable) {
+            $input = FailedInput::make($input->getValue());
+            throw InvalidArgumentException::make($input, $throwable);
+        }
     }
 
 

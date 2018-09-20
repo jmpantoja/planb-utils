@@ -33,7 +33,7 @@ class Value implements Stringifable
     ];
 
     /**
-     * Value constructor.
+     * Input constructor.
      *
      * @param mixed $variable
      */
@@ -244,7 +244,7 @@ class Value implements Stringifable
     /**
      * Devuelve el DataType
      *
-     * @return string
+     * @return \PlanB\Type\DataType\DataType
      */
     public function getType(): DataType
     {

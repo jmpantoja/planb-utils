@@ -36,13 +36,12 @@ static **Position::create**(int $width = 0, [Align](../../../../Align.md)|string
 Crea una nueva instancia a partir de una existente
 
 
-**Position::merge**(int $width = 0, null $align = null) : [Position](../../../../Position.md)
+**Position::merge**([Position](../../../../Position.md) $position) : [Position](../../../../Position.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|int |$width |  |
-|null |$align |  |
+|[Position](../../../../Position.md) |$position |  |
 
 ---
 

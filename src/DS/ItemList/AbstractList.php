@@ -385,7 +385,12 @@ abstract class AbstractList implements ListInterface
         return $this;
     }
 
-    public function __debugInfo()
+    /**
+     * Devuelve la informacion relevante para un debug
+     *
+     * @return array|mixed[]
+     */
+    public function __debugInfo(): array
     {
         return $this->items;
     }

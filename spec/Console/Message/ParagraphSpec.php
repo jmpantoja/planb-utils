@@ -50,58 +50,6 @@ linea B
           linea D          
 eof;
 
-    /**
-     * Override this method to provide your own inline matchers
-     *
-     * @link http://phpspec.net/cookbook/matchers.html Matchers cookbook
-     * @return array a list of inline matchers
-     */
-    public function getMatchers(): array
-    {
-        return [
-            'beText' => function ($subject, string $text) {
-                if (!($subject instanceof Text)) {
-                    throw new FailureException(
-                        sprintf(
-                            'the return value "%s" should be an instance of "%s"',
-                            $subject,
-                            Text::class
-                        )
-                    );
-                }
-
-                $lines = explode("\n", $subject);
-                $expected = explode("\n", $text);
-
-                if (count($lines) != count($expected)) {
-                    throw new FailureException(
-                        sprintf(
-                            'the return value "%s" should be have %s lines',
-                            $subject,
-                            count($expected)
-                        )
-                    );
-                }
-
-                foreach ($expected as $index => $line) {
-                    if ($line !== $lines[$index]) {
-                        dump($subject->stringify());
-                        throw new FailureException(
-                            sprintf(
-                                'the return value "%s" should be equals to "%s" at line %s',
-                                htmlentities($lines[$index]),
-                                htmlentities($line),
-                                $index
-                            )
-                        );
-                    }
-                }
-
-                return true;
-            }
-        ];
-    }
-
 
     public function let()
     {
@@ -136,7 +84,8 @@ eof;
             ->fgColor('green');
 
         $this->render()
-            ->shouldBeText(self::OUTPUT_ATTRIBUTES_MERGED);
+            ->stringify()
+            ->shouldReturn(self::OUTPUT_ATTRIBUTES_MERGED);
     }
 
     public function it_can_merge_style_padding()
@@ -154,7 +103,8 @@ eof;
             ->padding(1, 2);
 
         $this->render()
-            ->shouldBeText(self::OUTPUT_PADDING_MERGED);
+            ->stringify()
+            ->shouldReturn(self::OUTPUT_PADDING_MERGED);
     }
 
     public function it_can_merge_style_margin()
@@ -173,7 +123,8 @@ eof;
 
 
         $this->render()
-            ->shouldBeText(self::OUTPUT_MARGIN_MERGED);
+            ->stringify()
+            ->shouldReturn(self::OUTPUT_MARGIN_MERGED);
     }
 
     public function it_can_merge_style_position()
@@ -190,7 +141,8 @@ eof;
         $this->center();
 
         $this->render()
-            ->shouldBeText(self::OUTPUT_STYLE_MERGED);
+            ->stringify()
+            ->shouldReturn(self::OUTPUT_STYLE_MERGED);
 
     }
 }

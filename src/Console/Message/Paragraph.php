@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message;
 
-
 use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
@@ -22,10 +21,13 @@ use PlanB\DS\TypedList\AbstractTypedList;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 class Paragraph extends AbstractTypedList
 {
     /**
-     * @var Style
+     * @var \PlanB\Console\Message\Style\Style
      */
     private $style;
 
@@ -52,15 +54,17 @@ class Paragraph extends AbstractTypedList
 
         $this->addHydrator(Text::class, function (Text $text) {
             $line = Line::create($text);
+
             return LineWithStyle::create($line, $this->style->clone());
         });
-
     }
 
     /**
      * Paragraph named constructor.
-     * @param iterable $input
-     * @return Paragraph
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\Console\Message\Paragraph
      */
     public static function create(iterable $input): self
     {
@@ -69,7 +73,8 @@ class Paragraph extends AbstractTypedList
 
     /**
      * Paragraph constructor.
-     * @param Decorable[] $input
+     *
+     * @param \PlanB\Console\Message\Decorable[] $input
      */
     protected function __construct(iterable $input)
     {
@@ -91,12 +96,18 @@ class Paragraph extends AbstractTypedList
     {
         if ($paragraph instanceof Paragraph) {
             $this->addAll($paragraph->getLines());
+
             return $this;
         }
 
         return parent::add($paragraph);
     }
 
+    /**
+     * Devuelve una lista con todas las lineas que componen el párrafo
+     *
+     * @return \PlanB\DS\ItemList\ItemList|\PlanB\DS\ItemList\ListInterface
+     */
     public function getLines()
     {
         return $this->map(function (LineWithStyle $line) {
@@ -107,91 +118,99 @@ class Paragraph extends AbstractTypedList
     /**
      * Devuelve el texto con el estilo aplicado
      *
-     * @return Text
+     * @return \PlanB\Type\Text\Text
      */
-    public function render()
+    public function render(): Text
     {
         $width = $this->getWidth();
 
         return $this->map(function (LineWithStyle $line) use ($width) {
             $this->style->expandTo($width);
-            return $line->render($this->style);
 
+            return $line->render($this->style);
         })->concat("\n");
     }
 
     /**
      * Añade la opción blink al texto
      *
-     * @return Paragraph
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function blink(): self
     {
         $this->style->option(Option::BLINK);
+
         return $this;
     }
 
     /**
      * Añade la opción bold al texto
      *
-     * @return Paragraph
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function bold(): self
     {
         $this->style->option(Option::BOLD);
+
         return $this;
     }
 
     /**
      * Añade la opción underscore al texto
      *
-     * @return Paragraph
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function underscore(): self
     {
         $this->style->option(Option::UNDERSCORE);
+
         return $this;
     }
 
     /**
      * Añade la opción reverse al texto
      *
-     * @return Paragraph
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function reverse(): self
     {
         $this->style->option(Option::REVERSE);
+
         return $this;
     }
 
     /**
      * Añade color al texto
      *
-     * @param $color
-     * @return Paragraph
+     * @param  string|\PlanB\Console\Message\Color $color
+     *
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function fgColor($color): self
     {
         $this->style->foregroundColor($color);
+
         return $this;
     }
 
     /**
      * Añade color de fondo  al texto
      *
-     * @param $color
-     * @return Paragraph
+     * @param \PlanB\Console\Message\Color|string $color
+     *
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function bgColor($color): self
     {
         $this->style->backgroundColor($color);
+
         return $this;
     }
 
     /**
      * Asigna el padding
      *
-     * @param int $left
+     * @param int      $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Style\Style
@@ -199,13 +218,14 @@ class Paragraph extends AbstractTypedList
     public function padding(int $left = 0, ?int $right = null): self
     {
         $this->style->padding($left, $right);
+
         return $this;
     }
 
     /**
      * Asigna el margin
      *
-     * @param int $left
+     * @param int      $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Style\Style
@@ -217,33 +237,55 @@ class Paragraph extends AbstractTypedList
         return $this;
     }
 
+    /**
+     * Alinea el texto a la izquierda
+     *
+     * @return $this
+     */
     public function left()
     {
 
         $width = $this->getWidth();
         $this->style->expandTo($width, Align::LEFT());
+
         return $this;
     }
 
+    /**
+     * Devuelve el ancho final del párrafo
+     *
+     * @return int
+     */
     private function getWidth(): int
     {
-        return (int)$this->getLines()->max(function (LineWithStyle $line) {
+        return (int) $this->getLines()->max(function (LineWithStyle $line) {
                 return $line->getLength();
-            }) + $this->style->getSpacingLenght();
+        }) + $this->style->getSpacingLenght();
     }
 
+    /**
+     * Alinea el texto a la derecha
+     *
+     * @return $this
+     */
     public function right()
     {
         $width = $this->getWidth();
         $this->style->expandTo($width, Align::RIGHT());
+
         return $this;
     }
 
-
+    /**
+     * Alinea el texto al centro
+     *
+     * @return $this
+     */
     public function center()
     {
         $width = $this->getWidth();
         $this->style->expandTo($width, Align::CENTER());
+
         return $this;
     }
 }

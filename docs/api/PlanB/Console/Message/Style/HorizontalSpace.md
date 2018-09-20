@@ -54,6 +54,31 @@ Devuelve el espaciado a la derecha
 ---
 
 
+### merge
+Devuelve el resultado de mezclar este objeto con otro
+
+
+**HorizontalSpace::merge**([HorizontalSpace](../../../../HorizontalSpace.md) $space) : [HorizontalSpace](../../../../HorizontalSpace.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[HorizontalSpace](../../../../HorizontalSpace.md) |$space |  |
+
+---
+
+
+### lenght
+Devuelve la longitud total
+
+
+**HorizontalSpace::lenght**() : int
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

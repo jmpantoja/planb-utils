@@ -33,11 +33,13 @@ final class Align extends Enum
         if ($this->is(self::DEFAULT())) {
             return self::LEFT;
         }
+
         return $this->getValue();
     }
 
     /**
      * Indica si es el valor por defecto
+     *
      * @return bool
      */
     public function isDefault(): bool

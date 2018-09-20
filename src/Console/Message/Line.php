@@ -22,14 +22,18 @@ use PlanB\Type\Text\Text;
  */
 class Line extends Text
 {
-
+    /**
+     * Line named constructor.
+     *
+     * @return \PlanB\Console\Message\Line
+     */
     public static function blank(): self
     {
         return new static(Text::EMPTY_TEXT);
     }
 
     /**
-     * Text constructor.
+     * Line constructor.
      *
      * @param string $text
      */
@@ -58,6 +62,13 @@ class Line extends Text
         return $this->getLength() - $this->getContentLength();
     }
 
+    /**
+     * Aplica un estilo a esta linea, mezclando el estilo dado, con el que puede aparecer en tags ya existentes
+     *
+     * @param \PlanB\Console\Message\Style\Style $style
+     *
+     * @return \PlanB\Console\Message\Line
+     */
     public function apply(Style $style): self
     {
 
@@ -70,6 +81,5 @@ class Line extends Text
 
             return sprintf('<%s>%s</>', $tags, $content);
         });
-
     }
 }

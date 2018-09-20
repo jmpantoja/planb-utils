@@ -26,12 +26,12 @@
 
 
 
-**OptionList::add**(mixed $value) : [ListInterface](../../../../ListInterface.md)
+**OptionList::add**(mixed $paragraph) : [ListInterface](../../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$value |  |
+|mixed |$paragraph |  |
 
 ---
 
@@ -212,7 +212,7 @@ protected **OptionList::customize**() : void
 
 
 ### count
-Devuelve el número total de elementos
+
 
 
 **OptionList::count**() : int
@@ -223,7 +223,7 @@ Devuelve el número total de elementos
 
 
 ### isEmpty
-Indica si la lista está vacia
+
 
 
 **OptionList::isEmpty**() : bool
@@ -234,7 +234,7 @@ Indica si la lista está vacia
 
 
 ### each
-Ejecuta una acción para cada elemento de la lista
+
 
 
 **OptionList::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../../ItemList.md)
@@ -249,8 +249,8 @@ Ejecuta una acción para cada elemento de la lista
 
 
 ### map
-Devuelve el resultado de aplicar una acción a cada elemento de la lista
-La lista original permanece inmutable
+
+
 
 **OptionList::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../../ItemList.md)
 
@@ -264,7 +264,7 @@ La lista original permanece inmutable
 
 
 ### filter
-Devuelve una lista con los elementos que cumplen un criterio
+
 
 
 **OptionList::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../../ItemList.md)
@@ -279,8 +279,7 @@ Devuelve una lista con los elementos que cumplen un criterio
 
 
 ### search
-Devuelve el primer elemento que cumpla con el criterio,
-o nulo si no encuentra ninguno
+
 
 
 **OptionList::search**(callable $callable, mixed ...$userdata) : mixed|null
@@ -295,8 +294,7 @@ o nulo si no encuentra ninguno
 
 
 ### find
-Devuelve el primer elemento que cumpla con el criterio,
-o lanza una excepción si no encuentra ninguno
+
 
 
 **OptionList::find**(callable $callable, mixed ...$userdata) : mixed
@@ -311,7 +309,7 @@ o lanza una excepción si no encuentra ninguno
 
 
 ### reduce
-Reduce una lista, a un unico valor
+
 
 
 **OptionList::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
@@ -463,6 +461,17 @@ Añade un normalizador de clave
 ---
 
 
+### __debugInfo
+Devuelve la informacion relevante para un debug
+
+
+**OptionList::__debugInfo**() : array|mixed[]
+
+
+
+---
+
+
 ### max
 Devuelve el valor máximo
 El valor a comparar se calcula con un callback
@@ -554,6 +563,20 @@ Concatena los textos
 ---
 
 
+### addIfIsValid
+Añade una nueva option solo si es valida
+
+
+**OptionList::addIfIsValid**(string $option) : [OptionList](../../../../OptionList.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$option |  |
+
+---
+
+
 ### toAttributeFormat
 Convierte la lista al formato de atributo
 
@@ -564,6 +587,20 @@ Convierte la lista al formato de atributo
 |Parameters: | | |
 | --- | --- | --- |
 |string |$key |  |
+
+---
+
+
+### merge
+Devuelve el resultado de mezclar este objeto con otro
+
+
+**OptionList::merge**([OptionList](../../../../OptionList.md) $optionList) : [OptionList](../../../../OptionList.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[OptionList](../../../../OptionList.md) |$optionList |  |
 
 ---
 

@@ -74,7 +74,6 @@ class ValueAssurance extends Assurance implements Stringifable
         return $this->end()->stringify();
     }
 
-
     /**
      * Devuelve el nombre del tipo, decorado
      *

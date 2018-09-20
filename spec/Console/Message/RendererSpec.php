@@ -145,8 +145,6 @@ class RendererSpec extends ObjectBehavior
         $this->render($text, $style)
             ->stringify()
             ->shouldReturn(self::OUTPUT_WITH_TAGS);
-
-        dump('FALTA SOBREESCRIBIR LOS TAGS INTERIORES');
     }
 
     public function it_can_apply_a_complete_style()

@@ -1,0 +1,24 @@
+COSAS QUE FALTAN:
+
+X crear todos los builders
+
+- método Collection::configure (Resolver $resolver)
+  para modificar el resolver cuando se extiende una clase
+
+x comprobar que los valores devueltos por los normalizers son del tipo correcto
+
+- pasar de DS a DS1
+
+- Rename: PlanB/Type/Value  => PlanB/Type/Data
+
+- Rename: create  => make
+
+
+
+- Vector
+- Deque
+- Stack
+- Queue
+- PriorityQueue
+- Map
+- Set

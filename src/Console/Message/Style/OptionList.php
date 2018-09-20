@@ -45,7 +45,8 @@ class OptionList extends TextList
      * Añade una nueva option solo si es valida
      *
      * @param string $option
-     * @return OptionList
+     *
+     * @return \PlanB\Console\Message\Style\OptionList
      */
     public function addIfIsValid(string $option): self
     {
@@ -72,11 +73,18 @@ class OptionList extends TextList
         return Text::format('%s=%s', $key, $this->concat(','));
     }
 
+    /**
+     * Devuelve el resultado de mezclar este objeto con otro
+     *
+     * @param \PlanB\Console\Message\Style\OptionList $optionList
+     *
+     * @return \PlanB\Console\Message\Style\OptionList
+     */
     public function merge(OptionList $optionList): self
     {
         $instance = clone $optionList;
 
-        $this->each(function (Text $option) use ($instance) {
+        $this->each(function (Text $option) use ($instance): void {
             $instance->add($option);
         });
 

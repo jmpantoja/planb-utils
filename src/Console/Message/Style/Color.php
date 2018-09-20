@@ -47,19 +47,23 @@ final class Color extends Enum
 
     /**
      * Devuelve el segundo color si el primero es default
-     * @param Color $first
-     * @param Color $second
-     * @return Color
+     *
+     * @param \PlanB\Console\Message\Style\Color $color
+     *
+     * @return \PlanB\Console\Message\Style\Color
      */
     public function merge(Color $color): Color
     {
         if ($this->isDefault()) {
             return $color;
         }
+
         return $this;
     }
 
     /**
+     * Indica si es el color por defecto
+     *
      * @return bool
      */
     protected function isDefault(): bool

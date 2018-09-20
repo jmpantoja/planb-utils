@@ -45,7 +45,7 @@ class Renderer
             PaddingDecorator::create(),
             AlignDecorator::create(),
             TagDecorator::create(),
-            MarginDecorator::create()
+            MarginDecorator::create(),
         ]);
     }
 

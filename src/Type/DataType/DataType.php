@@ -13,6 +13,7 @@ namespace PlanB\Type\DataType;
 
 use PlanB\DS\ItemList\ItemList;
 use PlanB\Type\Stringifable;
+use PlanB\Type\Value\Value;
 use PlanB\Utils\Traits\Stringify;
 
 /**
@@ -184,6 +185,18 @@ class DataType implements Stringifable
     public function isValid(): bool
     {
         return $this->isNative() || $this->isTrait() || $this->isInterface() || $this->isClass();
+    }
+
+    /**
+     * Indica si el valor pasado es de este tipo
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isTheTypeOf($value): bool
+    {
+        return Value::create($value)->isTypeOf($this->stringify());
     }
 
     /**

@@ -41,6 +41,31 @@ Devuelve el valor con formato de attributo
 ---
 
 
+### merge
+Devuelve el segundo color si el primero es default
+
+
+**Color::merge**([Color](../../../../Color.md) $color) : [Color](../../../../Color.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Color](../../../../Color.md) |$color |  |
+
+---
+
+
+### isDefault
+Indica si es el color por defecto
+
+
+protected **Color::isDefault**() : bool
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

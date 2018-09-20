@@ -41,7 +41,7 @@
         "symfony/var-dumper": "^4.1"
     },
     "require": {
-        "ext-ds": "^1.1",
+        "ext-ds": "^1.2",
         "marc-mabe/php-enum": "^3.0",
         "opis/closure": "^3.0",
         "php-ds/php-ds": "^1.2",

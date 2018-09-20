@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message;
 
-
 use PlanB\Console\Message\Style\Style;
 
 /**
@@ -22,38 +21,38 @@ use PlanB\Console\Message\Style\Style;
 class LineWithStyle
 {
     /**
-     * @var Style
+     * @var \PlanB\Console\Message\Style\Style
      */
     public $style;
 
     /**
-     * @var Line
+     * @var \PlanB\Console\Message\Line
      */
     private $line;
 
     /**
-     * @var Renderer
+     * @var \PlanB\Console\Message\Renderer
      */
     private $renderer;
 
     /**
      * LineWithStyle named constructor.
      *
-     * @param Line $line
-     * @param Style $style
-     * @return LineWithStyle
+     * @param \PlanB\Console\Message\Line        $line
+     * @param \PlanB\Console\Message\Style\Style $style
+     *
+     * @return \PlanB\Console\Message\LineWithStyle
      */
-    public static function create(Line $line, Style $style)
+    public static function create(Line $line, Style $style): LineWithStyle
     {
         return new static($line, $style);
-
     }
 
     /**
      * LineWithStyle constructor.
      *
-     * @param Line $line
-     * @param Style $style
+     * @param \PlanB\Console\Message\Line        $line
+     * @param \PlanB\Console\Message\Style\Style $style
      */
     protected function __construct(Line $line, Style $style)
     {
@@ -62,24 +61,39 @@ class LineWithStyle
         $this->renderer = Renderer::create();
     }
 
+    /**
+     * Aplica un estilo
+     *
+     * @param \PlanB\Console\Message\Style\Style $style
+     *
+     * @return $this
+     */
     public function apply(Style $style)
     {
         $this->style = $this->style->merge($style);
+
         return $this;
     }
 
     /**
      * Devuelve el texto con el estilo aplicado
      *
-     * @param Style $style
+     * @param \PlanB\Console\Message\Style\Style $style
+     *
      * @return \PlanB\Type\Text\Text
      */
-    public function render(Style $style)
+    public function render(Style $style): \PlanB\Type\Text\Text
     {
         $style = $this->style->merge($style);
+
         return $this->renderer->render($this->line, $style);
     }
 
+    /**
+     * Develve la longitud total, incluyendo el margin y el padding
+     *
+     * @return int
+     */
     public function getLength(): int
     {
         return $this->line->getLength() + $this->style->getSpacingLenght();

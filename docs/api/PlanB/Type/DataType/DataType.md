@@ -193,6 +193,20 @@ Indica si es un nombre de tipo nativo, de clase, de rasgo o de interfaz
 ---
 
 
+### isTheTypeOf
+Indica si el valor pasado es de este tipo
+
+
+**DataType::isTheTypeOf**(mixed $value) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

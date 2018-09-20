@@ -242,4 +242,12 @@ class DataTypeSpec extends ObjectBehavior
         $this->shouldVerifyTrait(Accessors::class);
         $this->__toString()->shouldReturn(Accessors::class);
     }
+
+    public function it_can_determine_if_is_the_type_of_a_value()
+    {
+        $this->beConstructedThrough('create', [Type::STRING]);
+
+        $this->isTheTypeOf('cadena de texto')->shouldReturn(true);
+        $this->isTheTypeOf(154564)->shouldReturn(false);
+    }
 }

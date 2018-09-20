@@ -24,12 +24,12 @@
 
 
 
-**Accessors::add**(mixed $value) : [ListInterface](../../../../ListInterface.md)
+**Accessors::add**(mixed $paragraph) : [ListInterface](../../../../ListInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$value |  |
+|mixed |$paragraph |  |
 
 ---
 

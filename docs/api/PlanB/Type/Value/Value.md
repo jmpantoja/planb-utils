@@ -44,7 +44,7 @@ Devuelve la cadena de texto
 
 
 ### __construct
-Value constructor.
+Input constructor.
 
 
 protected **Value::__construct**(mixed $variable) : 
@@ -246,7 +246,7 @@ Comprueba si la variable es de un tipo (o subtipo) de los permitidos
 Devuelve el DataType
 
 
-**Value::getType**() : string
+**Value::getType**() : [DataType](../../../DataType.md)
 
 
 

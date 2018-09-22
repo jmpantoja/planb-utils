@@ -5,6 +5,10 @@ namespace spec\PlanB\Type\Text;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
 use PlanB\DS\ItemList\ListInterface;
+use PlanB\DS1\Exception\InvalidArgumentException;
+use PlanB\DS1\Resolver\Resolver;
+use PlanB\DS1\Vector;
+use PlanB\Type\DataType\DataType;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextList;
 
@@ -40,66 +44,69 @@ class TextListSpec extends ObjectBehavior
 
     public function it_is_list()
     {
-        $this->shouldHaveType(ListInterface::class);
+        $this->shouldHaveType(Vector::class);
     }
 
     public function it_has_inner_type_text()
     {
-        $this->getInnerType()->shouldReturn(Text::class);
+        $this->getInnerType()->shouldBeLike(DataType::create(Text::class));
     }
 
     public function it_can_add_values()
     {
-        $this->set(self::KEY, self::ENTRY);
+        $this->push(self::ENTRY);
 
-        $this->get(self::KEY)->shouldHaveType(Text::class);
-        $this->get(self::KEY)->stringify()->shouldReturn(self::VALUE);
+        $this->get(0)->shouldHaveType(Text::class);
+        $this->get(0)->stringify()->shouldReturn(self::VALUE);
     }
 
     public function it_cannt_add_invald_values(\stdClass $noScalar)
     {
-        $this->shouldThrow(InvalidItemException::class)->duringAdd($noScalar);
+        $this->shouldThrow(InvalidArgumentException::class)->duringPush($noScalar);
     }
 
     public function it_can_add_validator()
     {
-        $this->addValidator(function ($entry) {
-            return !Text::create($entry)->isBlank();
-        });
+        $resolver = Resolver::make()
+            ->addValidator(function (Text $text) {
+                return !$text->isBlank();
+            });
 
-        $this->set(self::KEY, self::ENTRY);
+        $this->beConstructedThrough('make', [[], $resolver]);
 
-        $this->get(self::KEY)->shouldHaveType(Text::class);
-        $this->get(self::KEY)->stringify()->shouldReturn(self::VALUE);
+        $this->push(self::ENTRY);
 
-        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::BLANK_TEXT);
+        $this->get(0)->shouldHaveType(Text::class);
+        $this->get(0)->stringify()->shouldReturn(self::VALUE);
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringPush(self::BLANK_TEXT);
 
     }
 
-    public function it_can_disallow_blank_text()
-    {
-        $this->disallowBlank();
-
-        $this->set(self::KEY, self::ENTRY);
-        $this->get(self::KEY)->stringify()->shouldReturn(self::VALUE);
-
-        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::BLANK_TEXT);
-    }
-
-    public function it_can_disallow_empty_text()
-    {
-        $this->disallowEmpty();
-
-        $this->set(self::KEY, self::ENTRY);
-        $this->get(self::KEY)->stringify()->shouldReturn(self::VALUE);
-
-        $this->set(self::KEY2, self::BLANK_TEXT);
-        $this->get(self::KEY2)->stringify()->shouldReturn(self::BLANK_TEXT);
-
-        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::NULL_TEXT);
-        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::EMPTY_TEXT);
-    }
-
+//    public function it_can_disallow_blank_text()
+//    {
+//        $this->disallowBlank();
+//
+//        $this->push(self::ENTRY);
+//        $this->get(0)->stringify()->shouldReturn(self::VALUE);
+//
+//        $this->shouldThrow(InvalidArgumentException::class)->duringPush(self::BLANK_TEXT);
+//    }
+//
+//    public function it_can_disallow_empty_text()
+//    {
+//        $this->disallowEmpty();
+//
+//        $this->push(self::ENTRY);
+//        $this->get(0)->stringify()->shouldReturn(self::VALUE);
+//
+//        $this->set(self::BLANK_TEXT);
+//        $this->get(1)->stringify()->shouldReturn(self::BLANK_TEXT);
+//
+//        $this->shouldThrow(InvalidArgumentException::class)->duringPush(self::NULL_TEXT);
+//        $this->shouldThrow(InvalidArgumentException::class)->duringPush(self::EMPTY_TEXT);
+//    }
+//
     public function it_can_concat_its_items()
     {
         $this->beConstructedThrough('create', [self::PIECES]);
@@ -113,7 +120,7 @@ class TextListSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('create', [self::PIECES]);
 
-        $this->toArray()
+        $this->toArrayOfStrings()
             ->shouldIterateAs(self::PIECES);
     }
 }

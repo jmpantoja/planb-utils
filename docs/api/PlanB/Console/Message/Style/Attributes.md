@@ -82,11 +82,11 @@ protected **Attributes::__construct**([Color](../../../../Color.md) $fgColor, [C
 ---
 
 
-### merge
+### blend
 Devuelve el resultado de mezclar este objeto con otro
 
 
-**Attributes::merge**([Attributes](../../../../Attributes.md) $attributes) : [Attributes](../../../../Attributes.md)
+**Attributes::blend**([Attributes](../../../../Attributes.md) $attributes) : [Attributes](../../../../Attributes.md)
 
 
 |Parameters: | | |
@@ -150,7 +150,7 @@ Devuelve el color de fondo
 Devuelve la lista de opciones
 
 
-**Attributes::getOptions**() : [TypedList](../../../../TypedList.md)
+**Attributes::getOptions**() : [OptionList](../../../../OptionList.md)
 
 
 

@@ -248,8 +248,6 @@ class Resolver
 
         $input = Input::make($value);
         $type = $this->getType();
-        ;
-
 
         foreach ($this->mapOfRules as $queue) {
             $queue->setInnerType($type);

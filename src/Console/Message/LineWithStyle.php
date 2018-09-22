@@ -70,7 +70,7 @@ class LineWithStyle
      */
     public function apply(Style $style)
     {
-        $this->style = $this->style->merge($style);
+        $this->style = $this->style->blend($style);
 
         return $this;
     }
@@ -84,7 +84,7 @@ class LineWithStyle
      */
     public function render(Style $style): \PlanB\Type\Text\Text
     {
-        $style = $this->style->merge($style);
+        $style = $this->style->blend($style);
 
         return $this->renderer->render($this->line, $style);
     }

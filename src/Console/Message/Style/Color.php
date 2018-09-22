@@ -52,7 +52,7 @@ final class Color extends Enum
      *
      * @return \PlanB\Console\Message\Style\Color
      */
-    public function merge(Color $color): Color
+    public function blend(Color $color): Color
     {
         if ($this->isDefault()) {
             return $color;

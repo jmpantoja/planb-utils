@@ -6,6 +6,8 @@ use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\OptionList;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\ItemList\Exception\InvalidItemException;
+use PlanB\DS1\Exception\InvalidArgumentException;
+use PlanB\DS1\Set;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextList;
 use Prophecy\Argument;
@@ -19,7 +21,7 @@ class OptionListSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -29,13 +31,13 @@ class OptionListSpec extends ObjectBehavior
 
     public function it_is_text_list()
     {
-        $this->shouldHaveType(TextList::class);
+        $this->shouldHaveType(Set::class);
     }
 
     public function it_can_append_a_option()
     {
         $this->add(Option::BOLD());
-        $this->get('bold')->stringify()->shouldReturn('bold');
+        $this->get(0)->shouldReturn('bold');
     }
 
     public function it_can_ignore_a_invalid_option(){
@@ -50,12 +52,12 @@ class OptionListSpec extends ObjectBehavior
     public function it_can_append_a_string()
     {
         $this->add(Option::BOLD);
-        $this->get('bold')->stringify()->shouldReturn('bold');
+        $this->get(0)->shouldReturn('bold');
     }
 
     public function it_throws_an_exception_when_append_an_invalid_string()
     {
-        $this->shouldThrow(InvalidItemException::class)->duringAdd(self::FAKE_OPTION);
+        $this->shouldThrow(InvalidArgumentException::class)->duringAdd(self::FAKE_OPTION);
     }
 
     public function it_can_retrieve_the_attribute_format_by_default()
@@ -84,7 +86,7 @@ class OptionListSpec extends ObjectBehavior
 
     public function it_can_be_mergered()
     {
-        $list = OptionList::create();
+        $list = OptionList::make();
         $list->add(Option::REVERSE());
 
         $this->add(Option::BOLD());
@@ -92,12 +94,12 @@ class OptionListSpec extends ObjectBehavior
 
         $merged = $this->merge($list);
 
-        $merged->toAttributeFormat(self::KEY)->stringify()->shouldReturn('options=reverse,bold,underscore');
+        $merged->toAttributeFormat(self::KEY)->stringify()->shouldReturn('options=bold,underscore,reverse');
     }
 
     public function it_can_be_mergered_with_empty_list()
     {
-        $list = OptionList::create();
+        $list = OptionList::make();
 
         $this->add(Option::BOLD());
         $this->add(Option::UNDERSCORE);

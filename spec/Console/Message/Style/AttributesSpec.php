@@ -81,7 +81,7 @@ class AttributesSpec extends ObjectBehavior
         $attributes = $this->getAttributesToMerge();
 
         $this->setForegroundColor(Color::RED());
-        $this->merge($attributes)
+        $this->blend($attributes)
             ->stringify()->shouldReturn('fg=red;bg=white;options=bold');
     }
 
@@ -91,7 +91,7 @@ class AttributesSpec extends ObjectBehavior
 
         $this->setBackgroundColor(Color::RED());
 
-        $this->merge($attributes)
+        $this->blend($attributes)
             ->stringify()->shouldReturn('fg=green;bg=red;options=bold');
     }
 
@@ -102,7 +102,7 @@ class AttributesSpec extends ObjectBehavior
 
         $this->addOption(Option::REVERSE());
 
-        $this->merge($attributes)
+        $this->blend($attributes)
             ->stringify()->shouldReturn('fg=green;bg=white;options=bold,reverse');
     }
 

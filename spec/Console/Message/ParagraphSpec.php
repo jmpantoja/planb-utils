@@ -76,11 +76,10 @@ eof;
             Message::line("linea A\nlinea B")->fgColor(Color::RED()),
             Message::line("linea C")->bgColor(Color::GREEN()),
             Message::line("linea D")->underscore()->blink(),
-
         ]]);
 
         $this->bold()
-            ->reverse()
+            ->inverse()
             ->fgColor('green');
 
         $this->render()

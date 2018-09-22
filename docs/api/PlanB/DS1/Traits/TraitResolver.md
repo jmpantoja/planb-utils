@@ -33,6 +33,20 @@ protected **TraitResolver::__construct**([Resolver](../../../Resolver.md) $resol
 ---
 
 
+### configure
+Configura esta colección
+
+
+**TraitResolver::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### getInnerType
 Devuelve el tipo de la colección
 

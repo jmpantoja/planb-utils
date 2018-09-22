@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
+use Ds\Hashable;
 use PlanB\Type\Stringifable;
 use PlanB\Utils\Traits\Stringify;
 
@@ -18,8 +19,9 @@ use PlanB\Utils\Traits\Stringify;
  * Representa una cadena de texto
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
-class Text implements Stringifable
+class Text implements Stringifable, Hashable
 {
 
     use Stringify;
@@ -201,7 +203,7 @@ class Text implements Stringifable
     {
 
         return $this->split('/[_\s\W]+/')
-            ->reduce(function (Text $piece, Text $carry) {
+            ->reduce(function (Text $carry, Text $piece) {
                 return $carry->append($piece->toUpperFirst()->stringify());
             }, self::create())
             ->toLowerFirst();
@@ -359,5 +361,34 @@ class Text implements Stringifable
     public function stripTags(?string $allowableTags = null): Text
     {
         return new static(strip_tags($this->text, $allowableTags));
+    }
+
+    /**
+     * Produces a scalar value to be used as the object's hash, which determines
+     * where it goes in the hash table. While this value does not have to be
+     * unique, objects which are equal must have the same hash value.
+     *
+     * @return mixed
+     */
+    public function hash()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Determines if two objects should be considered equal. Both objects will
+     * be instances of the same class but may not be the same instance.
+     *
+     * @param mixed $text An instance of the same class to compare to.
+     *
+     * @return bool
+     */
+    public function equals($text): bool
+    {
+        if (!($text instanceof Text)) {
+            return false;
+        }
+
+        return $this->text === $text->text;
     }
 }

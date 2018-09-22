@@ -13,7 +13,7 @@ namespace PlanB\Console\Message\Style;
 
 use PlanB\Type\Stringifable;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Text\TextList;
+use PlanB\Type\Text\TextListBuilder;
 use PlanB\Utils\Traits\Stringify;
 
 /**
@@ -48,7 +48,7 @@ class Attributes implements Stringifable
     {
         $fgColor = Color::DEFAULT();
         $bgColor = Color::DEFAULT();
-        $options = OptionList::create();
+        $options = OptionList::make();
 
         return new static($fgColor, $bgColor, $options);
     }
@@ -93,11 +93,11 @@ class Attributes implements Stringifable
      *
      * @return \PlanB\Console\Message\Style\Attributes
      */
-    public function merge(Attributes $attributes): Attributes
+    public function blend(Attributes $attributes): Attributes
     {
-        $fgColor = $this->fgColor->merge($attributes->getForegroundColor());
-        $bgColor = $this->bgColor->merge($attributes->getBackgroundColor());
-        $options = $this->options->merge($attributes->getOptions());
+        $fgColor = $this->fgColor->blend($attributes->getForegroundColor());
+        $bgColor = $this->bgColor->blend($attributes->getBackgroundColor());
+        $options = $this->options->blend($attributes->getOptions());
 
         return new static($fgColor, $bgColor, $options);
     }
@@ -155,9 +155,9 @@ class Attributes implements Stringifable
     /**
      * Devuelve la lista de opciones
      *
-     * @return \PlanB\DS\TypedList\TypedList
+     * @return \PlanB\Console\Message\Style\OptionList
      */
-    public function getOptions(): TextList
+    public function getOptions(): OptionList
     {
         return $this->options;
     }
@@ -200,14 +200,16 @@ class Attributes implements Stringifable
             return Text::EMPTY_TEXT;
         }
 
-        $pieces = TextList::create()
-            ->silentExceptions()
-            ->disallowBlank()
-            ->setAll([
+        $pieces = TextListBuilder::make()
+            ->addTypedFilter(Text::class, function (Text $text) {
+                return !$text->isBlank();
+            })
+            ->values([
                 $this->fgColor->toAttributeFormat('fg'),
                 $this->bgColor->toAttributeFormat('bg'),
                 $this->options->toAttributeFormat('options'),
-            ]);
+            ])
+            ->build();
 
         return $pieces->concat(';')->stringify();
     }

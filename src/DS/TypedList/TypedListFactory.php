@@ -61,7 +61,7 @@ class TypedListFactory
     public static function fromTypeObject(DataType $typeName): TypedListInterface
     {
         if ($typeName->isClassOf(Text::class)) {
-            return TextList::create();
+            return TextList::make();
         }
 
         return TypedList::create($typeName->stringify());

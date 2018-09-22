@@ -115,7 +115,7 @@ class HorizontalSpace
      *
      * @return \PlanB\Console\Message\Style\HorizontalSpace
      */
-    public function merge(HorizontalSpace $space): HorizontalSpace
+    public function blend(HorizontalSpace $space): HorizontalSpace
     {
         return self::create(
             $this->left + $space->left,

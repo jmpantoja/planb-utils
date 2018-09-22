@@ -55,7 +55,7 @@ class PositionSpec extends ObjectBehavior
         $position->getAlign()->willReturn(Align::LEFT());
         $position->getWidth()->willReturn(self::WIDTH);
 
-        $merged = $this->merge($position);
+        $merged = $this->blend($position);
 
         $this->getWidth()->shouldReturn(0);
         $merged->getWidth()->shouldReturn(self::WIDTH);
@@ -67,7 +67,7 @@ class PositionSpec extends ObjectBehavior
         $position->getAlign()->willReturn(Align::CENTER());
         $position->getWidth()->willReturn(self::WIDTH);
 
-        $merged = $this->merge($position);
+        $merged = $this->blend($position);
 
         $this->getAlign()->shouldReturn(Align::DEFAULT());
         $merged->getAlign()->shouldReturn(Align::CENTER());

@@ -100,6 +100,7 @@
 * [PlanB\Type\Text\Text](PlanB/Type/Text/Text.md)
 * [PlanB\Type\Text\TextAssurance](PlanB/Type/Text/TextAssurance.md)
 * [PlanB\Type\Text\TextList](PlanB/Type/Text/TextList.md)
+* [PlanB\Type\Text\TextListBuilder](PlanB/Type/Text/TextListBuilder.md)
 * [PlanB\Type\Value\Value](PlanB/Type/Value/Value.md)
 * [PlanB\Type\Value\ValueAssurance](PlanB/Type/Value/ValueAssurance.md)
 * [PlanB\Utils\Hydrator\GetSetHydrator](PlanB/Utils/Hydrator/GetSetHydrator.md)

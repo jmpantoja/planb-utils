@@ -77,12 +77,12 @@ class Style
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function merge(Style $style): self
+    public function blend(Style $style): self
     {
-        $padding = $this->padding->merge($style->padding);
-        $margin = $this->margin->merge($style->margin);
-        $position = $this->position->merge($style->position);
-        $attributes = $this->attributes->merge($style->attributes);
+        $padding = $this->padding->blend($style->padding);
+        $margin = $this->margin->blend($style->margin);
+        $position = $this->position->blend($style->position);
+        $attributes = $this->attributes->blend($style->attributes);
 
         return new static(
             $padding,

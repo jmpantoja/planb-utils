@@ -47,11 +47,11 @@ protected **Style::__construct**([HorizontalSpace](../../../../HorizontalSpace.m
 ---
 
 
-### merge
+### blend
 Devuelve el resultado de mezclar este objeto con otro
 
 
-**Style::merge**([Style](../../../../Style.md) $style) : [Style](../../../../Style.md)
+**Style::blend**([Style](../../../../Style.md) $style) : [Style](../../../../Style.md)
 
 
 |Parameters: | | |

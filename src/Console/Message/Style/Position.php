@@ -62,7 +62,7 @@ class Position
      *
      * @return \PlanB\Console\Message\Style\Position
      */
-    public function merge(Position $position): Position
+    public function blend(Position $position): Position
     {
         $align = $this->getAlign();
         if ($align->isDefault()) {

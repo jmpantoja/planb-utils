@@ -21,3 +21,4 @@ extensions:
         - src
       blacklist:
         - src/Resources
+        - src/DS

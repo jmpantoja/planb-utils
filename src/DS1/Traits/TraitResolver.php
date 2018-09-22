@@ -36,15 +36,29 @@ trait TraitResolver
     private $resolver;
 
 
-
-
     /**
      * @inheritDoc
      */
     protected function __construct(?Resolver $resolver = null)
     {
         $this->resolver = $resolver ?? Resolver::make();
+        $this->configure($this->resolver);
+
         $this->items = $this->makeInternal();
+    }
+
+    /**
+     * Configura esta colección
+     *
+     * @param \PlanB\DS1\Resolver\Resolver $resolver
+     *
+     * @return \PlanB\DS1\Collection
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function configure(Resolver $resolver): Collection
+    {
+        return $this;
     }
 
     /**

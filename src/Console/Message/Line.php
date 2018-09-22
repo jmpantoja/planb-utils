@@ -76,7 +76,7 @@ class Line extends Text
 
         return $this->replace('#<(.*)>(.*)</>#U', function ($tags, $content) use ($apply) {
             $tags = Attributes::fromString($tags)
-                ->merge($apply)
+                ->blend($apply)
                 ->stringify();
 
             return sprintf('<%s>%s</>', $tags, $content);

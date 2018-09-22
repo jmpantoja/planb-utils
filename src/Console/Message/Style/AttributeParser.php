@@ -40,7 +40,7 @@ class AttributeParser
 
         $this->bgColor = Color::DEFAULT();
         $this->fgColor = Color::DEFAULT();
-        $this->options = OptionList::create();
+        $this->options = OptionList::make();
 
         $pieces = explode(';', $content);
 

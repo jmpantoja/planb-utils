@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace spec\PlanB\DS1\Traits;
 
 
+use Ds\Sequence;
+
 trait TraitSequence
 {
 
@@ -646,6 +648,37 @@ trait TraitSequence
             self::VALUE_E,
             self::VALUE_F,
         ]);
+    }
+
+    public function it_can_retrieve_the_max()
+    {
+
+        $this[] = 'mediano';
+        $this[] = 'corta';
+        $this[] = 'cadena larga';
+
+        $this
+            ->max(function ($fist, $second) {
+                return strlen($fist) <=> strlen($second);
+            })
+            ->shouldReturn('cadena larga');
+
+    }
+
+    public function it_can_retrieve_the_min()
+    {
+
+        $this[] = 'mediano';
+        $this[] = 'corta';
+        $this[] = 'cadena larga';
+
+
+        $this
+            ->min(function ($fist, $second) {
+                return strlen($fist) <=> strlen($second);
+            })
+            ->shouldReturn('corta');
+
     }
 
 }

@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
+use PlanB\DS1\Collection;
+use PlanB\DS1\Resolver\Resolver;
+use PlanB\DS1\Set;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextList;
@@ -18,28 +21,25 @@ use PlanB\Type\Text\TextList;
 /**
  * Lista de opciones
  */
-class OptionList extends TextList
+class OptionList extends Set
 {
     /**
-     * Configura el comportamiento de  la lista
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     *
-     * @return void
+     * @inheritdoc
      */
-    protected function customize(): void
+    public function configure(Resolver $resolver): Collection
     {
-        $this
-            ->addHydrator(Type::STRING, function ($value) {
+        $resolver
+            ->setType(Type::STRING)
+            ->addConverter(Type::STRING, function ($value) {
                 return Option::get($value);
             })
-            ->addHydrator(Option::class, function (Option $option) {
-                return Text::create($option->getValue());
-            })
-            ->addKeyNormalizer(function ($key, Text $text) {
-                return $text->stringify();
+            ->addConverter(Option::class, function (Option $option) {
+                return $option->getValue();
             });
+
+        return $this;
     }
+
 
     /**
      * Añade una nueva option solo si es valida
@@ -73,6 +73,7 @@ class OptionList extends TextList
         return Text::format('%s=%s', $key, $this->concat(','));
     }
 
+
     /**
      * Devuelve el resultado de mezclar este objeto con otro
      *
@@ -80,14 +81,23 @@ class OptionList extends TextList
      *
      * @return \PlanB\Console\Message\Style\OptionList
      */
-    public function merge(OptionList $optionList): self
+    public function blend(OptionList $optionList): self
     {
-        $instance = clone $optionList;
-
-        $this->each(function (Text $option) use ($instance): void {
-            $instance->add($option);
-        });
+        $instance = $optionList->copy();
+        $instance->addAll($this);
 
         return $instance;
+    }
+
+    /**
+     * Concatena los textos
+     *
+     * @param string $delimiter
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    public function concat(string $delimiter = Text::BLANK_TEXT): Text
+    {
+        return TextList::make($this)->concat($delimiter);
     }
 }

@@ -32,11 +32,11 @@ static **Position::create**(int $width = 0, [Align](../../../../Align.md)|string
 ---
 
 
-### merge
+### blend
 Crea una nueva instancia a partir de una existente
 
 
-**Position::merge**([Position](../../../../Position.md) $position) : [Position](../../../../Position.md)
+**Position::blend**([Position](../../../../Position.md) $position) : [Position](../../../../Position.md)
 
 
 |Parameters: | | |

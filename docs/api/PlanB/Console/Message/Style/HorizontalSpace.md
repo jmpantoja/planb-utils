@@ -54,11 +54,11 @@ Devuelve el espaciado a la derecha
 ---
 
 
-### merge
+### blend
 Devuelve el resultado de mezclar este objeto con otro
 
 
-**HorizontalSpace::merge**([HorizontalSpace](../../../../HorizontalSpace.md) $space) : [HorizontalSpace](../../../../HorizontalSpace.md)
+**HorizontalSpace::blend**([HorizontalSpace](../../../../HorizontalSpace.md) $space) : [HorizontalSpace](../../../../HorizontalSpace.md)
 
 
 |Parameters: | | |

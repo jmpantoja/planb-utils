@@ -65,7 +65,7 @@ class HorizontalSpaceSpec extends ObjectBehavior
         $space = HorizontalSpace::create(self::POSITIVE);
 
         $this->build(self::LEFT_SPACES, self::RIGHT_SPACES);
-        $merged = $this->merge($space);
+        $merged = $this->blend($space);
 
 
         $merged->left()->shouldReturn(self::MERGED_LEFT);

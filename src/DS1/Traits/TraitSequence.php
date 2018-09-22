@@ -421,4 +421,31 @@ trait TraitSequence
 
         return $this;
     }
+
+    /**
+     * Return the maximum value
+     *
+     * @param callable|null $comparator
+     *
+     * @return mixed
+     */
+    public function max(?callable $comparator = null)
+    {
+        return $this->sorted($comparator)
+            ->last();
+    }
+
+
+    /**
+     * Return the minimun value
+     *
+     * @param callable|null $comparator
+     *
+     * @return mixed
+     */
+    public function min(?callable $comparator = null)
+    {
+        return $this->sorted($comparator)
+            ->first();
+    }
 }

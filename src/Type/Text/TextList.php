@@ -11,26 +11,16 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\TypedList\AbstractTypedList;
+use PlanB\DS1\Collection;
+use PlanB\DS1\Resolver\Resolver;
+use PlanB\DS1\Vector;
+use PlanB\Type\DataType\Type;
 
 /**
  * Lista de elementos tipo Text
  */
-class TextList extends AbstractTypedList
+class TextList extends Vector
 {
-
-    /**
-     * TextList constructor.
-     */
-    protected function __construct()
-    {
-        $normalizer = function ($value) {
-            return Text::create($value);
-        };
-
-        parent::__construct();
-        $this->addNormalizer($normalizer, PHP_INT_MAX - 1);
-    }
 
     /**
      * Crea una instancia a partir de un conjunto de valores
@@ -41,46 +31,19 @@ class TextList extends AbstractTypedList
      */
     public static function create(iterable $input = []): TextList
     {
-        $list = new static();
-        $list->setAll($input);
-
-        return $list;
+        return static::make($input);
     }
 
     /**
-     * Devuelve el tipo de la lista
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function getInnerType(): string
+    public function configure(Resolver $resolver): Collection
     {
-        return Text::class;
-    }
-
-    /**
-     * Impide que se puedan añadir texto en blanco
-     *
-     * @return \PlanB\Type\Text\TextList
-     */
-    public function disallowBlank(): self
-    {
-        $this->addValidator(function (Text $text) {
-            return !$text->isBlank();
-        }, PHP_INT_MAX);
-
-        return $this;
-    }
-
-    /**
-     * Impide que se puedan añadir cadenas vacias
-     *
-     * @return \PlanB\Type\Text\TextList
-     */
-    public function disallowEmpty(): self
-    {
-        $this->addValidator(function (Text $text) {
-            return !$text->isEmpty();
-        }, PHP_INT_MAX);
+        $resolver
+            ->setType(Text::class)
+            ->addConverter(Type::SCALAR, function ($value) {
+                return Text::create($value);
+            });
 
         return $this;
     }
@@ -102,19 +65,16 @@ class TextList extends AbstractTypedList
     /**
      * Convierte la lista en un array de strings
      *
-     * @param callable|null $callable
-     * @param mixed         ...$userdata
-     *
      * @return string[]
      */
-    public function toArray(?callable $callable = null, ...$userdata): array
+    public function toArrayOfStrings(): array
     {
-        if (is_null($callable)) {
-            $callable = function (Text $text) {
-                return $text->stringify();
-            };
+        $items = [];
+
+        foreach ($this as $text) {
+            $items[] = $text->stringify();
         }
 
-        return parent::toArray($callable, ...$userdata);
+        return $items;
     }
 }

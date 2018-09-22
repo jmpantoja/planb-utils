@@ -2,7 +2,7 @@ COSAS QUE FALTAN:
 
 X crear todos los builders
 
-- método Collection::configure (Resolver $resolver)
+X método Collection::configure (Resolver $resolver)
   para modificar el resolver cuando se extiende una clase
 
 x comprobar que los valores devueltos por los normalizers son del tipo correcto
@@ -13,6 +13,31 @@ x comprobar que los valores devueltos por los normalizers son del tipo correcto
 
 - Rename: create  => make
 
+
+
+- AbstractVector (List a lo mejor) sin método make para poder heredar de el
+    TextList no deberia tener método create (deberian quedar todos con make)
+
+
+
+=============================== empezar por aqui ===============================
+
+- Revisar coverage
+
+- TextListBuilder, aqui los métodos disallowEmpty y disallowBlank
+
+- Crear un trait con los métodos propios de Colecciones de text, (como concat) para que se pueda usar
+    tanto en TextList como en posibles TextSet, TextMap, etc
+
+================================================================================
+
+
+
+- Ver como hago para que map pueda devolver una colección de un tipo distinto al que tengo (quizas otro método, que no llame a duplicate)
+  puede quedar asi
+  apply: con el sentido del original, ejecuta un método para cada elemento
+  map: lo mismo que ahora
+  each: lo mismo que apply, pero creando una coleccion nueva, de tipo autoḿatico
 
 
 - Vector

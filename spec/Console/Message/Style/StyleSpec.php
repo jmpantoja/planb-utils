@@ -105,7 +105,7 @@ class StyleSpec extends ObjectBehavior
 
         $this->margin(2, 3);
 
-        $merged = $this->merge($style);
+        $merged = $this->blend($style);
 
         $merged->getMarginLeft()->shouldReturn('    ');
         $merged->getMarginRight()->shouldReturn('      ');
@@ -117,7 +117,7 @@ class StyleSpec extends ObjectBehavior
         $style = $this->buildStyleToMerge();
         $this->padding(2, 3);
 
-        $merged = $this->merge($style);
+        $merged = $this->blend($style);
 
         $merged->getPaddingLeft()->shouldReturn('    ');
         $merged->getPaddingRight()->shouldReturn('      ');
@@ -129,7 +129,7 @@ class StyleSpec extends ObjectBehavior
         $style = $this->buildStyleToMerge();
         $this->expandTo(5);
 
-        $merged = $this->merge($style);
+        $merged = $this->blend($style);
 
         $merged->getWidth()->shouldReturn(10);
         $merged->getAlign()->shouldReturn(Align::CENTER());
@@ -145,7 +145,7 @@ class StyleSpec extends ObjectBehavior
             ->backgroundColor(Color::BLUE)
             ->option(Option::UNDERSCORE);
 
-        $merged = $this->merge($style);
+        $merged = $this->blend($style);
 
         $merged->getOpenTag()
             ->stringify()

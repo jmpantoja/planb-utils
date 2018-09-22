@@ -3,6 +3,7 @@
 namespace spec\PlanB\Type\Text;
 
 
+use Ds\Hashable;
 use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Text\Text;
 use PhpSpec\ObjectBehavior;
@@ -17,6 +18,14 @@ class TextSpec extends ObjectBehavior
 
         $this->shouldHaveType(Text::class);
     }
+
+    public function it_is_hashable()
+    {
+        $this->beConstructedThrough('create', ['texto']);
+
+        $this->shouldHaveType(Hashable::class);
+    }
+
 
     public function it_can_be_created_by_format_text()
     {
@@ -333,5 +342,24 @@ class TextSpec extends ObjectBehavior
             ->shouldReturn($input);
     }
 
+
+    public function it_has_hash()
+    {
+        $this->beConstructedThrough('create', ['texto']);
+
+        $this->hash()->shouldReturn('texto');
+    }
+
+    public function it_determine_if_two_texts_are_equals()
+    {
+        $this->beConstructedThrough('create', ['texto']);
+
+        $this->equals(Text::create('texto'))->shouldReturn(true);
+
+        $this->equals(Text::create('otro texto'))->shouldReturn(false);
+
+        $this->equals('texto')->shouldReturn(false);
+
+    }
 
 }

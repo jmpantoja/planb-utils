@@ -45,12 +45,12 @@ class LineSpec extends ObjectBehavior
             ->backgroundColor(Color::YELLOW)
             ->foregroundColor(Color::BLUE);
 
+
         $this->apply($style)
             ->stringify()
             ->shouldReturn('<fg=red;bg=yellow>hola</>');
 
     }
-
 
     public function it_can_be_created_as_blank()
     {

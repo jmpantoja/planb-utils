@@ -11,8 +11,9 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Value;
 
-use PlanB\DS\ItemList\ItemList;
+use PlanB\DS\Vector\Vector;
 use PlanB\Type\DataType\DataType;
+use PlanB\Type\DataType\Type;
 use PlanB\Type\Stringifable;
 use PlanB\Utils\Traits\Stringify;
 
@@ -24,12 +25,13 @@ class Value implements Stringifable
     use Stringify;
 
     private const EQUIVALENT_TYPES_METHODS = [
-        'scalar' => 'isScalar',
-        'numeric' => 'isNumeric',
-        'countable' => 'isCountable',
-        'callable' => 'isCallable',
-        'iterable' => 'isIterable',
-        'object' => 'isObject',
+        Type::SCALAR => 'isScalar',
+        Type::NUMERIC => 'isNumeric',
+        Type::COUNTABLE => 'isCountable',
+        Type::CALLABLE => 'isCallable',
+        Type::ITERABLE => 'isIterable',
+        Type::OBJECT => 'isObject',
+        Type::STRINGIFABLE => 'isConvertibleToString',
     ];
 
     /**
@@ -215,10 +217,13 @@ class Value implements Stringifable
             return true;
         }
 
-        return (bool) ItemList::create($allowed)
-            ->search(function ($type) {
+        $equivalents = Vector::make($allowed)
+            ->filter(function ($type) {
                 return $this->isEquivalentTo($type);
-            }, $allowed);
+            });
+
+
+        return !$equivalents->isEmpty();
     }
 
     /**
@@ -269,9 +274,15 @@ class Value implements Stringifable
     {
 
         $isScalar = is_scalar($this->variable);
+        $isStringifable = $this->variable instanceof Stringifable;
+
+        if ($isScalar || $isStringifable) {
+            return true;
+        }
+
         $hasToStringMethod = method_exists($this->variable, '__toString');
 
-        return $isScalar || $hasToStringMethod;
+        return $hasToStringMethod;
     }
 
 

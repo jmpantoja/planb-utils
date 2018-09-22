@@ -15,7 +15,7 @@ namespace spec\PlanB;
 
 
 use PhpSpec\Exception\Example\FailureException;
-use PlanB\DS1\Resolver\Input\Input;
+use PlanB\DS\Resolver\Input\Input;
 use PlanB\Type\Value\Value;
 
 class Matchers

@@ -1,36 +1,11 @@
 COSAS QUE FALTAN:
 
-X crear todos los builders
-
-X método Collection::configure (Resolver $resolver)
-  para modificar el resolver cuando se extiende una clase
-
-x comprobar que los valores devueltos por los normalizers son del tipo correcto
 
 - pasar de DS a DS1
 
 - Rename: PlanB/Type/Value  => PlanB/Type/Data
 
 - Rename: create  => make
-
-
-
-- AbstractVector (List a lo mejor) sin método make para poder heredar de el
-    TextList no deberia tener método create (deberian quedar todos con make)
-
-
-
-=============================== empezar por aqui ===============================
-
-- Revisar coverage
-
-- TextListBuilder, aqui los métodos disallowEmpty y disallowBlank
-
-- Crear un trait con los métodos propios de Colecciones de text, (como concat) para que se pueda usar
-    tanto en TextList como en posibles TextSet, TextMap, etc
-
-================================================================================
-
 
 
 - Ver como hago para que map pueda devolver una colección de un tipo distinto al que tengo (quizas otro método, que no llame a duplicate)

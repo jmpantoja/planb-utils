@@ -237,7 +237,7 @@ Transforma la cadena de texto a formato snake_case
 Divide una cadena mediante una expresión regular
 
 
-**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [TextList](../../../TextList.md)
+**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [TextVector](../../../TextVector.md)
 
 
 |Parameters: | | |
@@ -253,7 +253,7 @@ Divide una cadena mediante una expresión regular
 Divide una cadena en varias, mediante un delimitador
 
 
-**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [TextList](../../../TextList.md)
+**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [TextVector](../../../TextVector.md)
 
 
 |Parameters: | | |

@@ -86,7 +86,7 @@ class Text implements Stringifable, Hashable
      */
     public static function concat(...$pieces): self
     {
-        return TextList::create($pieces)
+        return TextVector::make($pieces)
             ->concat();
     }
 
@@ -99,7 +99,7 @@ class Text implements Stringifable, Hashable
      */
     public static function join(...$pieces): self
     {
-        $temp = TextList::create($pieces)
+        $temp = TextVector::make($pieces)
             ->concat(Text::EMPTY_TEXT);
 
         return self::create($temp);
@@ -233,13 +233,13 @@ class Text implements Stringifable, Hashable
      * @param int    $limit
      * @param int    $flags
      *
-     * @return \PlanB\Type\Text\TextList
+     * @return \PlanB\Type\Text\TextVector
      */
-    public function split(string $pattern, int $limit = -1, int $flags = 0): TextList
+    public function split(string $pattern, int $limit = -1, int $flags = 0): TextVector
     {
         $pieces = preg_split($pattern, $this->text, $limit, $flags);
 
-        return TextList::create($pieces);
+        return TextVector::make($pieces);
     }
 
     /**
@@ -249,13 +249,13 @@ class Text implements Stringifable, Hashable
      *
      * @param int    $limit
      *
-     * @return \PlanB\Type\Text\TextList
+     * @return \PlanB\Type\Text\TextVector
      */
-    public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextList
+    public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextVector
     {
         $pieces = explode($delimiter, $this->text, $limit);
 
-        return TextList::create($pieces);
+        return TextVector::make($pieces);
     }
 
     /**

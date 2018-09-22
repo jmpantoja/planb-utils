@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
-use PlanB\DS1\Collection;
-use PlanB\DS1\Resolver\Resolver;
-use PlanB\DS1\Set;
+use PlanB\DS\Collection;
+use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Set\Set;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Text\TextList;
+use PlanB\Type\Text\TextVector;
 
 /**
  * Lista de opciones
@@ -98,6 +98,6 @@ class OptionList extends Set
      */
     public function concat(string $delimiter = Text::BLANK_TEXT): Text
     {
-        return TextList::make($this)->concat($delimiter);
+        return TextVector::make($this)->concat($delimiter);
     }
 }

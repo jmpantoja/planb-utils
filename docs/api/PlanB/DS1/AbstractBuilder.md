@@ -28,6 +28,20 @@ static **AbstractBuilder::make**() : [AbstractBuilder](../../AbstractBuilder.md)
 ---
 
 
+### typed
+AbstractBuilder named constructor.
+
+
+static **AbstractBuilder::typed**(string $type) : [AbstractBuilder](../../AbstractBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
 ### __construct
 AbstractBuilder constructor.
 
@@ -57,20 +71,6 @@ Devuelve el resolver
 protected **AbstractBuilder::getResolver**() : [Resolver](../../Resolver.md)
 
 
-
----
-
-
-### type
-Asigna un tipo a la colección
-
-
-**AbstractBuilder::type**(string $type) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 

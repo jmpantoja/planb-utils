@@ -16,17 +16,17 @@ namespace PlanB\Console\Message;
 use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS1\Collection;
-use PlanB\DS1\Resolver\Resolver;
+use PlanB\DS\Collection;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Text\TextList;
 use PlanB\Type\Text\TextListBuilder;
+use PlanB\Type\Text\TextVector;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class Paragraph extends TextList
+class Paragraph extends TextVector
 {
     /**
      * @var \PlanB\Console\Message\Style\Style
@@ -69,9 +69,9 @@ class Paragraph extends TextList
     /**
      * Devuelve una lista con todas las lineas que componen el párrafo
      *
-     * @return \PlanB\DS\ItemList\ItemList|\PlanB\DS\ItemList\ListInterface
+     * @return \PlanB\DS\Sequence
      */
-    public function getLines()
+    public function getLines(): \PlanB\DS\Sequence
     {
         return $this->map(function (LineWithStyle $line) {
             return $line->apply($this->style);

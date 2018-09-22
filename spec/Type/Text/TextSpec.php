@@ -7,7 +7,7 @@ use Ds\Hashable;
 use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Text\Text;
 use PhpSpec\ObjectBehavior;
-use PlanB\Type\Text\TextList;
+use PlanB\Type\Text\TextVector;
 use Prophecy\Argument;
 
 class TextSpec extends ObjectBehavior
@@ -235,7 +235,7 @@ class TextSpec extends ObjectBehavior
 
 
         $response = $this->split('/[_\s\W]+/');
-        $response->shouldHaveType(TextList::class);
+        $response->shouldHaveType(TextVector::class);
 
         $response->get(0)->stringify()->shouldReturn('separa');
         $response->get(1)->stringify()->shouldReturn('por');
@@ -249,7 +249,7 @@ class TextSpec extends ObjectBehavior
         $this->beConstructedThrough('create', ['separa-por-guiones']);
 
         $response = $this->explode('-');
-        $response->shouldHaveType(TextList::class);
+        $response->shouldHaveType(TextVector::class);
 
         $response->get(0)->stringify()->shouldReturn('separa');
         $response->get(1)->stringify()->shouldReturn('por');

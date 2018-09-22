@@ -5,11 +5,9 @@ namespace spec\PlanB\Console\Message\Style;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\OptionList;
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\ItemList\Exception\InvalidItemException;
-use PlanB\DS1\Exception\InvalidArgumentException;
-use PlanB\DS1\Set;
+use PlanB\DS\Exception\InvalidArgumentException;
+use PlanB\DS\Set\Set;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Text\TextList;
 use Prophecy\Argument;
 
 class OptionListSpec extends ObjectBehavior
@@ -40,7 +38,8 @@ class OptionListSpec extends ObjectBehavior
         $this->get(0)->shouldReturn('bold');
     }
 
-    public function it_can_ignore_a_invalid_option(){
+    public function it_can_ignore_a_invalid_option()
+    {
         $this->addIfIsValid(Option::BOLD);
 
         $this->shouldNotThrow()->duringAddIfIsValid('FAKE-OPTION');

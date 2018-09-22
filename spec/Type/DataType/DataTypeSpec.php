@@ -2,15 +2,13 @@
 
 namespace spec\PlanB\Type\DataType;
 
-use PlanB\DS\ItemList\ItemList;
-use PlanB\DS\ItemList\ListInterface;
-use PlanB\DS\ItemList\Traits\Accessors;
-use PlanB\DS\TypedList\TypedListInterface;
-use PlanB\Type\DataType\DataType;
 use PhpSpec\ObjectBehavior;
+use PlanB\DS\ItemList\Traits\Accessors;
+use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
-use Prophecy\Argument;
-use Symfony\Component\VarDumper\Cloner\Data;
+use PlanB\Type\Stringifable;
+use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TraitTextList;
 
 class DataTypeSpec extends ObjectBehavior
 {
@@ -45,8 +43,9 @@ class DataTypeSpec extends ObjectBehavior
                 $isNative = (false === $subject->isNative());
                 $isTrait = (false === $subject->isTrait());
                 $isValid = (true === $subject->isValid());
-                $isChildOf = (true === $subject->isChildOf($value));
+                $isChildOf = (false === $subject->isChildOf($value));
                 $isTypeOf = (true === $subject->isTypeOf($value));
+
 
                 return $isClass && $isClassOrInterface && $isInterface && $isNative && $isTrait && $isValid && $isChildOf && $isTypeOf;
             },
@@ -221,26 +220,26 @@ class DataTypeSpec extends ObjectBehavior
 
     public function it_can_detect_interface()
     {
-        $this->beConstructedThrough('create', [TypedListInterface::class]);
+        $this->beConstructedThrough('create', [Stringifable::class]);
 
-        $this->shouldVerifyInterface(ListInterface::class);
-        $this->__toString()->shouldReturn(TypedListInterface::class);
+        $this->shouldVerifyInterface(Stringifable::class);
+        $this->__toString()->shouldReturn(Stringifable::class);
     }
 
     public function it_can_detect_class()
     {
-        $this->beConstructedThrough('create', [ItemList::class]);
+        $this->beConstructedThrough('create', [Text::class]);
 
-        $this->shouldVerifyClass(ListInterface::class);
-        $this->__toString()->shouldReturn(ItemList::class);
+        $this->shouldVerifyClass(Stringifable::class);
+        $this->__toString()->shouldReturn(Text::class);
     }
 
     public function it_can_detect_trait()
     {
-        $this->beConstructedThrough('create', [Accessors::class]);
+        $this->beConstructedThrough('create', [TraitTextList::class]);
 
-        $this->shouldVerifyTrait(Accessors::class);
-        $this->__toString()->shouldReturn(Accessors::class);
+        $this->shouldVerifyTrait(TraitTextList::class);
+        $this->__toString()->shouldReturn(TraitTextList::class);
     }
 
     public function it_can_determine_if_is_the_type_of_a_value()

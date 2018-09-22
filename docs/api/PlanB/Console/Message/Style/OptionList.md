@@ -254,21 +254,6 @@ Offset to unset
 ---
 
 
-### make
-
-
-
-static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Set](../../../../Set.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../../iterable.md) |$input |  |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
-
----
-
-
 ### add
 Adds zero or more values to the set.
 
@@ -533,6 +518,21 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 |Parameters: | | |
 | --- | --- | --- |
 |[Set](../../../../Set.md) |$set |  |
+
+---
+
+
+### make
+
+
+
+static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Set](../../../../Set.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
+|[Resolver](../../../../Resolver.md) |$resolver |  |
 
 ---
 

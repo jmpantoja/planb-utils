@@ -34,7 +34,7 @@ class Attributes implements Stringifable
     private $bgColor;
 
     /**
-     * @var \PlanB\DS\TypedList\TypedList
+     * @var \PlanB\Console\Message\Style\OptionList
      */
     private $options;
 
@@ -201,15 +201,13 @@ class Attributes implements Stringifable
         }
 
         $pieces = TextListBuilder::make()
-            ->addTypedFilter(Text::class, function (Text $text) {
-                return !$text->isBlank();
-            })
+            ->ignoreBlank()
             ->values([
                 $this->fgColor->toAttributeFormat('fg'),
                 $this->bgColor->toAttributeFormat('bg'),
                 $this->options->toAttributeFormat('options'),
             ])
-            ->build();
+            ->vector();
 
         return $pieces->concat(';')->stringify();
     }

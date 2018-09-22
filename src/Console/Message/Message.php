@@ -28,7 +28,7 @@ class Message
     {
         $line = Line::blank();
 
-        return Paragraph::create([$line]);
+        return Paragraph::make([$line]);
     }
 
 
@@ -41,7 +41,7 @@ class Message
      */
     public static function join(iterable $lines): Paragraph
     {
-        return Paragraph::create($lines);
+        return Paragraph::make($lines);
     }
 
     /**
@@ -57,6 +57,6 @@ class Message
         $lines = Text::format($format, ...$arguments)
             ->explode(Text::LINE_BREAK);
 
-        return Paragraph::create($lines);
+        return Paragraph::make($lines);
     }
 }

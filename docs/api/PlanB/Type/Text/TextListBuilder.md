@@ -199,10 +199,109 @@ Añade un normalizer para un tipo determinado
 
 
 ### build
-Crea el objeto
+Crea la colección de textos por defecto
 
 
 **TextListBuilder::build**() : mixed
+
+
+
+---
+
+
+### vector
+Crea un TextVector
+
+
+**TextListBuilder::vector**() : [TextVector](../../../TextVector.md)
+
+
+
+---
+
+
+### deque
+Crea un deque
+
+
+**TextListBuilder::deque**() : [TextDeque](../../../TextDeque.md)
+
+
+
+---
+
+
+### stack
+Crea un stack
+
+
+**TextListBuilder::stack**() : [TextStack](../../../TextStack.md)
+
+
+
+---
+
+
+### queue
+Crea un queue
+
+
+**TextListBuilder::queue**() : [TextQueue](../../../TextQueue.md)
+
+
+
+---
+
+
+### priorityQueue
+Crea un prioriy queue
+
+
+**TextListBuilder::priorityQueue**() : [TextPriorityQueue](../../../TextPriorityQueue.md)
+
+
+
+---
+
+
+### map
+Crea un map
+
+
+**TextListBuilder::map**() : [TextMap](../../../TextMap.md)
+
+
+
+---
+
+
+### set
+Crea un set
+
+
+**TextListBuilder::set**() : [TextSet](../../../TextSet.md)
+
+
+
+---
+
+
+### ignoreBlank
+Añade un filtro que ignora los textos en blanco
+
+
+**TextListBuilder::ignoreBlank**() : [$this](../../../$this.md)
+
+
+
+---
+
+
+### ignoreEmpty
+Añade un filtro que ignora los textos vacios
+
+
+**TextListBuilder::ignoreEmpty**() : [$this](../../../$this.md)
 
 
 

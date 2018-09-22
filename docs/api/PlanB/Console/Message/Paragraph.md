@@ -10,6 +10,7 @@
 
 
 ## Traits
+- PlanB\Type\Text\TraitTextList
 - PlanB\DS1\Traits\TraitCollection
 - PlanB\DS1\Traits\TraitResolver
 - PlanB\DS1\Traits\TraitSequence
@@ -643,35 +644,6 @@ Offset to unset
 ---
 
 
-### make
-
-
-
-static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### create
-Crea una instancia a partir de un conjunto de valores
-
-
-static **Paragraph::create**([iterable](../../../iterable.md) $input = []) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
 ### concat
 Concatena los textos
 
@@ -697,11 +669,26 @@ Convierte la lista en un array de strings
 ---
 
 
+### make
+
+
+
+static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### getLines
 Devuelve una lista con todas las lineas que componen el párrafo
 
 
-**Paragraph::getLines**() : [ItemList](../../../ItemList.md)|[ListInterface](../../../ListInterface.md)
+**Paragraph::getLines**() : [Sequence](../../../Sequence.md)
 
 
 

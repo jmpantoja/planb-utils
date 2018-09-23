@@ -21,7 +21,7 @@ use PlanB\DS\Resolver\Resolver;
 class Set extends AbstractSet
 {
     /**
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *

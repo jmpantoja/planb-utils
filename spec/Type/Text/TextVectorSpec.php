@@ -42,7 +42,7 @@ class TextVectorSpec extends ObjectBehavior
 
     public function it_has_inner_type_text()
     {
-        $this->getInnerType()->shouldBeLike(DataType::create(Text::class));
+        $this->getInnerType()->shouldBeLike(DataType::make(Text::class));
     }
 
     public function it_can_add_values()

@@ -41,9 +41,9 @@ class NumberAssurance extends Assurance
      *
      * @return \PlanB\Type\Number\NumberAssurance
      */
-    public static function create($number): NumberAssurance
+    public static function make($number): NumberAssurance
     {
-        $number = Number::create($number);
+        $number = Number::make($number);
 
         return new static($number);
     }

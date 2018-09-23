@@ -24,7 +24,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable_from_string()
     {
-        $this->beConstructedThrough('create', [self::SOME_TEXT]);
+        $this->beConstructedThrough('make', [self::SOME_TEXT]);
         $this->shouldHaveType(TextAssurance::class);
 
         $this->stringify()
@@ -44,7 +44,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable_from_stringifable_passing_a_text()
     {
-        $text = Text::create(self::SOME_TEXT);
+        $text = Text::make(self::SOME_TEXT);
 
         $this->beConstructedThrough('fromStringifable', [$text]);
         $this->shouldHaveType(TextAssurance::class);
@@ -55,7 +55,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable_from_text()
     {
-        $text = Text::create(self::SOME_TEXT);
+        $text = Text::make(self::SOME_TEXT);
 
         $this->beConstructedThrough('fromText', [$text]);
         $this->shouldHaveType(TextAssurance::class);
@@ -72,7 +72,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_can_retrieve_the_text_object()
     {
-        $this->beConstructedThrough('create', [self::SOME_TEXT]);
+        $this->beConstructedThrough('make', [self::SOME_TEXT]);
 
 
         $this->end()
@@ -82,7 +82,7 @@ class TextAssuranceSpec extends ObjectBehavior
 
     public function it_can_retrieve_the_text_object_as_string()
     {
-        $this->beConstructedThrough('create', [self::SOME_TEXT]);
+        $this->beConstructedThrough('make', [self::SOME_TEXT]);
 
         $this->__toString()
             ->shouldReturn(self::SOME_TEXT);

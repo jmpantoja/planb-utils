@@ -17,7 +17,7 @@ class ValueAssuranceSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create', ['cadena-de-texto']);
+        $this->beConstructedThrough('make', ['cadena-de-texto']);
     }
 
     public function it_is_initializable()
@@ -38,14 +38,14 @@ class ValueAssuranceSpec extends ObjectBehavior
 
     public function it_throw_an_exception_when_a_variable_is_not_of_correct_type()
     {
-        $this->beConstructedThrough('create', [self::NUMBER]);
+        $this->beConstructedThrough('make', [self::NUMBER]);
 
         $this->shouldThrow(AssertException::class)->duringIsString();
     }
 
     public function it_convert_to_a_decorated_string()
     {
-        $this->beConstructedThrough('create', [self::NUMBER]);
+        $this->beConstructedThrough('make', [self::NUMBER]);
 
         $this->decorate()
             ->shouldReturn(self::NUMBER_AS_STRING);
@@ -53,7 +53,7 @@ class ValueAssuranceSpec extends ObjectBehavior
 
     public function it_convert_to_string()
     {
-        $this->beConstructedThrough('create', [self::NUMBER]);
+        $this->beConstructedThrough('make', [self::NUMBER]);
 
         $this->__toString()
             ->shouldReturn(Type::DOUBLE);

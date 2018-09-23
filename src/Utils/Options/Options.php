@@ -50,7 +50,7 @@ abstract class Options
      *
      * @return \PlanB\Utils\Options\Options
      */
-    public static function create(string $profile = self::DEFAULT_PROFILE): Options
+    public static function make(string $profile = self::DEFAULT_PROFILE): Options
     {
         return new static($profile);
     }

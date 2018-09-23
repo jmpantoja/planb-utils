@@ -32,11 +32,11 @@ protected **EmptyPathException::__construct**(string $message, [Throwable](../..
 ---
 
 
-### create
+### make
 No se pueden crear Paths desde cadenas vacias
 
 
-static **EmptyPathException::create**([Throwable](../../../../Throwable.md) $previous = null) : [EmptyPathException](../../../../EmptyPathException.md)
+static **EmptyPathException::make**([Throwable](../../../../Throwable.md) $previous = null) : [EmptyPathException](../../../../EmptyPathException.md)
 
 
 |Parameters: | | |

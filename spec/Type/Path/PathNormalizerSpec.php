@@ -11,7 +11,7 @@ class PathNormalizerSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()

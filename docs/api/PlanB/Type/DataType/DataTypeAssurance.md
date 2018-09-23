@@ -92,11 +92,11 @@ protected **DataTypeAssurance::__construct**([DataType](../../../DataType.md) $t
 ---
 
 
-### create
+### make
 Crea una nueva instancia a partir de una cadena de texto
 
 
-static **DataTypeAssurance::create**(string $type) : [DataTypeAssurance](../../../DataTypeAssurance.md)
+static **DataTypeAssurance::make**(string $type) : [DataTypeAssurance](../../../DataTypeAssurance.md)
 
 
 |Parameters: | | |

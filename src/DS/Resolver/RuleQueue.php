@@ -76,7 +76,7 @@ class RuleQueue
      * Añade una nueva regla a la cola
      *
      * @param \PlanB\DS\Resolver\Rule\Rule $rule
-     * @param int                           $priority
+     * @param int                          $priority
      *
      * @return \PlanB\DS\Resolver\RuleQueue
      */

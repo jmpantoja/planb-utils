@@ -26,7 +26,7 @@ use PlanB\DS\Resolver\Resolver;
 final class Deque extends AbstractDeque
 {
     /**
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *

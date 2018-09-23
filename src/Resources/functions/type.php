@@ -26,7 +26,7 @@ if (!function_exists('ensure_type')) {
      */
     function ensure_type(string $classname): DataTypeAssurance
     {
-        return DataTypeAssurance::create($classname);
+        return DataTypeAssurance::make($classname);
     }
 }
 
@@ -40,7 +40,7 @@ if (!function_exists('ensure_value')) {
      */
     function ensure_value($text): ValueAssurance
     {
-        return ValueAssurance::create($text);
+        return ValueAssurance::make($text);
     }
 }
 
@@ -56,7 +56,7 @@ if (!function_exists('is_typeof')) {
      */
     function is_typeof($variable, string ...$allowed): bool
     {
-        return Value::create($variable)->isTypeOf(...$allowed);
+        return Value::make($variable)->isTypeOf(...$allowed);
     }
 }
 

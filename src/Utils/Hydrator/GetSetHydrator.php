@@ -31,7 +31,7 @@ class GetSetHydrator extends GetSetMethodNormalizer
      */
     protected function __construct()
     {
-        $nameConverter = NameConverter::create();
+        $nameConverter = NameConverter::make();
         parent::__construct(null, $nameConverter);
     }
 
@@ -40,7 +40,7 @@ class GetSetHydrator extends GetSetMethodNormalizer
      *
      * @return \PlanB\Utils\Hydrator\GetSetHydrator
      */
-    public static function create(): self
+    public static function make(): self
     {
         return new static();
     }

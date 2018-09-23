@@ -120,11 +120,11 @@ static **TextAssurance::fromText**([Text](../../../Text.md) $text) : [TextAssura
 ---
 
 
-### create
+### make
 Crea una nueva instancia a partir de una cadena de texto
 
 
-static **TextAssurance::create**(string $string) : [TextAssurance](../../../TextAssurance.md)
+static **TextAssurance::make**(string $string) : [TextAssurance](../../../TextAssurance.md)
 
 
 |Parameters: | | |

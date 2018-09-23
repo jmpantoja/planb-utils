@@ -701,7 +701,7 @@ class ValueSpec extends ObjectBehavior
 
     private function build($variable = self::TEXT): void
     {
-        $this->beConstructedThrough('create', [$variable]);
+        $this->beConstructedThrough('make', [$variable]);
     }
 
 }

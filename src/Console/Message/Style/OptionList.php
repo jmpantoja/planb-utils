@@ -67,7 +67,7 @@ class OptionList extends Set
     public function toAttributeFormat(string $key): Text
     {
         if ($this->isEmpty()) {
-            return Text::create();
+            return Text::make();
         }
 
         return Text::format('%s=%s', $key, $this->concat(','));

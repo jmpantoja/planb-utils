@@ -71,8 +71,8 @@ class TextListBuilderSpec extends ObjectBehavior
                 'value_A',
                 Text::EMPTY_TEXT,
                 Text::BLANK_TEXT,
-                Text::create(Text::EMPTY_TEXT),
-                Text::create(Text::BLANK_TEXT),
+                Text::make(Text::EMPTY_TEXT),
+                Text::make(Text::BLANK_TEXT),
 
             ]);
 
@@ -95,8 +95,8 @@ class TextListBuilderSpec extends ObjectBehavior
                 'value_A',
                 Text::EMPTY_TEXT,
                 Text::BLANK_TEXT,
-                Text::create(Text::EMPTY_TEXT),
-                Text::create(Text::BLANK_TEXT),
+                Text::make(Text::EMPTY_TEXT),
+                Text::make(Text::BLANK_TEXT),
             ]);
 
         $expected = ['value_A', Text::BLANK_TEXT, Text::BLANK_TEXT];

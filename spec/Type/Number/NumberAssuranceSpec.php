@@ -13,7 +13,7 @@ class NumberAssuranceSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create', [self::NUMBER]);
+        $this->beConstructedThrough('make', [self::NUMBER]);
     }
 
     public function it_is_initializable()

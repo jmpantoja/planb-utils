@@ -59,11 +59,11 @@ protected **Text::__construct**(string $text) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **Text::create**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
+static **Text::make**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
 
 
 |Parameters: | | |

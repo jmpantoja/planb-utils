@@ -22,7 +22,7 @@ use PlanB\DS\Resolver\Resolver;
 final class Queue extends AbstractQueue
 {
     /**
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *

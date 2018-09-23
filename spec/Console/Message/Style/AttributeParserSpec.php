@@ -30,8 +30,8 @@ class AttributeParserSpec extends ObjectBehavior
         $this->getForegroundColor()->shouldReturn(Color::RED());
 
         $this->getOptions()->shouldIterateLike([
-            Text::create(Option::BOLD),
-            Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 
@@ -77,8 +77,8 @@ class AttributeParserSpec extends ObjectBehavior
     public function it_retrieve_options_list()
     {
         $this->getOptions()->shouldIterateLike([
-            Text::create(Option::BOLD),
-            Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 
@@ -93,8 +93,8 @@ class AttributeParserSpec extends ObjectBehavior
         $this->beConstructedThrough('create', ['bg=blue;options=bold,underscore,FAKE-OPTION;fg=red']);
 
         $this->getOptions()->shouldIterateLike([
-            Text::create(Option::BOLD),
-            Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 

@@ -27,6 +27,6 @@ if (!function_exists('ensure_number')) {
      */
     function ensure_number($number): NumberAssurance
     {
-        return NumberAssurance::create($number);
+        return NumberAssurance::make($number);
     }
 }

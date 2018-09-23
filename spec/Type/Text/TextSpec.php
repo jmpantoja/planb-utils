@@ -14,14 +14,14 @@ class TextSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->beConstructedThrough('create', ['texto']);
+        $this->beConstructedThrough('make', ['texto']);
 
         $this->shouldHaveType(Text::class);
     }
 
     public function it_is_hashable()
     {
-        $this->beConstructedThrough('create', ['texto']);
+        $this->beConstructedThrough('make', ['texto']);
 
         $this->shouldHaveType(Hashable::class);
     }
@@ -54,7 +54,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_throw_an_exception_when_create_with_invalid_value()
     {
-        $this->beConstructedThrough('create', [new \stdClass()]);
+        $this->beConstructedThrough('make', [new \stdClass()]);
 
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
@@ -62,7 +62,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_string_is_empty()
     {
-        $this->beConstructedThrough('create', ['']);
+        $this->beConstructedThrough('make', ['']);
 
         $this->isEmpty()
             ->shouldReturn(true);
@@ -80,7 +80,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_string_is_blank()
     {
-        $this->beConstructedThrough('create', ['']);
+        $this->beConstructedThrough('make', ['']);
 
         $this->isBlank()
             ->shouldReturn(true);
@@ -98,7 +98,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_retrive_the_length_of_a_text()
     {
-        $this->beConstructedThrough('create', ['']);
+        $this->beConstructedThrough('make', ['']);
 
         $this->getLength()
             ->shouldReturn(0);
@@ -114,7 +114,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text   ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->trim()
             ->stringify()
@@ -129,7 +129,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text   ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->trim(' t')
             ->stringify()
@@ -144,7 +144,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text   ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->rtrim()
             ->stringify()
@@ -159,7 +159,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text   ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->rtrim(' t')
             ->stringify()
@@ -175,7 +175,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text  ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->ltrim()
             ->stringify()
@@ -190,7 +190,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $original = '  text  ';
-        $this->beConstructedThrough('create', [$original]);
+        $this->beConstructedThrough('make', [$original]);
 
         $this->ltrim(' t')
             ->stringify()
@@ -203,7 +203,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_a_string_to_camelcase()
     {
-        $this->beConstructedThrough('create', ['esto    9    deberia_ser-camel|case']);
+        $this->beConstructedThrough('make', ['esto    9    deberia_ser-camel|case']);
 
         $this->toCamelCase()
             ->stringify()
@@ -213,7 +213,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_a_string_to_snakecase()
     {
-        $this->beConstructedThrough('create', ['esto |  Deberia - SerSnake-_Case']);
+        $this->beConstructedThrough('make', ['esto |  Deberia - SerSnake-_Case']);
 
         $this->toSnakeCase()
             ->stringify()
@@ -222,7 +222,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_a_string_to_snakecase_with_custom_separator()
     {
-        $this->beConstructedThrough('create', ['esto |  Deberia - SerSnake-_Case']);
+        $this->beConstructedThrough('make', ['esto |  Deberia - SerSnake-_Case']);
 
         $this->toSnakeCase('-')
             ->stringify()
@@ -231,7 +231,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_split_a_string_using_a_regex()
     {
-        $this->beConstructedThrough('create', ['separa|por-espacios_o guiones']);
+        $this->beConstructedThrough('make', ['separa|por-espacios_o guiones']);
 
 
         $response = $this->split('/[_\s\W]+/');
@@ -246,7 +246,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_split_a_string_using_a_delimiter()
     {
-        $this->beConstructedThrough('create', ['separa-por-guiones']);
+        $this->beConstructedThrough('make', ['separa-por-guiones']);
 
         $response = $this->explode('-');
         $response->shouldHaveType(TextVector::class);
@@ -260,7 +260,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_a_complete_string_to_lower_case()
     {
-        $this->beConstructedThrough('create', ['TEXTO EN MAYUSCULAS']);
+        $this->beConstructedThrough('make', ['TEXTO EN MAYUSCULAS']);
 
         $this->toLower()
             ->stringify()
@@ -270,7 +270,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_the_first_character_to_lower_case()
     {
-        $this->beConstructedThrough('create', ['TEXTO EN MAYUSCULAS']);
+        $this->beConstructedThrough('make', ['TEXTO EN MAYUSCULAS']);
 
         $this->toLowerFirst()
             ->stringify()
@@ -279,7 +279,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_a_complete_string_to_upper_case()
     {
-        $this->beConstructedThrough('create', ['texto en minusculas']);
+        $this->beConstructedThrough('make', ['texto en minusculas']);
 
         $this->toUpper()
             ->stringify()
@@ -288,7 +288,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_convert_the_first_character_to_upper_case()
     {
-        $this->beConstructedThrough('create', ['texto en minusculas']);
+        $this->beConstructedThrough('make', ['texto en minusculas']);
 
         $this->toUpperFirst()
             ->stringify()
@@ -297,7 +297,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_append_a_string_to_another()
     {
-        $this->beConstructedThrough('create', ['1 2 ']);
+        $this->beConstructedThrough('make', ['1 2 ']);
 
         $this->append('3 4')
             ->stringify()
@@ -307,7 +307,7 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_replace_a_part_of_string_by_another_one()
     {
-        $this->beConstructedThrough('create', ['1palabras 2y 3numeros ']);
+        $this->beConstructedThrough('make', ['1palabras 2y 3numeros ']);
 
         $this->replace('/([0-9])(.*)\s/U', function ($num, $word) {
             return sprintf('%s(%s)', $num, $word);
@@ -320,7 +320,7 @@ class TextSpec extends ObjectBehavior
     public function it_can_add_padding_to_text()
     {
 
-        $this->beConstructedThrough('create', ['000']);
+        $this->beConstructedThrough('make', ['000']);
 
         $this->padding(7, '-', STR_PAD_BOTH)
             ->stringify()
@@ -331,7 +331,7 @@ class TextSpec extends ObjectBehavior
     {
 
         $input = 'before <a href="#">content</a> after';
-        $this->beConstructedThrough('create', [$input]);
+        $this->beConstructedThrough('make', [$input]);
 
         $this->stripTags()
             ->stringify()
@@ -345,18 +345,18 @@ class TextSpec extends ObjectBehavior
 
     public function it_has_hash()
     {
-        $this->beConstructedThrough('create', ['texto']);
+        $this->beConstructedThrough('make', ['texto']);
 
         $this->hash()->shouldReturn('texto');
     }
 
     public function it_determine_if_two_texts_are_equals()
     {
-        $this->beConstructedThrough('create', ['texto']);
+        $this->beConstructedThrough('make', ['texto']);
 
-        $this->equals(Text::create('texto'))->shouldReturn(true);
+        $this->equals(Text::make('texto'))->shouldReturn(true);
 
-        $this->equals(Text::create('otro texto'))->shouldReturn(false);
+        $this->equals(Text::make('otro texto'))->shouldReturn(false);
 
         $this->equals('texto')->shouldReturn(false);
 

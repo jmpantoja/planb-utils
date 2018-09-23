@@ -41,7 +41,7 @@ class AssertException extends \AssertionError
      *
      * @return \PlanB\Type\Assurance\Exception\AssertException
      */
-    public static function create(object $wrapped, string $method, array $arguments, ?\Throwable $previous = null): self
+    public static function make(object $wrapped, string $method, array $arguments, ?\Throwable $previous = null): self
     {
 
         $wrapped = force_to_string($wrapped);

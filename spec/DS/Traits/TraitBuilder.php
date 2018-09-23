@@ -56,7 +56,7 @@ trait TraitBuilder
                 self::VALUE_C,
             ])->build();
 
-        $target->getInnerType()->shouldBeLike(DataType::create(Type::STRING));
+        $target->getInnerType()->shouldBeLike(DataType::make(Type::STRING));
         $target->shouldIterateLike($this->getResponse());
     }
 
@@ -80,7 +80,7 @@ trait TraitBuilder
     {
         $target = $this
             ->addFilter(function ($value) {
-                return Value::create($value)->isConvertibleToString();
+                return Value::make($value)->isConvertibleToString();
             })
             ->values([
                 self::VALUE_A,
@@ -205,7 +205,7 @@ trait TraitBuilder
     {
         $target = $this
             ->addNormalizer(function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->values([
                 self::VALUE_A,
@@ -221,7 +221,7 @@ trait TraitBuilder
     {
         $target = $this
             ->addTypedNormalizer(Type::STRING, function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->values([
                 self::VALUE_A,
@@ -239,9 +239,9 @@ trait TraitBuilder
     private function getResponseWithText(): array
     {
         return [
-            Text::create(self::VALUE_A),
-            Text::create(self::VALUE_B),
-            Text::create(self::VALUE_C),
+            Text::make(self::VALUE_A),
+            Text::make(self::VALUE_B),
+            Text::make(self::VALUE_C),
         ];
     }
 

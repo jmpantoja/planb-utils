@@ -46,7 +46,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_apply_an_equals_padding()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->padding(2);
 
@@ -57,7 +57,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_apply_an_different_padding()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->padding(2, 4);
 
@@ -68,7 +68,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_apply_an_equals_margin()
     {
-        $text = Line::create(self::INPUT_WITH_TAGS);
+        $text = Line::make(self::INPUT_WITH_TAGS);
         $style = Style::create()
             ->margin(2);
 
@@ -79,7 +79,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_apply_an_different_margin()
     {
-        $text = Line::create(self::INPUT_WITH_TAGS);
+        $text = Line::make(self::INPUT_WITH_TAGS);
         $style = Style::create()
             ->margin(2, 4);
 
@@ -91,7 +91,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_align_to_left()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->expandTo(self::WIDTH);
 
@@ -102,7 +102,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_align_to_center()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->expandTo(self::WIDTH, Align::CENTER);
 
@@ -113,7 +113,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_align_to_right()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->expandTo(self::WIDTH, Align::RIGHT);
 
@@ -124,7 +124,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_align_a_text_with_tags()
     {
-        $text = Line::create(self::INPUT_WITH_TAGS);
+        $text = Line::make(self::INPUT_WITH_TAGS);
         $style = Style::create()
             ->expandTo(self::WIDTH, Align::CENTER);
 
@@ -135,7 +135,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_add_tags_to_a_text()
     {
-        $text = Line::create(self::INPUT);
+        $text = Line::make(self::INPUT);
         $style = Style::create()
             ->option(Option::BOLD)
             ->foregroundColor(Color::BLUE)
@@ -150,7 +150,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_apply_a_complete_style()
     {
         $style = Style::create();
-        $text = Line::create('x');
+        $text = Line::make('x');
 
 
         $this->render($text, $style)

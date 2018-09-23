@@ -47,7 +47,7 @@ class DequeSpec extends ObjectBehavior
         $this->beConstructedThrough('typed', [Type::NUMERIC]);
 
         $this->getInnerType()->shouldBeLike(
-            DataType::create(Type::NUMERIC)
+            DataType::make(Type::NUMERIC)
         );
     }
 }

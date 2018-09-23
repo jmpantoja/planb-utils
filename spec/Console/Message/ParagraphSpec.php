@@ -72,7 +72,7 @@ eof;
     {
         $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->fgColor(Color::RED()),
             Message::line("linea C")->bgColor(Color::GREEN()),
             Message::line("linea D")->underscore()->blink(),
@@ -91,7 +91,7 @@ eof;
     {
         $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->padding(3),
             Message::line("linea C")->bgColor(Color::GREEN())->padding(2),
             Message::line("linea D")->padding(2, 0)
@@ -110,7 +110,7 @@ eof;
     {
         $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->margin(3),
             Message::line("linea C")->bgColor(Color::GREEN())->margin(2),
             Message::line("linea D")->margin(2, 0)
@@ -131,7 +131,7 @@ eof;
 
         $this->beConstructedThrough('make', [[
             'string string string string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->left(),
             Message::line("linea C")->bgColor(Color::GREEN())->right(),
             Message::line("linea D")

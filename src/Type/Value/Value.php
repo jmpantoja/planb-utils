@@ -51,7 +51,7 @@ class Value implements Stringifable
      *
      * @return \PlanB\Utils\Type\Type
      */
-    public static function create($variable): self
+    public static function make($variable): self
     {
         return new static($variable);
     }
@@ -256,12 +256,12 @@ class Value implements Stringifable
         if (is_object($this->variable)) {
             $typeName = get_class($this->variable);
 
-            return DataType::create($typeName);
+            return DataType::make($typeName);
         }
 
         $typeName = gettype($this->variable);
 
-        return DataType::create($typeName);
+        return DataType::make($typeName);
     }
 
 

@@ -13,7 +13,7 @@ class DataTypeAssuranceSpec extends ObjectBehavior
     public function let(DataType $dataType)
     {
         $dataType->__toString()->willReturn(Type::STRING);
-        $this->beConstructedThrough('create', [$dataType]);
+        $this->beConstructedThrough('make', [$dataType]);
     }
 
     public function it_is_initializable()

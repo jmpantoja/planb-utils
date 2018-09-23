@@ -54,6 +54,7 @@ abstract class AbstractBuilder
     {
         $builder = new static();
         $builder->resolver->setType($type);
+
         return $builder;
     }
 
@@ -105,7 +106,7 @@ abstract class AbstractBuilder
      * Añade un filtro a la cola
      *
      * @param callable $filter
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -120,9 +121,9 @@ abstract class AbstractBuilder
     /**
      * Añade un filtro para un tipo determinado
      *
-     * @param string $type
+     * @param string   $type
      * @param callable $filter
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -136,9 +137,9 @@ abstract class AbstractBuilder
     /**
      * Añade un converter
      *
-     * @param string $type
+     * @param string   $type
      * @param callable $converter
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -154,7 +155,7 @@ abstract class AbstractBuilder
      * Añade un validator
      *
      * @param callable $validator
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -168,9 +169,9 @@ abstract class AbstractBuilder
     /**
      * Añade un validator para un tipo determinado
      *
-     * @param string $type
+     * @param string   $type
      * @param callable $validator
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -185,7 +186,7 @@ abstract class AbstractBuilder
      * Añade un normalizer
      *
      * @param callable $normalizer
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -199,9 +200,9 @@ abstract class AbstractBuilder
     /**
      * Añade un normalizer para un tipo determinado
      *
-     * @param string $type
+     * @param string   $type
      * @param callable $normalizer
-     * @param int $priority
+     * @param int      $priority
      *
      * @return \PlanB\DS\AbstractBuilder
      */

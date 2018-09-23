@@ -11,7 +11,7 @@ class PathTreeSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
         $this->shouldHaveType(PathTree::class);
     }
 
@@ -30,7 +30,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_path_tree_from_a_absolute_path()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2']);
 
         $this->getPathTree()
             ->shouldHavePaths([
@@ -43,7 +43,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_inverse_path_tree_from_a_absolute_path()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2']);
 
         $this->getInversedPathTree()
             ->shouldHavePaths([
@@ -56,7 +56,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_tree_from_a_absolute_path()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2']);
 
         $this->getTree()
             ->shouldReturn([
@@ -69,7 +69,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_inverse_tree_from_a_absolute_path()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2']);
 
         $this->getInversedTree()
             ->shouldReturn([
@@ -83,7 +83,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_path_tree_from_a_relative_path()
     {
-        $this->beConstructedThrough('create', ['level0/level1/level2']);
+        $this->beConstructedThrough('make', ['level0/level1/level2']);
 
         $this->getPathTree()
             ->shouldHavePaths([
@@ -95,7 +95,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_inversed_path_tree_from_a_relative_path()
     {
-        $this->beConstructedThrough('create', ['level0/level1/level2']);
+        $this->beConstructedThrough('make', ['level0/level1/level2']);
 
         $this->getInversedPathTree()
             ->shouldHavePaths([
@@ -107,7 +107,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_tree_from_a_relative_path()
     {
-        $this->beConstructedThrough('create', ['level0/level1/level2']);
+        $this->beConstructedThrough('make', ['level0/level1/level2']);
 
         $this->getTree()
             ->shouldReturn([
@@ -119,7 +119,7 @@ class PathTreeSpec extends ObjectBehavior
 
     public function it_can_build_the_inversed_tree_from_a_relative_path()
     {
-        $this->beConstructedThrough('create', ['level0/level1/level2']);
+        $this->beConstructedThrough('make', ['level0/level1/level2']);
 
         $this->getInversedTree()
             ->shouldReturn([

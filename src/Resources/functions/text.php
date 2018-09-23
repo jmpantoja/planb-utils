@@ -25,7 +25,7 @@ if (!function_exists('ensure_text')) {
      */
     function ensure_text(string $text): TextAssurance
     {
-        return TextAssurance::create($text);
+        return TextAssurance::make($text);
     }
 }
 
@@ -39,7 +39,7 @@ if (!function_exists('is_empty_text')) {
      */
     function is_empty_text(string $text): bool
     {
-        return Text::create($text)->isEmpty();
+        return Text::make($text)->isEmpty();
     }
 
 }
@@ -53,7 +53,7 @@ if (!function_exists('is_blank_text')) {
      */
     function is_blank_text(string $text): bool
     {
-        return Text::create($text)->isBlank();
+        return Text::make($text)->isBlank();
     }
 
 }
@@ -68,7 +68,7 @@ if (!function_exists('to_camel_case')) {
      */
     function to_camel_case(string $text): string
     {
-        return (string)Text::create($text)->toCamelCase();
+        return (string)Text::make($text)->toCamelCase();
     }
 
 }
@@ -85,7 +85,7 @@ if (!function_exists('to_snake_case')) {
      */
     function to_snake_case(string $text, string $separator = '_'): string
     {
-        return (string)Text::create($text)->toSnakeCase($separator);
+        return (string)Text::make($text)->toSnakeCase($separator);
     }
 }
 
@@ -100,7 +100,7 @@ if (!function_exists('force_to_string')) {
      */
     function force_to_string($value): string
     {
-        return Value::create($value)->decorate();
+        return Value::make($value)->decorate();
     }
 }
 
@@ -116,7 +116,7 @@ if (!function_exists('to_string')) {
      */
     function to_string($value): string
     {
-        return Text::create($value)->stringify();
+        return Text::make($value)->stringify();
     }
 }
 
@@ -131,6 +131,6 @@ if (!function_exists('to_text')) {
      */
     function to_text($value): Text
     {
-        return Text::create($value);
+        return Text::make($value);
     }
 }

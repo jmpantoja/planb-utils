@@ -80,7 +80,7 @@ class MapBuilderSpec extends ObjectBehavior
     {
         $target = $this
             ->addFilter(function ($value) {
-                return Value::create($value)->isConvertibleToString();
+                return Value::make($value)->isConvertibleToString();
             })
             ->values([
                 'a' => self::VALUE_A,
@@ -204,7 +204,7 @@ class MapBuilderSpec extends ObjectBehavior
     {
         $target = $this
             ->addNormalizer(function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->values([
                 'a' => self::VALUE_A,
@@ -220,7 +220,7 @@ class MapBuilderSpec extends ObjectBehavior
     {
         $target = $this
             ->addTypedNormalizer(Type::STRING, function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->values([
                 'a' => self::VALUE_A,
@@ -238,9 +238,9 @@ class MapBuilderSpec extends ObjectBehavior
     private function getResponseWithText(): array
     {
         return [
-            'a' => Text::create(self::VALUE_A),
-            'b' => Text::create(self::VALUE_B),
-            'c' => Text::create(self::VALUE_C),
+            'a' => Text::make(self::VALUE_A),
+            'b' => Text::make(self::VALUE_B),
+            'c' => Text::make(self::VALUE_C),
         ];
     }
 

@@ -31,9 +31,9 @@ class StackBuilderSpec extends ObjectBehavior
     private function getResponseWithText(): array
     {
         return [
-            Text::create(self::VALUE_C),
-            Text::create(self::VALUE_B),
-            Text::create(self::VALUE_A),
+            Text::make(self::VALUE_C),
+            Text::make(self::VALUE_B),
+            Text::make(self::VALUE_A),
         ];
     }
 

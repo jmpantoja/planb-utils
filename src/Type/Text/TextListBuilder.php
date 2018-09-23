@@ -133,7 +133,7 @@ class TextListBuilder extends AbstractBuilder
     {
 
         $this->addTypedFilter(Type::STRINGIFABLE, function ($value) {
-            return !Text::create($value)->isBlank();
+            return !Text::make($value)->isBlank();
         });
 
         return $this;
@@ -148,7 +148,7 @@ class TextListBuilder extends AbstractBuilder
     public function ignoreEmpty()
     {
         $this->addTypedFilter(Type::STRINGIFABLE, function ($value) {
-            return !Text::create($value)->isEmpty();
+            return !Text::make($value)->isEmpty();
         });
 
         return $this;

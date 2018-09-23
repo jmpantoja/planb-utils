@@ -47,9 +47,9 @@ class ValueAssurance extends Assurance implements Stringifable
      *
      * @return \PlanB\Type\Value\ValueAssurance
      */
-    public static function create($variable): self
+    public static function make($variable): self
     {
-        $type = Value::create($variable);
+        $type = Value::make($variable);
 
         return new static($type);
     }

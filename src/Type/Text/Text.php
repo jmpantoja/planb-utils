@@ -54,7 +54,7 @@ class Text implements Stringifable, Hashable
      *
      * @return \PlanB\Type\Text\Text
      */
-    public static function create($text = ''): self
+    public static function make($text = ''): self
     {
         ensure_value($text)->isConvertibleToString();
 
@@ -102,7 +102,7 @@ class Text implements Stringifable, Hashable
         $temp = TextVector::make($pieces)
             ->concat(Text::EMPTY_TEXT);
 
-        return self::create($temp);
+        return self::make($temp);
     }
 
     /**
@@ -114,7 +114,7 @@ class Text implements Stringifable, Hashable
      */
     public function overwite(string $text): self
     {
-        return self::create($text);
+        return self::make($text);
     }
 
     /**
@@ -165,7 +165,7 @@ class Text implements Stringifable, Hashable
      */
     public function trim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(trim($this->text, $charlist));
+        return self::make(trim($this->text, $charlist));
     }
 
     /**
@@ -178,7 +178,7 @@ class Text implements Stringifable, Hashable
      */
     public function rtrim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(rtrim($this->text, $charlist));
+        return self::make(rtrim($this->text, $charlist));
     }
 
     /**
@@ -191,7 +191,7 @@ class Text implements Stringifable, Hashable
      */
     public function ltrim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(ltrim($this->text, $charlist));
+        return self::make(ltrim($this->text, $charlist));
     }
 
     /**
@@ -205,7 +205,7 @@ class Text implements Stringifable, Hashable
         return $this->split('/[_\s\W]+/')
             ->reduce(function (Text $carry, Text $piece) {
                 return $carry->append($piece->toUpperFirst()->stringify());
-            }, self::create())
+            }, self::make())
             ->toLowerFirst();
     }
 
@@ -265,7 +265,7 @@ class Text implements Stringifable, Hashable
      */
     public function toLower(): self
     {
-        return self::create(strtolower($this->text));
+        return self::make(strtolower($this->text));
     }
 
     /**
@@ -275,7 +275,7 @@ class Text implements Stringifable, Hashable
      */
     public function toLowerFirst(): self
     {
-        return self::create(lcfirst($this->text));
+        return self::make(lcfirst($this->text));
     }
 
     /**
@@ -285,7 +285,7 @@ class Text implements Stringifable, Hashable
      */
     public function toUpper(): self
     {
-        return self::create(strtoupper($this->text));
+        return self::make(strtoupper($this->text));
     }
 
     /**
@@ -295,7 +295,7 @@ class Text implements Stringifable, Hashable
      */
     public function toUpperFirst(): self
     {
-        return self::create(ucfirst($this->text));
+        return self::make(ucfirst($this->text));
     }
 
 
@@ -310,7 +310,7 @@ class Text implements Stringifable, Hashable
     {
         $piece = implode($pieces);
 
-        return self::create(sprintf('%s%s', $this->text, $piece));
+        return self::make(sprintf('%s%s', $this->text, $piece));
     }
 
     /**
@@ -333,7 +333,7 @@ class Text implements Stringifable, Hashable
             return call_user_func_array($callback, $pieces);
         }, $this->text, $limit);
 
-        return self::create($replaced);
+        return self::make($replaced);
     }
 
     /**

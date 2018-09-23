@@ -31,11 +31,11 @@ protected **PathTree::__construct**([Path](../../../Path.md) $path) :
 ---
 
 
-### create
+### make
 
 
 
-static **PathTree::create**(string ...$parts) : [PathTree](../../../PathTree.md)
+static **PathTree::make**(string ...$parts) : [PathTree](../../../PathTree.md)
 
 
 |Parameters: | | |

@@ -41,7 +41,7 @@ class InvalidArgumentException extends \InvalidArgumentException
      * Crea una instancia
      *
      * @param \PlanB\DS\Resolver\Input\FailedInput $input
-     * @param null|\Throwable                       $previous
+     * @param null|\Throwable                      $previous
      *
      * @return \PlanB\DS\Exception\InvalidArgumentException
      */
@@ -49,7 +49,7 @@ class InvalidArgumentException extends \InvalidArgumentException
     {
 
         $original = $input->getOriginal();
-        $value = Value::create($original)->decorate();
+        $value = Value::make($original)->decorate();
 
         $message = sprintf("%s \n\nis <options=bold,underscore>NOT VALID</>", $value);
 

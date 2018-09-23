@@ -32,11 +32,11 @@ protected **InvalidAssuranceMethodException::__construct**(string $message, [Thr
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **InvalidAssuranceMethodException::create**([object](../../../../object.md) $wrapped, string $method, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidAssuranceMethodException](../../../../InvalidAssuranceMethodException.md)
+static **InvalidAssuranceMethodException::make**([object](../../../../object.md) $wrapped, string $method, [Throwable](../../../../Throwable.md) $previous = null) : [InvalidAssuranceMethodException](../../../../InvalidAssuranceMethodException.md)
 
 
 |Parameters: | | |

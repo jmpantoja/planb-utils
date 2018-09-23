@@ -1,12 +1,10 @@
 COSAS QUE FALTAN:
 
-
-- pasar de DS a DS1
-
 - Rename: PlanB/Type/Value  => PlanB/Type/Data
 
 - Rename: create  => make
 
+- Tests para Resources
 
 - Ver como hago para que map pueda devolver una colección de un tipo distinto al que tengo (quizas otro método, que no llame a duplicate)
   puede quedar asi

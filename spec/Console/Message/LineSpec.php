@@ -16,7 +16,7 @@ class LineSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -31,7 +31,7 @@ class LineSpec extends ObjectBehavior
 
     public function it_retrieve_length_with_and_without_tags()
     {
-        $this->beConstructedThrough('create', [self::INPUT_WITH_TAGS]);
+        $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
 
         $this->getLength()->shouldReturn(15);
         $this->getContentLength()->shouldReturn(4);
@@ -40,7 +40,7 @@ class LineSpec extends ObjectBehavior
 
     public function it_can_apply_a_style()
     {
-        $this->beConstructedThrough('create', [self::INPUT_WITH_TAGS]);
+        $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
         $style = Style::create()
             ->backgroundColor(Color::YELLOW)
             ->foregroundColor(Color::BLUE);

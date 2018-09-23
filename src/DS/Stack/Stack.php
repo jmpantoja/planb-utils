@@ -24,7 +24,7 @@ final class Stack extends AbstractStack
 
 
     /**
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *

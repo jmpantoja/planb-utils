@@ -26,7 +26,7 @@ class PathAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable_from_string()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
         $this->shouldHaveType(PathAssurance::class);
     }
 

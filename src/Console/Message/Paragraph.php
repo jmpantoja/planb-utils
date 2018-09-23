@@ -46,9 +46,9 @@ class Paragraph extends TextVector
                 return false;
             })
             ->addConverter(Type::SCALAR, function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             })->addConverter(Text::class, function (Text $text) {
-                $line = Line::create($text);
+                $line = Line::make($text);
 
                 return LineWithStyle::create($line, $this->style->clone());
             });

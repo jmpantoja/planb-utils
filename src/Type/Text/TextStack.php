@@ -24,7 +24,7 @@ class TextStack extends AbstractStack
     use TraitTextList;
 
     /**
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *

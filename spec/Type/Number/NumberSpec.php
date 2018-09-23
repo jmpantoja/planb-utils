@@ -26,7 +26,7 @@ class NumberSpec extends ObjectBehavior
 
     public function build($number)
     {
-        $this->beConstructedThrough('create', [$number]);
+        $this->beConstructedThrough('make', [$number]);
     }
 
     public function it_is_initializable()

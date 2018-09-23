@@ -55,7 +55,7 @@ class AssuranceMethod
      *
      * @return \PlanB\Type\Assurance\AssuranceMethod
      */
-    public static function create(object $object, string $original): self
+    public static function make(object $object, string $original): self
     {
         return new static($object, $original);
     }
@@ -84,7 +84,7 @@ class AssuranceMethod
 
 
         if (is_null($this->object)) {
-            throw InvalidAssuranceMethodException::create($object, $original);
+            throw InvalidAssuranceMethodException::make($object, $original);
         }
     }
 
@@ -107,7 +107,7 @@ class AssuranceMethod
             return;
         }
 
-        throw InvalidAssuranceMethodException::create($this->object, $this->original);
+        throw InvalidAssuranceMethodException::make($this->object, $this->original);
     }
 
 

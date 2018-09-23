@@ -51,7 +51,7 @@ class ResolverSpec extends ObjectBehavior
 
         $this->setType(Type::STRING);
 
-        $this->getType()->shouldBeLike(DataType::create(Type::STRING));
+        $this->getType()->shouldBeLike(DataType::make(Type::STRING));
     }
 
     public function it_ignore_a_value_when_filter_return_false()
@@ -175,10 +175,10 @@ class ResolverSpec extends ObjectBehavior
         $this
             ->addFilter(function ($value) {
 
-                return Value::create($value)->isConvertibleToString();
+                return Value::make($value)->isConvertibleToString();
             })->addConverter(Type::STRING, function (string $value) {
 
-                return Text::create($value);
+                return Text::make($value);
             })->addNormalizer(function (Text $value) {
 
                 return $value->toUpper();
@@ -188,7 +188,7 @@ class ResolverSpec extends ObjectBehavior
             ->shouldHaveType(IgnoredInput::class);
 
         $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::create('HOLA QUE TAL')));
+            ->shouldBeLike(Input::make(Text::make('HOLA QUE TAL')));
 
     }
 
@@ -196,14 +196,14 @@ class ResolverSpec extends ObjectBehavior
     {
         $this
             ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->addTypedNormalizer(Text::class, function (Text $text) {
                 return $text->toUpper();
             });
 
         $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::create('HOLA QUE TAL')));
+            ->shouldBeLike(Input::make(Text::make('HOLA QUE TAL')));
     }
 
 
@@ -212,14 +212,14 @@ class ResolverSpec extends ObjectBehavior
         $this
             ->setType(Text::class)
             ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->addTypedNormalizer(Text::class, function (Text $text) {
 
                 return $text->toUpper()->stringify();
             });
 
-        $expected = FailedInput::make(Text::create('HOLA QUE TAL'))
+        $expected = FailedInput::make(Text::make('HOLA QUE TAL'))
             ->setOriginal('hola que tal');
 
         $this->resolve('hola que tal')
@@ -231,7 +231,7 @@ class ResolverSpec extends ObjectBehavior
     {
         $this
             ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::create($value);
+                return Text::make($value);
             })
             ->addTypedNormalizer(Text::class, function (Text $text) {
                 throw new Exception('algo malo ha pasado');

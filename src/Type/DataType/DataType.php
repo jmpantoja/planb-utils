@@ -58,7 +58,7 @@ class DataType implements Stringifable
      *
      * @return \PlanB\Type\DataType\DataType
      */
-    public static function create(string $type): self
+    public static function make(string $type): self
     {
         if (isset(self::EQUIVALENTS[$type])) {
             $type = self::EQUIVALENTS[$type];
@@ -196,7 +196,7 @@ class DataType implements Stringifable
      */
     public function isTheTypeOf($value): bool
     {
-        return Value::create($value)->isTypeOf($this->stringify());
+        return Value::make($value)->isTypeOf($this->stringify());
     }
 
     /**

@@ -36,7 +36,7 @@ final class Vector extends AbstractVector
     /**
      * Vector named constructor.
      *
-     * @param mixed[]                           $input
+     * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
      * @return \PlanB\DS\Vector

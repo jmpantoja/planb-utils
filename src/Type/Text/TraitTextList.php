@@ -31,7 +31,7 @@ trait TraitTextList
         $resolver
             ->setType(Text::class)
             ->addConverter(Type::SCALAR, function ($value) {
-                return Text::create($value);
+                return Text::make($value);
             });
 
         return $this;
@@ -48,7 +48,7 @@ trait TraitTextList
     {
         $imploded = implode($delimiter, $this->toArray());
 
-        return Text::create($imploded);
+        return Text::make($imploded);
     }
 
     /**

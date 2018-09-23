@@ -30,7 +30,7 @@ class AssuranceCall
      *
      * @return \PlanB\Type\Assurance\AssuranceCall
      */
-    public static function create(object $object): self
+    public static function make(object $object): self
     {
         return new static($object);
     }
@@ -66,7 +66,7 @@ class AssuranceCall
     public function execute(string $name, ...$arguments): bool
     {
 
-        $method = AssuranceMethod::create($this->object, $name);
+        $method = AssuranceMethod::make($this->object, $name);
 
         $callable = $method->getCallable();
         $expected = $method->getExpected();

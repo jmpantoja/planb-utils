@@ -277,7 +277,7 @@ class Style
     public function getOpenTag(): Text
     {
         if ($this->attributes->isEmpty()) {
-            return Text::create();
+            return Text::make();
         }
 
         return Text::format('<%s>', $this->attributes->stringify());
@@ -291,9 +291,9 @@ class Style
     public function getCloseTag(): Text
     {
         if ($this->attributes->isEmpty()) {
-            return Text::create();
+            return Text::make();
         }
 
-        return Text::create('</>');
+        return Text::make('</>');
     }
 }

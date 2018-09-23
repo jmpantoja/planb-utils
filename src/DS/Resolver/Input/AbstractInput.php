@@ -66,6 +66,6 @@ abstract class AbstractInput implements InputInterface
             return true;
         }
 
-        return Value::create($this->value)->isTypeOf($allowed);
+        return Value::make($this->value)->isTypeOf($allowed);
     }
 }

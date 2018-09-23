@@ -11,7 +11,7 @@ use PlanB\DS\StackBuilder;
 use PhpSpec\ObjectBehavior;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 use Prophecy\Argument;
 use spec\PlanB\DS\Traits\TraitBuilder;
 
@@ -80,7 +80,7 @@ class MapBuilderSpec extends ObjectBehavior
     {
         $target = $this
             ->addFilter(function ($value) {
-                return Value::make($value)->isConvertibleToString();
+                return Data::make($value)->isConvertibleToString();
             })
             ->values([
                 'a' => self::VALUE_A,

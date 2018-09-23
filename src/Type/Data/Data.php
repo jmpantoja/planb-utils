@@ -9,7 +9,7 @@
  */
 declare(strict_types=1);
 
-namespace PlanB\Type\Value;
+namespace PlanB\Type\Data;
 
 use PlanB\DS\Vector\Vector;
 use PlanB\Type\DataType\DataType;
@@ -20,7 +20,7 @@ use PlanB\Utils\Traits\Stringify;
 /**
  * Representa al tipo de una variable
  */
-class Value implements Stringifable
+class Data implements Stringifable
 {
     use Stringify;
 

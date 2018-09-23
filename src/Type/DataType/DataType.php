@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace PlanB\Type\DataType;
 
 use PlanB\DS\Vector\Vector;
+use PlanB\Type\Data\Data;
 use PlanB\Type\Stringifable;
-use PlanB\Type\Value\Value;
 use PlanB\Utils\Traits\Stringify;
 
 /**
@@ -196,7 +196,7 @@ class DataType implements Stringifable
      */
     public function isTheTypeOf($value): bool
     {
-        return Value::make($value)->isTypeOf($this->stringify());
+        return Data::make($value)->isTypeOf($this->stringify());
     }
 
     /**

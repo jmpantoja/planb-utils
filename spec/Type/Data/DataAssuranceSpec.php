@@ -1,15 +1,15 @@
 <?php
 
-namespace spec\PlanB\Type\Value;
+namespace spec\PlanB\Type\Data;
 
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Assurance\Exception\InvalidAssuranceMethodException;
-use PlanB\Type\Value\ValueAssurance;
+use PlanB\Type\Data\DataAssurance;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ValueAssuranceSpec extends ObjectBehavior
+class DataAssuranceSpec extends ObjectBehavior
 {
     private const NUMBER = 123.745;
 
@@ -22,7 +22,7 @@ class ValueAssuranceSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType(ValueAssurance::class);
+        $this->shouldHaveType(DataAssurance::class);
     }
 
     public function it_can_reject_invalid_methods()

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 use \PlanB\Type\Text\Text;
 use \PlanB\Type\Text\TextAssurance;
-use \PlanB\Type\Value\Value;
+use \PlanB\Type\Data\Data;
 
 
 if (!function_exists('ensure_text')) {
@@ -100,7 +100,7 @@ if (!function_exists('force_to_string')) {
      */
     function force_to_string($value): string
     {
-        return Value::make($value)->decorate();
+        return Data::make($value)->decorate();
     }
 }
 

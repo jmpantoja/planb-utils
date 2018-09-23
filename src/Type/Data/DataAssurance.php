@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace PlanB\Type\Value;
+namespace PlanB\Type\Data;
 
 use PlanB\Type\Assurance\Assurance;
 use PlanB\Type\Stringifable;
@@ -20,7 +20,7 @@ use PlanB\Utils\Traits\Stringify;
 /**
  * Assurance para Types
  */
-class ValueAssurance extends Assurance implements Stringifable
+class DataAssurance extends Assurance implements Stringifable
 {
     use Stringify;
 
@@ -34,7 +34,7 @@ class ValueAssurance extends Assurance implements Stringifable
      *
      * @param \PlanB\Utils\Type\Type $type
      */
-    protected function __construct(Value $type)
+    protected function __construct(Data $type)
     {
         $this->type = $type;
     }
@@ -45,11 +45,11 @@ class ValueAssurance extends Assurance implements Stringifable
      *
      * @param mixed $variable
      *
-     * @return \PlanB\Type\Value\ValueAssurance
+     * @return \PlanB\Type\Data\DataAssurance
      */
     public static function make($variable): self
     {
-        $type = Value::make($variable);
+        $type = Data::make($variable);
 
         return new static($type);
     }

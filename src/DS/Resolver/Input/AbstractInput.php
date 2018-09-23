@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver\Input;
 
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 
 /**
  * Clase base para valores que se tratan de añadir a una colección
@@ -66,6 +66,6 @@ abstract class AbstractInput implements InputInterface
             return true;
         }
 
-        return Value::make($this->value)->isTypeOf($allowed);
+        return Data::make($this->value)->isTypeOf($allowed);
     }
 }

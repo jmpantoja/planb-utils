@@ -18,7 +18,7 @@ use PlanB\DS\Exception\InvalidArgumentException;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 
 trait TraitBuilder
 {
@@ -80,7 +80,7 @@ trait TraitBuilder
     {
         $target = $this
             ->addFilter(function ($value) {
-                return Value::make($value)->isConvertibleToString();
+                return Data::make($value)->isConvertibleToString();
             })
             ->values([
                 self::VALUE_A,

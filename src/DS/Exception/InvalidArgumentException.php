@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Exception;
 
 use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 
 /**
  * Se lanza cuando se trata de añadir un valor considerado no valido
@@ -49,7 +49,7 @@ class InvalidArgumentException extends \InvalidArgumentException
     {
 
         $original = $input->getOriginal();
-        $value = Value::make($original)->decorate();
+        $value = Data::make($original)->decorate();
 
         $message = sprintf("%s \n\nis <options=bold,underscore>NOT VALID</>", $value);
 

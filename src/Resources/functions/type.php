@@ -12,8 +12,8 @@
 declare(strict_types=1);
 
 use PlanB\Type\DataType\DataTypeAssurance;
-use PlanB\Type\Value\ValueAssurance;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\DataAssurance;
+use PlanB\Type\Data\Data;
 
 
 if (!function_exists('ensure_type')) {
@@ -36,11 +36,11 @@ if (!function_exists('ensure_value')) {
      * Assurance para Input
      *
      * @param $text
-     * @return ValueAssurance
+     * @return DataAssurance
      */
-    function ensure_value($text): ValueAssurance
+    function ensure_value($text): DataAssurance
     {
-        return ValueAssurance::make($text);
+        return DataAssurance::make($text);
     }
 }
 
@@ -56,7 +56,7 @@ if (!function_exists('is_typeof')) {
      */
     function is_typeof($variable, string ...$allowed): bool
     {
-        return Value::make($variable)->isTypeOf(...$allowed);
+        return Data::make($variable)->isTypeOf(...$allowed);
     }
 }
 

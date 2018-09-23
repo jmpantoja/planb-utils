@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\PlanB\Type\Value;
+namespace spec\PlanB\Type\Data;
 
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Wrapper\ObjectWrapper;
 use PlanB\Type\DataType\Type;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 use PlanB\Type\DataType\DataType;
 
-class ValueSpec extends ObjectBehavior
+class DataSpec extends ObjectBehavior
 {
     private const NULL = null;
 
@@ -37,7 +37,7 @@ class ValueSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType(Value::class);
+        $this->shouldHaveType(Data::class);
     }
 
     public function it_can_determine_if_is_resource()

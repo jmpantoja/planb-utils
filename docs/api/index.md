@@ -24,6 +24,7 @@
 * [PlanB\Type](PlanB/Type.md)
 * [PlanB\Type\Assurance](PlanB/Type/Assurance.md)
 * [PlanB\Type\Assurance\Exception](PlanB/Type/Assurance/Exception.md)
+* [PlanB\Type\Data](PlanB/Type/Data.md)
 * [PlanB\Type\DataType](PlanB/Type/DataType.md)
 * [PlanB\Type\Number](PlanB/Type/Number.md)
 * [PlanB\Type\Path](PlanB/Type/Path.md)

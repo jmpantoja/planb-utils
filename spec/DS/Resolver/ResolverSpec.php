@@ -21,7 +21,7 @@ use PlanB\DS\Resolver\Rule\Validator;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Value\Value;
+use PlanB\Type\Data\Data;
 use Prophecy\Argument;
 use spec\PlanB\Matchers;
 
@@ -175,7 +175,7 @@ class ResolverSpec extends ObjectBehavior
         $this
             ->addFilter(function ($value) {
 
-                return Value::make($value)->isConvertibleToString();
+                return Data::make($value)->isConvertibleToString();
             })->addConverter(Type::STRING, function (string $value) {
 
                 return Text::make($value);

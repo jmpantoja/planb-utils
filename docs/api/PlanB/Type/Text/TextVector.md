@@ -11,10 +11,10 @@
 
 ## Traits
 - PlanB\Type\Text\TraitTextList
-- PlanB\DS1\Traits\TraitCollection
-- PlanB\DS1\Traits\TraitResolver
-- PlanB\DS1\Traits\TraitSequence
-- PlanB\DS1\Traits\TraitArray
+- PlanB\DS\Traits\TraitCollection
+- PlanB\DS\Traits\TraitResolver
+- PlanB\DS\Traits\TraitSequence
+- PlanB\DS\Traits\TraitArray
 
 
 

@@ -19,11 +19,11 @@
 
 ## Methods
 
-### create
+### make
 Crea una instancia para un perfil determinado
 
 
-static **Options::create**(string $profile = self::DEFAULT_PROFILE) : [Options](../../../Options.md)
+static **Options::make**(string $profile = self::DEFAULT_PROFILE) : [Options](../../../Options.md)
 
 
 |Parameters: | | |

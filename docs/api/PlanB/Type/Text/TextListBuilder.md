@@ -28,6 +28,20 @@ static **TextListBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.
 ---
 
 
+### typed
+AbstractBuilder named constructor.
+
+
+static **TextListBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+
+---
+
+
 ### __construct
 AbstractBuilder constructor.
 
@@ -57,20 +71,6 @@ Devuelve el resolver
 protected **TextListBuilder::getResolver**() : [Resolver](../../../Resolver.md)
 
 
-
----
-
-
-### type
-Asigna un tipo a la colección
-
-
-**TextListBuilder::type**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 

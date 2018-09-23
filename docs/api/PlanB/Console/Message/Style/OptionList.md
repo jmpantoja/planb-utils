@@ -10,9 +10,9 @@
 
 
 ## Traits
-- PlanB\DS1\Traits\TraitCollection
-- PlanB\DS1\Traits\TraitResolver
-- PlanB\DS1\Traits\TraitArray
+- PlanB\DS\Traits\TraitCollection
+- PlanB\DS\Traits\TraitResolver
+- PlanB\DS\Traits\TraitArray
 
 
 
@@ -533,6 +533,21 @@ static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Re
 | --- | --- | --- |
 |[iterable](../../../../iterable.md) |$input |  |
 |[Resolver](../../../../Resolver.md) |$resolver |  |
+
+---
+
+
+### typed
+Set named constructor.
+
+
+static **OptionList::typed**(string $type, [iterable](../../../../iterable.md) $input = []) : [Set](../../../../Set.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
+|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 

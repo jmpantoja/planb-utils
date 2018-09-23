@@ -50,7 +50,7 @@ class Paragraph extends TextVector
             })->addConverter(Text::class, function (Text $text) {
                 $line = Line::make($text);
 
-                return LineWithStyle::create($line, $this->style->clone());
+                return LineWithStyle::make($line, $this->style->clone());
             });
 
         return $this;
@@ -62,7 +62,7 @@ class Paragraph extends TextVector
     public function __construct()
     {
         parent::__construct(null);
-        $this->style = Style::create();
+        $this->style = Style::make();
     }
 
 

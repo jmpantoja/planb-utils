@@ -24,7 +24,7 @@ class HorizontalSpaceSpec extends ObjectBehavior
 
     protected function build(int $left = 0, int $right = null): void
     {
-        $this->beConstructedThrough('create', [$left, $right]);
+        $this->beConstructedThrough('make', [$left, $right]);
     }
 
     public function it_is_initializable()
@@ -62,7 +62,7 @@ class HorizontalSpaceSpec extends ObjectBehavior
 
     public function it_can_be_mergered()
     {
-        $space = HorizontalSpace::create(self::POSITIVE);
+        $space = HorizontalSpace::make(self::POSITIVE);
 
         $this->build(self::LEFT_SPACES, self::RIGHT_SPACES);
         $merged = $this->blend($space);

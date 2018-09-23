@@ -14,7 +14,7 @@ class AttributesSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -120,7 +120,7 @@ class AttributesSpec extends ObjectBehavior
      */
     protected function getAttributesToMerge(): Attributes
     {
-        $attributes = Attributes::create()
+        $attributes = Attributes::make()
             ->setForegroundColor(Color::GREEN())
             ->setBackgroundColor(Color::WHITE())
             ->addOption(Option::BOLD());

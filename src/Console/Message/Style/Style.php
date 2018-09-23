@@ -42,12 +42,12 @@ class Style
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public static function create(): self
+    public static function make(): self
     {
-        $padding = HorizontalSpace::create();
-        $margin = HorizontalSpace::create();
-        $position = Position::create();
-        $attributes = Attributes::create();
+        $padding = HorizontalSpace::make();
+        $margin = HorizontalSpace::make();
+        $position = Position::make();
+        $attributes = Attributes::make();
 
         return new static($padding, $margin, $position, $attributes);
     }
@@ -112,7 +112,7 @@ class Style
      */
     public function padding(int $left = 0, ?int $right = null): self
     {
-        $this->padding = HorizontalSpace::create($left, $right);
+        $this->padding = HorizontalSpace::make($left, $right);
 
         return $this;
     }
@@ -157,7 +157,7 @@ class Style
      */
     public function margin(int $left = 0, ?int $right = null): self
     {
-        $this->margin = HorizontalSpace::create($left, $right);
+        $this->margin = HorizontalSpace::make($left, $right);
 
         return $this;
     }
@@ -192,7 +192,7 @@ class Style
      */
     public function expandTo(int $width, $align = null): self
     {
-        $position = Position::create($width, $align);
+        $position = Position::make($width, $align);
         $this->position = $position;
 
         return $this;

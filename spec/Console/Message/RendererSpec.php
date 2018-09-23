@@ -36,7 +36,7 @@ class RendererSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -47,7 +47,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_apply_an_equals_padding()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->padding(2);
 
         $this->render($text, $style)
@@ -58,7 +58,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_apply_an_different_padding()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->padding(2, 4);
 
         $this->render($text, $style)
@@ -69,7 +69,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_apply_an_equals_margin()
     {
         $text = Line::make(self::INPUT_WITH_TAGS);
-        $style = Style::create()
+        $style = Style::make()
             ->margin(2);
 
         $this->render($text, $style)
@@ -80,7 +80,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_apply_an_different_margin()
     {
         $text = Line::make(self::INPUT_WITH_TAGS);
-        $style = Style::create()
+        $style = Style::make()
             ->margin(2, 4);
 
         $this->render($text, $style)
@@ -92,7 +92,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_align_to_left()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->expandTo(self::WIDTH);
 
         $this->render($text, $style)
@@ -103,7 +103,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_align_to_center()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->expandTo(self::WIDTH, Align::CENTER);
 
         $this->render($text, $style)
@@ -114,7 +114,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_align_to_right()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->expandTo(self::WIDTH, Align::RIGHT);
 
         $this->render($text, $style)
@@ -125,7 +125,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_align_a_text_with_tags()
     {
         $text = Line::make(self::INPUT_WITH_TAGS);
-        $style = Style::create()
+        $style = Style::make()
             ->expandTo(self::WIDTH, Align::CENTER);
 
         $this->render($text, $style)
@@ -136,7 +136,7 @@ class RendererSpec extends ObjectBehavior
     public function it_can_add_tags_to_a_text()
     {
         $text = Line::make(self::INPUT);
-        $style = Style::create()
+        $style = Style::make()
             ->option(Option::BOLD)
             ->foregroundColor(Color::BLUE)
             ->backgroundColor(Color::RED);
@@ -149,7 +149,7 @@ class RendererSpec extends ObjectBehavior
 
     public function it_can_apply_a_complete_style()
     {
-        $style = Style::create();
+        $style = Style::make();
         $text = Line::make('x');
 
 

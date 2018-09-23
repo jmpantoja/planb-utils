@@ -18,7 +18,7 @@ class PositionSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -38,14 +38,14 @@ class PositionSpec extends ObjectBehavior
 
     public function it_throws_an_exception_if_width_is_nefative()
     {
-        $this->beConstructedThrough('create', [self::NEGATIVE]);
+        $this->beConstructedThrough('make', [self::NEGATIVE]);
 
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_align_is_invalid()
     {
-        $this->beConstructedThrough('create', [self::WIDTH, self::FAKE_ALIGN]);
+        $this->beConstructedThrough('make', [self::WIDTH, self::FAKE_ALIGN]);
 
         $this->shouldThrow(\InvalidArgumentException::class)->duringInstantiation();
     }

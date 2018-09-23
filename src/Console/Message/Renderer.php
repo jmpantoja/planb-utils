@@ -36,7 +36,7 @@ class Renderer
      *
      * @return \PlanB\Console\Message\Renderer
      */
-    public static function create(): self
+    public static function make(): self
     {
         return new static();
     }
@@ -47,10 +47,10 @@ class Renderer
     protected function __construct()
     {
         $this->decorators = Vector::typed(DecoratorInterface::class, [
-            PaddingDecorator::create(),
-            AlignDecorator::create(),
-            TagDecorator::create(),
-            MarginDecorator::create(),
+            PaddingDecorator::make(),
+            AlignDecorator::make(),
+            TagDecorator::make(),
+            MarginDecorator::make(),
         ]);
     }
 

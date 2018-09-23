@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Position named constructor.
 
 
-static **Position::create**(int $width = 0, [Align](../../../../Align.md)|string $align = null) : [Position](../../../../Position.md)
+static **Position::make**(int $width = 0, [Align](../../../../Align.md)|string $align = null) : [Position](../../../../Position.md)
 
 
 |Parameters: | | |

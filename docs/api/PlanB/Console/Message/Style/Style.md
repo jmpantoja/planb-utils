@@ -19,11 +19,11 @@
 
 ## Methods
 
-### create
+### make
 Style named constructor.
 
 
-static **Style::create**() : [Style](../../../../Style.md)
+static **Style::make**() : [Style](../../../../Style.md)
 
 
 

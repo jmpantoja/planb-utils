@@ -43,7 +43,7 @@ class LineWithStyle
      *
      * @return \PlanB\Console\Message\LineWithStyle
      */
-    public static function create(Line $line, Style $style): LineWithStyle
+    public static function make(Line $line, Style $style): LineWithStyle
     {
         return new static($line, $style);
     }
@@ -58,7 +58,7 @@ class LineWithStyle
     {
         $this->line = $line;
         $this->style = $style;
-        $this->renderer = Renderer::create();
+        $this->renderer = Renderer::make();
     }
 
     /**

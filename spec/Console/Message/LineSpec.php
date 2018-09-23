@@ -41,7 +41,7 @@ class LineSpec extends ObjectBehavior
     public function it_can_apply_a_style()
     {
         $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
-        $style = Style::create()
+        $style = Style::make()
             ->backgroundColor(Color::YELLOW)
             ->foregroundColor(Color::BLUE);
 

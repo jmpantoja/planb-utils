@@ -41,11 +41,11 @@ Devuelve la cadena de texto
 ---
 
 
-### create
+### make
 Attributes named constructor.
 
 
-static **Attributes::create**() : [Attributes](../../../../Attributes.md)
+static **Attributes::make**() : [Attributes](../../../../Attributes.md)
 
 
 

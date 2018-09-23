@@ -44,7 +44,7 @@ class Attributes implements Stringifable
      *
      * @return \PlanB\Console\Message\Style\Attributes
      */
-    public static function create(): Attributes
+    public static function make(): Attributes
     {
         $fgColor = Color::DEFAULT();
         $bgColor = Color::DEFAULT();
@@ -62,7 +62,7 @@ class Attributes implements Stringifable
      */
     public static function fromString(string $content): \PlanB\Console\Message\Style\Attributes
     {
-        $parser = AttributeParser::create($content);
+        $parser = AttributeParser::make($content);
 
         $fgColor = $parser->getForegroundColor();
         $bgColor = $parser->getBackgroundColor();

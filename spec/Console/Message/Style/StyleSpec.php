@@ -23,7 +23,7 @@ class StyleSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -158,7 +158,7 @@ class StyleSpec extends ObjectBehavior
      */
     protected function buildStyleToMerge(): Style
     {
-        $style = Style::create()
+        $style = Style::make()
             ->margin(2, 3)
             ->padding(2, 3)
             ->expandTo(10, Align::CENTER)

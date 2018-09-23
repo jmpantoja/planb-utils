@@ -25,7 +25,7 @@ class AttributeParser
      *
      * @return \PlanB\Console\Message\Style\AttributeParser
      */
-    public static function create(string $content): AttributeParser
+    public static function make(string $content): AttributeParser
     {
         return new static($content);
     }

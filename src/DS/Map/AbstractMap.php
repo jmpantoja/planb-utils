@@ -37,7 +37,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
     /**
      * @inheritdoc
      */
-    protected function makeInternal(): \DS\Collection
+    protected function makeInternal(): \DS\Map
     {
         return new \DS\Map();
     }

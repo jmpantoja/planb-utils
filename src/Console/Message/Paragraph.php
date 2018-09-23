@@ -151,7 +151,7 @@ class Paragraph extends TextVector
     /**
      * Añade color al texto
      *
-     * @param  string|\PlanB\Console\Message\Color $color
+     * @param  string|\PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Paragraph
      */
@@ -165,7 +165,7 @@ class Paragraph extends TextVector
     /**
      * Añade color de fondo  al texto
      *
-     * @param \PlanB\Console\Message\Color|string $color
+     * @param  string|\PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Paragraph
      */

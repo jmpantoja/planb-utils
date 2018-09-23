@@ -36,7 +36,7 @@ class HorizontalSpace
      *
      * @return \PlanB\Console\Message\Style\HorizontalSpace
      */
-    public static function create(int $left = 0, ?int $right = null): HorizontalSpace
+    public static function make(int $left = 0, ?int $right = null): HorizontalSpace
     {
         if (is_null($right)) {
             $right = $left;
@@ -115,9 +115,9 @@ class HorizontalSpace
      *
      * @return \PlanB\Console\Message\Style\HorizontalSpace
      */
-    public function merge(HorizontalSpace $space): HorizontalSpace
+    public function blend(HorizontalSpace $space): HorizontalSpace
     {
-        return self::create(
+        return self::make(
             $this->left + $space->left,
             $this->right + $space->right
         );

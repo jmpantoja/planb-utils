@@ -382,6 +382,34 @@ Adds zero or more values to the front of the sequence.
 ---
 
 
+### max
+Return the maximum value
+
+
+**TraitSequence::max**(callable $comparator = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator |  |
+
+---
+
+
+### min
+Return the minimun value
+
+
+**TraitSequence::min**(callable $comparator = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

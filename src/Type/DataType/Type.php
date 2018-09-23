@@ -33,4 +33,5 @@ final class Type extends Enum
     public const RESOURCE = 'resource';
     public const SCALAR = 'scalar';
     public const STRING = 'string';
+    public const STRINGIFABLE = 'stringifable';
 }

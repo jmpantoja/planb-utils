@@ -58,9 +58,9 @@ class PathAssurance extends Assurance implements Stringifable
      *
      * @return \PlanB\Type\Path\PathAssurance
      */
-    public static function create(string ...$segments): self
+    public static function make(string ...$segments): self
     {
-        $path = Path::create(...$segments);
+        $path = Path::make(...$segments);
 
         return new static($path);
     }

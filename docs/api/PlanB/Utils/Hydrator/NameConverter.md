@@ -31,11 +31,11 @@ protected **NameConverter::__construct**(string $snakeCaseSeparator = null) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **NameConverter::create**(string $snakeCaseSeparator = null) : [NameConverter](../../../NameConverter.md)
+static **NameConverter::make**(string $snakeCaseSeparator = null) : [NameConverter](../../../NameConverter.md)
 
 
 |Parameters: | | |

@@ -106,11 +106,11 @@ static **PathAssurance::fromPath**([Path](../../../Path.md) $path) : [PathAssura
 ---
 
 
-### create
+### make
 Crea una nueva instancia a partir de una (o varias) cadena de texto
 
 
-static **PathAssurance::create**(string ...$segments) : [PathAssurance](../../../PathAssurance.md)
+static **PathAssurance::make**(string ...$segments) : [PathAssurance](../../../PathAssurance.md)
 
 
 |Parameters: | | |

@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Number named constructor.
 
 
-static **Number::create**(mixed $number) : [Number](../../../Number.md)
+static **Number::make**(mixed $number) : [Number](../../../Number.md)
 
 
 |Parameters: | | |

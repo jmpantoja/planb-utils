@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Renderer named constructor.
 
 
-static **Renderer::create**() : [Renderer](../../../Renderer.md)
+static **Renderer::make**() : [Renderer](../../../Renderer.md)
 
 
 

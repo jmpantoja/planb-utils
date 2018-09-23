@@ -37,7 +37,7 @@ class EmptyPathException extends \DomainException
      *
      * @return \PlanB\Type\Path\Exception\EmptyPathException
      */
-    public static function create(?\Throwable $previous = null): self
+    public static function make(?\Throwable $previous = null): self
     {
         $message = 'No se pueden crear Paths desde cadenas vacias';
 

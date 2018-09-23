@@ -76,7 +76,7 @@ class ColorSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('get', [Color::DEFAULT]);
 
-        $this->merge(Color::RED())
+        $this->blend(Color::RED())
             ->shouldReturn(Color::RED());
     }
 
@@ -85,7 +85,7 @@ class ColorSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('get', [Color::GREEN]);
 
-        $this->merge(Color::RED())
+        $this->blend(Color::RED())
             ->shouldReturn(Color::GREEN());
     }
 }

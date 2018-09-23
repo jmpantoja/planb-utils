@@ -24,7 +24,7 @@ abstract class Decorator implements DecoratorInterface
      *
      * @return \PlanB\Console\Message\Decorator\DecoratorInterface
      */
-    public static function create(): DecoratorInterface
+    public static function make(): DecoratorInterface
     {
         return new static();
     }

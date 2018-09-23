@@ -14,7 +14,7 @@ class AssuranceCallSpec extends ObjectBehavior
 
     public function let(Text $text)
     {
-        $this->beConstructedThrough('create', [$text]);
+        $this->beConstructedThrough('make', [$text]);
     }
 
     public function it_is_initializable()

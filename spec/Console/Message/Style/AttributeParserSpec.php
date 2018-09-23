@@ -13,7 +13,7 @@ class AttributeParserSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedThrough('create', ['bg=blue;options=bold,underscore;fg=red']);
+        $this->beConstructedThrough('make', ['bg=blue;options=bold,underscore;fg=red']);
     }
 
     public function it_is_initializable()
@@ -23,15 +23,15 @@ class AttributeParserSpec extends ObjectBehavior
 
     public function it_ignore_invalid_keys()
     {
-        $this->beConstructedThrough('create', ['bg=blue;FAKE_KEY=value;options=bold,underscore;fg=red']);
+        $this->beConstructedThrough('make', ['bg=blue;FAKE_KEY=value;options=bold,underscore;fg=red']);
 
         $this->getBackgroundColor()->shouldReturn(Color::BLUE());
 
         $this->getForegroundColor()->shouldReturn(Color::RED());
 
         $this->getOptions()->shouldIterateLike([
-            'bold' => Text::create(Option::BOLD),
-            'underscore' => Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 
@@ -44,14 +44,14 @@ class AttributeParserSpec extends ObjectBehavior
     public function it_retrieve_default_background_color_when_dont_exists()
     {
 
-        $this->beConstructedThrough('create', ['options=bold,underscore;fg=red']);
+        $this->beConstructedThrough('make', ['options=bold,underscore;fg=red']);
         $this->getBackgroundColor()->shouldReturn(Color::DEFAULT());
     }
 
     public function it_retrieve_default_background_color_when_is_invalid()
     {
 
-        $this->beConstructedThrough('create', ['bg=FAKE-COLOR;options=bold,underscore;fg=red']);
+        $this->beConstructedThrough('make', ['bg=FAKE-COLOR;options=bold,underscore;fg=red']);
         $this->getBackgroundColor()->shouldReturn(Color::DEFAULT());
     }
 
@@ -63,38 +63,38 @@ class AttributeParserSpec extends ObjectBehavior
     public function it_retrieve_default_foreground_color_when_dont_exists()
     {
 
-        $this->beConstructedThrough('create', ['bg=blue;options=bold,underscore']);
+        $this->beConstructedThrough('make', ['bg=blue;options=bold,underscore']);
         $this->getForegroundColor()->shouldReturn(Color::DEFAULT());
     }
 
     public function it_retrieve_default_foreground_color_when_is_invalid()
     {
 
-        $this->beConstructedThrough('create', ['bg=FAKE-COLOR;options=bold,underscore;fg=FAKE-COLOR']);
+        $this->beConstructedThrough('make', ['bg=FAKE-COLOR;options=bold,underscore;fg=FAKE-COLOR']);
         $this->getForegroundColor()->shouldReturn(Color::DEFAULT());
     }
 
     public function it_retrieve_options_list()
     {
         $this->getOptions()->shouldIterateLike([
-            'bold' => Text::create(Option::BOLD),
-            'underscore' => Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 
     public function it_retrieve_empty_options_list_when_dont_exists()
     {
-        $this->beConstructedThrough('create', ['bg=blue;fg=red']);
+        $this->beConstructedThrough('make', ['bg=blue;fg=red']);
         $this->getOptions()->shouldIterateLike([]);
     }
 
     public function it_retrieve_empty_options_list_when_is_invalid()
     {
-        $this->beConstructedThrough('create', ['bg=blue;options=bold,underscore,FAKE-OPTION;fg=red']);
+        $this->beConstructedThrough('make', ['bg=blue;options=bold,underscore,FAKE-OPTION;fg=red']);
 
         $this->getOptions()->shouldIterateLike([
-            'bold' => Text::create(Option::BOLD),
-            'underscore' => Text::create(Option::UNDERSCORE),
+            Text::make(Option::BOLD),
+            Text::make(Option::UNDERSCORE),
         ]);
     }
 

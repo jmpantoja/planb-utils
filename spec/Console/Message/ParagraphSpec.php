@@ -53,12 +53,12 @@ eof;
 
     public function let()
     {
-        $this->beConstructedThrough('create', [[]]);
+        $this->beConstructedThrough('make', [[]]);
     }
 
     public function it_is_initializable()
     {
-        $this->beConstructedThrough('create', [[
+        $this->beConstructedThrough('make', [[
             Message::line("linea A\nlinea B")->fgColor(Color::RED()),
             Message::line("linea C")->bgColor(Color::GREEN()),
             Message::line("linea D")->underscore()->blink(),
@@ -70,17 +70,16 @@ eof;
 
     public function it_can_merge_style_attributes()
     {
-        $this->beConstructedThrough('create', [[
+        $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->fgColor(Color::RED()),
             Message::line("linea C")->bgColor(Color::GREEN()),
             Message::line("linea D")->underscore()->blink(),
-
         ]]);
 
         $this->bold()
-            ->reverse()
+            ->inverse()
             ->fgColor('green');
 
         $this->render()
@@ -90,9 +89,9 @@ eof;
 
     public function it_can_merge_style_padding()
     {
-        $this->beConstructedThrough('create', [[
+        $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->padding(3),
             Message::line("linea C")->bgColor(Color::GREEN())->padding(2),
             Message::line("linea D")->padding(2, 0)
@@ -109,9 +108,9 @@ eof;
 
     public function it_can_merge_style_margin()
     {
-        $this->beConstructedThrough('create', [[
+        $this->beConstructedThrough('make', [[
             'string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->margin(3),
             Message::line("linea C")->bgColor(Color::GREEN())->margin(2),
             Message::line("linea D")->margin(2, 0)
@@ -130,9 +129,9 @@ eof;
     public function it_can_merge_style_position()
     {
 
-        $this->beConstructedThrough('create', [[
+        $this->beConstructedThrough('make', [[
             'string string string string',
-            Text::create('Text'),
+            Text::make('Text'),
             Message::line("linea A\nlinea B")->left(),
             Message::line("linea C")->bgColor(Color::GREEN())->right(),
             Message::line("linea D")

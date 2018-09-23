@@ -53,10 +53,10 @@ abstract class Assurance
 
         $wrapped = $this->getEvaluatedObject();
 
-        $call = AssuranceCall::create($wrapped);
+        $call = AssuranceCall::make($wrapped);
 
         if (!$call->execute($name, ...$arguments)) {
-            throw AssertException::create($wrapped, $name, $arguments);
+            throw AssertException::make($wrapped, $name, $arguments);
         }
 
         return $this;

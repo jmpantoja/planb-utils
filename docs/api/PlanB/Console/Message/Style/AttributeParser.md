@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 AttributeParser named constructor.
 
 
-static **AttributeParser::create**(string $content) : [AttributeParser](../../../../AttributeParser.md)
+static **AttributeParser::make**(string $content) : [AttributeParser](../../../../AttributeParser.md)
 
 
 |Parameters: | | |

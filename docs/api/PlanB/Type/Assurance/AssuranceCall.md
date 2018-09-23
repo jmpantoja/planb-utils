@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **AssuranceCall::create**([object](../../../object.md) $object) : [AssuranceCall](../../../AssuranceCall.md)
+static **AssuranceCall::make**([object](../../../object.md) $object) : [AssuranceCall](../../../AssuranceCall.md)
 
 
 |Parameters: | | |

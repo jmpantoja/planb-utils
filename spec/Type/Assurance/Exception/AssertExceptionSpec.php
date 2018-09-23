@@ -17,7 +17,7 @@ class AssertExceptionSpec extends ObjectBehavior
 
     public function it_can_be_created(Text $text)
     {
-        $this->beConstructedThrough('create', [$text, 'isString', []]);
+        $this->beConstructedThrough('make', [$text, 'isString', []]);
         $this->shouldHaveType(AssertException::class);
 
         $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
@@ -27,7 +27,7 @@ class AssertExceptionSpec extends ObjectBehavior
 
     public function it_can_be_created_with_one_params(Text $text)
     {
-        $this->beConstructedThrough('create', [$text, 'isString', ['A']]);
+        $this->beConstructedThrough('make', [$text, 'isString', ['A']]);
         $this->shouldHaveType(AssertException::class);
 
         $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
@@ -39,7 +39,7 @@ class AssertExceptionSpec extends ObjectBehavior
 
     public function it_can_be_created_with_two_params(Text $text)
     {
-        $this->beConstructedThrough('create', [$text, 'isString', ['A', 'B']]);
+        $this->beConstructedThrough('make', [$text, 'isString', ['A', 'B']]);
         $this->shouldHaveType(AssertException::class);
 
         $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');

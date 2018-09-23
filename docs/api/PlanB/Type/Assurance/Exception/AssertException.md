@@ -32,11 +32,11 @@ protected **AssertException::__construct**(string $message, [Throwable](../../..
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **AssertException::create**([object](../../../../object.md) $wrapped, string $method, array $arguments, [Throwable](../../../../Throwable.md) $previous = null) : [AssertException](../../../../AssertException.md)
+static **AssertException::make**([object](../../../../object.md) $wrapped, string $method, array $arguments, [Throwable](../../../../Throwable.md) $previous = null) : [AssertException](../../../../AssertException.md)
 
 
 |Parameters: | | |

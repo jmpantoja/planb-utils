@@ -16,15 +16,17 @@ namespace PlanB\Console\Message;
 use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS\ItemList\ListInterface;
-use PlanB\DS\TypedList\AbstractTypedList;
+use PlanB\DS\Collection;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextListBuilder;
+use PlanB\Type\Text\TextVector;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class Paragraph extends AbstractTypedList
+class Paragraph extends TextVector
 {
     /**
      * @var \PlanB\Console\Message\Style\Style
@@ -32,83 +34,44 @@ class Paragraph extends AbstractTypedList
     private $style;
 
     /**
-     * Devuelve el tipo de la lista
-     *
-     * @return null|string
-     */
-    public function getInnerType(): string
-    {
-        return LineWithStyle::class;
-    }
-
-    /**
-     * Configura el comportamiento de  la lista
-     *
-     * @return void
-     */
-    protected function customize(): void
-    {
-        $this->addHydrator(Type::SCALAR, function ($value) {
-            return Text::create($value);
-        });
-
-        $this->addHydrator(Text::class, function (Text $text) {
-            $line = Line::create($text);
-
-            return LineWithStyle::create($line, $this->style->clone());
-        });
-    }
-
-    /**
-     * Paragraph named constructor.
-     *
-     * @param mixed[] $input
-     *
-     * @return \PlanB\Console\Message\Paragraph
-     */
-    public static function create(iterable $input): self
-    {
-        return new static($input);
-    }
-
-    /**
-     * Paragraph constructor.
-     *
-     * @param \PlanB\Console\Message\Decorable[] $input
-     */
-    protected function __construct(iterable $input)
-    {
-        parent::__construct();
-
-        $this->style = Style::create();
-        $this->addAll($input);
-    }
-
-
-    /**
      * @inheritdoc
-     *
-     * @param mixed $paragraph
-     *
-     * @return \PlanB\DS\ItemList\ListInterface
      */
-    public function add($paragraph): ListInterface
+    public function configure(Resolver $resolver): Collection
     {
-        if ($paragraph instanceof Paragraph) {
-            $this->addAll($paragraph->getLines());
+        $resolver
+            ->setType(LineWithStyle::class)
+            ->addTypedFilter(Paragraph::class, function (Paragraph $paragraph) {
+                $this->pushAll($paragraph->getLines());
 
-            return $this;
-        }
+                return false;
+            })
+            ->addConverter(Type::SCALAR, function ($value) {
+                return Text::make($value);
+            })->addConverter(Text::class, function (Text $text) {
+                $line = Line::make($text);
 
-        return parent::add($paragraph);
+                return LineWithStyle::make($line, $this->style->clone());
+            });
+
+        return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        parent::__construct(null);
+        $this->style = Style::make();
+    }
+
 
     /**
      * Devuelve una lista con todas las lineas que componen el párrafo
      *
-     * @return \PlanB\DS\ItemList\ItemList|\PlanB\DS\ItemList\ListInterface
+     * @return \PlanB\DS\Sequence
      */
-    public function getLines()
+    public function getLines(): \PlanB\DS\Sequence
     {
         return $this->map(function (LineWithStyle $line) {
             return $line->apply($this->style);
@@ -124,11 +87,17 @@ class Paragraph extends AbstractTypedList
     {
         $width = $this->getWidth();
 
-        return $this->map(function (LineWithStyle $line) use ($width) {
-            $this->style->expandTo($width);
+        $list = TextListBuilder::make()
+            ->addTypedNormalizer(LineWithStyle::class, function (LineWithStyle $line) use ($width) {
 
-            return $line->render($this->style);
-        })->concat("\n");
+                $this->style->expandTo($width);
+
+                return $line->render($this->style);
+            })
+            ->values($this)
+            ->build();
+
+        return $list->concat(Text::LINE_BREAK);
     }
 
     /**
@@ -172,7 +141,7 @@ class Paragraph extends AbstractTypedList
      *
      * @return \PlanB\Console\Message\Paragraph
      */
-    public function reverse(): self
+    public function inverse(): self
     {
         $this->style->option(Option::REVERSE);
 
@@ -182,7 +151,7 @@ class Paragraph extends AbstractTypedList
     /**
      * Añade color al texto
      *
-     * @param  string|\PlanB\Console\Message\Color $color
+     * @param  string|\PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Paragraph
      */
@@ -196,7 +165,7 @@ class Paragraph extends AbstractTypedList
     /**
      * Añade color de fondo  al texto
      *
-     * @param \PlanB\Console\Message\Color|string $color
+     * @param  string|\PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Paragraph
      */
@@ -258,9 +227,13 @@ class Paragraph extends AbstractTypedList
      */
     private function getWidth(): int
     {
-        return (int) $this->getLines()->max(function (LineWithStyle $line) {
-                return $line->getLength();
-        }) + $this->style->getSpacingLenght();
+
+        $maxLength = $this->getLines()->max(function (LineWithStyle $first, LineWithStyle $second) {
+            return $first->getLength() <=> $second->getLength();
+        })->getLength();
+
+
+        return $maxLength + $this->style->getSpacingLenght();
     }
 
     /**

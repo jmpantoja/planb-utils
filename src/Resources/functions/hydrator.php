@@ -24,7 +24,7 @@ if (!function_exists('array_to_object')) {
      */
     function array_to_object(iterable $values, $classNameOrObject): object
     {
-        return GetSetHydrator::create()->hydrate($classNameOrObject, $values);
+        return GetSetHydrator::make()->hydrate($classNameOrObject, $values);
     }
 }
 if (!function_exists('object_to_array')) {
@@ -38,6 +38,6 @@ if (!function_exists('object_to_array')) {
      */
     function object_to_array(object $object, string $snakeCaseSeparator = '_'): array
     {
-        return GetSetHydrator::create()->extract($object, $snakeCaseSeparator);
+        return GetSetHydrator::make()->extract($object, $snakeCaseSeparator);
     }
 }

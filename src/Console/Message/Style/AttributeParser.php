@@ -25,7 +25,7 @@ class AttributeParser
      *
      * @return \PlanB\Console\Message\Style\AttributeParser
      */
-    public static function create(string $content): AttributeParser
+    public static function make(string $content): AttributeParser
     {
         return new static($content);
     }
@@ -40,7 +40,7 @@ class AttributeParser
 
         $this->bgColor = Color::DEFAULT();
         $this->fgColor = Color::DEFAULT();
-        $this->options = OptionList::create();
+        $this->options = OptionList::make();
 
         $pieces = explode(';', $content);
 

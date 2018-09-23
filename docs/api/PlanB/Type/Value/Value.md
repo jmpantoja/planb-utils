@@ -57,11 +57,11 @@ protected **Value::__construct**(mixed $variable) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **Value::create**(mixed $variable) : [Type](../../../Type.md)
+static **Value::make**(mixed $variable) : [Type](../../../Type.md)
 
 
 |Parameters: | | |

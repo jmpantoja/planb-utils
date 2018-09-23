@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Utils\Options;
 
-use PlanB\DS\TypedList\TypedListFactory;
+use PlanB\DS\Map\Map;
 use PlanB\Type\DataType\Type;
 use PlanB\Utils\Options\Exception\UndefinedProfileException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -39,9 +39,9 @@ abstract class Options
     private $currentProfile;
 
     /**
-     * @var \PlanB\DS\ItemList\TypedList
+     * @var \PlanB\DS\Map\Map
      */
-    private $profiles;
+    private $mapOfProfiles;
 
     /**
      * Crea una instancia para un perfil determinado
@@ -50,7 +50,7 @@ abstract class Options
      *
      * @return \PlanB\Utils\Options\Options
      */
-    public static function create(string $profile = self::DEFAULT_PROFILE): Options
+    public static function make(string $profile = self::DEFAULT_PROFILE): Options
     {
         return new static($profile);
     }
@@ -63,7 +63,7 @@ abstract class Options
      */
     protected function __construct(string $profile = self::DEFAULT_PROFILE)
     {
-        $this->profiles = TypedListFactory::fromType(Type::CALLABLE);
+        $this->mapOfProfiles = Map::typed(Type::CALLABLE);
 
         $this->addProfile(self::DEFAULT_PROFILE, [$this, 'configure']);
         $this->customize();
@@ -90,7 +90,7 @@ abstract class Options
      */
     private function setCurrentProfile(string $name): self
     {
-        if (!$this->profiles->has($name)) {
+        if (!$this->mapOfProfiles->hasKey($name)) {
             throw UndefinedProfileException::forProfile($name);
         }
 
@@ -126,7 +126,7 @@ abstract class Options
      */
     public function addProfile(string $name, callable $callback): self
     {
-        $this->profiles->set($name, $callback);
+        $this->mapOfProfiles->put($name, $callback);
 
         return $this;
     }
@@ -171,7 +171,7 @@ abstract class Options
     private function buildResolver(): OptionsResolver
     {
         $resolver = new OptionsResolver();
-        $profile = $this->profiles->get($this->currentProfile);
+        $profile = $this->mapOfProfiles->get($this->currentProfile);
 
         call_user_func($profile, $resolver);
 

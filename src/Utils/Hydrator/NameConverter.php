@@ -42,7 +42,7 @@ class NameConverter implements NameConverterInterface
      *
      * @return \PlanB\Utils\Hydrator\NameConverter
      */
-    public static function create(?string $snakeCaseSeparator = null): self
+    public static function make(?string $snakeCaseSeparator = null): self
     {
         return new static($snakeCaseSeparator);
     }

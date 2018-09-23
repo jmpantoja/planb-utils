@@ -34,7 +34,7 @@ class Position
      *
      * @return \PlanB\Console\Message\Style\Position
      */
-    public static function create(int $width = 0, $align = null): Position
+    public static function make(int $width = 0, $align = null): Position
     {
         if (is_null($align)) {
             $align = Align::DEFAULT();
@@ -62,7 +62,7 @@ class Position
      *
      * @return \PlanB\Console\Message\Style\Position
      */
-    public function merge(Position $position): Position
+    public function blend(Position $position): Position
     {
         $align = $this->getAlign();
         if ($align->isDefault()) {

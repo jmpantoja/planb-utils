@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **PathNormalizer::create**() : [PathNormalizer](../../../PathNormalizer.md)
+static **PathNormalizer::make**() : [PathNormalizer](../../../PathNormalizer.md)
 
 
 

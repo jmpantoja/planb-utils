@@ -55,11 +55,11 @@ protected **Path::__construct**(string $path) :
 ---
 
 
-### create
+### make
 Crea una nueva ruta
 
 
-static **Path::create**(string ...$parts) : [Path](../../../Path.md)
+static **Path::make**(string ...$parts) : [Path](../../../Path.md)
 
 
 |Parameters: | | |

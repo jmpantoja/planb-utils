@@ -41,7 +41,7 @@ class Path implements Stringifable
         $isEmpty = is_blank_text($path);
 
         if ($isEmpty) {
-            throw EmptyPathException::create();
+            throw EmptyPathException::make();
         }
         $this->path = $path;
     }
@@ -53,7 +53,7 @@ class Path implements Stringifable
      *
      * @return \PlanB\Type\Path\Path
      */
-    public static function create(string ...$parts): self
+    public static function make(string ...$parts): self
     {
         $path = self::normalize(...$parts);
 
@@ -84,7 +84,7 @@ class Path implements Stringifable
     {
         array_unshift($parts, $this->path);
 
-        return self::create(...$parts);
+        return self::make(...$parts);
     }
 
     /**
@@ -98,7 +98,7 @@ class Path implements Stringifable
     {
         array_push($parts, $this->path);
 
-        return self::create(...$parts);
+        return self::make(...$parts);
     }
 
 
@@ -223,11 +223,11 @@ class Path implements Stringifable
      */
     public function getParent(int $level = 1): self
     {
-        $tree = PathTree::create($this->path)
+        $tree = PathTree::make($this->path)
             ->getInversedPathTree();
 
         if ($level > count($tree) - 1) {
-            throw OverFlowRootDirException::create();
+            throw OverFlowRootDirException::make();
         }
 
         return $tree[$level];

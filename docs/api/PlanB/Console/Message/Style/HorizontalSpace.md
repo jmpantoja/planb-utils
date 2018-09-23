@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 HorizontalSpace named constructor.
 
 
-static **HorizontalSpace::create**(int $left = 0, int $right = null) : [HorizontalSpace](../../../../HorizontalSpace.md)
+static **HorizontalSpace::make**(int $left = 0, int $right = null) : [HorizontalSpace](../../../../HorizontalSpace.md)
 
 
 |Parameters: | | |
@@ -54,11 +54,11 @@ Devuelve el espaciado a la derecha
 ---
 
 
-### merge
+### blend
 Devuelve el resultado de mezclar este objeto con otro
 
 
-**HorizontalSpace::merge**([HorizontalSpace](../../../../HorizontalSpace.md) $space) : [HorizontalSpace](../../../../HorizontalSpace.md)
+**HorizontalSpace::blend**([HorizontalSpace](../../../../HorizontalSpace.md) $space) : [HorizontalSpace](../../../../HorizontalSpace.md)
 
 
 |Parameters: | | |

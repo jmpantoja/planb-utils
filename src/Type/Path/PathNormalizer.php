@@ -34,7 +34,7 @@ final class PathNormalizer
      *
      * @return \PlanB\Type\Path\PathNormalizer
      */
-    public static function create(): self
+    public static function make(): self
     {
         return new static();
     }
@@ -136,7 +136,7 @@ final class PathNormalizer
     private function add(string $piece): self
     {
         if ($this->overFlowRootDir($piece)) {
-            throw OverFlowRootDirException::create();
+            throw OverFlowRootDirException::make();
         }
 
         if ($this->isParentDirectory($piece)) {

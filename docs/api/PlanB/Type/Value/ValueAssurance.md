@@ -92,11 +92,11 @@ protected **ValueAssurance::__construct**([Value](../../../Value.md) $type) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **ValueAssurance::create**(mixed $variable) : [ValueAssurance](../../../ValueAssurance.md)
+static **ValueAssurance::make**(mixed $variable) : [ValueAssurance](../../../ValueAssurance.md)
 
 
 |Parameters: | | |

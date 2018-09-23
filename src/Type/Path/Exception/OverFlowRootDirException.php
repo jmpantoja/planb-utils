@@ -36,7 +36,7 @@ class OverFlowRootDirException extends \DomainException
      *
      * @return \PlanB\Type\Path\Exception\OverFlowRootDirException
      */
-    public static function create(?\Throwable $previous = null): OverFlowRootDirException
+    public static function make(?\Throwable $previous = null): OverFlowRootDirException
     {
         $message = 'No se puede crear la ruta porque va más allá del directorio raiz';
 

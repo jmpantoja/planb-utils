@@ -44,9 +44,9 @@ final class PathTree
      *
      * @return \PlanB\Type\Path\PathTree
      */
-    public static function create(string ...$parts): self
+    public static function make(string ...$parts): self
     {
-        $path = Path::create(...$parts);
+        $path = Path::make(...$parts);
 
         return new static($path);
     }
@@ -96,7 +96,7 @@ final class PathTree
     {
         $tree = [];
         foreach ($this->getTree() as $branch) {
-            $tree[] = Path::create($branch);
+            $tree[] = Path::make($branch);
         }
 
         return $tree;

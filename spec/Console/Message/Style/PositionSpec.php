@@ -18,7 +18,7 @@ class PositionSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->beConstructedThrough('create');
+        $this->beConstructedThrough('make');
     }
 
     public function it_is_initializable()
@@ -38,14 +38,14 @@ class PositionSpec extends ObjectBehavior
 
     public function it_throws_an_exception_if_width_is_nefative()
     {
-        $this->beConstructedThrough('create', [self::NEGATIVE]);
+        $this->beConstructedThrough('make', [self::NEGATIVE]);
 
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_if_align_is_invalid()
     {
-        $this->beConstructedThrough('create', [self::WIDTH, self::FAKE_ALIGN]);
+        $this->beConstructedThrough('make', [self::WIDTH, self::FAKE_ALIGN]);
 
         $this->shouldThrow(\InvalidArgumentException::class)->duringInstantiation();
     }
@@ -55,7 +55,7 @@ class PositionSpec extends ObjectBehavior
         $position->getAlign()->willReturn(Align::LEFT());
         $position->getWidth()->willReturn(self::WIDTH);
 
-        $merged = $this->merge($position);
+        $merged = $this->blend($position);
 
         $this->getWidth()->shouldReturn(0);
         $merged->getWidth()->shouldReturn(self::WIDTH);
@@ -67,7 +67,7 @@ class PositionSpec extends ObjectBehavior
         $position->getAlign()->willReturn(Align::CENTER());
         $position->getWidth()->willReturn(self::WIDTH);
 
-        $merged = $this->merge($position);
+        $merged = $this->blend($position);
 
         $this->getAlign()->shouldReturn(Align::DEFAULT());
         $merged->getAlign()->shouldReturn(Align::CENTER());

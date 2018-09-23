@@ -23,7 +23,7 @@ if (!function_exists('ensure_path')) {
      */
     function ensure_path(string ...$segments): PathAssurance
     {
-        return PathAssurance::create(...$segments);
+        return PathAssurance::make(...$segments);
     }
 }
 

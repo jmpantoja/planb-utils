@@ -19,11 +19,11 @@
 
 ## Methods
 
-### create
+### make
 LineWithStyle named constructor.
 
 
-static **LineWithStyle::create**([Line](../../../Line.md) $line, [Style](../../../Style.md) $style) : [LineWithStyle](../../../LineWithStyle.md)
+static **LineWithStyle::make**([Line](../../../Line.md) $line, [Style](../../../Style.md) $style) : [LineWithStyle](../../../LineWithStyle.md)
 
 
 |Parameters: | | |

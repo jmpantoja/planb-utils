@@ -41,11 +41,11 @@ Devuelve el valor con formato de attributo
 ---
 
 
-### merge
+### blend
 Devuelve el segundo color si el primero es default
 
 
-**Color::merge**([Color](../../../../Color.md) $color) : [Color](../../../../Color.md)
+**Color::blend**([Color](../../../../Color.md) $color) : [Color](../../../../Color.md)
 
 
 |Parameters: | | |

@@ -17,7 +17,7 @@ use PlanB\Console\Message\Decorator\MarginDecorator;
 use PlanB\Console\Message\Decorator\PaddingDecorator;
 use PlanB\Console\Message\Decorator\TagDecorator;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS\TypedList\TypedListFactory;
+use PlanB\DS\Vector\Vector;
 use PlanB\Type\Text\Text;
 
 /**
@@ -25,12 +25,18 @@ use PlanB\Type\Text\Text;
  */
 class Renderer
 {
+
+    /**
+     * @var \PlanB\DS\Vector\Vector
+     */
+    private $decorators;
+
     /**
      * Renderer named constructor.
      *
      * @return \PlanB\Console\Message\Renderer
      */
-    public static function create(): self
+    public static function make(): self
     {
         return new static();
     }
@@ -40,12 +46,11 @@ class Renderer
      */
     protected function __construct()
     {
-        $this->decorators = TypedListFactory::fromType(DecoratorInterface::class);
-        $this->decorators->addAll([
-            PaddingDecorator::create(),
-            AlignDecorator::create(),
-            TagDecorator::create(),
-            MarginDecorator::create(),
+        $this->decorators = Vector::typed(DecoratorInterface::class, [
+            PaddingDecorator::make(),
+            AlignDecorator::make(),
+            TagDecorator::make(),
+            MarginDecorator::make(),
         ]);
     }
 
@@ -59,7 +64,7 @@ class Renderer
      */
     public function render(Line $line, Style $style): Text
     {
-        return $this->decorators->reduce(function (DecoratorInterface $decorator, Line $line, Style $style): Line {
+        return $this->decorators->reduce(function (Line $line, DecoratorInterface $decorator) use ($style): Line {
             return $decorator->render($line, $style);
         }, $line, $style);
     }

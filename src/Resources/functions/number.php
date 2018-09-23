@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 use \PlanB\Type\Text\Text;
 use \PlanB\Type\Text\TextAssurance;
-use \PlanB\Type\Value\Value;
+use \PlanB\Type\Data\Data;
 use \PlanB\Type\Number\NumberAssurance;
 
 
@@ -27,6 +27,6 @@ if (!function_exists('ensure_number')) {
      */
     function ensure_number($number): NumberAssurance
     {
-        return NumberAssurance::create($number);
+        return NumberAssurance::make($number);
     }
 }

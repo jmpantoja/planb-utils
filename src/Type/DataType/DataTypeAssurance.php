@@ -57,9 +57,9 @@ class DataTypeAssurance extends Assurance implements Stringifable
      *
      * @return \PlanB\Type\DataType\DataTypeAssurance
      */
-    public static function create(string $type): self
+    public static function make(string $type): self
     {
-        $type = DataType::create($type);
+        $type = DataType::make($type);
 
         return new static($type);
     }

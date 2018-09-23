@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
+use Ds\Hashable;
 use PlanB\Type\Stringifable;
 use PlanB\Utils\Traits\Stringify;
 
@@ -18,8 +19,9 @@ use PlanB\Utils\Traits\Stringify;
  * Representa una cadena de texto
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
-class Text implements Stringifable
+class Text implements Stringifable, Hashable
 {
 
     use Stringify;
@@ -52,7 +54,7 @@ class Text implements Stringifable
      *
      * @return \PlanB\Type\Text\Text
      */
-    public static function create($text = ''): self
+    public static function make($text = ''): self
     {
         ensure_value($text)->isConvertibleToString();
 
@@ -84,7 +86,7 @@ class Text implements Stringifable
      */
     public static function concat(...$pieces): self
     {
-        return TextList::create($pieces)
+        return TextVector::make($pieces)
             ->concat();
     }
 
@@ -97,10 +99,10 @@ class Text implements Stringifable
      */
     public static function join(...$pieces): self
     {
-        $temp = TextList::create($pieces)
+        $temp = TextVector::make($pieces)
             ->concat(Text::EMPTY_TEXT);
 
-        return self::create($temp);
+        return self::make($temp);
     }
 
     /**
@@ -112,7 +114,7 @@ class Text implements Stringifable
      */
     public function overwite(string $text): self
     {
-        return self::create($text);
+        return self::make($text);
     }
 
     /**
@@ -163,7 +165,7 @@ class Text implements Stringifable
      */
     public function trim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(trim($this->text, $charlist));
+        return self::make(trim($this->text, $charlist));
     }
 
     /**
@@ -176,7 +178,7 @@ class Text implements Stringifable
      */
     public function rtrim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(rtrim($this->text, $charlist));
+        return self::make(rtrim($this->text, $charlist));
     }
 
     /**
@@ -189,7 +191,7 @@ class Text implements Stringifable
      */
     public function ltrim(string $charlist = " \t\n\r\0\x0B"): self
     {
-        return self::create(ltrim($this->text, $charlist));
+        return self::make(ltrim($this->text, $charlist));
     }
 
     /**
@@ -201,9 +203,9 @@ class Text implements Stringifable
     {
 
         return $this->split('/[_\s\W]+/')
-            ->reduce(function (Text $piece, Text $carry) {
+            ->reduce(function (Text $carry, Text $piece) {
                 return $carry->append($piece->toUpperFirst()->stringify());
-            }, self::create())
+            }, self::make())
             ->toLowerFirst();
     }
 
@@ -231,13 +233,13 @@ class Text implements Stringifable
      * @param int    $limit
      * @param int    $flags
      *
-     * @return \PlanB\Type\Text\TextList
+     * @return \PlanB\Type\Text\TextVector
      */
-    public function split(string $pattern, int $limit = -1, int $flags = 0): TextList
+    public function split(string $pattern, int $limit = -1, int $flags = 0): TextVector
     {
         $pieces = preg_split($pattern, $this->text, $limit, $flags);
 
-        return TextList::create($pieces);
+        return TextVector::make($pieces);
     }
 
     /**
@@ -247,13 +249,13 @@ class Text implements Stringifable
      *
      * @param int    $limit
      *
-     * @return \PlanB\Type\Text\TextList
+     * @return \PlanB\Type\Text\TextVector
      */
-    public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextList
+    public function explode(string $delimiter, int $limit = PHP_INT_MAX): TextVector
     {
         $pieces = explode($delimiter, $this->text, $limit);
 
-        return TextList::create($pieces);
+        return TextVector::make($pieces);
     }
 
     /**
@@ -263,7 +265,7 @@ class Text implements Stringifable
      */
     public function toLower(): self
     {
-        return self::create(strtolower($this->text));
+        return self::make(strtolower($this->text));
     }
 
     /**
@@ -273,7 +275,7 @@ class Text implements Stringifable
      */
     public function toLowerFirst(): self
     {
-        return self::create(lcfirst($this->text));
+        return self::make(lcfirst($this->text));
     }
 
     /**
@@ -283,7 +285,7 @@ class Text implements Stringifable
      */
     public function toUpper(): self
     {
-        return self::create(strtoupper($this->text));
+        return self::make(strtoupper($this->text));
     }
 
     /**
@@ -293,7 +295,7 @@ class Text implements Stringifable
      */
     public function toUpperFirst(): self
     {
-        return self::create(ucfirst($this->text));
+        return self::make(ucfirst($this->text));
     }
 
 
@@ -308,7 +310,7 @@ class Text implements Stringifable
     {
         $piece = implode($pieces);
 
-        return self::create(sprintf('%s%s', $this->text, $piece));
+        return self::make(sprintf('%s%s', $this->text, $piece));
     }
 
     /**
@@ -331,7 +333,7 @@ class Text implements Stringifable
             return call_user_func_array($callback, $pieces);
         }, $this->text, $limit);
 
-        return self::create($replaced);
+        return self::make($replaced);
     }
 
     /**
@@ -359,5 +361,34 @@ class Text implements Stringifable
     public function stripTags(?string $allowableTags = null): Text
     {
         return new static(strip_tags($this->text, $allowableTags));
+    }
+
+    /**
+     * Produces a scalar value to be used as the object's hash, which determines
+     * where it goes in the hash table. While this value does not have to be
+     * unique, objects which are equal must have the same hash value.
+     *
+     * @return mixed
+     */
+    public function hash()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Determines if two objects should be considered equal. Both objects will
+     * be instances of the same class but may not be the same instance.
+     *
+     * @param mixed $text An instance of the same class to compare to.
+     *
+     * @return bool
+     */
+    public function equals($text): bool
+    {
+        if (!($text instanceof Text)) {
+            return false;
+        }
+
+        return $this->text === $text->text;
     }
 }

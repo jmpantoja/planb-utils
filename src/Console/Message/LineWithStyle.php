@@ -43,7 +43,7 @@ class LineWithStyle
      *
      * @return \PlanB\Console\Message\LineWithStyle
      */
-    public static function create(Line $line, Style $style): LineWithStyle
+    public static function make(Line $line, Style $style): LineWithStyle
     {
         return new static($line, $style);
     }
@@ -58,7 +58,7 @@ class LineWithStyle
     {
         $this->line = $line;
         $this->style = $style;
-        $this->renderer = Renderer::create();
+        $this->renderer = Renderer::make();
     }
 
     /**
@@ -70,7 +70,7 @@ class LineWithStyle
      */
     public function apply(Style $style)
     {
-        $this->style = $this->style->merge($style);
+        $this->style = $this->style->blend($style);
 
         return $this;
     }
@@ -84,7 +84,7 @@ class LineWithStyle
      */
     public function render(Style $style): \PlanB\Type\Text\Text
     {
-        $style = $this->style->merge($style);
+        $style = $this->style->blend($style);
 
         return $this->renderer->render($this->line, $style);
     }

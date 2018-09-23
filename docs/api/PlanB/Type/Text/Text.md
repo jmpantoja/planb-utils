@@ -59,11 +59,11 @@ protected **Text::__construct**(string $text) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **Text::create**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
+static **Text::make**(mixed $text = &#039;&#039;) : [Text](../../../Text.md)
 
 
 |Parameters: | | |
@@ -237,7 +237,7 @@ Transforma la cadena de texto a formato snake_case
 Divide una cadena mediante una expresión regular
 
 
-**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [TextList](../../../TextList.md)
+**Text::split**(string $pattern, int $limit = -1, int $flags = 0) : [TextVector](../../../TextVector.md)
 
 
 |Parameters: | | |
@@ -253,7 +253,7 @@ Divide una cadena mediante una expresión regular
 Divide una cadena en varias, mediante un delimitador
 
 
-**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [TextList](../../../TextList.md)
+**Text::explode**(string $delimiter, int $limit = PHP_INT_MAX) : [TextVector](../../../TextVector.md)
 
 
 |Parameters: | | |
@@ -364,6 +364,34 @@ Elimina html tags
 |Parameters: | | |
 | --- | --- | --- |
 |string |$allowableTags |  |
+
+---
+
+
+### hash
+Produces a scalar value to be used as the object's hash, which determines
+where it goes in the hash table. While this value does not have to be
+unique, objects which are equal must have the same hash value.
+
+
+**Text::hash**() : mixed
+
+
+
+---
+
+
+### equals
+Determines if two objects should be considered equal. Both objects will
+be instances of the same class but may not be the same instance.
+
+
+**Text::equals**(mixed $text) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$text | An instance of the same class to compare to. |
 
 ---
 

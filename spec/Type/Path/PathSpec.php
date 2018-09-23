@@ -12,13 +12,13 @@ class PathSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->beConstructedThrough('create', ['/tmp']);
+        $this->beConstructedThrough('make', ['/tmp']);
         $this->shouldHaveType(Path::class);
     }
 
     public function it_throws_an_exception_when_initializes_with_empty_string()
     {
-        $this->beConstructedThrough('create', []);
+        $this->beConstructedThrough('make', []);
         $this->shouldThrow(EmptyPathException::class)->duringInstantiation();
     }
 
@@ -30,7 +30,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_append_path_segments()
     {
-        $this->beConstructedThrough('create', ['/tmp', 'dir']);
+        $this->beConstructedThrough('make', ['/tmp', 'dir']);
         $this->append('subdir')
             ->stringify()
             ->shouldReturn('/tmp/dir/subdir');
@@ -38,7 +38,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_prepend_path_segments()
     {
-        $this->beConstructedThrough('create', ['/dir', 'subdir']);
+        $this->beConstructedThrough('make', ['/dir', 'subdir']);
         $this->prepend('/', 'tmp')
             ->stringify()
             ->shouldReturn('/tmp/dir/subdir');
@@ -46,7 +46,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_an_absolute_path()
     {
-        $this->beConstructedThrough('create', ['/tmp', 'dir']);
+        $this->beConstructedThrough('make', ['/tmp', 'dir']);
 
         $this->isAbsolute()
             ->shouldReturn(true);
@@ -58,7 +58,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_an_relative_path()
     {
-        $this->beConstructedThrough('create', ['tmp', 'dir']);
+        $this->beConstructedThrough('make', ['tmp', 'dir']);
 
         $this->isRelative()
             ->shouldReturn(true);
@@ -70,7 +70,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_exits()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->exists()
             ->shouldReturn(true);
@@ -78,7 +78,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_a_file()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->isFile()
             ->shouldReturn(true);
@@ -86,7 +86,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_not_a_file()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->isFile()
             ->shouldReturn(false);
@@ -95,7 +95,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_a_directory()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->isDirectory()
             ->shouldReturn(true);
@@ -103,7 +103,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_not_a_directory()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->isDirectory()
             ->shouldReturn(false);
@@ -112,7 +112,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_a_link()
     {
-        $this->beConstructedThrough('create', [__DIR__, 'dummy/link']);
+        $this->beConstructedThrough('make', [__DIR__, 'dummy/link']);
 
         $this->isLink()
             ->shouldReturn(true);
@@ -120,7 +120,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_not_a_link()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->isLink()
             ->shouldReturn(false);
@@ -129,7 +129,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_readable()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->isReadable()
             ->shouldReturn(true);
@@ -137,7 +137,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_a_path_is_writable()
     {
-        $this->beConstructedThrough('create', [__DIR__]);
+        $this->beConstructedThrough('make', [__DIR__]);
 
         $this->isWritable()
             ->shouldReturn(true);
@@ -145,7 +145,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_retrive_the_basename()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->getBasename()
             ->shouldReturn('PathSpec.php');
@@ -153,7 +153,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_retrive_the_dirname()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->getDirname()
             ->shouldReturn(__DIR__);
@@ -161,7 +161,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_retrive_the_filename()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->getFilename()
             ->shouldReturn('PathSpec');
@@ -169,7 +169,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_retrive_the_extension()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->getExtension()
             ->shouldReturn('php');
@@ -178,7 +178,7 @@ class PathSpec extends ObjectBehavior
     public function it_can_retrieve_a_null_extension()
     {
         $basename = pathinfo(__FILE__, PATHINFO_FILENAME);
-        $this->beConstructedThrough('create', [__DIR__, $basename]);
+        $this->beConstructedThrough('make', [__DIR__, $basename]);
 
         $this->getExtension()
             ->shouldReturn(null);
@@ -187,7 +187,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_have_one_single_extension()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->hasExtension('php')
             ->shouldReturn(true);
@@ -195,7 +195,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_not_have_one_single_extension()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->hasExtension('txt')
             ->shouldReturn(false);
@@ -204,7 +204,7 @@ class PathSpec extends ObjectBehavior
     public function it_can_recognize_if_not_have_any_extension()
     {
         $basename = pathinfo(__FILE__, PATHINFO_FILENAME);
-        $this->beConstructedThrough('create', [__DIR__, $basename]);
+        $this->beConstructedThrough('make', [__DIR__, $basename]);
 
         $this->hasExtension()
             ->shouldReturn(false);
@@ -213,7 +213,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_have_some_extension()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->hasExtension('txt', 'php', 'xml')
             ->shouldReturn(true);
@@ -221,7 +221,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_recognize_if_have_not_some_extension()
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
 
         $this->hasExtension('txt', 'html', 'xml')
             ->shouldReturn(false);
@@ -229,7 +229,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_cast_a_path_to_string()
     {
-        $this->beConstructedThrough('create', ['/tmp/anything/../dir/']);
+        $this->beConstructedThrough('make', ['/tmp/anything/../dir/']);
 
         $this->__toString()
             ->shouldReturn('/tmp/dir');
@@ -237,7 +237,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_access_to_path_parent()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2/']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2/']);
 
         $this->getParent()
             ->stringify()
@@ -246,7 +246,7 @@ class PathSpec extends ObjectBehavior
 
     public function it_can_access_to_path_ancestors()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2/']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2/']);
 
         $this->getParent(2)
             ->stringify()
@@ -260,32 +260,32 @@ class PathSpec extends ObjectBehavior
 
     public function it_throw_an_exception_if_overflow_root_dir()
     {
-        $this->beConstructedThrough('create', ['/level0/level1/level2/']);
+        $this->beConstructedThrough('make', ['/level0/level1/level2/']);
         $this->shouldThrow(OverFlowRootDirException::class)->duringGetParent(4);
     }
 
     public function it_can_ensure_that_path_is_a_readable_file(Path $path)
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
         $this->isReadableFile()->shouldReturn(true);
     }
 
     public function it_can_ensure_that_path_is_not_a_readable_file(Path $path)
     {
-        $this->beConstructedThrough('create', [__FILE__ . 'XX']);
+        $this->beConstructedThrough('make', [__FILE__ . 'XX']);
         $this->isReadableFile()->shouldReturn(false);
     }
 
 
     public function it_can_ensure_that_path_is_a_readable_file_with_extension(Path $path)
     {
-        $this->beConstructedThrough('create', [__FILE__]);
+        $this->beConstructedThrough('make', [__FILE__]);
         $this->isReadableFileWithExtension('php')->shouldReturn(true);
     }
 
     public function it_can_ensure_that_path_is_not_a_readable_file_with_extension(Path $path)
     {
-        $this->beConstructedThrough('create', [__FILE__ . '.xxx']);
+        $this->beConstructedThrough('make', [__FILE__ . '.xxx']);
         $this->isReadableFileWithExtension('php')->shouldReturn(false);
     }
 }

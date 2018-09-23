@@ -68,11 +68,11 @@ protected **NumberAssurance::__construct**([Number](../../../Number.md) $number)
 ---
 
 
-### create
+### make
 NumberAssurance named constructor.
 
 
-static **NumberAssurance::create**(mixed $number) : [NumberAssurance](../../../NumberAssurance.md)
+static **NumberAssurance::make**(mixed $number) : [NumberAssurance](../../../NumberAssurance.md)
 
 
 |Parameters: | | |

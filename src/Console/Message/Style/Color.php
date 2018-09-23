@@ -39,7 +39,7 @@ final class Color extends Enum
     public function toAttributeFormat(string $key): Text
     {
         if ($this->isDefault()) {
-            return Text::create();
+            return Text::make();
         }
 
         return Text::format('%s=%s', $key, $this->getValue());
@@ -52,7 +52,7 @@ final class Color extends Enum
      *
      * @return \PlanB\Console\Message\Style\Color
      */
-    public function merge(Color $color): Color
+    public function blend(Color $color): Color
     {
         if ($this->isDefault()) {
             return $color;

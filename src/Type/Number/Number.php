@@ -28,7 +28,7 @@ class Number
      *
      * @return \PlanB\Type\Number\Number
      */
-    public static function create($number): self
+    public static function make($number): self
     {
         return new static($number);
     }

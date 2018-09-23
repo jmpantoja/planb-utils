@@ -28,11 +28,11 @@ protected **GetSetHydrator::__construct**() :
 ---
 
 
-### create
+### make
 Crea una nueva instancia
 
 
-static **GetSetHydrator::create**() : [GetSetHydrator](../../../GetSetHydrator.md)
+static **GetSetHydrator::make**() : [GetSetHydrator](../../../GetSetHydrator.md)
 
 
 

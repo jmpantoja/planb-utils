@@ -39,7 +39,7 @@ class InvalidAssuranceMethodException extends \DomainException
      *
      * @return \PlanB\Type\Assurance\Exception\InvalidAssuranceMethodException
      */
-    public static function create(object $wrapped, string $method, ?\Throwable $previous = null): self
+    public static function make(object $wrapped, string $method, ?\Throwable $previous = null): self
     {
         $message = sprintf('Assurance object for class %s dont support method %s', get_class($wrapped), $method);
 

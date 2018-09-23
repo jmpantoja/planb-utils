@@ -42,12 +42,12 @@ class Style
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public static function create(): self
+    public static function make(): self
     {
-        $padding = HorizontalSpace::create();
-        $margin = HorizontalSpace::create();
-        $position = Position::create();
-        $attributes = Attributes::create();
+        $padding = HorizontalSpace::make();
+        $margin = HorizontalSpace::make();
+        $position = Position::make();
+        $attributes = Attributes::make();
 
         return new static($padding, $margin, $position, $attributes);
     }
@@ -77,12 +77,12 @@ class Style
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function merge(Style $style): self
+    public function blend(Style $style): self
     {
-        $padding = $this->padding->merge($style->padding);
-        $margin = $this->margin->merge($style->margin);
-        $position = $this->position->merge($style->position);
-        $attributes = $this->attributes->merge($style->attributes);
+        $padding = $this->padding->blend($style->padding);
+        $margin = $this->margin->blend($style->margin);
+        $position = $this->position->blend($style->position);
+        $attributes = $this->attributes->blend($style->attributes);
 
         return new static(
             $padding,
@@ -112,7 +112,7 @@ class Style
      */
     public function padding(int $left = 0, ?int $right = null): self
     {
-        $this->padding = HorizontalSpace::create($left, $right);
+        $this->padding = HorizontalSpace::make($left, $right);
 
         return $this;
     }
@@ -157,7 +157,7 @@ class Style
      */
     public function margin(int $left = 0, ?int $right = null): self
     {
-        $this->margin = HorizontalSpace::create($left, $right);
+        $this->margin = HorizontalSpace::make($left, $right);
 
         return $this;
     }
@@ -192,7 +192,7 @@ class Style
      */
     public function expandTo(int $width, $align = null): self
     {
-        $position = Position::create($width, $align);
+        $position = Position::make($width, $align);
         $this->position = $position;
 
         return $this;
@@ -277,7 +277,7 @@ class Style
     public function getOpenTag(): Text
     {
         if ($this->attributes->isEmpty()) {
-            return Text::create();
+            return Text::make();
         }
 
         return Text::format('<%s>', $this->attributes->stringify());
@@ -291,9 +291,9 @@ class Style
     public function getCloseTag(): Text
     {
         if ($this->attributes->isEmpty()) {
-            return Text::create();
+            return Text::make();
         }
 
-        return Text::create('</>');
+        return Text::make('</>');
     }
 }

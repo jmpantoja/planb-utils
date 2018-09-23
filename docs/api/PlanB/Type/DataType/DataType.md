@@ -57,11 +57,11 @@ protected **DataType::__construct**(string $type) :
 ---
 
 
-### create
+### make
 Crea una nueva instancia a partir de un nombre de clase
 
 
-static **DataType::create**(string $type) : [DataType](../../../DataType.md)
+static **DataType::make**(string $type) : [DataType](../../../DataType.md)
 
 
 |Parameters: | | |
@@ -189,6 +189,20 @@ Indica si es un nombre de tipo nativo, de clase, de rasgo o de interfaz
 **DataType::isValid**() : bool
 
 
+
+---
+
+
+### isTheTypeOf
+Indica si el valor pasado es de este tipo
+
+
+**DataType::isTheTypeOf**(mixed $value) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
 
 ---
 

@@ -10,204 +10,38 @@
 
 
 ## Traits
-- PlanB\DS\ItemList\Traits\Accessors
+- PlanB\Type\Text\TraitTextList
+- PlanB\DS\Traits\TraitCollection
+- PlanB\DS\Traits\TraitResolver
+- PlanB\DS\Traits\TraitSequence
+- PlanB\DS\Traits\TraitArray
 
 
 
 
 ## Properties
 - items
-- resolution
 
 
 ## Methods
 
-### add
-
-
-
-**Paragraph::add**(mixed $paragraph) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$paragraph |  |
-
----
-
-
-### addAll
-
-
-
-**Paragraph::addAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$items |  |
-
----
-
-
-### clearAndAdd
-
-
-
-**Paragraph::clearAndAdd**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$items |  |
-
----
-
-
-### set
-
-
-
-**Paragraph::set**(mixed $key, mixed $value) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-|mixed |$value |  |
-
----
-
-
-### setAll
-
-
-
-**Paragraph::setAll**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$items |  |
-
----
-
-
-### clearAndSet
-
-
-
-**Paragraph::clearAndSet**([iterable](../../../iterable.md) $items) : [$this](../../../$this.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$items |  |
-
----
-
-
-### get
-
-
-
-**Paragraph::get**(mixed $key, mixed|null $default = null) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-|mixed|null |$default |  |
-
----
-
-
-### exists
-
-
-
-**Paragraph::exists**(mixed $key) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-
----
-
-
-### has
-
-
-
-**Paragraph::has**(mixed $key) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-
----
-
-
-### remove
-
-
-
-**Paragraph::remove**(mixed $key) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$key |  |
-
----
-
-
 ### clear
+Removes all values from the collection.
 
 
-
-**Paragraph::clear**() : [ListInterface](../../../ListInterface.md)
+**Paragraph::clear**() : [Collection](../../../Collection.md)
 
 
 
 ---
 
 
-### tryAddItem
-Resuelve y añade un item
+### isEmpty
+Returns whether the collection is empty.
+This should be equivalent to a count of zero, but is not required.
+Implementations should define what empty means in their own context.
 
-
-protected **Paragraph::tryAddItem**([Item](../../../Item.md) $item) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Item](../../../Item.md) |$item |  |
-
----
-
-
-### __construct
-Paragraph constructor.
-
-
-protected **Paragraph::__construct**([iterable](../../../iterable.md) $input) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### customize
-Configura el comportamiento de  la lista
-
-
-protected **Paragraph::customize**() : void
+**Paragraph::isEmpty**() : bool
 
 
 
@@ -215,7 +49,7 @@ protected **Paragraph::customize**() : void
 
 
 ### count
-
+Returns the size of the collection.
 
 
 **Paragraph::count**() : int
@@ -225,119 +59,49 @@ protected **Paragraph::customize**() : void
 ---
 
 
-### isEmpty
+### jsonSerialize
+Returns a representation that can be natively converted to JSON, which is
+called when invoking json_encode.
 
 
-
-**Paragraph::isEmpty**() : bool
+**Paragraph::jsonSerialize**() : mixed[]
 
 
 
 ---
 
 
-### each
+### copy
+Creates a shallow copy of the collection.
 
 
-
-**Paragraph::each**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
-
----
+**Paragraph::copy**() : [Collection](../../../Collection.md)
 
 
-### map
-
-
-
-**Paragraph::map**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
-
----
-
-
-### filter
-
-
-
-**Paragraph::filter**(callable $callable, mixed ...$userdata) : [ItemList](../../../ItemList.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
-
----
-
-
-### search
-
-
-
-**Paragraph::search**(callable $callable, mixed ...$userdata) : mixed|null
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
-
----
-
-
-### find
-
-
-
-**Paragraph::find**(callable $callable, mixed ...$userdata) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
-
----
-
-
-### reduce
-
-
-
-**Paragraph::reduce**(callable $callable, mixed|null $initial = null, mixed ...$userdata) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed|null |$initial |  |
-|mixed |...$userdata |  |
 
 ---
 
 
 ### toArray
+Returns an array representation of the collection.
+The format of the returned array is implementation-dependent. Some
+implementations may throw an exception if an array representation
+could not be created (for example when object are used as keys).
+
+**Paragraph::toArray**() : mixed[]
 
 
 
-**Paragraph::toArray**(callable $callable = null, mixed ...$userdata) : mixed[]
+---
 
 
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callable |  |
-|mixed |...$userdata |  |
+### __debugInfo
+Invoked when calling var_dump.
+
+
+**Paragraph::__debugInfo**() : mixed[]
+
+
 
 ---
 
@@ -353,174 +117,58 @@ Retrieve an external iterator
 ---
 
 
-### jsonSerialize
-Specify data which should be serialized to JSON
+### __construct
 
 
-**Paragraph::jsonSerialize**() : mixed
+
+**Paragraph::__construct**() : 
 
 
 
 ---
 
 
-### toJson
-Convierte el array en una cadena json
+### configure
 
 
-**Paragraph::toJson**(int $options = 0, int $depth = 512) : string
+
+**Paragraph::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|int |$options |  |
-|int |$depth |  |
-
----
-
-
-### silentExceptions
-Silencia las excepciones
-
-
-**Paragraph::silentExceptions**() : [ListInterface](../../../ListInterface.md)
-
-
-
----
-
-
-### throwException
-Hook para lanzar una excepción personalizada
-
-
-**Paragraph::throwException**(callable $callback) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-
----
-
-
-### addHydrator
-Añade un hydrator
-
-
-**Paragraph::addHydrator**(string $type, callable $hydrator) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$hydrator |  |
-
----
-
-
-### addValidator
-Añade un validador
-
-
-**Paragraph::addValidator**(callable $validator, int $order = 1) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$validator |  |
-|int |$order |  |
-
----
-
-
-### addNormalizer
-Añade un normalizador
-
-
-**Paragraph::addNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$normalizer |  |
-|int |$order |  |
-
----
-
-
-### addKeyNormalizer
-Añade un normalizador de clave
-
-
-**Paragraph::addKeyNormalizer**(callable $normalizer, int $order = 1) : [ListInterface](../../../ListInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$normalizer |  |
-|int |$order |  |
-
----
-
-
-### __debugInfo
-Devuelve la informacion relevante para un debug
-
-
-**Paragraph::__debugInfo**() : array|mixed[]
-
-
-
----
-
-
-### max
-Devuelve el valor máximo
-El valor a comparar se calcula con un callback
-
-
-**Paragraph::max**(callable $callback) : null
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-
----
-
-
-### min
-Devuelve el valor mínimo
-El valor a comparar se calcula con un callback
-
-
-**Paragraph::min**(callable $callback) : null
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### getInnerType
-Devuelve el tipo de la lista
+Devuelve el tipo de la colección
 
 
-**Paragraph::getInnerType**() : null|string
+**Paragraph::getInnerType**() : null|[DataType](../../../DataType.md)
 
 
 
 ---
 
 
-### create
-Paragraph named constructor.
+### makeInternal
+Crea la estructura de datos interna
 
 
-static **Paragraph::create**([iterable](../../../iterable.md) $input) : [Paragraph](../../../Paragraph.md)
+abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collection.md)
+
+
+
+---
+
+
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
@@ -530,11 +178,517 @@ static **Paragraph::create**([iterable](../../../iterable.md) $input) : [Paragra
 ---
 
 
+### hook
+Resuelve los valores antes de ser añadidos desde algun método
+
+
+protected **Paragraph::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
+
+---
+
+
+### each
+Updates every value in the sequence by applying a callback, using the
+return value as the new value.
+
+
+**Paragraph::each**(callable $callback) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback | Accepts the value, returns the new value. |
+
+---
+
+
+### contains
+Determines whether the sequence contains all of zero or more values.
+
+
+**Paragraph::contains**(mixed ...$values) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |...$values |  |
+
+---
+
+
+### filter
+Returns a new sequence containing only the values for which a callback
+returns true. A boolean test will be used if a callback is not provided.
+
+
+**Paragraph::filter**(callable $callback = null) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback | Accepts a value, returns a boolean result:
+                               true : include the value,
+                               false: skip the value. |
+
+---
+
+
+### find
+Returns the index of a given value, or null if it could not be found.
+
+
+**Paragraph::find**(mixed $value) : int|null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### findAll
+Returns the all the index of a given value, or null if it could not be found.
+
+
+**Paragraph::findAll**(mixed $value) : mixed[]|null
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### first
+Returns the first value in the sequence.
+
+
+**Paragraph::first**() : mixed
+
+
+
+---
+
+
+### get
+Returns the value at a given index (position) in the sequence.
+
+
+**Paragraph::get**(int $index) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$index |  |
+
+---
+
+
+### insert
+Inserts zero or more values at a given index.
+Each value after the index will be moved one position to the right.
+Values may be inserted at an index equal to the size of the sequence.
+
+**Paragraph::insert**(int $index, mixed ...$values) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$index |  |
+|mixed |...$values |  |
+
+---
+
+
+### last
+Returns the last value in the sequence.
+
+
+**Paragraph::last**() : mixed
+
+
+
+---
+
+
+### map
+Returns a new sequence using the results of applying a callback to each
+value.
+
+
+**Paragraph::map**(callable $callback) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
+### merge
+Returns the result of adding all given values to the sequence.
+
+
+**Paragraph::merge**([iterable](../../../iterable.md) $values) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$values |  |
+
+---
+
+
+### pop
+Removes the last value in the sequence, and returns it.
+
+
+**Paragraph::pop**() : mixed
+
+
+
+---
+
+
+### pushAll
+Pushes all values of either an array or traversable object.
+
+
+**Paragraph::pushAll**([iterable](../../../iterable.md) $values) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$values |  |
+
+---
+
+
+### push
+Adds zero or more values to the end of the sequence.
+
+
+**Paragraph::push**(mixed ...$values) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |...$values |  |
+
+---
+
+
+### reduce
+Iteratively reduces the sequence to a single value using a callback.
+
+
+**Paragraph::reduce**(callable $callback, mixed|null $initial = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback | Accepts the carry and current value, and
+                            returns an updated carry value. |
+|mixed|null |$initial | Optional initial carry value. |
+
+---
+
+
+### remove
+Removes and returns the value at a given index in the sequence.
+
+
+**Paragraph::remove**(int $index) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$index | this index to remove. |
+
+---
+
+
+### reverse
+Reverses the sequence in-place.
+
+
+**Paragraph::reverse**() : [Sequence](../../../Sequence.md)
+
+
+
+---
+
+
+### reversed
+Returns a reversed copy of the sequence.
+
+
+**Paragraph::reversed**() : [Sequence](../../../Sequence.md)
+
+
+
+---
+
+
+### rotate
+Rotates the sequence by a given number of rotations, which is equivalent
+to successive calls to 'shift' and 'push' if the number of rotations is
+positive, or 'pop' and 'unshift' if negative.
+
+
+**Paragraph::rotate**(int $rotations) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$rotations | The number of rotations (can be negative). |
+
+---
+
+
+### set
+Replaces the value at a given index in the sequence with a new value.
+
+
+**Paragraph::set**(int $index, mixed $value) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$index |  |
+|mixed |$value |  |
+
+---
+
+
+### shift
+Removes and returns the first value in the sequence.
+
+
+**Paragraph::shift**() : mixed
+
+
+
+---
+
+
+### slice
+Returns a sub-sequence of a given length starting at a specified index.
+
+
+**Paragraph::slice**(int $index, int $length = null) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|int |$index | If the index is positive, the sequence will start
+                   at that index in the sequence. If index is
+                   negative, the sequence will start that far from
+                   the end. |
+|int |$length | If a length is given and is positive, the resulting
+                   sequence will have up to that many values in it.
+                   If the length results in an overflow, only values
+                   up to the end of the sequence will be included.</p>
+
+<pre><code>               If a length is given and is negative, the sequence
+               will stop that many values from the end.
+
+               If a length is not provided, the resulting sequence
+               will contain all values between the index and the
+               end of the sequence.
+</code></pre>
+ |
+
+---
+
+
+### sort
+Sorts the sequence in-place, based on an optional callable comparator.
+
+
+**Paragraph::sort**(callable $comparator = null) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator | Accepts two values to be compared.
+                                 Should return the result of a &lt;=> b. |
+
+---
+
+
+### sorted
+Returns a sorted copy of the sequence, based on an optional callable
+comparator. Natural ordering will be used if a comparator is not given.
+
+
+**Paragraph::sorted**(callable $comparator = null) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator | Accepts two values to be compared.
+                                 Should return the result of a &lt;=> b. |
+
+---
+
+
+### unshift
+Adds zero or more values to the front of the sequence.
+
+
+**Paragraph::unshift**(mixed ...$values) : [Sequence](../../../Sequence.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |...$values |  |
+
+---
+
+
+### max
+Return the maximum value
+
+
+**Paragraph::max**(callable $comparator = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator |  |
+
+---
+
+
+### min
+Return the minimun value
+
+
+**Paragraph::min**(callable $comparator = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$comparator |  |
+
+---
+
+
+### offsetExists
+Whether a offset exists
+
+
+**Paragraph::offsetExists**(mixed $offset) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | An offset to check for. |
+
+---
+
+
+### offsetGet
+Offset to retrieve
+
+
+**Paragraph::offsetGet**(mixed $offset) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to retrieve. |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**Paragraph::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
+### offsetUnset
+Offset to unset
+
+
+**Paragraph::offsetUnset**(mixed $offset) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to unset. |
+
+---
+
+
+### concat
+Concatena los textos
+
+
+**Paragraph::concat**(string $delimiter = Text::BLANK_TEXT) : [Text](../../../Text.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$delimiter |  |
+
+---
+
+
+### toArrayOfStrings
+Convierte la lista en un array de strings
+
+
+**Paragraph::toArrayOfStrings**() : string[]
+
+
+
+---
+
+
+### make
+
+
+
+static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### getLines
 Devuelve una lista con todas las lineas que componen el párrafo
 
 
-**Paragraph::getLines**() : [ItemList](../../../ItemList.md)|[ListInterface](../../../ListInterface.md)
+**Paragraph::getLines**() : [Sequence](../../../Sequence.md)
 
 
 
@@ -585,11 +739,11 @@ Añade la opción underscore al texto
 ---
 
 
-### reverse
+### inverse
 Añade la opción reverse al texto
 
 
-**Paragraph::reverse**() : [Paragraph](../../../Paragraph.md)
+**Paragraph::inverse**() : [Paragraph](../../../Paragraph.md)
 
 
 

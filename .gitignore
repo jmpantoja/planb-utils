@@ -33,3 +33,6 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 ###< phpunit/phpunit ###
+#
+
+/src/LEEME.txt

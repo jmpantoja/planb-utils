@@ -32,11 +32,11 @@ protected **OverFlowRootDirException::__construct**(string $message, [Throwable]
 ---
 
 
-### create
+### make
 Crea un objeto OverFlowRootDirException
 
 
-static **OverFlowRootDirException::create**([Throwable](../../../../Throwable.md) $previous = null) : [OverFlowRootDirException](../../../../OverFlowRootDirException.md)
+static **OverFlowRootDirException::make**([Throwable](../../../../Throwable.md) $previous = null) : [OverFlowRootDirException](../../../../OverFlowRootDirException.md)
 
 
 |Parameters: | | |

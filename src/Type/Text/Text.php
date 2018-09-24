@@ -56,7 +56,7 @@ class Text implements Stringifable, Hashable
      */
     public static function make($text = ''): self
     {
-        ensure_value($text)->isConvertibleToString();
+        ensure_data($text)->isConvertibleToString();
 
         return new static((string) $text);
     }
@@ -80,27 +80,17 @@ class Text implements Stringifable, Hashable
     /**
      * Crea una nueva instancia concatenando varias cadenas de texto
      *
-     * @param mixed ...$pieces
+     * @param string[] $pieces
+     * @param string   $delimiter
      *
      * @return \PlanB\Type\Text\Text
      */
-    public static function concat(...$pieces): self
+    public static function concat(iterable $pieces, ?string $delimiter = null): self
     {
-        return TextVector::make($pieces)
-            ->concat();
-    }
+        $delimiter = is_null($delimiter) ? Text::EMPTY_TEXT : $delimiter;
 
-    /**
-     * Crea una nueva instancia concatenando varias cadenas de texto
-     *
-     * @param mixed ...$pieces
-     *
-     * @return \PlanB\Type\Text\Text
-     */
-    public static function join(...$pieces): self
-    {
         $temp = TextVector::make($pieces)
-            ->concat(Text::EMPTY_TEXT);
+            ->concat($delimiter);
 
         return self::make($temp);
     }

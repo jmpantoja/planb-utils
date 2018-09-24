@@ -40,7 +40,7 @@ class Number
      */
     protected function __construct($number)
     {
-        ensure_value($number)->isNumeric();
+        ensure_data($number)->isNumeric();
 
         $this->number = $number;
     }

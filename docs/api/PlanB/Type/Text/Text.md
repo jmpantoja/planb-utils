@@ -92,26 +92,13 @@ static **Text::format**(string $format, mixed ...$arguments) : [Text](../../../T
 Crea una nueva instancia concatenando varias cadenas de texto
 
 
-static **Text::concat**(mixed ...$pieces) : [Text](../../../Text.md)
+static **Text::concat**([iterable](../../../iterable.md) $pieces, string $delimiter = null) : [Text](../../../Text.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |...$pieces |  |
-
----
-
-
-### join
-Crea una nueva instancia concatenando varias cadenas de texto
-
-
-static **Text::join**(mixed ...$pieces) : [Text](../../../Text.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |...$pieces |  |
+|[iterable](../../../iterable.md) |$pieces |  |
+|string |$delimiter |  |
 
 ---
 

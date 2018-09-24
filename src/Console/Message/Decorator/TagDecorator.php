@@ -30,6 +30,8 @@ class TagDecorator extends Decorator
 
         $line = $line->apply($style);
 
-        return Line::join($style->getOpenTag(), $line, $style->getCloseTag());
+        return Line::concat([
+            $style->getOpenTag(), $line, $style->getCloseTag(),
+        ]);
     }
 }

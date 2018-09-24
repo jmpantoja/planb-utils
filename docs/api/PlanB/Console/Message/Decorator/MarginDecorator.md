@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Decorator named constructor.
 
 
-static **MarginDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+static **MarginDecorator::make**() : [DecoratorInterface](../../../../DecoratorInterface.md)
 
 
 

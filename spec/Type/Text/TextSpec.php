@@ -37,20 +37,23 @@ class TextSpec extends ObjectBehavior
 
     public function it_can_be_created_by_concat_several_text()
     {
-        $this->beConstructedThrough('concat', ['hola', 'pepe', 'y', 'juan']);
-
-        $this->stringify()
-            ->shouldReturn('hola pepe y juan');
-    }
-
-    public function it_can_be_created_by_join_several_text()
-    {
-        $this->beConstructedThrough('join', ['hola', 'pepe', 'y', 'juan']);
+        $this->beConstructedThrough('concat', [['hola', 'pepe', 'y', 'juan']]);
 
         $this->stringify()
             ->shouldReturn('holapepeyjuan');
     }
 
+
+    public function it_can_be_created_by_concat_several_text_with_delimiter()
+    {
+        $this->beConstructedThrough('concat', [
+            ['hola', 'pepe', 'y', 'juan'],
+            Text::BLANK_TEXT
+        ]);
+
+        $this->stringify()
+            ->shouldReturn('hola pepe y juan');
+    }
 
     public function it_throw_an_exception_when_create_with_invalid_value()
     {

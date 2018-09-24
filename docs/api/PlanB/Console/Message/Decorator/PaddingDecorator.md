@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Decorator named constructor.
 
 
-static **PaddingDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+static **PaddingDecorator::make**() : [DecoratorInterface](../../../../DecoratorInterface.md)
 
 
 

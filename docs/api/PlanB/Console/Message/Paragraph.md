@@ -164,11 +164,26 @@ abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collect
 ---
 
 
+### make
+Named constructor.
+
+
+abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
@@ -193,12 +208,12 @@ protected **Paragraph::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**Paragraph::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**Paragraph::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -669,21 +684,6 @@ Convierte la lista en un array de strings
 ---
 
 
-### make
-
-
-
-static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
 ### getLines
 Devuelve una lista con todas las lineas que componen el párrafo
 
@@ -768,12 +768,12 @@ Añade color al texto
 Añade color de fondo  al texto
 
 
-**Paragraph::bgColor**([Color](../../../Color.md)|string $color) : [Paragraph](../../../Paragraph.md)
+**Paragraph::bgColor**(string|[Color](../../../Color.md) $color) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Color](../../../Color.md)|string |$color |  |
+|string|[Color](../../../Color.md) |$color |  |
 
 ---
 

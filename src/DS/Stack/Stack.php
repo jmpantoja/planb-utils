@@ -22,7 +22,6 @@ use PlanB\DS\Resolver\Resolver;
 final class Stack extends AbstractStack
 {
 
-
     /**
      * @param mixed[]                          $input
      *

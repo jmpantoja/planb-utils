@@ -165,11 +165,26 @@ protected **AbstractSet::makeInternal**() :
 ---
 
 
+### make
+Named constructor.
+
+
+abstract static **AbstractSet::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **AbstractSet::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+protected **AbstractSet::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
 
 
 |Parameters: | | |

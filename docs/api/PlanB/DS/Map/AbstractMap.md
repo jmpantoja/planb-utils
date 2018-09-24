@@ -166,11 +166,26 @@ protected **AbstractMap::makeInternal**() :
 ---
 
 
+### make
+Named constructor.
+
+
+abstract static **AbstractMap::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **AbstractMap::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+protected **AbstractMap::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
 
 
 |Parameters: | | |

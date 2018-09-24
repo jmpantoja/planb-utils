@@ -35,7 +35,6 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
         return new \DS\Stack();
     }
 
-
     /**
      * Returns the value at the top of the stack without removing it.
      *

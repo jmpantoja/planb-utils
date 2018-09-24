@@ -13,7 +13,7 @@ namespace PlanB\Console\Message\Style;
 
 use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
-use PlanB\DS\Set\Set;
+use PlanB\DS\Set\AbstractSet;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextVector;
@@ -21,8 +21,22 @@ use PlanB\Type\Text\TextVector;
 /**
  * Lista de opciones
  */
-class OptionList extends Set
+class OptionList extends AbstractSet
 {
+    /**
+     * Named constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     *
+     * @return \PlanB\DS\Collection
+     */
+    public static function make(iterable $input = [], ?Resolver $resolver = null): OptionList
+    {
+        return (new static($resolver))
+            ->addAll($input);
+    }
+
     /**
      * @inheritdoc
      */

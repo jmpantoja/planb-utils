@@ -79,17 +79,14 @@ trait TraitResolver
     abstract protected function makeInternal(): \DS\Collection;
 
     /**
-     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     * Named constructor.
      *
-     * @param mixed[] $input
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Collection
+     * @return mixed
      */
-    protected function duplicate(iterable $input = []): Collection
-    {
-        return static::make($input, $this->resolver);
-    }
-
+    abstract static public function make(iterable $input = [], ?Resolver $resolver = null);
 
     /**
      * Resuelve los valores antes de ser añadidos desde algun método

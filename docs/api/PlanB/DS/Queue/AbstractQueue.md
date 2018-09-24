@@ -166,16 +166,17 @@ protected **AbstractQueue::makeInternal**() :
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **AbstractQueue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **AbstractQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -255,22 +256,22 @@ Offset to unset
 ---
 
 
-### peek
-Returns the value at the front of the queue without removing it.
+### pop
+Returns and removes the value at the front of the Queue.
 
 
-**AbstractQueue::peek**() : mixed
+**AbstractQueue::pop**() : mixed
 
 
 
 ---
 
 
-### pop
-Returns and removes the value at the front of the Queue.
+### peek
+Returns the value at the front of the queue without removing it.
 
 
-**AbstractQueue::pop**() : mixed
+**AbstractQueue::peek**() : mixed
 
 
 

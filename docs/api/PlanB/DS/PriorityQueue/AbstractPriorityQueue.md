@@ -166,16 +166,17 @@ protected **AbstractPriorityQueue::makeInternal**() : [Collection](../../../Coll
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **AbstractPriorityQueue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **AbstractPriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

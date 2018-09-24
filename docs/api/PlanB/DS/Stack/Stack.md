@@ -166,11 +166,26 @@ abstract protected **Stack::makeInternal**() : [Collection](../../../Collection.
 ---
 
 
+### make
+
+
+
+static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **Stack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract protected **Stack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
@@ -301,21 +316,6 @@ Pushes zero or more values onto the top of the stack.
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### make
-
-
-
-static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Stack](../../../Stack.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

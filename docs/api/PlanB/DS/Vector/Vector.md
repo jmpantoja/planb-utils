@@ -17,10 +17,6 @@ growth factor isn't bound to a specific multiple or exponent.
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitSequence
 - PlanB\DS\Traits\TraitArray
-- PlanB\DS\Traits\TraitCollection
-- PlanB\DS\Traits\TraitResolver
-- PlanB\DS\Traits\TraitSequence
-- PlanB\DS\Traits\TraitArray
 
 
 
@@ -173,11 +169,26 @@ abstract protected **Vector::makeInternal**() : [Collection](../../../Collection
 ---
 
 
+### make
+Vector named constructor.
+
+
+static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
@@ -202,12 +213,12 @@ protected **Vector::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**Vector::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**Vector::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -649,21 +660,6 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
-
----
-
-
-### make
-Vector named constructor.
-
-
-static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

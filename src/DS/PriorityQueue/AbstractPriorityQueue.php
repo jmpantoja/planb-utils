@@ -46,7 +46,6 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
         return clone $this;
     }
 
-
     /**
      * Returns the value with the highest priority in the priority queue.
      *

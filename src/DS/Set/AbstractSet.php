@@ -20,14 +20,12 @@ use PlanB\DS\Traits\TraitResolver;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
+abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
 {
 
     use TraitCollection;
     use TraitResolver;
     use TraitArray;
-
-
 
     /**
      * @inheritdoc
@@ -37,6 +35,17 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
         return new \DS\Set();
     }
 
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Set\SetInterface
+     */
+    protected function duplicate(iterable $input = []): SetInterface
+    {
+        return static::make($input, $this->resolver);
+    }
 
     /**
      * Offset to set

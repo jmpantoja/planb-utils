@@ -165,11 +165,26 @@ abstract protected **OptionList::makeInternal**() : [Collection](../../../../Col
 ---
 
 
+### make
+Named constructor.
+
+
+static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Collection](../../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
+|[Resolver](../../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [Collection](../../../../Collection.md)
+abstract protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [Collection](../../../../Collection.md)
 
 
 |Parameters: | | |
@@ -518,36 +533,6 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 |Parameters: | | |
 | --- | --- | --- |
 |[Set](../../../../Set.md) |$set |  |
-
----
-
-
-### make
-
-
-
-static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Set](../../../../Set.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../../iterable.md) |$input |  |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
-
----
-
-
-### typed
-Set named constructor.
-
-
-static **OptionList::typed**(string $type, [iterable](../../../../iterable.md) $input = []) : [Set](../../../../Set.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 

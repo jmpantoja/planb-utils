@@ -169,11 +169,26 @@ protected **AbstractDeque::makeInternal**() :
 ---
 
 
+### make
+Named constructor.
+
+
+abstract static **AbstractDeque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **AbstractDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+protected **AbstractDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
 
 
 |Parameters: | | |
@@ -198,12 +213,12 @@ protected **AbstractDeque::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**AbstractDeque::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**AbstractDeque::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |

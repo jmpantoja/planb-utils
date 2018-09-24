@@ -7,6 +7,7 @@ use PlanB\Console\Message\Style\OptionList;
 use PhpSpec\ObjectBehavior;
 use PlanB\DS\Exception\InvalidArgumentException;
 use PlanB\DS\Set\Set;
+use PlanB\DS\Set\SetInterface;
 use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
@@ -29,7 +30,7 @@ class OptionListSpec extends ObjectBehavior
 
     public function it_is_text_list()
     {
-        $this->shouldHaveType(Set::class);
+        $this->shouldHaveType(SetInterface::class);
     }
 
     public function it_can_append_a_option()

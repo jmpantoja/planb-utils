@@ -42,6 +42,17 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
         return new \DS\Map();
     }
 
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Set\SetInterface
+     */
+    protected function duplicate(iterable $input = []): MapInterface
+    {
+        return static::make($input, $this->resolver);
+    }
 
     /**
      * Offset to set

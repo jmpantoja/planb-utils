@@ -14,10 +14,6 @@ declare(strict_types=1);
 namespace PlanB\DS\Vector;
 
 use PlanB\DS\Resolver\Resolver;
-use PlanB\DS\Traits\TraitArray;
-use PlanB\DS\Traits\TraitCollection;
-use PlanB\DS\Traits\TraitResolver;
-use PlanB\DS\Traits\TraitSequence;
 
 /**
  * A Vector is a sequence of values in a contiguous buffer that grows and
@@ -27,12 +23,6 @@ use PlanB\DS\Traits\TraitSequence;
  */
 final class Vector extends AbstractVector
 {
-    use TraitCollection;
-    use TraitResolver;
-    use TraitSequence;
-    use TraitArray;
-
-
     /**
      * Vector named constructor.
      *

@@ -33,7 +33,16 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
     {
         return new \DS\Queue();
     }
-
+    
+    /**
+     * Returns and removes the value at the front of the Queue.
+     *
+     * @return mixed
+     */
+    public function pop()
+    {
+        return $this->items->pop();
+    }
 
     /**
      * Returns the value at the front of the queue without removing it.
@@ -43,16 +52,6 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
     public function peek()
     {
         return $this->items->peek();
-    }
-
-    /**
-     * Returns and removes the value at the front of the Queue.
-     *
-     * @return mixed
-     */
-    public function pop()
-    {
-        return $this->items->pop();
     }
 
     /**

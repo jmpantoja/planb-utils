@@ -35,8 +35,20 @@ abstract class AbstractVector implements \IteratorAggregate, \ArrayAccess, Vecto
     /**
      * @inheritdoc
      */
-    protected function makeInternal(): \DS\Collection
+    protected function makeInternal(): \DS\Vector
     {
         return new \DS\Vector();
+    }
+
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Collection
+     */
+    protected function duplicate(iterable $input = []): VectorInterface
+    {
+        return static::make($input, $this->resolver);
     }
 }

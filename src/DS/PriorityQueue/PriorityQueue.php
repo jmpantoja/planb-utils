@@ -28,7 +28,7 @@ final class PriorityQueue extends AbstractPriorityQueue
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\PriorityQueue
+     * @return \PlanB\DS\PriorityQueue\PriorityQueue
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): PriorityQueue
     {

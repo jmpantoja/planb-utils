@@ -82,6 +82,94 @@ static **NumberAssurance::make**(mixed $number) : [NumberAssurance](../../../Num
 ---
 
 
+### isPositive
+
+
+
+**NumberAssurance::isPositive**() : bool
+
+
+
+---
+
+
+### isNegative
+
+
+
+**NumberAssurance::isNegative**() : bool
+
+
+
+---
+
+
+### isInteger
+
+
+
+**NumberAssurance::isInteger**() : bool
+
+
+
+---
+
+
+### isDouble
+
+
+
+**NumberAssurance::isDouble**() : bool
+
+
+
+---
+
+
+### isNotPositive
+
+
+
+**NumberAssurance::isNotPositive**() : bool
+
+
+
+---
+
+
+### isNotNegative
+
+
+
+**NumberAssurance::isNotNegative**() : bool
+
+
+
+---
+
+
+### isNotInteger
+
+
+
+**NumberAssurance::isNotInteger**() : bool
+
+
+
+---
+
+
+### isNotDouble
+
+
+
+**NumberAssurance::isNotDouble**() : bool
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

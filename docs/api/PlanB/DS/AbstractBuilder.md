@@ -57,7 +57,7 @@ protected **AbstractBuilder::__construct**() :
 Devuelve el input
 
 
-protected **AbstractBuilder::getInput**() : mixed[]
+protected **AbstractBuilder::getInput**() : mixed[]|[Traversable](../../Traversable.md)
 
 
 

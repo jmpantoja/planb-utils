@@ -168,27 +168,13 @@ abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collect
 Named constructor.
 
 
-abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
 |[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 
@@ -659,6 +645,20 @@ Offset to unset
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
 ### concat
 Concatena los textos
 
@@ -782,7 +782,7 @@ Añade color de fondo  al texto
 Asigna el padding
 
 
-**Paragraph::padding**(int $left = 0, int $right = null) : [Style](../../../Style.md)
+**Paragraph::padding**(int $left = 0, int $right = null) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
@@ -797,7 +797,7 @@ Asigna el padding
 Asigna el margin
 
 
-**Paragraph::margin**(int $left = 0, int $right = null) : [Style](../../../Style.md)
+**Paragraph::margin**(int $left = 0, int $right = null) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
@@ -812,7 +812,7 @@ Asigna el margin
 Alinea el texto a la izquierda
 
 
-**Paragraph::left**() : [$this](../../../$this.md)
+**Paragraph::left**() : [Paragraph](../../../Paragraph.md)
 
 
 
@@ -823,7 +823,7 @@ Alinea el texto a la izquierda
 Alinea el texto a la derecha
 
 
-**Paragraph::right**() : [$this](../../../$this.md)
+**Paragraph::right**() : [Paragraph](../../../Paragraph.md)
 
 
 
@@ -834,7 +834,7 @@ Alinea el texto a la derecha
 Alinea el texto al centro
 
 
-**Paragraph::center**() : [$this](../../../$this.md)
+**Paragraph::center**() : [Paragraph](../../../Paragraph.md)
 
 
 

@@ -88,7 +88,7 @@ trait TraitSequence
             return null;
         }
 
-        return $founded;
+        return (int) $founded;
     }
 
     /**
@@ -448,4 +448,42 @@ trait TraitSequence
         return $this->sorted($comparator)
             ->first();
     }
+
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Collection
+     */
+    abstract protected function duplicate(iterable $input = []): \PlanB\DS\Sequence;
+
+    /**
+     * Resuelve los valores antes de ser añadidos desde algun método
+     *
+     * @param callable $callback
+     * @param mixed    ...$values
+     */
+    abstract protected function hook(callable $callback, ...$values): void;
+
+    /**
+     * Offset to set
+     *
+     * @link http://php.net/manual/en/arrayaccess.offsetset.php
+     *
+     * @param mixed $offset <p>
+     *                      The offset to assign the value to.
+     *                      </p>
+     * @param mixed $value  <p>
+     *                      The
+     *                      value
+     *                      to
+     *                      set.
+     *                      </p>
+     *
+     * @return void
+     *
+     * @since 5.0.0
+     */
+    abstract public function offsetSet($offset, $value): void;
 }

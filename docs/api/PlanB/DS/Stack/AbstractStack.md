@@ -182,16 +182,16 @@ abstract static **AbstractStack::make**([iterable](../../../iterable.md) $input 
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **AbstractStack::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **AbstractStack::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 

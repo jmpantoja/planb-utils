@@ -120,6 +120,204 @@ static **PathAssurance::make**(string ...$segments) : [PathAssurance](../../../P
 ---
 
 
+### isAbsolute
+
+
+
+**PathAssurance::isAbsolute**() : bool
+
+
+
+---
+
+
+### isRelative
+
+
+
+**PathAssurance::isRelative**() : bool
+
+
+
+---
+
+
+### isFile
+
+
+
+**PathAssurance::isFile**() : bool
+
+
+
+---
+
+
+### isDirectory
+
+
+
+**PathAssurance::isDirectory**() : bool
+
+
+
+---
+
+
+### isLink
+
+
+
+**PathAssurance::isLink**() : bool
+
+
+
+---
+
+
+### isReadable
+
+
+
+**PathAssurance::isReadable**() : bool
+
+
+
+---
+
+
+### isReadableFile
+
+
+
+**PathAssurance::isReadableFile**() : bool
+
+
+
+---
+
+
+### isWritable
+
+
+
+**PathAssurance::isWritable**() : bool
+
+
+
+---
+
+
+### hasExtension
+
+
+
+**PathAssurance::hasExtension**() : bool
+
+
+
+---
+
+
+### isNotAbsolute
+
+
+
+**PathAssurance::isNotAbsolute**() : bool
+
+
+
+---
+
+
+### isNotRelative
+
+
+
+**PathAssurance::isNotRelative**() : bool
+
+
+
+---
+
+
+### isNotFile
+
+
+
+**PathAssurance::isNotFile**() : bool
+
+
+
+---
+
+
+### isNotDirectory
+
+
+
+**PathAssurance::isNotDirectory**() : bool
+
+
+
+---
+
+
+### isNotLink
+
+
+
+**PathAssurance::isNotLink**() : bool
+
+
+
+---
+
+
+### isNotReadable
+
+
+
+**PathAssurance::isNotReadable**() : bool
+
+
+
+---
+
+
+### isNotReadableFile
+
+
+
+**PathAssurance::isNotReadableFile**() : bool
+
+
+
+---
+
+
+### isNotWritable
+
+
+
+**PathAssurance::isNotWritable**() : bool
+
+
+
+---
+
+
+### hasNotExtension
+
+
+
+**PathAssurance::hasNotExtension**() : bool
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

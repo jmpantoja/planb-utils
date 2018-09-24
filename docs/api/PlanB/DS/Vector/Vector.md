@@ -173,7 +173,7 @@ abstract protected **Vector::makeInternal**() : [Collection](../../../Collection
 Vector named constructor.
 
 
-static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
@@ -184,31 +184,17 @@ static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver]
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Vector::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **Vector::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
@@ -604,6 +590,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+abstract protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**Vector::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -628,24 +646,6 @@ Offset to retrieve
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to retrieve. |
-
----
-
-
-### offsetSet
-Offset to set
-
-
-**Vector::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
 
 ---
 

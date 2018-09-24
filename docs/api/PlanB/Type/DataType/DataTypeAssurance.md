@@ -106,6 +106,272 @@ static **DataTypeAssurance::make**(string $type) : [DataTypeAssurance](../../../
 ---
 
 
+### isSameOf
+
+
+
+**DataTypeAssurance::isSameOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isChildOf
+
+
+
+**DataTypeAssurance::isChildOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isClassOf
+
+
+
+**DataTypeAssurance::isClassOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isTypeOf
+
+
+
+**DataTypeAssurance::isTypeOf**() : bool
+
+
+
+---
+
+
+### isClass
+
+
+
+**DataTypeAssurance::isClass**() : bool
+
+
+
+---
+
+
+### isInterface
+
+
+
+**DataTypeAssurance::isInterface**() : bool
+
+
+
+---
+
+
+### isClassOrInterface
+
+
+
+**DataTypeAssurance::isClassOrInterface**() : bool
+
+
+
+---
+
+
+### isTrait
+
+
+
+**DataTypeAssurance::isTrait**() : bool
+
+
+
+---
+
+
+### isNative
+
+
+
+**DataTypeAssurance::isNative**() : bool
+
+
+
+---
+
+
+### isValid
+
+
+
+**DataTypeAssurance::isValid**() : bool
+
+
+
+---
+
+
+### isTheTypeOf
+
+
+
+**DataTypeAssurance::isTheTypeOf**($value) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+| |$value |  |
+
+---
+
+
+### isNotSameOf
+
+
+
+**DataTypeAssurance::isNotSameOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isNotChildOf
+
+
+
+**DataTypeAssurance::isNotChildOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isNotClassOf
+
+
+
+**DataTypeAssurance::isNotClassOf**([string ](../../../string .md) $classOrInterfaceName) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[string ](../../../string .md) |$classOrInterfaceName |  |
+
+---
+
+
+### isNotTypeOf
+
+
+
+**DataTypeAssurance::isNotTypeOf**() : bool
+
+
+
+---
+
+
+### isNotClass
+
+
+
+**DataTypeAssurance::isNotClass**() : bool
+
+
+
+---
+
+
+### isNotInterface
+
+
+
+**DataTypeAssurance::isNotInterface**() : bool
+
+
+
+---
+
+
+### isNotClassOrInterface
+
+
+
+**DataTypeAssurance::isNotClassOrInterface**() : bool
+
+
+
+---
+
+
+### isNotTrait
+
+
+
+**DataTypeAssurance::isNotTrait**() : bool
+
+
+
+---
+
+
+### isNotNative
+
+
+
+**DataTypeAssurance::isNotNative**() : bool
+
+
+
+---
+
+
+### isNotValid
+
+
+
+**DataTypeAssurance::isNotValid**() : bool
+
+
+
+---
+
+
+### isNotTheTypeOf
+
+
+
+**DataTypeAssurance::isNotTheTypeOf**($value) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+| |$value |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

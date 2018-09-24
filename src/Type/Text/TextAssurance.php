@@ -19,6 +19,12 @@ use PlanB\Utils\Traits\Stringify;
 
 /**
  * Comprueba que una cadena de texto cumpla con  una serie de condiciones
+ *
+ * @method bool isEmpty()
+ * @method bool isBlank()
+ *
+ * @method bool isNotEmpty()
+ * @method bool isNotBlank()
  */
 class TextAssurance extends Assurance implements Stringifable
 {

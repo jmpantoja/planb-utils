@@ -15,6 +15,11 @@ use MabeEnum\Enum;
 
 /**
  * Enum con las posibles alineaciones
+ *
+ * @method static Align LEFT()
+ * @method static Align CENTER()
+ * @method static Align RIGHT()
+ * @method static Align DEFAULT()
  */
 final class Align extends Enum
 {

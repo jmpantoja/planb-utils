@@ -22,24 +22,24 @@ class AssuranceMethod
 {
 
     /**
-     * @var null|object
+     * @var object
      */
-    private $object = null;
+    private $object;
 
     /**
-     * @var null|string
+     * @var string
      */
-    private $original = null;
+    private $original;
 
     /**
-     * @var null|string
+     * @var string
      */
-    private $inverted = null;
+    private $inverted;
 
     /**
-     * @var null|string
+     * @var string
      */
-    private $method = null;
+    private $method;
 
     /**
      * @var bool

@@ -161,13 +161,13 @@ Devuelve el margen derecho
 Asigna una posición
 
 
-**Style::expandTo**(int $width, [Align](../../../../Align.md)|string $align = null) : [Style](../../../../Style.md)
+**Style::expandTo**(int $width, [Align](../../../../Align.md) $align = null) : [Style](../../../../Style.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |int |$width |  |
-|[Align](../../../../Align.md)|string |$align |  |
+|[Align](../../../../Align.md) |$align |  |
 
 ---
 
@@ -209,12 +209,12 @@ Devuelve la alineación
 Asigna una opción al estilo
 
 
-**Style::option**(mixed|string|[Option](../../../../Option.md) $option) : [Style](../../../../Style.md)
+**Style::option**([Option](../../../../Option.md) $option) : [Style](../../../../Style.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed|string|[Option](../../../../Option.md) |$option |  |
+|[Option](../../../../Option.md) |$option |  |
 
 ---
 
@@ -223,12 +223,12 @@ Asigna una opción al estilo
 
 
 
-**Style::foregroundColor**(mixed|string|[Color](../../../../Color.md) $color) : [Style](../../../../Style.md)
+**Style::foregroundColor**([Color](../../../../Color.md) $color) : [Style](../../../../Style.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed|string|[Color](../../../../Color.md) |$color |  |
+|[Color](../../../../Color.md) |$color |  |
 
 ---
 
@@ -237,12 +237,12 @@ Asigna una opción al estilo
 
 
 
-**Style::backgroundColor**(mixed|string|[Color](../../../../Color.md) $color) : [Style](../../../../Style.md)
+**Style::backgroundColor**([Color](../../../../Color.md) $color) : [Style](../../../../Style.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed|string|[Color](../../../../Color.md) |$color |  |
+|[Color](../../../../Color.md) |$color |  |
 
 ---
 

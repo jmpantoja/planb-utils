@@ -27,7 +27,7 @@ final class Stack extends AbstractStack
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Stack
+     * @return \PlanB\DS\Stack\Stack
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): Stack
     {

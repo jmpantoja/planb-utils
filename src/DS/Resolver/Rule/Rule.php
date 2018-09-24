@@ -85,7 +85,7 @@ abstract class Rule
      *
      * @param null|\PlanB\Type\DataType\DataType $type
      *
-     * @return \PlanB\DS\Resolver\Rule\RuleQueue
+     * @return \PlanB\DS\Resolver\Rule\Rule
      */
     public function setInnerType(?DataType $type): self
     {

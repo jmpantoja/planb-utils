@@ -159,7 +159,7 @@ Devuelve el tipo de la colección
 Crea la estructura de datos interna
 
 
-protected **AbstractPriorityQueue::makeInternal**() : [Collection](../../../Collection.md)
+protected **AbstractPriorityQueue::makeInternal**() : [PriorityQueue](../../../PriorityQueue.md)
 
 
 

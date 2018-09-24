@@ -15,6 +15,16 @@ use PlanB\Type\Assurance\Assurance;
 
 /**
  * Comprueba que un número cumpla con  una serie de condiciones
+ *
+ * @method bool isPositive()
+ * @method bool isNegative()
+ * @method bool isInteger()
+ * @method bool isDouble()
+ *
+ * @method bool isNotPositive()
+ * @method bool isNotNegative()
+ * @method bool isNotInteger()
+ * @method bool isNotDouble()
  */
 class NumberAssurance extends Assurance
 {

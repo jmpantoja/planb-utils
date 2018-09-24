@@ -32,6 +32,12 @@ abstract class AbstractVector implements \IteratorAggregate, \ArrayAccess, Vecto
     use TraitArray;
 
 
+
+    /**
+     * @var \Ds\Vector
+     */
+    protected $items;
+
     /**
      * @inheritdoc
      */

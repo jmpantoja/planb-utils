@@ -40,7 +40,7 @@ class Resolver
     private const NORMALIZERS = 'normalizers';
 
     /**
-     * @var \PlanB\DS\Resolver\RuleQueue
+     * @var \DS\Map
      */
     private $mapOfRules;
 

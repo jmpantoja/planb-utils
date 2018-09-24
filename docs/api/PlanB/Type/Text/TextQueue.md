@@ -166,31 +166,32 @@ abstract protected **TextQueue::makeInternal**() : [Collection](../../../Collect
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named Constructor
 
 
-protected **TextQueue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **TextQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **TextQueue::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **TextQueue::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
@@ -255,22 +256,22 @@ Offset to unset
 ---
 
 
-### peek
-Returns the value at the front of the queue without removing it.
+### pop
+Returns and removes the value at the front of the Queue.
 
 
-**TextQueue::peek**() : mixed
+**TextQueue::pop**() : mixed
 
 
 
 ---
 
 
-### pop
-Returns and removes the value at the front of the Queue.
+### peek
+Returns the value at the front of the queue without removing it.
 
 
-**TextQueue::pop**() : mixed
+**TextQueue::peek**() : mixed
 
 
 
@@ -326,21 +327,6 @@ Convierte la lista en un array de strings
 **TextQueue::toArrayOfStrings**() : string[]
 
 
-
----
-
-
-### make
-
-
-
-static **TextQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Queue](../../../Queue.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

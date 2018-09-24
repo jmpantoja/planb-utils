@@ -182,16 +182,16 @@ abstract static **AbstractQueue::make**([iterable](../../../iterable.md) $input 
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **AbstractQueue::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **AbstractQueue::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 

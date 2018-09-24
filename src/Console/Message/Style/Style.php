@@ -185,12 +185,12 @@ class Style
     /**
      * Asigna una posición
      *
-     * @param int                                       $width
-     * @param \PlanB\Console\Message\Style\Align|string $align
+     * @param int                                $width
+     * @param \PlanB\Console\Message\Style\Align $align
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function expandTo(int $width, $align = null): self
+    public function expandTo(int $width, ?Align $align = null): self
     {
         $position = Position::make($width, $align);
         $this->position = $position;
@@ -231,11 +231,11 @@ class Style
     /**
      * Asigna una opción al estilo
      *
-     * @param mixed|string|\PlanB\Console\Message\Style\Option $option
+     * @param \PlanB\Console\Message\Style\Option $option
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function option($option): self
+    public function option(Option $option): self
     {
         $option = Option::get($option);
         $this->attributes->addOption($option);
@@ -244,26 +244,24 @@ class Style
     }
 
     /**
-     * @param mixed|string|\PlanB\Console\Message\Style\Color $color
+     * @param \PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function foregroundColor($color): self
+    public function foregroundColor(Color $color): self
     {
-        $color = Color::get($color);
         $this->attributes->setForegroundColor($color);
 
         return $this;
     }
 
     /**
-     * @param mixed|string|\PlanB\Console\Message\Style\Color $color
+     * @param \PlanB\Console\Message\Style\Color $color
      *
      * @return \PlanB\Console\Message\Style\Style
      */
-    public function backgroundColor($color): self
+    public function backgroundColor(Color $color): self
     {
-        $color = Color::get($color);
         $this->attributes->setBackgroundColor($color);
 
         return $this;

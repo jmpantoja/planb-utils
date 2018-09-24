@@ -29,12 +29,12 @@ class Position
     /**
      * Position named constructor.
      *
-     * @param int                                       $width
-     * @param \PlanB\Console\Message\Style\Align|string $align
+     * @param int                                $width
+     * @param \PlanB\Console\Message\Style\Align $align
      *
      * @return \PlanB\Console\Message\Style\Position
      */
-    public static function make(int $width = 0, $align = null): Position
+    public static function make(int $width = 0, ?Align $align = null): Position
     {
         if (is_null($align)) {
             $align = Align::DEFAULT();
@@ -46,10 +46,10 @@ class Position
     /**
      * Position constructor.
      *
-     * @param int                                       $width
-     * @param \PlanB\Console\Message\Style\Align|string $align
+     * @param int                                $width
+     * @param \PlanB\Console\Message\Style\Align $align
      */
-    private function __construct(int $width, $align)
+    private function __construct(int $width, Align $align)
     {
         $this->setWidth($width);
         $this->setAlign($align);
@@ -111,13 +111,13 @@ class Position
     /**
      * Asigna la alineación
      *
-     * @param mixed|string|\PlanB\Console\Message\Style\Align $align
+     * @param \PlanB\Console\Message\Style\Align $align
      *
      * @return \PlanB\Console\Message\Style\Position
      */
-    private function setAlign($align): Position
+    private function setAlign(Align $align): Position
     {
-        $this->align = Align::get($align);
+        $this->align = $align;
 
         return $this;
     }

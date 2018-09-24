@@ -170,7 +170,7 @@ abstract protected **Stack::makeInternal**() : [Collection](../../../Collection.
 
 
 
-static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
@@ -181,31 +181,17 @@ static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **Stack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Stack::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **Stack::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 

@@ -166,16 +166,17 @@ abstract protected **Queue::makeInternal**() : [Collection](../../../Collection.
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
 
 
-protected **Queue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+static **Queue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -255,22 +256,22 @@ Offset to unset
 ---
 
 
-### peek
-Returns the value at the front of the queue without removing it.
+### pop
+Returns and removes the value at the front of the Queue.
 
 
-**Queue::peek**() : mixed
+**Queue::pop**() : mixed
 
 
 
 ---
 
 
-### pop
-Returns and removes the value at the front of the Queue.
+### peek
+Returns the value at the front of the queue without removing it.
 
 
-**Queue::pop**() : mixed
+**Queue::peek**() : mixed
 
 
 
@@ -301,21 +302,6 @@ Pushes zero or more values onto the top of the queue.
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### make
-
-
-
-static **Queue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Queue](../../../Queue.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

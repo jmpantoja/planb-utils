@@ -26,7 +26,7 @@ final class Map extends AbstractMap
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\Map
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): Map
     {

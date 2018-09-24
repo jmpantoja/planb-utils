@@ -43,12 +43,6 @@ class PositionSpec extends ObjectBehavior
         $this->shouldThrow(AssertException::class)->duringInstantiation();
     }
 
-    public function it_throws_an_exception_if_align_is_invalid()
-    {
-        $this->beConstructedThrough('make', [self::WIDTH, self::FAKE_ALIGN]);
-
-        $this->shouldThrow(\InvalidArgumentException::class)->duringInstantiation();
-    }
 
     public function it_can_be_merged_with_new_width(Position $position)
     {

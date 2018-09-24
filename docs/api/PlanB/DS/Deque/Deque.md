@@ -169,16 +169,17 @@ abstract protected **Deque::makeInternal**() : [Collection](../../../Collection.
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
 
 
-protected **Deque::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+static **Deque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -198,12 +199,12 @@ protected **Deque::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**Deque::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**Deque::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -649,17 +650,16 @@ Offset to unset
 ---
 
 
-### make
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-
-static **Deque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Deque](../../../Deque.md)
+protected **Deque::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

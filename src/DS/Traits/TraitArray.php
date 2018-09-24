@@ -108,4 +108,12 @@ trait TraitArray
     {
         unset($this->items[$offset]);
     }
+
+    /**
+     * Resuelve los valores antes de ser añadidos desde algun método
+     *
+     * @param callable $callback
+     * @param mixed    ...$values
+     */
+    abstract protected function hook(callable $callback, ...$values): void;
 }

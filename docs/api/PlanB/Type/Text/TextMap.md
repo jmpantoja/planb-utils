@@ -166,31 +166,32 @@ abstract protected **TextMap::makeInternal**() : [Collection](../../../Collectio
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named Constructor
 
 
-protected **TextMap::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **TextMap::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **TextMap::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **TextMap::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
@@ -255,11 +256,25 @@ Offset to unset
 ---
 
 
-### each
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **TextMap::duplicate**([iterable](../../../iterable.md) $input = []) : [MapInterface](../../../MapInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### apply
 Updates all values by applying a callback function to each value.
 
 
-**TextMap::each**(callable $callback) : 
+**TextMap::apply**(callable $callback) : 
 
 
 |Parameters: | | |
@@ -686,21 +701,6 @@ Convierte la lista en un array de strings
 **TextMap::toArrayOfStrings**() : string[]
 
 
-
----
-
-
-### make
-
-
-
-static **TextMap::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Map](../../../Map.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

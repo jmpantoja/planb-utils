@@ -17,7 +17,7 @@ namespace PlanB\Type\Number;
 class Number
 {
     /**
-     * @var \PlanB\Type\Number\double|int
+     * @var float|int
      */
     private $number;
 

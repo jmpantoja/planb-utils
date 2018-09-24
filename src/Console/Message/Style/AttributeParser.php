@@ -16,6 +16,20 @@ namespace PlanB\Console\Message\Style;
  */
 class AttributeParser
 {
+    /**
+     * @var \PlanB\Console\Message\Style\Color
+     */
+    private $bgColor;
+
+    /**
+     * @var \PlanB\Console\Message\Style\Color
+     */
+    private $fgColor;
+
+    /**
+     * @var \PlanB\Console\Message\Style\OptionList
+     */
+    private $options;
 
 
     /**

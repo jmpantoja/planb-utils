@@ -24,7 +24,7 @@ use PlanB\DS\Resolver\Resolver;
 abstract class AbstractBuilder
 {
     /**
-     * @var mixed[]
+     * @var mixed[]\Traversable
      */
     private $input;
 
@@ -70,7 +70,7 @@ abstract class AbstractBuilder
     /**
      * Devuelve el input
      *
-     * @return mixed[]
+     * @return mixed[]|\Traversable
      */
     protected function getInput(): iterable
     {
@@ -91,7 +91,7 @@ abstract class AbstractBuilder
     /**
      * Asigna una colección de valores para incializar la colección
      *
-     * @param mixed[] $input
+     * @param mixed[]|\Traversable $input
      *
      * @return \PlanB\DS\AbstractBuilder
      */

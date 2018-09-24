@@ -16,6 +16,16 @@ use PlanB\Type\Text\Text;
 
 /**
  * Enum con los posibles colores
+ *
+ * @method static Color DEFAULT()
+ * @method static Color BLACK()
+ * @method static Color RED()
+ * @method static Color GREEN()
+ * @method static Color YELLOW()
+ * @method static Color BLUE()
+ * @method static Color MAGENTA()
+ * @method static Color CYAN()
+ * @method static Color WHITE()
  */
 final class Color extends Enum
 {

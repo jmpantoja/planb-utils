@@ -134,6 +134,50 @@ static **TextAssurance::make**(string $string) : [TextAssurance](../../../TextAs
 ---
 
 
+### isEmpty
+
+
+
+**TextAssurance::isEmpty**() : bool
+
+
+
+---
+
+
+### isBlank
+
+
+
+**TextAssurance::isBlank**() : bool
+
+
+
+---
+
+
+### isNotEmpty
+
+
+
+**TextAssurance::isNotEmpty**() : bool
+
+
+
+---
+
+
+### isNotBlank
+
+
+
+**TextAssurance::isNotBlank**() : bool
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

@@ -27,11 +27,16 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
 
 
     /**
+     * @var \Ds\PriorityQueue
+     */
+    protected $items;
+
+    /**
      * Crea la estructura de datos interna
      *
-     * @return \DS\Collection
+     * @return \DS\PriorityQueue
      */
-    protected function makeInternal(): \DS\Collection
+    protected function makeInternal(): \DS\PriorityQueue
     {
         return new \DS\PriorityQueue();
     }
@@ -74,7 +79,7 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
      * @param mixed $value
      * @param int   $priority
      *
-     * @return \PlanB\DS\PriorityQueue
+     * @return \PlanB\DS\PriorityQueue\PriorityQueueInterface
      */
     public function push($value, int $priority = 0): PriorityQueueInterface
     {
@@ -90,7 +95,7 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\PriorityQueue
+     * @return \PlanB\DS\PriorityQueue\PriorityQueueInterface
      */
     public function pushAll(iterable $input): PriorityQueueInterface
     {

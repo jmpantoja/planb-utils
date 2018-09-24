@@ -24,11 +24,12 @@ class TextMap extends AbstractMap
     use TraitTextList;
 
     /**
-     * @param mixed[]                          $input
+     * Named Constructor
      *
+     * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\Type\Text\TextMap
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): TextMap
     {

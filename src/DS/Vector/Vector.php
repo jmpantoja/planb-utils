@@ -29,7 +29,7 @@ final class Vector extends AbstractVector
      * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Vector
+     * @return \PlanB\DS\Vector\Vector
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): Vector
     {

@@ -66,7 +66,7 @@ protected **Rule::__construct**(callable $callback, string $type = null) :
 Informa a la regla de cual es el tipo del resolver padre
 
 
-**Rule::setInnerType**([DataType](../../../../DataType.md) $type) : [RuleQueue](../../../../RuleQueue.md)
+**Rule::setInnerType**([DataType](../../../../DataType.md) $type) : [Rule](../../../../Rule.md)
 
 
 |Parameters: | | |

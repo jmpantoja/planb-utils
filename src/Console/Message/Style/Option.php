@@ -15,6 +15,11 @@ use MabeEnum\Enum;
 
 /**
  * Enum con las posibles opciones
+ *
+ * @method static Option BLINK()
+ * @method static Option BOLD()
+ * @method static Option UNDERSCORE()
+ * @method static Option REVERSE()
  */
 final class Option extends Enum
 {

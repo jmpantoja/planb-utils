@@ -31,6 +31,12 @@ abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeI
     use TraitSequence;
     use TraitArray;
 
+
+    /**
+     * @var \Ds\Deque
+     */
+    protected $items;
+
     /**
      * @inheritdoc
      */

@@ -44,8 +44,8 @@ class LineSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
         $style = Style::make()
-            ->backgroundColor(Color::YELLOW)
-            ->foregroundColor(Color::BLUE);
+            ->backgroundColor(Color::YELLOW())
+            ->foregroundColor(Color::BLUE());
 
 
         $this->apply($style)

@@ -166,31 +166,32 @@ abstract protected **Stack::makeInternal**() : [Collection](../../../Collection.
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
 
 
-protected **Stack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Stack::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **Stack::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
@@ -301,21 +302,6 @@ Pushes zero or more values onto the top of the stack.
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### make
-
-
-
-static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Stack](../../../Stack.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

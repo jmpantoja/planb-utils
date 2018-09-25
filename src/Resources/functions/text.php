@@ -29,21 +29,31 @@ if (!function_exists('ensure_text')) {
     }
 }
 
-if (!function_exists('is_empty_text')) {
+if (!function_exists('is_empty')) {
 
     /**
      * Indica si una cadena está vacia
      *
-     * @param string $text
+     * @param mixed $value
      * @return bool
      */
-    function is_empty_text(string $text): bool
+    function is_empty($value): bool
     {
-        return Text::make($text)->isEmpty();
+        $data = Data::make($value);
+
+        if ($data->isConvertibleToString()) {
+            return Text::make($value)->isEmpty();
+        }
+
+        if ($data->isCountable()) {
+            return 0 === count($value);
+        }
+
+        return false;
     }
 
 }
-if (!function_exists('is_blank_text')) {
+if (!function_exists('is_blank')) {
 
     /**
      * Indica si una cadena está en blanco
@@ -51,7 +61,7 @@ if (!function_exists('is_blank_text')) {
      * @param string $text
      * @return bool
      */
-    function is_blank_text(string $text): bool
+    function is_blank(string $text): bool
     {
         return Text::make($text)->isBlank();
     }

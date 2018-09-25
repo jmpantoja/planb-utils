@@ -25,11 +25,12 @@ class TextPriorityQueue extends AbstractPriorityQueue
 
 
     /**
-     * @param mixed[]                          $input
+     * Named Constructor
      *
+     * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\PriorityQueue
+     * @return \PlanB\Type\Text\TextPriorityQueue
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): TextPriorityQueue
     {

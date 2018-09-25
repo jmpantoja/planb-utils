@@ -21,10 +21,10 @@ class EmptyPathException extends \DomainException
     /**
      * EmptyPathException constructor.
      *
-     * @param string                                    $message
-     * @param null|\PlanB\Type\Path\Exception\Throwable $previous
+     * @param string          $message
+     * @param null|\Throwable $previous
      */
-    protected function __construct(string $message, ?Throwable $previous = null)
+    protected function __construct(string $message, ?\Throwable $previous = null)
     {
         parent::__construct($message, 100, $previous);
     }

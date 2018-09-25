@@ -166,31 +166,32 @@ protected **AbstractStack::makeInternal**() :
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **AbstractStack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **AbstractStack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **AbstractStack::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **AbstractStack::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 

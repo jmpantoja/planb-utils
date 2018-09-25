@@ -169,16 +169,17 @@ protected **AbstractVector::makeInternal**() :
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **AbstractVector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -198,12 +199,12 @@ protected **AbstractVector::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**AbstractVector::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**AbstractVector::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -645,6 +646,20 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

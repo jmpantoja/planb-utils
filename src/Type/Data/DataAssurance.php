@@ -19,24 +19,60 @@ use PlanB\Utils\Traits\Stringify;
 
 /**
  * Assurance para Types
+ *
+ * @method bool isArray()
+ * @method bool isBoolean()
+ * @method bool isCallable()
+ * @method bool isCountable()
+ * @method bool isFloat()
+ * @method bool isInteger()
+ * @method bool isIterable()
+ * @method bool isNull()
+ * @method bool isNumeric()
+ * @method bool isObject()
+ * @method bool isResource()
+ * @method bool isScalar()
+ * @method bool isString()
+ * @method bool isInstanceOf(string $classOrInterfaceName)
+ * @method bool isTypeOf(string ...$allowed)
+ * @method bool isConvertibleToString()
+ *
+ * @method bool isNotArray()
+ * @method bool isNotBoolean()
+ * @method bool isNotCallable()
+ * @method bool isNotCountable()
+ * @method bool isNotFloat()
+ * @method bool isNotInteger()
+ * @method bool isNotIterable()
+ * @method bool isNotNull()
+ * @method bool isNotNumeric()
+ * @method bool isNotObject()
+ * @method bool isNotResource()
+ * @method bool isNotScalar()
+ * @method bool isNotString()
+ * @method bool isNotInstanceOf(string $classOrInterfaceName)
+ * @method bool isNotTypeOf(string ...$allowed)
+ * @method bool isNotConvertibleToString()
  */
 class DataAssurance extends Assurance implements Stringifable
 {
     use Stringify;
 
     /**
-     * @var \PlanB\Utils\Type\Type
+     * @var \PlanB\Type\Data\Data
      */
-    private $type;
+    private $data;
 
     /**
      * ValueAssurance constructor.
      *
-     * @param \PlanB\Utils\Type\Type $type
+     * DataAssurance constructor.
+     *
+     * @param \PlanB\Type\Data\Data $data
      */
-    protected function __construct(Data $type)
+    protected function __construct(Data $data)
     {
-        $this->type = $type;
+        $this->data = $data;
     }
 
 
@@ -61,7 +97,7 @@ class DataAssurance extends Assurance implements Stringifable
      */
     protected function getEvaluatedObject(): object
     {
-        return $this->type;
+        return $this->data;
     }
 
     /**

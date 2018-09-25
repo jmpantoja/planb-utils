@@ -166,16 +166,17 @@ abstract protected **Map::makeInternal**() : [Collection](../../../Collection.md
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
 
 
-protected **Map::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+static **Map::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -255,11 +256,25 @@ Offset to unset
 ---
 
 
-### each
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **Map::duplicate**([iterable](../../../iterable.md) $input = []) : [MapInterface](../../../MapInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### apply
 Updates all values by applying a callback function to each value.
 
 
-**Map::each**(callable $callback) : 
+**Map::apply**(callable $callback) : 
 
 
 |Parameters: | | |
@@ -661,21 +676,6 @@ map, but not of both.
 |Parameters: | | |
 | --- | --- | --- |
 |[Map](../../../Map.md) |$map |  |
-
----
-
-
-### make
-
-
-
-static **Map::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Map](../../../Map.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

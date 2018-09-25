@@ -104,7 +104,7 @@ class RendererSpec extends ObjectBehavior
     {
         $text = Line::make(self::INPUT);
         $style = Style::make()
-            ->expandTo(self::WIDTH, Align::CENTER);
+            ->expandTo(self::WIDTH, Align::CENTER());
 
         $this->render($text, $style)
             ->stringify()
@@ -115,7 +115,7 @@ class RendererSpec extends ObjectBehavior
     {
         $text = Line::make(self::INPUT);
         $style = Style::make()
-            ->expandTo(self::WIDTH, Align::RIGHT);
+            ->expandTo(self::WIDTH, Align::RIGHT());
 
         $this->render($text, $style)
             ->stringify()
@@ -126,7 +126,7 @@ class RendererSpec extends ObjectBehavior
     {
         $text = Line::make(self::INPUT_WITH_TAGS);
         $style = Style::make()
-            ->expandTo(self::WIDTH, Align::CENTER);
+            ->expandTo(self::WIDTH, Align::CENTER());
 
         $this->render($text, $style)
             ->stringify()
@@ -137,9 +137,9 @@ class RendererSpec extends ObjectBehavior
     {
         $text = Line::make(self::INPUT);
         $style = Style::make()
-            ->option(Option::BOLD)
-            ->foregroundColor(Color::BLUE)
-            ->backgroundColor(Color::RED);
+            ->option(Option::BOLD())
+            ->foregroundColor(Color::BLUE())
+            ->backgroundColor(Color::RED());
 
 
         $this->render($text, $style)
@@ -163,22 +163,22 @@ class RendererSpec extends ObjectBehavior
             ->shouldReturn('  x  ');
 
 
-        $style->expandTo(11, Align::LEFT);
+        $style->expandTo(11, Align::LEFT());
         $this->render($text, $style)
             ->stringify()
             ->shouldReturn('  x        ');
 
-        $style->expandTo(11, Align::RIGHT);
+        $style->expandTo(11, Align::RIGHT());
         $this->render($text, $style)
             ->stringify()
             ->shouldReturn('        x  ');
 
-        $style->expandTo(11, Align::CENTER);
+        $style->expandTo(11, Align::CENTER());
         $this->render($text, $style)
             ->stringify()
             ->shouldReturn('     x     ');
 
-        $style->foregroundColor(Color::RED)->backgroundColor('blue');
+        $style->foregroundColor(Color::RED())->backgroundColor(Color::BLUE());
         $this->render($text, $style)
             ->stringify()
             ->shouldReturn('<fg=red;bg=blue>     x     </>');

@@ -27,12 +27,18 @@ class GetSetHydrator extends GetSetMethodNormalizer
     private $object;
 
     /**
+     * @var \PlanB\Utils\Hydrator\NameConverter
+     */
+    protected $nameConverter;
+
+    /**
      * GetSetHydrator constructor.
      */
     protected function __construct()
     {
         $nameConverter = NameConverter::make();
         parent::__construct(null, $nameConverter);
+        $this->nameConverter = $nameConverter;
     }
 
     /**
@@ -56,7 +62,7 @@ class GetSetHydrator extends GetSetMethodNormalizer
     public function hydrate($classNameOrObject, iterable $values): object
     {
 
-        ensure_value($classNameOrObject)
+        ensure_data($classNameOrObject)
             ->isTypeOf('string', 'object');
 
 

@@ -35,6 +35,11 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
 
 
     /**
+     * @var \Ds\Map
+     */
+    protected $items;
+
+    /**
      * @inheritdoc
      */
     protected function makeInternal(): \DS\Map
@@ -42,6 +47,17 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
         return new \DS\Map();
     }
 
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Map\MapInterface
+     */
+    protected function duplicate(iterable $input = []): MapInterface
+    {
+        return static::make($input, $this->resolver);
+    }
 
     /**
      * Offset to set
@@ -125,7 +141,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param mixed[]|\Traversable $values
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function merge($values): MapInterface
     {
@@ -141,7 +157,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param \PlanB\DS\Map $map The other map.
      *
-     * @return \PlanB\DS\Map A new map containing the pairs of the current instance
+     * @return \PlanB\DS\Map\MapInterface A new map containing the pairs of the current instance
      *                 whose keys are also present in the given map. In other
      *                 words, returns a copy of the current map with all keys
      *                 removed that are not also in the other map.
@@ -161,7 +177,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param \PlanB\DS\Map $map The map containing the keys to exclude.
      *
-     * @return \PlanB\DS\Map The result of removing all keys from the current instance
+     * @return \PlanB\DS\Map\MapInterface The result of removing all keys from the current instance
      *                 that are present in a given map.
      */
     public function diff(Map $map): MapInterface
@@ -207,7 +223,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *                                true : include the value,
      *                                false: skip the value.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function filter(?callable $callback = null): MapInterface
     {
@@ -255,7 +271,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      * @param callable $callback Accepts two arguments: key and value, should
      *                           return what the updated value will be.
      *
-     * @return \PlanB\DS\Map\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function map(callable $callback): MapInterface
     {
@@ -283,7 +299,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      * @param mixed $key
      * @param mixed $value
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function put($key, $value): MapInterface
     {
@@ -300,7 +316,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param \Traversable|mixed[] $values
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function putAll(iterable $values): MapInterface
     {
@@ -348,7 +364,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
     /**
      * Returns a reversed copy of the map.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function reverse(): MapInterface
     {
@@ -360,7 +376,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
     /**
      * Returns a reversed copy of the map.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function reversed(): MapInterface
     {
@@ -390,7 +406,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *                         will contains all pairs between the offset and
      *                         the end of the map.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function slice(int $offset, ?int $length = null): MapInterface
     {
@@ -408,7 +424,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param callable|null $comparator Accepts two values to be compared.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function sort(?callable $comparator = null): MapInterface
     {
@@ -425,7 +441,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param callable|null $comparator Accepts two values to be compared.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function sorted(?callable $comparator = null): MapInterface
     {
@@ -444,7 +460,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param callable|null $comparator Accepts two keys to be compared.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function ksort(?callable $comparator = null): MapInterface
     {
@@ -462,7 +478,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param callable|null $comparator Accepts two keys to be compared.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Map\MapInterface
      */
     public function ksorted(?callable $comparator = null): MapInterface
     {
@@ -492,7 +508,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param \PlanB\DS\Map $map The other map, to combine with the current instance.
      *
-     * @return \PlanB\DS\Map A new map containing all the pairs of the current
+     * @return \PlanB\DS\Map\MapInterface A new map containing all the pairs of the current
      *                 instance as well as another map.
      */
     public function union(Map $map): MapInterface
@@ -510,7 +526,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      *
      * @param \PlanB\DS\Map $map
      *
-     * @return \PlanB\DS\Map A new map containing keys in the current instance as well
+     * @return \PlanB\DS\Map\MapInterface A new map containing keys in the current instance as well
      *                 as another map, but not in both.
      */
     public function xor(Map $map): MapInterface

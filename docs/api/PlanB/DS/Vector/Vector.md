@@ -17,10 +17,6 @@ growth factor isn't bound to a specific multiple or exponent.
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitSequence
 - PlanB\DS\Traits\TraitArray
-- PlanB\DS\Traits\TraitCollection
-- PlanB\DS\Traits\TraitResolver
-- PlanB\DS\Traits\TraitSequence
-- PlanB\DS\Traits\TraitArray
 
 
 
@@ -173,41 +169,42 @@ abstract protected **Vector::makeInternal**() : [Collection](../../../Collection
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Vector named constructor.
 
 
-protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Vector::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **Vector::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**Vector::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**Vector::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -593,6 +590,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+abstract protected **Vector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**Vector::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -621,24 +650,6 @@ Offset to retrieve
 ---
 
 
-### offsetSet
-Offset to set
-
-
-**Vector::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
 ### offsetUnset
 Offset to unset
 
@@ -649,21 +660,6 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
-
----
-
-
-### make
-Vector named constructor.
-
-
-static **Vector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

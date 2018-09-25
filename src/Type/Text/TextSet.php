@@ -24,11 +24,12 @@ class TextSet extends AbstractSet
     use TraitTextList;
 
     /**
-     * @param mixed[]                          $input
+     * Named Constructor
      *
+     * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\Type\Text\TextSet
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): TextSet
     {

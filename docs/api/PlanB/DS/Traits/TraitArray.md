@@ -77,6 +77,21 @@ Offset to unset
 ---
 
 
+### hook
+Resuelve los valores antes de ser añadidos desde algun método
+
+
+abstract protected **TraitArray::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

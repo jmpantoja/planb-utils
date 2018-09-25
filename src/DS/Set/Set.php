@@ -13,12 +13,13 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Set;
 
+use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 
 /**
  * A sequence of unique values.
  */
-class Set extends AbstractSet
+final class Set extends AbstractSet
 {
     /**
      * @param mixed[]                          $input
@@ -27,7 +28,7 @@ class Set extends AbstractSet
      *
      * @return \PlanB\DS\Set\Set
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Set
+    public static function make(iterable $input = [], ?Resolver $resolver = null): Collection
     {
         return (new static($resolver))
             ->addAll($input);

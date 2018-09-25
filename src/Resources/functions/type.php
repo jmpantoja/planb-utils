@@ -30,17 +30,17 @@ if (!function_exists('ensure_type')) {
     }
 }
 
-if (!function_exists('ensure_value')) {
+if (!function_exists('ensure_data')) {
 
     /**
-     * Assurance para Input
+     * Assurance para Data
      *
-     * @param $text
+     * @param $data
      * @return DataAssurance
      */
-    function ensure_value($text): DataAssurance
+    function ensure_data($data): DataAssurance
     {
-        return DataAssurance::make($text);
+        return DataAssurance::make($data);
     }
 }
 

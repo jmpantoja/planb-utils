@@ -21,13 +21,13 @@
 Position named constructor.
 
 
-static **Position::make**(int $width = 0, [Align](../../../../Align.md)|string $align = null) : [Position](../../../../Position.md)
+static **Position::make**(int $width = 0, [Align](../../../../Align.md) $align = null) : [Position](../../../../Position.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |int |$width |  |
-|[Align](../../../../Align.md)|string |$align |  |
+|[Align](../../../../Align.md) |$align |  |
 
 ---
 

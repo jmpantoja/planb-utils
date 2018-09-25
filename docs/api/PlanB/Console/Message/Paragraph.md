@@ -164,16 +164,17 @@ abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collect
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -193,12 +194,12 @@ protected **Paragraph::hook**(callable $callback, mixed ...$values) :
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**Paragraph::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**Paragraph::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -644,6 +645,20 @@ Offset to unset
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
 ### concat
 Concatena los textos
 
@@ -665,21 +680,6 @@ Convierte la lista en un array de strings
 **Paragraph::toArrayOfStrings**() : string[]
 
 
-
----
-
-
-### make
-
-
-
-static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Vector](../../../Vector.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -768,12 +768,12 @@ Añade color al texto
 Añade color de fondo  al texto
 
 
-**Paragraph::bgColor**([Color](../../../Color.md)|string $color) : [Paragraph](../../../Paragraph.md)
+**Paragraph::bgColor**(string|[Color](../../../Color.md) $color) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Color](../../../Color.md)|string |$color |  |
+|string|[Color](../../../Color.md) |$color |  |
 
 ---
 
@@ -782,7 +782,7 @@ Añade color de fondo  al texto
 Asigna el padding
 
 
-**Paragraph::padding**(int $left = 0, int $right = null) : [Style](../../../Style.md)
+**Paragraph::padding**(int $left = 0, int $right = null) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
@@ -797,7 +797,7 @@ Asigna el padding
 Asigna el margin
 
 
-**Paragraph::margin**(int $left = 0, int $right = null) : [Style](../../../Style.md)
+**Paragraph::margin**(int $left = 0, int $right = null) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
@@ -812,7 +812,7 @@ Asigna el margin
 Alinea el texto a la izquierda
 
 
-**Paragraph::left**() : [$this](../../../$this.md)
+**Paragraph::left**() : [Paragraph](../../../Paragraph.md)
 
 
 
@@ -823,7 +823,7 @@ Alinea el texto a la izquierda
 Alinea el texto a la derecha
 
 
-**Paragraph::right**() : [$this](../../../$this.md)
+**Paragraph::right**() : [Paragraph](../../../Paragraph.md)
 
 
 
@@ -834,7 +834,7 @@ Alinea el texto a la derecha
 Alinea el texto al centro
 
 
-**Paragraph::center**() : [$this](../../../$this.md)
+**Paragraph::center**() : [Paragraph](../../../Paragraph.md)
 
 
 

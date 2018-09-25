@@ -61,7 +61,7 @@ protected **Data::__construct**(mixed $variable) :
 Crea una nueva instancia
 
 
-static **Data::make**(mixed $variable) : [Type](../../../Type.md)
+static **Data::make**(mixed $variable) : [Data](../../../Data.md)
 
 
 |Parameters: | | |

@@ -20,7 +20,7 @@ use PlanB\DS\Traits\TraitResolver;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
+abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
 {
 
     use TraitCollection;
@@ -28,15 +28,30 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
     use TraitArray;
 
 
+    /**
+     * @var \Ds\Set
+     */
+    protected $items;
 
     /**
      * @inheritdoc
      */
-    protected function makeInternal(): \DS\Collection
+    protected function makeInternal(): \DS\Set
     {
         return new \DS\Set();
     }
 
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Set\SetInterface
+     */
+    protected function duplicate(iterable $input = []): SetInterface
+    {
+        return static::make($input, $this->resolver);
+    }
 
     /**
      * Offset to set
@@ -60,7 +75,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
     public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
-            $this->hook(function ($value) use ($offset): void {
+            $this->hook(function ($value): void {
                 $this->items->add($value);
             }, $value);
 
@@ -75,7 +90,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param mixed $value
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function add($value): SetInterface
     {
@@ -92,7 +107,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function addAll(iterable $input): SetInterface
     {
@@ -110,7 +125,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param \PlanB\DS\Set $set
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function diff(Set $set): SetInterface
     {
@@ -128,7 +143,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param \PlanB\DS\Set $set
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function xor(Set $set): SetInterface
     {
@@ -146,7 +161,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *                                true : include the value,
      *                                false: skip the value.
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function filter(?callable $callback = null): SetInterface
     {
@@ -192,7 +207,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param \PlanB\DS\Set $set
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function intersect(Set $set): SetInterface
     {
@@ -234,7 +249,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param mixed ...$values
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function remove(...$values): SetInterface
     {
@@ -246,7 +261,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
     /**
      * Reverses the set in-place.
      *
-     * @return  \PlanB\DS\Set
+     * @return  \PlanB\DS\Set\SetInterface
      */
     public function reverse(): SetInterface
     {
@@ -258,7 +273,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
     /**
      * Returns a reversed copy of the set.
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function reversed(): SetInterface
     {
@@ -286,7 +301,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *                    will contains all values between the offset and the
      *                    end of the set.
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function slice(int $offset, ?int $length = null): SetInterface
     {
@@ -305,7 +320,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      * @param callable|null $comparator Accepts two values to be compared.
      *                                  Should return the result of a <=> b.
      *
-     * @return \PlanB\DS\Map
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function sort(?callable $comparator = null): SetInterface
     {
@@ -323,7 +338,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      * @param callable|null $comparator Accepts two values to be compared.
      *                                  Should return the result of a <=> b.
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function sorted(?callable $comparator = null): SetInterface
     {
@@ -340,7 +355,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param mixed[]|\Traversable $values
      *
-     * @return \Ds\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function merge(iterable $values): SetInterface
     {
@@ -359,7 +374,7 @@ class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInterface
      *
      * @param \PlanB\DS\Set $set
      *
-     * @return \PlanB\DS\Set
+     * @return \PlanB\DS\Set\SetInterface
      */
     public function union(Set $set): SetInterface
     {

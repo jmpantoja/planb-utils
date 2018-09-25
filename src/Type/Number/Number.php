@@ -17,7 +17,7 @@ namespace PlanB\Type\Number;
 class Number
 {
     /**
-     * @var \PlanB\Type\Number\double|int
+     * @var float|int
      */
     private $number;
 
@@ -40,7 +40,7 @@ class Number
      */
     protected function __construct($number)
     {
-        ensure_value($number)->isNumeric();
+        ensure_data($number)->isNumeric();
 
         $this->number = $number;
     }

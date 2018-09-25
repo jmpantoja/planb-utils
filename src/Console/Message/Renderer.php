@@ -66,6 +66,6 @@ class Renderer
     {
         return $this->decorators->reduce(function (Line $line, DecoratorInterface $decorator) use ($style): Line {
             return $decorator->render($line, $style);
-        }, $line, $style);
+        }, $line);
     }
 }

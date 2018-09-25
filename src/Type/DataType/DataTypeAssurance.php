@@ -19,6 +19,30 @@ use PlanB\Utils\Traits\Stringify;
 
 /**
  * Garantiza que un nombre de clase cumple con una serie de condiciones
+ *
+ * @method bool isSameOf(string $classOrInterfaceName)
+ * @method bool isChildOf(string $classOrInterfaceName)
+ * @method bool isClassOf(string $classOrInterfaceName)
+ * @method bool isTypeOf(string ...$allowed)
+ * @method bool isClass()
+ * @method bool isInterface()
+ * @method bool isClassOrInterface()
+ * @method bool isTrait()
+ * @method bool isNative()
+ * @method bool isValid()
+ * @method bool isTheTypeOf($value)
+ *
+ * @method bool isNotSameOf(string $classOrInterfaceName)
+ * @method bool isNotChildOf(string $classOrInterfaceName)
+ * @method bool isNotClassOf(string $classOrInterfaceName)
+ * @method bool isNotTypeOf(string ...$allowed)
+ * @method bool isNotClass()
+ * @method bool isNotInterface()
+ * @method bool isNotClassOrInterface()
+ * @method bool isNotTrait()
+ * @method bool isNotNative()
+ * @method bool isNotValid()
+ * @method bool isNotTheTypeOf($value)
  */
 class DataTypeAssurance extends Assurance implements Stringifable
 {

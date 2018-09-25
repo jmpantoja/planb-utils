@@ -28,7 +28,7 @@ class PaddingDecorator extends Decorator
     public function render(Line $line, Style $style): Line
     {
 
-        return Line::join(...[
+        return Line::concat([
             $style->getPaddingLeft(),
             $line->trim(),
             $style->getPaddingRight(),

@@ -165,11 +165,26 @@ abstract protected **Set::makeInternal**() : [Collection](../../../Collection.md
 ---
 
 
+### make
+
+
+
+static **Set::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### duplicate
 Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
 
 
-protected **Set::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract protected **Set::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
 
 
 |Parameters: | | |
@@ -518,21 +533,6 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 |Parameters: | | |
 | --- | --- | --- |
 |[Set](../../../Set.md) |$set |  |
-
----
-
-
-### make
-
-
-
-static **Set::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Set](../../../Set.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

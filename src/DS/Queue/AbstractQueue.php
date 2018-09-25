@@ -27,22 +27,16 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
 
 
     /**
+     * @var \Ds\Queue
+     */
+    protected $items;
+
+    /**
      * @inheritdoc
      */
     protected function makeInternal(): \DS\Collection
     {
         return new \DS\Queue();
-    }
-
-
-    /**
-     * Returns the value at the front of the queue without removing it.
-     *
-     * @return mixed
-     */
-    public function peek()
-    {
-        return $this->items->peek();
     }
 
     /**
@@ -56,11 +50,21 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
     }
 
     /**
+     * Returns the value at the front of the queue without removing it.
+     *
+     * @return mixed
+     */
+    public function peek()
+    {
+        return $this->items->peek();
+    }
+
+    /**
      * Pushes one value onto the top of the queue.
      *
      * @param mixed $input
      *
-     * @return \PlanB\DS\Queue
+     * @return \PlanB\DS\Queue\QueueInterface
      */
     public function push($input): QueueInterface
     {
@@ -77,7 +81,7 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\Stack
+     * @return \PlanB\DS\Queue\QueueInterface
      */
     public function pushAll(iterable $input): QueueInterface
     {

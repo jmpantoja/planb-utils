@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Console\Message;
 
 use PlanB\Console\Message\Style\Align;
+use PlanB\Console\Message\Style\Color;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
 use PlanB\DS\Collection;
@@ -107,7 +108,7 @@ class Paragraph extends TextVector
      */
     public function blink(): self
     {
-        $this->style->option(Option::BLINK);
+        $this->style->option(Option::BLINK());
 
         return $this;
     }
@@ -119,7 +120,7 @@ class Paragraph extends TextVector
      */
     public function bold(): self
     {
-        $this->style->option(Option::BOLD);
+        $this->style->option(Option::BOLD());
 
         return $this;
     }
@@ -131,7 +132,7 @@ class Paragraph extends TextVector
      */
     public function underscore(): self
     {
-        $this->style->option(Option::UNDERSCORE);
+        $this->style->option(Option::UNDERSCORE());
 
         return $this;
     }
@@ -143,7 +144,7 @@ class Paragraph extends TextVector
      */
     public function inverse(): self
     {
-        $this->style->option(Option::REVERSE);
+        $this->style->option(Option::REVERSE());
 
         return $this;
     }
@@ -157,6 +158,7 @@ class Paragraph extends TextVector
      */
     public function fgColor($color): self
     {
+        $color = Color::get($color);
         $this->style->foregroundColor($color);
 
         return $this;
@@ -171,6 +173,7 @@ class Paragraph extends TextVector
      */
     public function bgColor($color): self
     {
+        $color = Color::get($color);
         $this->style->backgroundColor($color);
 
         return $this;
@@ -182,7 +185,7 @@ class Paragraph extends TextVector
      * @param int      $left
      * @param int|null $right
      *
-     * @return \PlanB\Console\Message\Style\Style
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function padding(int $left = 0, ?int $right = null): self
     {
@@ -197,7 +200,7 @@ class Paragraph extends TextVector
      * @param int      $left
      * @param int|null $right
      *
-     * @return \PlanB\Console\Message\Style\Style
+     * @return \PlanB\Console\Message\Paragraph
      */
     public function margin(int $left = 0, ?int $right = null): self
     {
@@ -209,9 +212,9 @@ class Paragraph extends TextVector
     /**
      * Alinea el texto a la izquierda
      *
-     * @return $this
+     * @return \PlanB\Console\Message\Paragraph
      */
-    public function left()
+    public function left(): self
     {
 
         $width = $this->getWidth();
@@ -239,9 +242,9 @@ class Paragraph extends TextVector
     /**
      * Alinea el texto a la derecha
      *
-     * @return $this
+     * @return \PlanB\Console\Message\Paragraph
      */
-    public function right()
+    public function right(): self
     {
         $width = $this->getWidth();
         $this->style->expandTo($width, Align::RIGHT());
@@ -252,9 +255,9 @@ class Paragraph extends TextVector
     /**
      * Alinea el texto al centro
      *
-     * @return $this
+     * @return \PlanB\Console\Message\Paragraph
      */
-    public function center()
+    public function center(): self
     {
         $width = $this->getWidth();
         $this->style->expandTo($width, Align::CENTER());

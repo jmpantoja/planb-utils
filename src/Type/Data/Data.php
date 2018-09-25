@@ -24,6 +24,11 @@ class Data implements Stringifable
 {
     use Stringify;
 
+    /**
+     * @var mixed
+     */
+    private $variable;
+
     private const EQUIVALENT_TYPES_METHODS = [
         Type::SCALAR => 'isScalar',
         Type::NUMERIC => 'isNumeric',
@@ -49,7 +54,7 @@ class Data implements Stringifable
      *
      * @param mixed $variable
      *
-     * @return \PlanB\Utils\Type\Type
+     * @return \PlanB\Type\Data\Data
      */
     public static function make($variable): self
     {

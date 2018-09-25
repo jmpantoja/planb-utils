@@ -166,31 +166,32 @@ abstract protected **TextStack::makeInternal**() : [Collection](../../../Collect
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named Constructor
 
 
-protected **TextStack::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **TextStack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **TextStack::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **TextStack::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
@@ -326,21 +327,6 @@ Convierte la lista en un array de strings
 **TextStack::toArrayOfStrings**() : string[]
 
 
-
----
-
-
-### make
-
-
-
-static **TextStack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Stack](../../../Stack.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

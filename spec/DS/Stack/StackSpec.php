@@ -47,7 +47,6 @@ class StackSpec extends ObjectBehavior
         );
     }
 
-
     public function it_returns_the_value_at_the_top_of_the_stack_without_removing_it()
     {
         $this[] = self::VALUE_A;

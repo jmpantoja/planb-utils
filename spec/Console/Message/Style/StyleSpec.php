@@ -57,7 +57,7 @@ class StyleSpec extends ObjectBehavior
 
     public function it_can_apply_a_position_with_custom_align()
     {
-        $this->expandTo(self::WIDTH, Align::RIGHT);
+        $this->expandTo(self::WIDTH, Align::RIGHT());
 
         $this->getWidth()->shouldReturn(self::WIDTH);
         $this->getAlign()->shouldReturn(Align::RIGHT());
@@ -71,9 +71,9 @@ class StyleSpec extends ObjectBehavior
     public function it_retrieve_open_tag()
     {
 
-        $this->option(Option::BOLD);
-        $this->foregroundColor(Color::BLUE);
-        $this->backgroundColor(Color::RED);
+        $this->option(Option::BOLD());
+        $this->foregroundColor(Color::BLUE());
+        $this->backgroundColor(Color::RED());
 
         $this->getOpenTag()->stringify()->shouldReturn('<fg=blue;bg=red;options=bold>');
     }
@@ -86,9 +86,9 @@ class StyleSpec extends ObjectBehavior
     public function it_retrieve_close_tag()
     {
 
-        $this->option(Option::BOLD);
-        $this->foregroundColor(Color::BLUE);
-        $this->backgroundColor(Color::RED);
+        $this->option(Option::BOLD());
+        $this->foregroundColor(Color::BLUE());
+        $this->backgroundColor(Color::RED());
 
         $this->getCloseTag()->stringify()->shouldReturn('</>');
     }
@@ -141,9 +141,9 @@ class StyleSpec extends ObjectBehavior
         $style = $this->buildStyleToMerge();
 
         $this
-            ->foregroundColor(Color::DEFAULT)
-            ->backgroundColor(Color::BLUE)
-            ->option(Option::UNDERSCORE);
+            ->foregroundColor(Color::DEFAULT())
+            ->backgroundColor(Color::BLUE())
+            ->option(Option::UNDERSCORE());
 
         $merged = $this->blend($style);
 
@@ -161,10 +161,10 @@ class StyleSpec extends ObjectBehavior
         $style = Style::make()
             ->margin(2, 3)
             ->padding(2, 3)
-            ->expandTo(10, Align::CENTER)
-            ->foregroundColor(Color::RED)
-            ->backgroundColor(Color::GREEN)
-            ->option(Option::BOLD);
+            ->expandTo(10, Align::CENTER())
+            ->foregroundColor(Color::RED())
+            ->backgroundColor(Color::GREEN())
+            ->option(Option::BOLD());
 
         return $style;
     }

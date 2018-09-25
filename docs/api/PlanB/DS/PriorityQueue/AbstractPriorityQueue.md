@@ -159,23 +159,24 @@ Devuelve el tipo de la colección
 Crea la estructura de datos interna
 
 
-protected **AbstractPriorityQueue::makeInternal**() : [Collection](../../../Collection.md)
+protected **AbstractPriorityQueue::makeInternal**() : [PriorityQueue](../../../PriorityQueue.md)
 
 
 
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+Named constructor.
 
 
-protected **AbstractPriorityQueue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+abstract static **AbstractPriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

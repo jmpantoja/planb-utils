@@ -30,7 +30,7 @@ final class Deque extends AbstractDeque
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Deque
+     * @return \PlanB\DS\Deque\Deque
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): Deque
     {

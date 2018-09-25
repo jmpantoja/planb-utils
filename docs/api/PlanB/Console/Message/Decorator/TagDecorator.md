@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Decorator named constructor.
 
 
-static **TagDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+static **TagDecorator::make**() : [DecoratorInterface](../../../../DecoratorInterface.md)
 
 
 

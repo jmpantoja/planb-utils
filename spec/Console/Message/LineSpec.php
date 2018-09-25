@@ -6,6 +6,7 @@ use PlanB\Console\Message\Line;
 use PhpSpec\ObjectBehavior;
 use PlanB\Console\Message\Style\Color;
 use PlanB\Console\Message\Style\Style;
+use PlanB\DS\Deque\Deque;
 use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 
@@ -31,6 +32,7 @@ class LineSpec extends ObjectBehavior
 
     public function it_retrieve_length_with_and_without_tags()
     {
+
         $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
 
         $this->getLength()->shouldReturn(15);
@@ -42,8 +44,8 @@ class LineSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('make', [self::INPUT_WITH_TAGS]);
         $style = Style::make()
-            ->backgroundColor(Color::YELLOW)
-            ->foregroundColor(Color::BLUE);
+            ->backgroundColor(Color::YELLOW())
+            ->foregroundColor(Color::BLUE());
 
 
         $this->apply($style)

@@ -410,6 +410,53 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+abstract protected **TraitSequence::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### hook
+Resuelve los valores antes de ser añadidos desde algun método
+
+
+abstract protected **TraitSequence::hook**(callable $callback, mixed ...$values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |...$values |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+abstract **TraitSequence::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

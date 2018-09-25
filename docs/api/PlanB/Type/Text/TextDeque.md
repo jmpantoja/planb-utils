@@ -167,41 +167,42 @@ abstract protected **TextDeque::makeInternal**() : [Collection](../../../Collect
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
+TextDeque named constructor
 
 
-protected **TextDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **TextDeque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
-Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **TextDeque::hook**(callable $callback, mixed ...$values) : 
+
+abstract protected **TextDeque::hook**(callable $callback, ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|mixed |...$values |  |
+| |...$values |  |
 
 ---
 
 
-### each
+### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
 
 
-**TextDeque::each**(callable $callback) : [Sequence](../../../Sequence.md)
+**TextDeque::apply**(callable $callback) : [Sequence](../../../Sequence.md)
 
 
 |Parameters: | | |
@@ -587,6 +588,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+abstract protected **TextDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**TextDeque::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -611,24 +644,6 @@ Offset to retrieve
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to retrieve. |
-
----
-
-
-### offsetSet
-Offset to set
-
-
-**TextDeque::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
 
 ---
 
@@ -668,21 +683,6 @@ Convierte la lista en un array de strings
 **TextDeque::toArrayOfStrings**() : string[]
 
 
-
----
-
-
-### make
-
-
-
-static **TextDeque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Deque](../../../Deque.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

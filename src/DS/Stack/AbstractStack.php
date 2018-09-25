@@ -26,6 +26,10 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
     use TraitArray;
 
 
+    /**
+     * @var \Ds\Stack
+     */
+    protected $items;
 
     /**
      * @inheritdoc
@@ -34,7 +38,6 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
     {
         return new \DS\Stack();
     }
-
 
     /**
      * Returns the value at the top of the stack without removing it.
@@ -65,7 +68,7 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
      *
      * @param mixed $input
      *
-     * @return \PlanB\DS\Stack
+     * @return \PlanB\DS\Stack\StackInterface
      */
     public function push($input): StackInterface
     {
@@ -82,7 +85,7 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\Stack
+     * @return \PlanB\DS\Stack\StackInterface
      */
     public function pushAll(iterable $input): StackInterface
     {

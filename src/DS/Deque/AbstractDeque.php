@@ -31,11 +31,29 @@ abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeI
     use TraitSequence;
     use TraitArray;
 
+
+    /**
+     * @var \Ds\Deque
+     */
+    protected $items;
+
     /**
      * @inheritdoc
      */
-    protected function makeInternal(): \DS\Collection
+    protected function makeInternal(): \DS\Deque
     {
         return new \DS\Deque();
+    }
+
+    /**
+     * Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+     *
+     * @param mixed[] $input
+     *
+     * @return \PlanB\DS\Set\SetInterface
+     */
+    protected function duplicate(iterable $input = []): DequeInterface
+    {
+        return static::make($input, $this->resolver);
     }
 }

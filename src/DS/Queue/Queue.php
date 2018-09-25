@@ -26,7 +26,7 @@ final class Queue extends AbstractQueue
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Queue
+     * @return \PlanB\DS\Queue\Queue
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): Queue
     {

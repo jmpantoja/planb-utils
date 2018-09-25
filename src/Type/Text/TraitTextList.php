@@ -46,7 +46,7 @@ trait TraitTextList
      */
     public function concat(string $delimiter = Text::BLANK_TEXT): Text
     {
-        $imploded = implode($delimiter, $this->toArray());
+        $imploded = implode($delimiter, $this->toArrayOfStrings());
 
         return Text::make($imploded);
     }

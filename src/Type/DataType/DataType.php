@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\DataType;
 
-use PlanB\DS\Vector\Vector;
+use PlanB\DS\Set\Set;
 use PlanB\Type\Data\Data;
 use PlanB\Type\Stringifable;
 use PlanB\Utils\Traits\Stringify;
@@ -117,7 +117,7 @@ class DataType implements Stringifable
     public function isTypeOf(string ...$allowed): bool
     {
 
-        $found = Vector::make($allowed)
+        $found = Set::make($allowed)
             ->filter(function ($type) {
                 return $this->isClassOf($type);
             });

@@ -166,16 +166,17 @@ abstract protected **PriorityQueue::makeInternal**() : [Collection](../../../Col
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### make
 
 
-protected **PriorityQueue::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+static **PriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -242,21 +243,6 @@ Pushes zero or more values onto the top of the queue.
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### make
-
-
-
-static **PriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [PriorityQueue](../../../PriorityQueue.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

@@ -24,11 +24,13 @@ class TextDeque extends AbstractDeque
     use TraitTextList;
 
     /**
+     * TextDeque named constructor
+     *
      * @param mixed[]                          $input
      *
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Deque
+     * @return \PlanB\Type\Text\TextDeque
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): TextDeque
     {

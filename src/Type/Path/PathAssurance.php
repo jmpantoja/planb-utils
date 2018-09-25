@@ -19,6 +19,26 @@ use PlanB\Utils\Traits\Stringify;
 
 /**
  * Garantiza que una ruta cumple una serie de condiciones
+ *
+ * @method bool isAbsolute()
+ * @method bool isRelative()
+ * @method bool isFile()
+ * @method bool isDirectory()
+ * @method bool isLink()
+ * @method bool isReadable()
+ * @method bool isReadableFile()
+ * @method bool isWritable()
+ * @method bool hasExtension(string ...$expected)
+ *
+ * @method bool isNotAbsolute()
+ * @method bool isNotRelative()
+ * @method bool isNotFile()
+ * @method bool isNotDirectory()
+ * @method bool isNotLink()
+ * @method bool isNotReadable()
+ * @method bool isNotReadableFile()
+ * @method bool isNotWritable()
+ * @method bool hasNotExtension(string ...$expected)
  */
 class PathAssurance extends Assurance implements Stringifable
 {

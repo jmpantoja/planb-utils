@@ -23,11 +23,12 @@ class TextVector extends AbstractVector
     use TraitTextList;
 
     /**
-     * @param mixed[]                          $input
+     * Named Constructor
      *
+     * @param mixed[]                          $input
      * @param null|\PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Vector
+     * @return \PlanB\Type\Text\TextVector
      */
     public static function make(iterable $input = [], ?Resolver $resolver = null): TextVector
     {

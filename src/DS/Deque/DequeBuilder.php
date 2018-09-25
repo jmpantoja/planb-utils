@@ -12,12 +12,36 @@ declare(strict_types=1);
 namespace PlanB\DS\Deque;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 
 /**
  * Builder para Deque
  */
 class DequeBuilder extends AbstractBuilder
 {
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\DS\Deque\DequeBuilder
+     */
+    public static function make(): DequeBuilder
+    {
+        return new static(Resolver::make());
+    }
+
+    /**
+     * Named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Deque\DequeBuilder
+     */
+    public static function typed(string $type): DequeBuilder
+    {
+        return new static(Resolver::make($type));
+    }
+
 
     /**
      * Crea el objeto

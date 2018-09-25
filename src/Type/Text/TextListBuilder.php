@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 
 /**
@@ -21,6 +22,17 @@ use PlanB\Type\DataType\Type;
  */
 class TextListBuilder extends AbstractBuilder
 {
+
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\Type\Text\TextListBuilder
+     */
+    public static function make(): TextListBuilder
+    {
+        return new static(Resolver::make());
+    }
 
     /**
      * Crea la colección de textos por defecto

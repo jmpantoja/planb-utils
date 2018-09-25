@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
-use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Set\AbstractSet;
 use PlanB\Type\DataType\Type;
@@ -40,7 +39,7 @@ class OptionList extends AbstractSet
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
         $resolver
             ->setType(Type::STRING)
@@ -50,8 +49,6 @@ class OptionList extends AbstractSet
             ->addConverter(Option::class, function (Option $option) {
                 return $option->getValue();
             });
-
-        return $this;
     }
 
 

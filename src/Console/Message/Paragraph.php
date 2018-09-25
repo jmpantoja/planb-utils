@@ -17,7 +17,6 @@ use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Color;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
@@ -37,7 +36,7 @@ class Paragraph extends TextVector
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
         $resolver
             ->setType(LineWithStyle::class)
@@ -53,8 +52,6 @@ class Paragraph extends TextVector
 
                 return LineWithStyle::make($line, $this->style->clone());
             });
-
-        return $this;
     }
 
     /**

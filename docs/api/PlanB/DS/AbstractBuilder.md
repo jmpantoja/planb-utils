@@ -21,23 +21,9 @@
 AbstractBuilder named constructor.
 
 
-static **AbstractBuilder::make**() : [AbstractBuilder](../../AbstractBuilder.md)
+abstract static **AbstractBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **AbstractBuilder::typed**(string $type) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **AbstractBuilder::typed**(string $type) : [AbstractBuilder](../../Abstra
 AbstractBuilder constructor.
 
 
-protected **AbstractBuilder::__construct**() : 
+protected **AbstractBuilder::__construct**([Resolver](../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../Resolver.md) |$resolver |  |
 
 ---
 

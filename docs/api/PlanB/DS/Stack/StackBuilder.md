@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **StackBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **StackBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **StackBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **StackBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstra
 AbstractBuilder constructor.
 
 
-protected **StackBuilder::__construct**() : 
+protected **StackBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **StackBuilder::__construct**() :
 Devuelve el input
 
 
-protected **StackBuilder::getInput**() : mixed[]
+protected **StackBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **StackBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **StackBuilder::typed**(string $type) : [StackBuilder](../../../StackBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

@@ -137,7 +137,7 @@ protected **AbstractVector::__construct**([Resolver](../../../Resolver.md) $reso
 Configura esta colección
 
 
-**AbstractVector::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**AbstractVector::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -188,7 +188,7 @@ abstract static **AbstractVector::make**([iterable](../../../iterable.md) $input
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **AbstractVector::hook**(callable $callback, mixed ...$values) : 
+abstract protected **AbstractVector::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -590,6 +590,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**AbstractVector::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -618,24 +650,6 @@ Offset to retrieve
 ---
 
 
-### offsetSet
-Offset to set
-
-
-**AbstractVector::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
 ### offsetUnset
 Offset to unset
 
@@ -646,20 +660,6 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
-
----
-
-
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

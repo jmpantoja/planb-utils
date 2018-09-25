@@ -36,34 +36,18 @@ abstract class AbstractBuilder
     /**
      * AbstractBuilder named constructor.
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return mixed
      */
-    public static function make(): AbstractBuilder
-    {
-        return new static();
-    }
-
-    /**
-     * AbstractBuilder named constructor.
-     *
-     * @param string $type
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public static function typed(string $type): AbstractBuilder
-    {
-        $builder = new static();
-        $builder->resolver->setType($type);
-
-        return $builder;
-    }
+    abstract public static function make();
 
     /**
      * AbstractBuilder constructor.
+     *
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
      */
-    protected function __construct()
+    protected function __construct(?Resolver $resolver = null)
     {
-        $this->resolver = Resolver::make();
+        $this->resolver = $resolver ?? Resolver::make();
         $this->input = [];
     }
 

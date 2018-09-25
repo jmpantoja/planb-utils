@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **QueueBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **QueueBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **QueueBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **QueueBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstra
 AbstractBuilder constructor.
 
 
-protected **QueueBuilder::__construct**() : 
+protected **QueueBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **QueueBuilder::__construct**() :
 Devuelve el input
 
 
-protected **QueueBuilder::getInput**() : mixed[]
+protected **QueueBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **QueueBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **QueueBuilder::typed**(string $type) : [QueueBuilder](../../../QueueBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

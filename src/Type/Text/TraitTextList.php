@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 
@@ -26,15 +25,13 @@ trait TraitTextList
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
         $resolver
             ->setType(Text::class)
             ->addConverter(Type::SCALAR, function ($value) {
                 return Text::make($value);
             });
-
-        return $this;
     }
 
     /**

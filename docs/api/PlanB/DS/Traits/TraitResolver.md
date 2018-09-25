@@ -37,7 +37,7 @@ protected **TraitResolver::__construct**([Resolver](../../../Resolver.md) $resol
 Configura esta colección
 
 
-**TraitResolver::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**TraitResolver::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |

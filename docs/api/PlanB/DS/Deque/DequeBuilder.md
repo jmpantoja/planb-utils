@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **DequeBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **DequeBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **DequeBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **DequeBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstra
 AbstractBuilder constructor.
 
 
-protected **DequeBuilder::__construct**() : 
+protected **DequeBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **DequeBuilder::__construct**() :
 Devuelve el input
 
 
-protected **DequeBuilder::getInput**() : mixed[]
+protected **DequeBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **DequeBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **DequeBuilder::typed**(string $type) : [DequeBuilder](../../../DequeBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

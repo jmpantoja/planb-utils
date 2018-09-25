@@ -133,7 +133,7 @@ protected **OptionList::__construct**([Resolver](../../../../Resolver.md) $resol
 
 
 
-**OptionList::configure**([Resolver](../../../../Resolver.md) $resolver) : [Collection](../../../../Collection.md)
+**OptionList::configure**([Resolver](../../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -169,7 +169,7 @@ abstract protected **OptionList::makeInternal**() : [Collection](../../../../Col
 Named constructor.
 
 
-static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Collection](../../../../Collection.md)
+static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : mixed
 
 
 |Parameters: | | |
@@ -180,25 +180,11 @@ static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Re
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [Collection](../../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../../iterable.md) |$input |  |
-
----
-
-
 ### hook
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **OptionList::hook**(callable $callback, mixed ...$values) : 
+abstract protected **OptionList::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -265,6 +251,20 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [SetInterface](../../../../SetInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 

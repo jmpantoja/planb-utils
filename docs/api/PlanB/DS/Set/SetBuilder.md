@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **SetBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **SetBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **SetBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **SetBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstract
 AbstractBuilder constructor.
 
 
-protected **SetBuilder::__construct**() : 
+protected **SetBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **SetBuilder::__construct**() :
 Devuelve el input
 
 
-protected **SetBuilder::getInput**() : mixed[]
+protected **SetBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **SetBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **SetBuilder::typed**(string $type) : [SetBuilder](../../../SetBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

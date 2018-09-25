@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **TextListBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **TextListBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **TextListBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **TextListBuilder::typed**(string $type) : [AbstractBuilder](../../../Abs
 AbstractBuilder constructor.
 
 
-protected **TextListBuilder::__construct**() : 
+protected **TextListBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **TextListBuilder::__construct**() :
 Devuelve el input
 
 
-protected **TextListBuilder::getInput**() : mixed[]
+protected **TextListBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 

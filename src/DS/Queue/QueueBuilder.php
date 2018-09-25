@@ -12,12 +12,36 @@ declare(strict_types=1);
 namespace PlanB\DS\Queue;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 
 /**
  * Builder para Queue
  */
 class QueueBuilder extends AbstractBuilder
 {
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\DS\Queue\QueueBuilder
+     */
+    public static function make(): QueueBuilder
+    {
+        return new static(Resolver::make());
+    }
+
+    /**
+     * Named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Queue\QueueBuilder
+     */
+    public static function typed(string $type): QueueBuilder
+    {
+        return new static(Resolver::make($type));
+    }
+
     /**
      * Crea el objeto
      *

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Traits;
 
-use PlanB\DS\Collection;
 use PlanB\DS\Exception\InvalidArgumentException;
 use PlanB\DS\Resolver\Input\FailedInput;
 use PlanB\DS\Resolver\Input\IgnoredInput;
@@ -52,13 +51,12 @@ trait TraitResolver
      *
      * @param \PlanB\DS\Resolver\Resolver $resolver
      *
-     * @return \PlanB\DS\Collection
+     * @return void
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
-        return $this;
     }
 
     /**

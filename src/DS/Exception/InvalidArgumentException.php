@@ -47,7 +47,6 @@ class InvalidArgumentException extends \InvalidArgumentException
      */
     public static function make(FailedInput $input, ?\Throwable $previous = null): self
     {
-
         $original = $input->getOriginal();
         $value = Data::make($original)->decorate();
 

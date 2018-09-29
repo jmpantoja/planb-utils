@@ -33,7 +33,7 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
-        $this->getMessage()->shouldContain('<fg=green>([string: "A"])</>');
+        $this->getMessage()->shouldContain('[string: "A"]');
     }
 
 
@@ -45,6 +45,7 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
-        $this->getMessage()->shouldContain('<fg=green>([string: "A"], [string: "B"])</>');
+        $this->getMessage()->shouldContain('[string: "A"]');
+        $this->getMessage()->shouldContain('[string: "B"]');
     }
 }

@@ -39,7 +39,9 @@ class SetBuilder extends AbstractBuilder
      */
     public static function typed(string $type): SetBuilder
     {
-        return new static(Resolver::make($type));
+        $resolver = Resolver::typed($type);
+
+        return new static($resolver);
     }
 
     /**
@@ -49,7 +51,8 @@ class SetBuilder extends AbstractBuilder
      */
     public function build()
     {
-        return Set::make(
+
+        return new Set(
             $this->getInput(),
             $this->getResolver()
         );

@@ -78,111 +78,62 @@ Asigna una colección de valores para incializar la colección
 ---
 
 
-### addFilter
+### filter
 Añade un filtro a la cola
 
 
-**AbstractBuilder::addFilter**(callable $filter, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$filter |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addTypedFilter
-Añade un filtro para un tipo determinado
-
-
-**AbstractBuilder::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$filter |  |
-|int |$priority |  |
-
----
-
-
-### addConverter
+### converter
 Añade un converter
 
 
-**AbstractBuilder::addConverter**(string $type, callable $converter, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
 |callable |$converter |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addValidator
+### validator
 Añade un validator
 
 
-**AbstractBuilder::addValidator**(callable $validator, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$validator |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addTypedValidator
-Añade un validator para un tipo determinado
+### rule
+Añade una regla
 
 
-**AbstractBuilder::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$validator |  |
-|int |$priority |  |
-
----
-
-
-### addNormalizer
-Añade un normalizer
-
-
-**AbstractBuilder::addNormalizer**(callable $normalizer, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::rule**(callable $rule, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|callable |$normalizer |  |
-|int |$priority |  |
-
----
-
-
-### addTypedNormalizer
-Añade un normalizer para un tipo determinado
-
-
-**AbstractBuilder::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$normalizer |  |
-|int |$priority |  |
+|callable |$rule |  |
+|string |...$types |  |
 
 ---
 

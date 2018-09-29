@@ -11,12 +11,14 @@
 
 declare(strict_types=1);
 
-namespace PlanB\DS\Resolver\Input;
+namespace spec\PlanB\DS\Resolver;
 
-/**
- * El valor debe ser ignorado
- */
-class IgnoredInput extends AbstractInput
+
+class InvokerMock
 {
 
+    public function __invoke($value)
+    {
+
+    }
 }

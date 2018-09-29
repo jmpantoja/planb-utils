@@ -17,11 +17,11 @@
 
 ## Methods
 
-### create
+### make
 Decorator named constructor.
 
 
-static **AlignDecorator::create**() : [DecoratorInterface](../../../../DecoratorInterface.md)
+static **AlignDecorator::make**() : [DecoratorInterface](../../../../DecoratorInterface.md)
 
 
 

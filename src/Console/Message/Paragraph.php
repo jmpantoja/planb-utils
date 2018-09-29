@@ -19,15 +19,19 @@ use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
+use PlanB\Type\Stringifable;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextListBuilder;
 use PlanB\Type\Text\TextVector;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class Paragraph extends TextVector
+class Paragraph extends TextVector implements Stringifable
 {
+    use Stringify;
+
     /**
      * @var \PlanB\Console\Message\Style\Style
      */
@@ -38,29 +42,33 @@ class Paragraph extends TextVector
      */
     public function configure(Resolver $resolver): void
     {
+
         $resolver
-            ->setType(LineWithStyle::class)
-            ->addTypedFilter(Paragraph::class, function (Paragraph $paragraph) {
-                $this->pushAll($paragraph->getLines());
+            ->type(LineWithStyle::class)
+            ->loaders([
+                Paragraph::class => function (Paragraph $paragraph): void {
+                    $this->pushAll($paragraph->getLines());
+                },
+            ])
+            ->converters([
+                Type::STRINGIFABLE => function ($text) {
+                    $line = Line::make($text);
 
-                return false;
-            })
-            ->addConverter(Type::SCALAR, function ($value) {
-                return Text::make($value);
-            })->addConverter(Text::class, function (Text $text) {
-                $line = Line::make($text);
-
-                return LineWithStyle::make($line, $this->style->clone());
-            });
+                    return LineWithStyle::make($line, $this->style->clone());
+                },
+            ]);
     }
 
     /**
-     * @inheritDoc
+     * AbstractVector constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
      */
-    public function __construct()
+    public function __construct(iterable $input, ?Resolver $resolver = null)
     {
-        parent::__construct(null);
         $this->style = Style::make();
+        parent::__construct($input, $resolver);
     }
 
 
@@ -86,12 +94,12 @@ class Paragraph extends TextVector
         $width = $this->getWidth();
 
         $list = TextListBuilder::make()
-            ->addTypedNormalizer(LineWithStyle::class, function (LineWithStyle $line) use ($width) {
+            ->converter(function (LineWithStyle $line) use ($width) {
 
                 $this->style->expandTo($width);
 
                 return $line->render($this->style);
-            })
+            }, LineWithStyle::class)
             ->values($this)
             ->build();
 
@@ -260,5 +268,15 @@ class Paragraph extends TextVector
         $this->style->expandTo($width, Align::CENTER());
 
         return $this;
+    }
+
+    /**
+     * __toString alias
+     *
+     * @return string
+     */
+    public function stringify(): string
+    {
+        return $this->render()->stringify();
     }
 }

@@ -48,7 +48,7 @@ class DataAssuranceSpec extends ObjectBehavior
         $this->beConstructedThrough('make', [self::NUMBER]);
 
         $this->decorate()
-            ->shouldReturn(self::NUMBER_AS_STRING);
+            ->shouldContain(self::NUMBER_AS_STRING);
     }
 
     public function it_convert_to_string()

@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **Map::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Map::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **Map::__construct**([Resolver](../../../Resolver.md) $resolver = null
 Configura esta colección
 
 
-**Map::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**Map::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,13 +170,12 @@ abstract protected **Map::makeInternal**() : [Collection](../../../Collection.md
 
 
 
-static **Map::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **Map::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -185,7 +184,7 @@ static **Map::make**([iterable](../../../iterable.md) $input = [], [Resolver](..
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Map::hook**(callable $callback, mixed ...$values) : 
+abstract protected **Map::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -252,6 +251,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractMap constructor.
+
+
+**Map::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **Stack::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Stack::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **Stack::__construct**([Resolver](../../../Resolver.md) $resolver = nu
 Configura esta colección
 
 
-**Stack::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**Stack::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,28 +170,27 @@ abstract protected **Stack::makeInternal**() : [Collection](../../../Collection.
 
 
 
-static **Stack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **Stack::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
+Resuelve los valores antes de ser añadidos desde algun método
 
 
-
-abstract protected **Stack::hook**(callable $callback, ...$values) : 
+abstract protected **Stack::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-| |...$values |  |
+|mixed |...$values |  |
 
 ---
 
@@ -252,6 +251,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractStack constructor.
+
+
+**Stack::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

@@ -22,16 +22,13 @@ use PlanB\DS\Resolver\Resolver;
 final class Queue extends AbstractQueue
 {
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Queue\Queue
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Queue
+    public static function make(iterable $input = []): Queue
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 
     /**
@@ -44,8 +41,8 @@ final class Queue extends AbstractQueue
      */
     public static function typed(string $type, iterable $input = []): Queue
     {
-        return QueueBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

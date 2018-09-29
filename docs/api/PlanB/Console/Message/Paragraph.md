@@ -10,6 +10,7 @@
 
 
 ## Traits
+- PlanB\Utils\Traits\Stringify
 - PlanB\Type\Text\TraitTextList
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
@@ -117,13 +118,16 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-**Paragraph::__construct**() : 
+protected **Paragraph::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -168,13 +172,12 @@ abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collect
 Named constructor.
 
 
-abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -659,6 +662,21 @@ Offset to unset
 ---
 
 
+### __construct
+AbstractVector constructor.
+
+
+**Paragraph::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### concat
 Concatena los textos
 
@@ -678,6 +696,28 @@ Convierte la lista en un array de strings
 
 
 **Paragraph::toArrayOfStrings**() : string[]
+
+
+
+---
+
+
+### stringify
+__toString alias
+
+
+**Paragraph::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Paragraph::__toString**() : string
 
 
 

@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\Queue\AbstractQueue;
-use PlanB\DS\Resolver\Resolver;
 
 /**
  * Queue de objetos Text
@@ -26,14 +25,12 @@ class TextQueue extends AbstractQueue
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextQueue
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextQueue
+    public static function make(iterable $input = []): TextQueue
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 }

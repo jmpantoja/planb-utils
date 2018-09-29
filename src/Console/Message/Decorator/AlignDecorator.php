@@ -29,6 +29,7 @@ class AlignDecorator extends Decorator
     public function render(Line $line, Style $style): Line
     {
         $width = $style->getWidth() + $line->getTagsLength();
+
         $char = Text::BLANK_TEXT;
         $align = $style->getAlign()->getAccurateValue();
 

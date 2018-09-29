@@ -115,11 +115,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **OptionList::__construct**([Resolver](../../../../Resolver.md) $resolver = null) : 
+protected **OptionList::bind**([Resolver](../../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -169,13 +169,12 @@ abstract protected **OptionList::makeInternal**() : [Collection](../../../../Col
 Named constructor.
 
 
-static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : mixed
+static **OptionList::make**([iterable](../../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../../iterable.md) |$input |  |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -251,6 +250,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractSet constructor.
+
+
+**OptionList::__construct**([iterable](../../../../iterable.md) $input, [Resolver](../../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
+|[Resolver](../../../../Resolver.md) |$resolver |  |
 
 ---
 

@@ -39,7 +39,7 @@ class VectorBuilder extends AbstractBuilder
      */
     public static function typed(string $type): VectorBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
     /**
@@ -49,7 +49,7 @@ class VectorBuilder extends AbstractBuilder
      */
     public function build(): Vector
     {
-        return Vector::make(
+        return new Vector(
             $this->getInput(),
             $this->getResolver()
         );

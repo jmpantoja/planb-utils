@@ -636,21 +636,21 @@ class DataSpec extends ObjectBehavior
     {
         $this->build(['A', 'B']);
 
-        $this->decorate()->shouldReturn('[array(2)]');
+        $this->decorate()->shouldContain('[array(2)]');
     }
 
     public function it_can_be_convert_stringifable_to_string()
     {
         $this->build(self::TEXT);
 
-        $this->decorate()->shouldReturn(self::STRING_TO_TEXT);
+        $this->decorate()->shouldContain(self::STRING_TO_TEXT);
     }
 
     public function it_can_be_convert_number_to_string()
     {
         $this->build(self::INTEGER);
 
-        $this->decorate()->shouldReturn(self::INTEGER_TO_TEXT);
+        $this->decorate()->shouldContain(self::INTEGER_TO_TEXT);
     }
 
 

@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Vector\AbstractVector;
 
 /**
@@ -25,14 +24,12 @@ class TextVector extends AbstractVector
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextVector
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextVector
+    public static function make(iterable $input = []): TextVector
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 }

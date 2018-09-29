@@ -4,7 +4,7 @@
 # Converter
 
 
-> Regla que transforma un valor de un tipo dado, en otro
+> Regla que permite transformar Inputs
 >
 > 
 
@@ -17,118 +17,74 @@
 
 ## Methods
 
-### typed
-Resolver named constructor.
-
-
-static **Converter::typed**(string $type, callable $callback) : [Rule](../../../../Rule.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$callback |  |
-
----
-
-
 ### make
-Resolver named constructor.
+Rule named constructor.
 
 
-static **Converter::make**(callable $callback) : [Rule](../../../../Rule.md)
+static **Converter::make**(callable $callback, string ...$types) : [RuleInterface](../../../../RuleInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
 ### __construct
-Resolver constructor.
+Rule constructor.
 
 
-protected **Converter::__construct**(callable $callback, string $type = null) : 
+protected **Converter::__construct**(callable $callback, string ...$types) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|string |$type |  |
+|string |...$types |  |
 
 ---
 
 
-### setInnerType
-Informa a la regla de cual es el tipo del resolver padre
+### execute
+Manipula un input
 
 
-**Converter::setInnerType**([DataType](../../../../DataType.md) $type) : [RuleQueue](../../../../RuleQueue.md)
+**Converter::execute**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[DataType](../../../../DataType.md) |$type |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 
 
-### isOfInnerType
-Indica si un valor es del tipo interno de esta regla
-El tipo interno es el tipo del resolver al que pertenece esta regla
+### call
+Ejecuta el callback
 
 
-protected **Converter::isOfInnerType**(mixed $value) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$value |  |
-
----
-
-
-### __invoke
-Ejecuta la regla
-
-
-**Converter::__invoke**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
+protected **Converter::call**(mixed ...$arguments) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
+|mixed |...$arguments |  |
 
 ---
 
 
 ### resolve
-Ejecuta la regla
 
 
-**Converter::resolve**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
 
-
-|Parameters: | | |
-| --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
-
----
-
-
-### buildInput
-Convierte la respuesta obtenida en un objeto InputInterface
-
-
-**Converter::buildInput**(mixed $response, mixed $value) : [InputInterface](../../../../InputInterface.md)
+protected **Converter::resolve**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$response |  |
-|mixed |$value |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 

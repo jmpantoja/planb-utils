@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Traits;
 
-use PlanB\DS\Exception\InvalidArgumentException;
-use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\DS\Resolver\Input\IgnoredInput;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\DataType;
 
@@ -38,7 +35,7 @@ trait TraitResolver
     /**
      * @inheritDoc
      */
-    protected function __construct(?Resolver $resolver = null)
+    protected function bind(?Resolver $resolver = null)
     {
         $this->resolver = $resolver ?? Resolver::make();
         $this->configure($this->resolver);
@@ -79,39 +76,9 @@ trait TraitResolver
     /**
      * Named constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return mixed
      */
-    abstract static public function make(iterable $input = [], ?Resolver $resolver = null);
-
-    /**
-     * Resuelve los valores antes de ser añadidos desde algun método
-     *
-     * @param callable $callback
-     * @param mixed    ...$values
-     */
-    protected function hook(callable $callback, ...$values): void
-    {
-
-        $resolved = [];
-        foreach ($values as $value) {
-            $input = $this->resolver->resolve($value);
-
-            if ($input instanceof IgnoredInput) {
-                return;
-            }
-
-            if ($input instanceof FailedInput) {
-                throw InvalidArgumentException::make($input);
-            }
-
-            $resolved[] = $input->getValue();
-        }
-
-        call_user_func($callback, ...$resolved);
-
-        return;
-    }
+    abstract static public function make(iterable $input = []);
 }

@@ -25,15 +25,13 @@ class OptionList extends AbstractSet
     /**
      * Named constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Collection
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): OptionList
+    public static function make(iterable $input = []): OptionList
     {
-        return (new static($resolver))
-            ->addAll($input);
+        return new static($input);
     }
 
     /**
@@ -42,13 +40,13 @@ class OptionList extends AbstractSet
     public function configure(Resolver $resolver): void
     {
         $resolver
-            ->setType(Type::STRING)
-            ->addConverter(Type::STRING, function ($value) {
+            ->type(Type::STRING)
+            ->converter(function ($value) {
                 return Option::get($value);
-            })
-            ->addConverter(Option::class, function (Option $option) {
+            }, Type::STRING)
+            ->converter(function (Option $option) {
                 return $option->getValue();
-            });
+            }, Option::class);
     }
 
 

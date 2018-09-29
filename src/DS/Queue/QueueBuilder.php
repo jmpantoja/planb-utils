@@ -39,7 +39,7 @@ class QueueBuilder extends AbstractBuilder
      */
     public static function typed(string $type): QueueBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
     /**
@@ -49,7 +49,7 @@ class QueueBuilder extends AbstractBuilder
      */
     public function build(): Queue
     {
-        return Queue::make(
+        return new Queue(
             $this->getInput(),
             $this->getResolver()
         );

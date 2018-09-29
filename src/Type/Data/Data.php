@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Data;
 
-use PlanB\DS\Vector\Vector;
+use PlanB\Console\Message\Style\Color;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Stringifable;
@@ -222,11 +222,10 @@ class Data implements Stringifable
             return true;
         }
 
-        $equivalents = Vector::make($allowed)
-            ->filter(function ($type) {
-                return $this->isEquivalentTo($type);
-            });
-
+        $allowed = new \DS\Vector($allowed);
+        $equivalents = $allowed->filter(function ($type) {
+            return $this->isEquivalentTo($type);
+        });
 
         return !$equivalents->isEmpty();
     }
@@ -312,11 +311,15 @@ class Data implements Stringifable
         $typeName = $this->getType()->stringify();
 
         if ($this->isCountable()) {
-            $typeName = sprintf('%s(%s)', $typeName, count($this->variable));
+            return cli_line('[%s(%s)]', $typeName, count($this->variable))
+                ->fgColor(Color::CYAN())
+                ->stringify() ;
         }
 
         if (!$this->isConvertibleToString()) {
-            return sprintf('[%s]', $typeName);
+            return cli_line('[object: %s]', $typeName)
+                ->fgColor(Color::CYAN())
+                ->stringify() ;
         }
 
         $variable = (string) $this->variable;
@@ -325,6 +328,10 @@ class Data implements Stringifable
             $variable = sprintf('"%s"', $variable);
         }
 
-        return sprintf('[%s: %s]', $typeName, $variable);
+        $composed = sprintf('[%s: %s]', $typeName, $variable);
+
+        return cli_line($composed)
+            ->fgColor(Color::CYAN())
+            ->stringify();
     }
 }

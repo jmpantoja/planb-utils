@@ -39,7 +39,7 @@ class DequeBuilder extends AbstractBuilder
      */
     public static function typed(string $type): DequeBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
 
@@ -50,7 +50,9 @@ class DequeBuilder extends AbstractBuilder
      */
     public function build(): Deque
     {
-        return Deque::make(
+
+
+        return new Deque(
             $this->getInput(),
             $this->getResolver()
         );

@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\PriorityQueue;
 
-use PlanB\DS\Resolver\Resolver;
-
 /**
  * A PriorityQueue is very similar to a Queue. Values are pushed into the queue
  * with an assigned priority, and the value with the highest priority will
@@ -24,16 +22,13 @@ final class PriorityQueue extends AbstractPriorityQueue
 {
 
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\PriorityQueue\PriorityQueue
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): PriorityQueue
+    public static function make(iterable $input = []): PriorityQueue
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 
     /**

@@ -33,15 +33,16 @@ InvalidItemException constructor.
 
 
 ### make
-Crea una instancia
+InvalidItemException named constructor.
 
 
-static **InvalidArgumentException::make**([FailedInput](../../../FailedInput.md) $input, [Throwable](../../../Throwable.md) $previous = null) : [InvalidArgumentException](../../../InvalidArgumentException.md)
+static **InvalidArgumentException::make**(mixed $data, string $reason, [Throwable](../../../Throwable.md) $previous = null) : [InvalidArgumentException](../../../InvalidArgumentException.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[FailedInput](../../../FailedInput.md) |$input |  |
+|mixed |$data |  |
+|string |$reason |  |
 |[Throwable](../../../Throwable.md) |$previous |  |
 
 ---

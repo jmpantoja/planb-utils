@@ -101,12 +101,12 @@ Returns and removes the value at the front of the Queue.
 Pushes one value onto the top of the queue.
 
 
-**QueueInterface::push**(mixed $input) : [Queue](../../../Queue.md)
+**QueueInterface::push**(mixed $value) : [Queue](../../../Queue.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 

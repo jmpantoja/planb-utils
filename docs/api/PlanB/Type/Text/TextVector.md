@@ -117,11 +117,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **TextVector::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TextVector::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -135,7 +135,7 @@ protected **TextVector::__construct**([Resolver](../../../Resolver.md) $resolver
 Configura esta colección
 
 
-**TextVector::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**TextVector::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -171,28 +171,27 @@ abstract protected **TextVector::makeInternal**() : [Collection](../../../Collec
 Named Constructor
 
 
-static **TextVector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **TextVector::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
+Resuelve los valores antes de ser añadidos desde algun método
 
 
-
-abstract protected **TextVector::hook**(callable $callback, ...$values) : 
+abstract protected **TextVector::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-| |...$values |  |
+|mixed |...$values |  |
 
 ---
 
@@ -658,6 +657,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+
+
+
+**TextVector::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

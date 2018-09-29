@@ -9,7 +9,7 @@
 * [PlanB\DS\Map\MapInterface](PlanB/DS/Map/MapInterface.md)
 * [PlanB\DS\PriorityQueue\PriorityQueueInterface](PlanB/DS/PriorityQueue/PriorityQueueInterface.md)
 * [PlanB\DS\Queue\QueueInterface](PlanB/DS/Queue/QueueInterface.md)
-* [PlanB\DS\Resolver\Input\InputInterface](PlanB/DS/Resolver/Input/InputInterface.md)
+* [PlanB\DS\Resolver\Rule\RuleInterface](PlanB/DS/Resolver/Rule/RuleInterface.md)
 * [PlanB\DS\Sequence](PlanB/DS/Sequence.md)
 * [PlanB\DS\Set\SetInterface](PlanB/DS/Set/SetInterface.md)
 * [PlanB\DS\Stack\StackInterface](PlanB/DS/Stack/StackInterface.md)

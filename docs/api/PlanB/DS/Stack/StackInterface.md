@@ -101,12 +101,12 @@ Returns and removes the value at the top of the stack.
 Pushes one value onto the top of the stack.
 
 
-**StackInterface::push**(mixed $input) : [Stack](../../../Stack.md)
+**StackInterface::push**(mixed $value) : [Stack](../../../Stack.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 

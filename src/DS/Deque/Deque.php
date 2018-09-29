@@ -26,16 +26,13 @@ use PlanB\DS\Resolver\Resolver;
 final class Deque extends AbstractDeque
 {
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Deque\Deque
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Deque
+    public static function make(iterable $input = []): Deque
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 
     /**
@@ -48,8 +45,9 @@ final class Deque extends AbstractDeque
      */
     public static function typed(string $type, iterable $input = []): Deque
     {
-        return DequeBuilder::typed($type)
-            ->values($input)
-            ->build();
+
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

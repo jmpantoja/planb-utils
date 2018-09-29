@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Stack;
 
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitArray;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
@@ -30,6 +31,19 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
      * @var \Ds\Stack
      */
     protected $items;
+
+    /**
+     * AbstractStack constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->pushAll($input);
+    }
+
 
     /**
      * @inheritdoc
@@ -66,15 +80,15 @@ abstract class AbstractStack implements \IteratorAggregate, \ArrayAccess, StackI
     /**
      * Pushes one value onto the top of the stack.
      *
-     * @param mixed $input
+     * @param mixed $value
      *
      * @return \PlanB\DS\Stack\StackInterface
      */
-    public function push($input): StackInterface
+    public function push($value): StackInterface
     {
-        $this->hook(function ($input): void {
-            $this->items->push($input);
-        }, $input);
+        $this->resolver->value(function ($value): void {
+            $this->items->push($value);
+        }, $value);
 
         return $this;
     }

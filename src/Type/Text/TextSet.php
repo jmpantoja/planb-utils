@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Set\AbstractSet;
 
 /**
@@ -26,14 +25,12 @@ class TextSet extends AbstractSet
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextSet
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextSet
+    public static function make(iterable $input = []): TextSet
     {
-        return (new static($resolver))
-            ->addAll($input);
+        return new static($input);
     }
 }

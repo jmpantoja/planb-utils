@@ -39,7 +39,7 @@ class PriorityQueueBuilder extends AbstractBuilder
      */
     public static function typed(string $type): PriorityQueueBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
     /**
@@ -49,7 +49,7 @@ class PriorityQueueBuilder extends AbstractBuilder
      */
     public function build()
     {
-        return PriorityQueue::make(
+        return new PriorityQueue(
             $this->getInput(),
             $this->getResolver()
         );

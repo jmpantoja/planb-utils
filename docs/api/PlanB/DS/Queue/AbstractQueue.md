@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **AbstractQueue::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractQueue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **AbstractQueue::__construct**([Resolver](../../../Resolver.md) $resol
 Configura esta colección
 
 
-**AbstractQueue::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**AbstractQueue::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,28 +170,12 @@ protected **AbstractQueue::makeInternal**() :
 Named constructor.
 
 
-abstract static **AbstractQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **AbstractQueue::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### hook
-
-
-
-abstract protected **AbstractQueue::hook**(callable $callback, ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-| |...$values |  |
 
 ---
 
@@ -256,6 +240,21 @@ Offset to unset
 ---
 
 
+### __construct
+AbstractQueue constructor.
+
+
+**AbstractQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### pop
 Returns and removes the value at the front of the Queue.
 
@@ -282,12 +281,12 @@ Returns the value at the front of the queue without removing it.
 Pushes one value onto the top of the queue.
 
 
-**AbstractQueue::push**(mixed $input) : [Queue](../../../Queue.md)
+**AbstractQueue::push**(mixed $value) : [Queue](../../../Queue.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 

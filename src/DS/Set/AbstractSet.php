@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Set;
 
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitArray;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
@@ -34,6 +35,18 @@ abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInter
     protected $items;
 
     /**
+     * AbstractSet constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->addAll($input);
+    }
+
+    /**
      * @inheritdoc
      */
     protected function makeInternal(): \DS\Set
@@ -50,7 +63,7 @@ abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInter
      */
     protected function duplicate(iterable $input = []): SetInterface
     {
-        return static::make($input, $this->resolver);
+        return new static($input, $this->resolver);
     }
 
     /**
@@ -75,7 +88,7 @@ abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInter
     public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
-            $this->hook(function ($value): void {
+            $this->resolver->value(function ($value): void {
                 $this->items->add($value);
             }, $value);
 
@@ -94,7 +107,7 @@ abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInter
      */
     public function add($value): SetInterface
     {
-        $this->hook(function ($value): void {
+        $this->resolver->value(function ($value): void {
             $this->items->add($value);
         }, $value);
 

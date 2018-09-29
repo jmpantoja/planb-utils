@@ -19,11 +19,11 @@
 
 ## Methods
 
-### __construct
+### bind
 
 
 
-protected **TraitResolver::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TraitResolver::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -73,28 +73,12 @@ abstract protected **TraitResolver::makeInternal**() : [Collection](../../../Col
 Named constructor.
 
 
-abstract static **TraitResolver::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **TraitResolver::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-protected **TraitResolver::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 

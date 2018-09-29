@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\Map\AbstractMap;
-use PlanB\DS\Resolver\Resolver;
 
 /**
  * Map para objetos Text
@@ -26,14 +25,12 @@ class TextMap extends AbstractMap
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextMap
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextMap
+    public static function make(iterable $input = []): TextMap
     {
-        return (new static($resolver))
-            ->putAll($input);
+        return new static($input);
     }
 }

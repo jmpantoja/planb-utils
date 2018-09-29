@@ -39,7 +39,7 @@ class MapBuilder extends AbstractBuilder
      */
     public static function typed(string $type): MapBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
 
@@ -50,7 +50,7 @@ class MapBuilder extends AbstractBuilder
      */
     public function build(): Map
     {
-        return Map::make(
+        return new Map(
             $this->getInput(),
             $this->getResolver()
         );

@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **PriorityQueue::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **PriorityQueue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **PriorityQueue::__construct**([Resolver](../../../Resolver.md) $resol
 Configura esta colección
 
 
-**PriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**PriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,13 +170,12 @@ abstract protected **PriorityQueue::makeInternal**() : [Collection](../../../Col
 
 
 
-static **PriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **PriorityQueue::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -192,6 +191,21 @@ protected **PriorityQueue::hook**(callable $callback, mixed ...$values) :
 | --- | --- | --- |
 |callable |$callback |  |
 |mixed |...$values |  |
+
+---
+
+
+### __construct
+
+
+
+**PriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

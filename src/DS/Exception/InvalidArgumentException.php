@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Exception;
 
-use PlanB\DS\Resolver\Input\FailedInput;
 use PlanB\Type\Data\Data;
 
 /**
@@ -29,29 +28,30 @@ class InvalidArgumentException extends \InvalidArgumentException
      */
     public function __construct(string $message, ?\Throwable $previous = null)
     {
-
-        if ($previous instanceof \Throwable) {
-            $message = sprintf("%s because: \n\n%s", $message, $previous->getMessage());
-        }
-
         parent::__construct($message, 100, $previous);
     }
 
     /**
-     * Crea una instancia
+     * InvalidItemException named constructor.
      *
-     * @param \PlanB\DS\Resolver\Input\FailedInput $input
-     * @param null|\Throwable                      $previous
+     * @param mixed           $data
+     * @param string          $reason
+     * @param null|\Throwable $previous
      *
      * @return \PlanB\DS\Exception\InvalidArgumentException
      */
-    public static function make(FailedInput $input, ?\Throwable $previous = null): self
+    public static function make($data, string $reason, ?\Throwable $previous = null): self
     {
-        $original = $input->getOriginal();
-        $value = Data::make($original)->decorate();
 
-        $message = sprintf("%s \n\nis <options=bold,underscore>NOT VALID</>", $value);
+        $value = Data::make($data)->decorate();
+        $message = cli_msg([
+            $value,
+            sprintf('is %s', cli_line('NOT VALID')->bold()->underscore()),
+            cli_blank(),
+            'because:',
+            $reason,
+        ]);
 
-        return new static($message, $previous);
+        return new static($message->render()->stringify(), $previous);
     }
 }

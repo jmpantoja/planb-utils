@@ -27,11 +27,14 @@ trait TraitTextList
      */
     public function configure(Resolver $resolver): void
     {
+
         $resolver
-            ->setType(Text::class)
-            ->addConverter(Type::SCALAR, function ($value) {
-                return Text::make($value);
-            });
+            ->type(Text::class)
+            ->rules([
+                Type::STRINGIFABLE => function ($value) {
+                    return Text::make($value);
+                },
+            ]);
     }
 
     /**

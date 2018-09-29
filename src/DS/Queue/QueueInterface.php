@@ -38,11 +38,11 @@ interface QueueInterface extends Collection
     /**
      * Pushes one value onto the top of the queue.
      *
-     * @param mixed $input
+     * @param mixed $value
      *
      * @return \PlanB\DS\Queue
      */
-    public function push($input): QueueInterface;
+    public function push($value): QueueInterface;
 
 
     /**

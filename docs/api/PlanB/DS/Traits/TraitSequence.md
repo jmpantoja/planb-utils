@@ -424,21 +424,6 @@ abstract protected **TraitSequence::duplicate**([iterable](../../../iterable.md)
 ---
 
 
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **TraitSequence::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
-
----
-
-
 ### offsetSet
 Offset to set
 

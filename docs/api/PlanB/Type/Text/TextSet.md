@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **TextSet::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TextSet::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **TextSet::__construct**([Resolver](../../../Resolver.md) $resolver = 
 Configura esta colección
 
 
-**TextSet::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**TextSet::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,28 +170,27 @@ abstract protected **TextSet::makeInternal**() : [Collection](../../../Collectio
 Named Constructor
 
 
-static **TextSet::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **TextSet::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
+Resuelve los valores antes de ser añadidos desde algun método
 
 
-
-abstract protected **TextSet::hook**(callable $callback, ...$values) : 
+abstract protected **TextSet::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-| |...$values |  |
+|mixed |...$values |  |
 
 ---
 
@@ -252,6 +251,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractSet constructor.
+
+
+**TextSet::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

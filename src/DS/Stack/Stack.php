@@ -23,16 +23,13 @@ final class Stack extends AbstractStack
 {
 
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Stack\Stack
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Stack
+    public static function make(iterable $input = []): Stack
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 
 
@@ -46,8 +43,8 @@ final class Stack extends AbstractStack
      */
     public static function typed(string $type, iterable $input = []): Stack
     {
-        return StackBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

@@ -11,14 +11,14 @@
 
 declare(strict_types=1);
 
-namespace PlanB\DS\Resolver\Input;
+namespace spec\PlanB\DS\Resolver;
 
-/**
- * Valor que se intenta resolver,
- * En este estado se considera valido
- */
-class Input extends AbstractInput
+
+class StubCallback
 {
-
+    public function make(): string
+    {
+        return '';
+    }
 
 }

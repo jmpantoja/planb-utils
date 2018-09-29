@@ -29,6 +29,7 @@ class StackBuilder extends AbstractBuilder
     {
         return new static(Resolver::make());
     }
+
     /**
      * Named constructor.
      *
@@ -38,7 +39,7 @@ class StackBuilder extends AbstractBuilder
      */
     public static function typed(string $type): StackBuilder
     {
-        return new static(Resolver::make($type));
+        return new static(Resolver::typed($type));
     }
 
     /**
@@ -48,7 +49,7 @@ class StackBuilder extends AbstractBuilder
      */
     public function build(): Stack
     {
-        return Stack::make(
+        return new Stack(
             $this->getInput(),
             $this->getResolver()
         );

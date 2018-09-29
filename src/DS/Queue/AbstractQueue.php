@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Queue;
 
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitArray;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
@@ -30,6 +31,18 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
      * @var \Ds\Queue
      */
     protected $items;
+
+    /**
+     * AbstractQueue constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->pushAll($input);
+    }
 
     /**
      * @inheritdoc
@@ -62,15 +75,16 @@ abstract class AbstractQueue implements \IteratorAggregate, \ArrayAccess, QueueI
     /**
      * Pushes one value onto the top of the queue.
      *
-     * @param mixed $input
+     * @param mixed $value
      *
      * @return \PlanB\DS\Queue\QueueInterface
      */
-    public function push($input): QueueInterface
+    public function push($value): QueueInterface
     {
-        $this->hook(function ($input): void {
-            $this->items->push($input);
-        }, $input);
+
+        $this->resolver->value(function ($value): void {
+            $this->items->push($value);
+        }, $value);
 
         return $this;
     }

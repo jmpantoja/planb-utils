@@ -57,7 +57,7 @@ class OptionListSpec extends ObjectBehavior
 
     public function it_throws_an_exception_when_append_an_invalid_string()
     {
-        $this->shouldThrow(InvalidArgumentException::class)->duringAdd(self::FAKE_OPTION);
+        $this->shouldThrow(\InvalidArgumentException::class)->duringAdd(self::FAKE_OPTION);
     }
 
     public function it_can_retrieve_the_attribute_format_by_default()

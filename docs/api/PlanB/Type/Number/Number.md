@@ -146,6 +146,34 @@ Indica si el valor es un double
 ---
 
 
+### hash
+Produces a scalar value to be used as the object's hash, which determines
+where it goes in the hash table. While this value does not have to be
+unique, objects which are equal must have the same hash value.
+
+
+**Number::hash**() : mixed
+
+
+
+---
+
+
+### equals
+Determines if two objects should be considered equal. Both objects will
+be instances of the same class but may not be the same instance.
+
+
+**Number::equals**(mixed $number) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$number | An instance of the same class to compare to. |
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

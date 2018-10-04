@@ -41,11 +41,9 @@ class OptionListSpec extends ObjectBehavior
 
     public function it_can_ignore_a_invalid_option()
     {
-        $this->addIfIsValid(Option::BOLD);
 
-        $this->shouldNotThrow()->duringAddIfIsValid('FAKE-OPTION');
-
-        $this->count()->shouldReturn(1);
+        $this->addFromString('bold,FAKE-OPTION,blink');
+        $this->count()->shouldReturn(2);
 
     }
 

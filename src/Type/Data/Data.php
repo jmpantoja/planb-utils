@@ -11,19 +11,16 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Data;
 
-use PlanB\Console\Message\Style\Color;
+use Ds\Hashable;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Stringifable;
-use PlanB\Utils\Traits\Stringify;
 
 /**
  * Representa al tipo de una variable
  */
-class Data implements Stringifable
+class Data
 {
-    use Stringify;
-
     /**
      * @var mixed
      */
@@ -251,23 +248,14 @@ class Data implements Stringifable
     }
 
     /**
-     * Devuelve el DataType
+     * Indica si la variable es hashable
      *
-     * @return \PlanB\Type\DataType\DataType
+     * @return bool
      */
-    public function getType(): DataType
+    public function isHashable(): bool
     {
-        if (is_object($this->variable)) {
-            $typeName = get_class($this->variable);
-
-            return DataType::make($typeName);
-        }
-
-        $typeName = gettype($this->variable);
-
-        return DataType::make($typeName);
+        return $this->isInstanceOf(Hashable::class);
     }
-
 
     /**
      * Indica si la variable se puede expresar como una cadena de texto
@@ -291,47 +279,30 @@ class Data implements Stringifable
 
 
     /**
-     * __toString alias
+     * Devuelve el DataType
      *
-     * @return string
+     * @return \PlanB\Type\DataType\DataType
      */
-    public function stringify(): string
+    public function getType(): DataType
     {
-        return $this->getType()->stringify();
+        if (is_object($this->variable)) {
+            $typeName = get_class($this->variable);
+
+            return DataType::make($typeName);
+        }
+
+        $typeName = gettype($this->variable);
+
+        return DataType::make($typeName);
     }
 
     /**
-     * Devuelve el nombre del tipo, decorado
+     * Devuelve el valor
      *
-     * @return string
+     * @return  mixed
      */
-    public function decorate(): string
+    public function getValue()
     {
-
-        $typeName = $this->getType()->stringify();
-
-        if ($this->isCountable()) {
-            return cli_line('[%s(%s)]', $typeName, count($this->variable))
-                ->fgColor(Color::CYAN())
-                ->stringify() ;
-        }
-
-        if (!$this->isConvertibleToString()) {
-            return cli_line('[object: %s]', $typeName)
-                ->fgColor(Color::CYAN())
-                ->stringify() ;
-        }
-
-        $variable = (string) $this->variable;
-
-        if (!$this->isNumeric()) {
-            $variable = sprintf('"%s"', $variable);
-        }
-
-        $composed = sprintf('[%s: %s]', $typeName, $variable);
-
-        return cli_line($composed)
-            ->fgColor(Color::CYAN())
-            ->stringify();
+        return $this->variable;
     }
 }

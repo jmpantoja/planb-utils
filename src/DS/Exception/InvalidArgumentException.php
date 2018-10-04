@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Exception;
 
-use PlanB\Type\Data\Data;
+use PlanB\Type\Text\Text;
 
 /**
  * Se lanza cuando se trata de añadir un valor considerado no valido
@@ -42,16 +42,32 @@ class InvalidArgumentException extends \InvalidArgumentException
      */
     public static function make($data, string $reason, ?\Throwable $previous = null): self
     {
+        $message = self::buildMessage($data, $reason);
 
-        $value = Data::make($data)->decorate();
+        return new static($message->stringify(), $previous);
+    }
+
+    /**
+     * Construye el mensaje de la excepción
+     *
+     * @param mixed  $data
+     * @param string $reason
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    private static function buildMessage($data, string $reason): Text
+    {
+
+        $notValid = cli_line('NOT VALID')->bold()->underscore();
+
         $message = cli_msg([
-            $value,
-            sprintf('is %s', cli_line('NOT VALID')->bold()->underscore()),
+            beautify($data),
+            cli_line('is %s', $notValid),
             cli_blank(),
             'because:',
             $reason,
         ]);
 
-        return new static($message->render()->stringify(), $previous);
+        return $message->block();
     }
 }

@@ -182,21 +182,6 @@ abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = []
 ---
 
 
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Paragraph::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
-
----
-
-
 ### apply
 Updates every value in the sequence by applying a callback, using the
 return value as the new value.
@@ -663,7 +648,7 @@ Offset to unset
 
 
 ### __construct
-AbstractVector constructor.
+Paragraph constructor.
 
 
 **Paragraph::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
@@ -735,11 +720,22 @@ Devuelve una lista con todas las lineas que componen el párrafo
 ---
 
 
-### render
-Devuelve el texto con el estilo aplicado
+### block
+Devuelve el texto con el estilo aplicado en forma de bloque
 
 
-**Paragraph::render**() : [Text](../../../Text.md)
+**Paragraph::block**() : [Text](../../../Text.md)
+
+
+
+---
+
+
+### line
+Devuelve el texto con el estilo aplicado en forma de una linea
+
+
+**Paragraph::line**() : [Text](../../../Text.md)
 
 
 

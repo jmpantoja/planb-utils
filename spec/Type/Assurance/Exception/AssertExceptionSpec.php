@@ -20,9 +20,9 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('make', [$text, 'isString', []]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan;options=bold>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
-        $this->getMessage()->shouldContain('<options=bold,underscore>is string</> <fg=green></>');
+        $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
     }
 
     public function it_can_be_created_with_one_params(Text $text)
@@ -30,10 +30,10 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('make', [$text, 'isString', ['A']]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan;options=bold>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
-        $this->getMessage()->shouldContain('[string: "A"]');
+        $this->getMessage()->shouldContain('<fg=green>"A"</>');
     }
 
 
@@ -42,10 +42,10 @@ class AssertExceptionSpec extends ObjectBehavior
         $this->beConstructedThrough('make', [$text, 'isString', ['A', 'B']]);
         $this->shouldHaveType(AssertException::class);
 
-        $this->getMessage()->shouldContain('<fg=cyan>[Double\PlanB\Type\Text\Text');
+        $this->getMessage()->shouldContain('<fg=cyan;options=bold>[Double\PlanB\Type\Text\Text');
         $this->getMessage()->shouldContain('<options=bold,underscore>fails ensuring</> that');
         $this->getMessage()->shouldContain('<options=bold,underscore>is string</>');
-        $this->getMessage()->shouldContain('[string: "A"]');
-        $this->getMessage()->shouldContain('[string: "B"]');
+        $this->getMessage()->shouldContain('<fg=green>"A"</>');
+        $this->getMessage()->shouldContain('<fg=green>"B"</>');
     }
 }

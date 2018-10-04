@@ -11,6 +11,10 @@
 
 
 
+## Constants
+- FOREGROUND_COLOR_KEY
+- BACKGROUND_COLOR_KEY
+- OPTIONS_KEY
 
 
 

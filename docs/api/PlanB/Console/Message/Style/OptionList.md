@@ -179,21 +179,6 @@ static **OptionList::make**([iterable](../../../../iterable.md) $input = []) : m
 ---
 
 
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **OptionList::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
-
----
-
-
 ### offsetExists
 Whether a offset exists
 
@@ -551,16 +536,17 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 ---
 
 
-### addIfIsValid
-Añade una nueva option solo si es valida
+### addFromString
+Añade las opciones contenidas en una cadena de texto
+ignorando las que no sean correctas
 
 
-**OptionList::addIfIsValid**(string $option) : [OptionList](../../../../OptionList.md)
+**OptionList::addFromString**(string $options) : [OptionList](../../../../OptionList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$option |  |
+|string |$options |  |
 
 ---
 

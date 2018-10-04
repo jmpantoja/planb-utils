@@ -49,6 +49,25 @@ class OptionList extends AbstractSet
             }, Option::class);
     }
 
+    /**
+     * Añade las opciones contenidas en una cadena de texto
+     * ignorando las que no sean correctas
+     *
+     * @param string $options
+     *
+     * @return \PlanB\Console\Message\Style\OptionList
+     */
+    public function addFromString(string $options): self
+    {
+        $this->clear();
+
+        $pieces = explode(',', $options);
+        foreach ($pieces as $optionName) {
+            $this->addIfIsValid($optionName);
+        }
+
+        return $this;
+    }
 
     /**
      * Añade una nueva option solo si es valida
@@ -57,7 +76,7 @@ class OptionList extends AbstractSet
      *
      * @return \PlanB\Console\Message\Style\OptionList
      */
-    public function addIfIsValid(string $option): self
+    private function addIfIsValid(string $option): self
     {
         if (Option::has($option)) {
             $this->add($option);

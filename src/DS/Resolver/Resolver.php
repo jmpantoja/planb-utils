@@ -12,10 +12,12 @@ declare(strict_types=1);
 namespace PlanB\DS\Resolver;
 
 use Ds\PriorityQueue;
+use PlanB\Console\Beautifier\Beautifier;
 use PlanB\DS\Resolver\Rule\Rule;
 use PlanB\DS\Resolver\Rule\RuleFactory;
 use PlanB\DS\Resolver\Rule\RuleInterface;
 use PlanB\Type\DataType\DataType;
+use PlanB\Type\Text\Text;
 
 /**
  * Resuelve un valor antes de ser añadido a una colección
@@ -309,12 +311,6 @@ class Resolver
             return;
         }
 
-        if (2 === func_num_args()) {
-            call_user_func($callback, $input->value());
-
-            return;
-        }
-
         call_user_func($callback, $input->value(), $key);
     }
 
@@ -339,7 +335,7 @@ class Resolver
             return;
         }
 
-        call_user_func($callback, $listOfValues->map());
+        call_user_func($callback, $listOfValues->getValues());
     }
 
     /**
@@ -381,9 +377,8 @@ class Resolver
                 return;
             }
 
-            $formatted = $this->type->stringify();
-
-            $input->reject('a %s was expected', $formatted);
+            $beautifier = Beautifier::make();
+            $input->reject('a %s was expected', $beautifier->type(Text::class));
         })->execute($input);
     }
 

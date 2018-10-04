@@ -3,6 +3,8 @@
     
 # Interfaces
 
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionBuilderInterface](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionBuilderInterface.md)
+* [PlanB\Console\Beautifier\Formatter\FormatterInterface](PlanB/Console/Beautifier/Formatter/FormatterInterface.md)
 * [PlanB\Console\Message\Decorator\DecoratorInterface](PlanB/Console/Message/Decorator/DecoratorInterface.md)
 * [PlanB\DS\Collection](PlanB/DS/Collection.md)
 * [PlanB\DS\Deque\DequeInterface](PlanB/DS/Deque/DequeInterface.md)

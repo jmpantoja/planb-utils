@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 use \PlanB\Console\Message\Paragraph;
 use \PlanB\Console\Message\Message;
+use \PlanB\Console\Message\Style\Style;
 
 
 if (!function_exists('cli_msg')) {
@@ -22,7 +23,8 @@ if (!function_exists('cli_msg')) {
      */
     function cli_msg(iterable $lines): Paragraph
     {
-        return Message::join($lines);
+        $paragraph = Message::join($lines);
+        return $paragraph;
     }
 }
 
@@ -47,3 +49,4 @@ if (!function_exists('cli_blank')) {
         return Message::blank();
     }
 }
+

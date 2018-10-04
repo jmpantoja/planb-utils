@@ -54,11 +54,11 @@ Añade un input a la lista
 ---
 
 
-### map
+### getValues
 Devuelve los valores resueltos
 
 
-**ResolvedValuesList::map**() : [Map](../../../Map.md)
+**ResolvedValuesList::getValues**() : [Map](../../../Map.md)
 
 
 

@@ -160,6 +160,17 @@ class DataType implements Stringifable
     }
 
     /**
+     * Indica si es un nombre de clase, de interfaz o de trait
+     *
+     * @return bool
+     */
+    public function isClassOrInterfaceOrTrait(): bool
+    {
+        return $this->isClassOrInterface() || $this->isTrait();
+    }
+
+
+    /**
      * Indica si es un nombre de rasgo
      *
      * @return bool
@@ -186,7 +197,7 @@ class DataType implements Stringifable
      */
     public function isValid(): bool
     {
-        return $this->isNative() || $this->isTrait() || $this->isInterface() || $this->isClass();
+        return $this->isNative() || $this->isClassOrInterfaceOrTrait();
     }
 
     /**

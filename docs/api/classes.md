@@ -3,6 +3,23 @@
     
 # Classes
 
+* [PlanB\Console\Beautifier\Beautifier](PlanB/Console/Beautifier/Beautifier.md)
+* [PlanB\Console\Beautifier\Format](PlanB/Console/Beautifier/Format.md)
+* [PlanB\Console\Beautifier\Formatter\CountableFormatter](PlanB/Console/Beautifier/Formatter/CountableFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\DataFormatter](PlanB/Console/Beautifier/Formatter/DataFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter](PlanB/Console/Beautifier/Formatter/ExceptionFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionBodyBuilder](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionBodyBuilder.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionBuilderAbstract](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionBuilderAbstract.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionBuilderInterface](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionBuilderInterface.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionHeaderBuilder](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionHeaderBuilder.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionTraceBuilder](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionTraceBuilder.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter\ExceptionTraceLineBuilder](PlanB/Console/Beautifier/Formatter/ExceptionFormatter/ExceptionTraceLineBuilder.md)
+* [PlanB\Console\Beautifier\Formatter\FormatterFactory](PlanB/Console/Beautifier/Formatter/FormatterFactory.md)
+* [PlanB\Console\Beautifier\Formatter\FormatterInterface](PlanB/Console/Beautifier/Formatter/FormatterInterface.md)
+* [PlanB\Console\Beautifier\Formatter\HashFormatter](PlanB/Console/Beautifier/Formatter/HashFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\ObjectFormatter](PlanB/Console/Beautifier/Formatter/ObjectFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\ScalarFormatter](PlanB/Console/Beautifier/Formatter/ScalarFormatter.md)
+* [PlanB\Console\Beautifier\Formatter\ValueFormatter](PlanB/Console/Beautifier/Formatter/ValueFormatter.md)
 * [PlanB\Console\Message\Decorator\AlignDecorator](PlanB/Console/Message/Decorator/AlignDecorator.md)
 * [PlanB\Console\Message\Decorator\Decorator](PlanB/Console/Message/Decorator/Decorator.md)
 * [PlanB\Console\Message\Decorator\DecoratorInterface](PlanB/Console/Message/Decorator/DecoratorInterface.md)

@@ -320,7 +320,7 @@ class ResolverSpec extends ObjectBehavior
         $prophet = new Prophet();
         $invoker = $prophet->prophesize(InvokerMock::class);
 
-        $invoker->__invoke($output)->shouldBeCalledTimes(1);
+        $invoker->__invoke($output, null)->shouldBeCalledTimes(1);
         $this->value($invoker, $input);
     }
 
@@ -331,7 +331,7 @@ class ResolverSpec extends ObjectBehavior
         $prophet = new Prophet();
         $invoker = $prophet->prophesize(InvokerMock::class);
 
-        $invoker->__invoke(Argument::any())->shouldBeCalledTimes(0);
+        $invoker->__invoke(Argument::any(), Argument::any())->shouldBeCalledTimes(0);
         $this->values($invoker, $input);
     }
 }

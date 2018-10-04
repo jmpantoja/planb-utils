@@ -87,7 +87,7 @@ eof;
             ->inverse()
             ->fgColor('green');
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_ATTRIBUTES_MERGED);
     }
@@ -106,7 +106,7 @@ eof;
             ->bold()
             ->padding(1, 2);
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_PADDING_MERGED);
     }
@@ -126,7 +126,7 @@ eof;
             ->margin(1, 2);
 
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_MARGIN_MERGED);
     }
@@ -144,7 +144,7 @@ eof;
 
         $this->center();
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_STYLE_MERGED);
 

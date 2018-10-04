@@ -43,19 +43,4 @@ class DataAssuranceSpec extends ObjectBehavior
         $this->shouldThrow(AssertException::class)->duringIsString();
     }
 
-    public function it_convert_to_a_decorated_string()
-    {
-        $this->beConstructedThrough('make', [self::NUMBER]);
-
-        $this->decorate()
-            ->shouldContain(self::NUMBER_AS_STRING);
-    }
-
-    public function it_convert_to_string()
-    {
-        $this->beConstructedThrough('make', [self::NUMBER]);
-
-        $this->__toString()
-            ->shouldReturn(Type::DOUBLE);
-    }
 }

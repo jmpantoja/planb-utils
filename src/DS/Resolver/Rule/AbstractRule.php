@@ -53,6 +53,7 @@ abstract class AbstractRule implements RuleInterface
     protected function __construct(callable $callback, string ...$types)
     {
         $this->callback = new SerializableClosure($callback);
+
         $this->types = $types;
     }
 

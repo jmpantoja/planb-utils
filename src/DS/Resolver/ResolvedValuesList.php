@@ -69,7 +69,7 @@ class ResolvedValuesList
      *
      * @return \Ds\Map
      */
-    public function map(): \Ds\Map
+    public function getValues(): \Ds\Map
     {
         return $this->mapOfValues;
     }

@@ -182,6 +182,17 @@ Indica si hay algún atributo distinto a los dados por defecto
 ---
 
 
+### buildAttributesList
+Devuelve un TextVector con los atributos
+
+
+protected **Attributes::buildAttributesList**() : [TextVector](../../../../TextVector.md)
+
+
+
+---
+
+
                                                                                                                                                                                                                                                                                                                                                                                                             
     
                                                                                                                                                                                                                                                                              

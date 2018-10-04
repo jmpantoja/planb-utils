@@ -94,4 +94,16 @@ class NumberSpec extends ObjectBehavior
         $this->isInteger()->shouldReturn(false);
         $this->isDouble()->shouldReturn(true);
     }
+
+    public function it_determine_if_two_numbers_are_equals()
+    {
+        $this->beConstructedThrough('make', [1235]);
+
+        $this->equals(Number::make(1235))->shouldReturn(true);
+
+        $this->equals(Number::make(1235.0))->shouldReturn(false);
+
+        $this->equals(1235)->shouldReturn(false);
+
+    }
 }

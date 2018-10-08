@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Deque;
 
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitArray;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
@@ -27,7 +28,7 @@ use PlanB\DS\Traits\TraitSequence;
 abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeInterface
 {
     use TraitCollection;
-    use TraitResolver;
+    use TraitResolver ;
     use TraitSequence;
     use TraitArray;
 
@@ -36,6 +37,18 @@ abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeI
      * @var \Ds\Deque
      */
     protected $items;
+
+    /**
+     * AbstractDeque constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->pushAll($input);
+    }
 
     /**
      * @inheritdoc
@@ -50,10 +63,10 @@ abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeI
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\Set\SetInterface
+     * @return \PlanB\DS\Deque\DequeInterface
      */
     protected function duplicate(iterable $input = []): DequeInterface
     {
-        return static::make($input, $this->resolver);
+        return new static($input, $this->resolver);
     }
 }

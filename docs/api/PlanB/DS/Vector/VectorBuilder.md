@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **VectorBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **VectorBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **VectorBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **VectorBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstr
 AbstractBuilder constructor.
 
 
-protected **VectorBuilder::__construct**() : 
+protected **VectorBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **VectorBuilder::__construct**() :
 Devuelve el input
 
 
-protected **VectorBuilder::getInput**() : mixed[]
+protected **VectorBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Añade un normalizer para un tipo determinado
 **VectorBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **VectorBuilder::typed**(string $type) : [VectorBuilder](../../../VectorBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

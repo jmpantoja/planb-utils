@@ -46,13 +46,13 @@ static **Message::join**([iterable](../../../iterable.md) $lines) : [Paragraph](
 Crea un mensaje a partir de un texto
 
 
-static **Message::line**(string $format, string ...$arguments) : [Paragraph](../../../Paragraph.md)
+static **Message::line**(string $format, mixed ...$arguments) : [Paragraph](../../../Paragraph.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |string |$format |  |
-|string |...$arguments |  |
+|mixed |...$arguments |  |
 
 ---
 

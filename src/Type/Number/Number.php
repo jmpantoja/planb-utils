@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Number;
 
+use Ds\Hashable;
+
 /**
  * Representa a un número
  */
-class Number
+class Number implements Hashable
 {
     /**
      * @var float|int
@@ -135,5 +137,34 @@ class Number
     public function isDouble(): bool
     {
         return is_double($this->number);
+    }
+
+    /**
+     * Produces a scalar value to be used as the object's hash, which determines
+     * where it goes in the hash table. While this value does not have to be
+     * unique, objects which are equal must have the same hash value.
+     *
+     * @return mixed
+     */
+    public function hash()
+    {
+        return $this->number;
+    }
+
+    /**
+     * Determines if two objects should be considered equal. Both objects will
+     * be instances of the same class but may not be the same instance.
+     *
+     * @param mixed $number An instance of the same class to compare to.
+     *
+     * @return bool
+     */
+    public function equals($number): bool
+    {
+        if (!($number instanceof Number)) {
+            return false;
+        }
+        
+        return $this->number === $number->number;
     }
 }

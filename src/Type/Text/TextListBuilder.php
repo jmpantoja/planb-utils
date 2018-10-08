@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
 
 /**
@@ -22,6 +23,17 @@ use PlanB\Type\DataType\Type;
 class TextListBuilder extends AbstractBuilder
 {
 
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\Type\Text\TextListBuilder
+     */
+    public static function make(): TextListBuilder
+    {
+        return new static(Resolver::make());
+    }
+
     /**
      * Crea la colección de textos por defecto
      *
@@ -29,7 +41,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function build(): TextVector
     {
-        return TextVector::make(
+        return new TextVector(
             $this->getInput(),
             $this->getResolver()
         );
@@ -53,7 +65,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function deque(): TextDeque
     {
-        return TextDeque::make(
+        return new TextDeque(
             $this->getInput(),
             $this->getResolver()
         );
@@ -66,7 +78,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function stack(): TextStack
     {
-        return TextStack::make(
+        return new TextStack(
             $this->getInput(),
             $this->getResolver()
         );
@@ -79,7 +91,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function queue(): TextQueue
     {
-        return TextQueue::make(
+        return new TextQueue(
             $this->getInput(),
             $this->getResolver()
         );
@@ -92,7 +104,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function priorityQueue(): TextPriorityQueue
     {
-        return TextPriorityQueue::make(
+        return new TextPriorityQueue(
             $this->getInput(),
             $this->getResolver()
         );
@@ -105,7 +117,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function map(): TextMap
     {
-        return TextMap::make(
+        return new TextMap(
             $this->getInput(),
             $this->getResolver()
         );
@@ -118,7 +130,7 @@ class TextListBuilder extends AbstractBuilder
      */
     public function set(): TextSet
     {
-        return TextSet::make(
+        return new TextSet(
             $this->getInput(),
             $this->getResolver()
         );
@@ -131,10 +143,9 @@ class TextListBuilder extends AbstractBuilder
      */
     public function ignoreBlank()
     {
-
-        $this->addTypedFilter(Type::STRINGIFABLE, function ($value) {
+        $this->filter(function ($value) {
             return !Text::make($value)->isBlank();
-        });
+        }, Type::STRINGIFABLE);
 
         return $this;
     }
@@ -147,9 +158,9 @@ class TextListBuilder extends AbstractBuilder
      */
     public function ignoreEmpty()
     {
-        $this->addTypedFilter(Type::STRINGIFABLE, function ($value) {
+        $this->filter(function ($value) {
             return !Text::make($value)->isEmpty();
-        });
+        }, Type::STRINGIFABLE);
 
         return $this;
     }

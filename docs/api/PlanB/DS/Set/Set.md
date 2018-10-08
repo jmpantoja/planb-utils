@@ -115,11 +115,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **Set::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Set::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -133,7 +133,7 @@ protected **Set::__construct**([Resolver](../../../Resolver.md) $resolver = null
 Configura esta colección
 
 
-**Set::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**Set::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -169,22 +169,7 @@ abstract protected **Set::makeInternal**() : [Collection](../../../Collection.md
 
 
 
-static **Set::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : [Collection](../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **Set::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+static **Set::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
@@ -198,7 +183,7 @@ abstract protected **Set::duplicate**([iterable](../../../iterable.md) $input = 
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Set::hook**(callable $callback, mixed ...$values) : 
+abstract protected **Set::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -265,6 +250,35 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractSet constructor.
+
+
+**Set::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **Set::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

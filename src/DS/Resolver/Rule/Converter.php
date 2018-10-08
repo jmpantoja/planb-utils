@@ -13,25 +13,25 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver\Rule;
 
-use PlanB\DS\Resolver\Input\Input;
-use PlanB\DS\Resolver\Input\InputInterface;
+use PlanB\DS\Resolver\Input;
 
 /**
- * Regla que transforma un valor de un tipo dado, en otro
+ * Regla que permite transformar Inputs
  */
-class Converter extends Rule
+class Converter extends AbstractRule
 {
 
     /**
-     * Convierte la respuesta obtenida en un objeto InputInterface
-     *
-     * @param mixed $response
-     * @param mixed $value
-     *
-     * @return \PlanB\DS\Resolver\Input\InputInterface
+     * @inheritdoc
      */
-    public function buildInput($response, $value): InputInterface
+    protected function resolve(Input $input): Input
     {
-        return Input::make($response);
+        $output = $this->call($input->value());
+        $input->next($output);
+
+
+        $input->resolve();
+
+        return $input->resolve();
     }
 }

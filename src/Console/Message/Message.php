@@ -48,11 +48,11 @@ class Message
      * Crea un mensaje a partir de un texto
      *
      * @param string $format
-     * @param string ...$arguments
+     * @param mixed  ...$arguments
      *
      * @return \PlanB\Console\Message\Paragraph
      */
-    public static function line(string $format, string ...$arguments): Paragraph
+    public static function line(string $format, ...$arguments): Paragraph
     {
         $lines = Text::format($format, ...$arguments)
             ->explode(Text::LINE_BREAK);

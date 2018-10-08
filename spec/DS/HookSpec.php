@@ -8,7 +8,8 @@ use PlanB\DS\Deque\Deque;
 use PlanB\DS\Map\Map;
 use PlanB\DS\PriorityQueue\PriorityQueue;
 use PlanB\DS\Queue\Queue;
-use PlanB\DS\Resolver\Input\Input;
+use PlanB\DS\Resolver\Input;
+use PlanB\DS\Resolver\ResolvedValuesList;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Set\Set;
 use PlanB\DS\Stack\Stack;
@@ -18,107 +19,117 @@ use Prophecy\Argument;
 class HookSpec extends ObjectBehavior
 {
 
-    private function build(string $className, Resolver $resolver, $first, $last): void
+    private function buildWithRange(string $className, Resolver $resolver, ...$values): void
     {
         $this->beAnInstanceOf($className);
 
-        $this->beConstructedThrough('make', [[], $resolver]);
+        $this->beConstructedWith([], $resolver);
 
-        $range = range($first, $last);
 
-        foreach ($range as $value) {
-            $resolver->resolve($value)
-                ->shouldBeCalledTimes(1)
-                ->will(function ($value) {
+        foreach ($values as $key => $value) {
+
+            if (is_array($value)) {
+                $prophecy = $resolver->resolve(...$value);
+            } else {
+                $prophecy = $resolver->resolve($value);
+            }
+
+            $prophecy->shouldBeCalledTimes(1)
+                ->will(function ($value) use ($key) {
+                    $list = ResolvedValuesList::make();
+
                     $value = array_pop($value);
-                    return Input::make($value);
+                    $list->set(null, Input::make($value));
+
+                    return $list;
                 });
         }
     }
-
-    public function it_resolve_vector(Resolver $resolver)
-    {
-        $this->build(Vector::class, $resolver, 'A', 'J');
-
-        $this->push('A', 'B');
-        $this->pushAll([
-            'C',
-            'D'
-        ]);
-
-        $this->set(0, 'E');
-        $this->insert(1, 'F', 'G');
-        $this->unshift('H', 'I');
-        $this[] = 'J';
-    }
-
-    public function it_resolve_deque(Resolver $resolver)
-    {
-        $this->build(Deque::class, $resolver, 'A', 'J');
-
-        $this
-            ->push('A', 'B')
-            ->pushAll([
-                'C',
-                'D'
-            ])
-            ->set(0, 'E')
-            ->insert(1, 'F', 'G')
-            ->unshift('H', 'I');
-
-        $this[] = 'J';
-
-    }
-
-    public function it_example_stack(Resolver $resolver)
-    {
-        $this->build(Stack::class, $resolver, 'A', 'D');
-
-        $this->push('A');
-        $this->pushAll(['B', 'C']);
-        $this[] = 'D';
-    }
-
-    public function it_example_queue(Resolver $resolver)
-    {
-        $this->build(Queue::class, $resolver, 'A', 'D');
-
-        $this->push('A');
-        $this->pushAll(['B', 'C']);
-        $this[] = 'D';
-    }
-
-    public function it_example_priority_queue(Resolver $resolver)
-    {
-
-        $this->build(PriorityQueue::class, $resolver, 'A', 'C');
-
-        $this->push('A', 1);
-        $this->push('B', 2);
-        $this->push('C', 3);
-
-    }
-
-    public function it_example_set(Resolver $resolver)
-    {
-        $this->build(Set::class, $resolver, 'A', 'D');
-
-        $this->add('A');
-        $this->addAll(['B', 'C']);
-        $this[] = 'D';
-    }
-
-    public function it_example_map(Resolver $resolver)
-    {
-        $this->build(Map::class, $resolver, 'A', 'D');
-
-        $this['a'] = 'A';
-
-        $this->putAll([
-            'b' => 'B',
-            'c' => 'C',
-        ]);
-
-        $this->put('d', 'D');
-    }
+//
+//    public function it_resolve_vector(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Vector::class, $resolver, ['G', 'H'], ['I', 'J'], ...range('A', 'F'));
+//
+//        $this
+//            ->push('A', 'B')
+//            ->pushAll([
+//                'C',
+//                'D'
+//            ])
+//            ->set(0, 'E');
+//        $this[] = 'F';
+//
+//        $this->insert(1, 'G', 'H');
+//        $this->unshift('I', 'J');
+//
+//    }
+//
+//    public function it_resolve_deque(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Deque::class, $resolver, ['G', 'H'], ['I', 'J'], ...range('A', 'F'));
+//
+//        $this
+//            ->push('A', 'B')
+//            ->pushAll([
+//                'C',
+//                'D'
+//            ])
+//            ->set(0, 'E');
+//        $this[] = 'F';
+//
+//        $this->insert(1, 'G', 'H');
+//        $this->unshift('I', 'J');
+//    }
+//
+//    public function it_example_stack(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Stack::class, $resolver, ...range('A', 'D'));
+//
+//        $this->push('A');
+//        $this->pushAll(['B', 'C']);
+//        $this[] = 'D';
+//    }
+//
+//    public function it_example_queue(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Queue::class, $resolver, ...range('A', 'D'));
+//
+//        $this->push('A');
+//        $this->pushAll(['B', 'C']);
+//        $this[] = 'D';
+//    }
+//
+//    public function it_example_priority_queue(Resolver $resolver)
+//    {
+//
+//        $this->buildWithRange(PriorityQueue::class, $resolver, ...range('A', 'C'));
+//
+//        $this->push('A', 1);
+//        $this->push('B', 2);
+//        $this->push('C', 3);
+//
+//    }
+//
+//    public function it_example_set(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Set::class, $resolver, ...range('A', 'D'));
+//
+//        $this->add('A');
+//        $this->addAll(['B', 'C']);
+//        $this[] = 'D';
+//    }
+//
+//    public function it_example_map(Resolver $resolver)
+//    {
+//        $this->buildWithRange(Map::class, $resolver, ...range('A', 'D'));
+//
+//        $this['a'] = 'A';
+//
+//        $this->putAll([
+//            'b' => 'B',
+//            'c' => 'C',
+//        ]);
+//
+//        $this->put('d', 'D');
+//    }
 }

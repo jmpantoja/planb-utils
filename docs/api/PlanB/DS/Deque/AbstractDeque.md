@@ -119,11 +119,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **AbstractDeque::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractDeque::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -137,7 +137,7 @@ protected **AbstractDeque::__construct**([Resolver](../../../Resolver.md) $resol
 Configura esta colección
 
 
-**AbstractDeque::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**AbstractDeque::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -173,13 +173,12 @@ protected **AbstractDeque::makeInternal**() :
 Named constructor.
 
 
-abstract static **AbstractDeque::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **AbstractDeque::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -188,7 +187,7 @@ abstract static **AbstractDeque::make**([iterable](../../../iterable.md) $input 
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **AbstractDeque::hook**(callable $callback, mixed ...$values) : 
+abstract protected **AbstractDeque::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -590,6 +589,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **AbstractDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [DequeInterface](../../../DequeInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**AbstractDeque::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -618,24 +649,6 @@ Offset to retrieve
 ---
 
 
-### offsetSet
-Offset to set
-
-
-**AbstractDeque::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
 ### offsetUnset
 Offset to unset
 
@@ -650,16 +663,17 @@ Offset to unset
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### __construct
+AbstractDeque constructor.
 
 
-protected **AbstractDeque::duplicate**([iterable](../../../iterable.md) $input = []) : [SetInterface](../../../SetInterface.md)
+**AbstractDeque::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

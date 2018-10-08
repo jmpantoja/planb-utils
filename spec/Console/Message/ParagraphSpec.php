@@ -3,11 +3,15 @@
 namespace spec\PlanB\Console\Message;
 
 use PhpSpec\Exception\Example\FailureException;
+use PlanB\Console\Message\LineWithStyle;
 use PlanB\Console\Message\Message;
 use PlanB\Console\Message\Paragraph;
 use PhpSpec\ObjectBehavior;
 use PlanB\Console\Message\Style\Color;
+use PlanB\Console\Message\Style\Style;
+use PlanB\DS\Resolver\Input;
 use PlanB\Type\Text\Text;
+use PlanB\Type\Text\TextListBuilder;
 use Prophecy\Argument;
 
 class ParagraphSpec extends ObjectBehavior
@@ -68,8 +72,9 @@ eof;
         $this->count()->shouldReturn(4);
     }
 
-    public function it_can_merge_style_attributes()
+    public function it_can_merge_style_attributes(LineWithStyle $lineA, LineWithStyle $lineB)
     {
+
         $this->beConstructedThrough('make', [[
             'string',
             Text::make('Text'),
@@ -82,7 +87,7 @@ eof;
             ->inverse()
             ->fgColor('green');
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_ATTRIBUTES_MERGED);
     }
@@ -101,7 +106,7 @@ eof;
             ->bold()
             ->padding(1, 2);
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_PADDING_MERGED);
     }
@@ -121,7 +126,7 @@ eof;
             ->margin(1, 2);
 
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_MARGIN_MERGED);
     }
@@ -139,7 +144,7 @@ eof;
 
         $this->center();
 
-        $this->render()
+        $this->block()
             ->stringify()
             ->shouldReturn(self::OUTPUT_STYLE_MERGED);
 

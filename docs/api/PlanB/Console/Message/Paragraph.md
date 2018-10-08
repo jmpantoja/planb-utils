@@ -10,6 +10,7 @@
 
 
 ## Traits
+- PlanB\Utils\Traits\Stringify
 - PlanB\Type\Text\TraitTextList
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
@@ -117,13 +118,16 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-**Paragraph::__construct**() : 
+protected **Paragraph::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -132,7 +136,7 @@ Retrieve an external iterator
 
 
 
-**Paragraph::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**Paragraph::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -168,28 +172,12 @@ abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collect
 Named constructor.
 
 
-abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-protected **Paragraph::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -585,6 +573,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+abstract protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**Paragraph::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -613,24 +633,6 @@ Offset to retrieve
 ---
 
 
-### offsetSet
-Offset to set
-
-
-**Paragraph::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
 ### offsetUnset
 Offset to unset
 
@@ -645,16 +647,17 @@ Offset to unset
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### __construct
+Paragraph constructor.
 
 
-protected **Paragraph::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+**Paragraph::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -684,6 +687,28 @@ Convierte la lista en un array de strings
 ---
 
 
+### stringify
+__toString alias
+
+
+**Paragraph::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Paragraph::__toString**() : string
+
+
+
+---
+
+
 ### getLines
 Devuelve una lista con todas las lineas que componen el párrafo
 
@@ -695,11 +720,22 @@ Devuelve una lista con todas las lineas que componen el párrafo
 ---
 
 
-### render
-Devuelve el texto con el estilo aplicado
+### block
+Devuelve el texto con el estilo aplicado en forma de bloque
 
 
-**Paragraph::render**() : [Text](../../../Text.md)
+**Paragraph::block**() : [Text](../../../Text.md)
+
+
+
+---
+
+
+### line
+Devuelve el texto con el estilo aplicado en forma de una linea
+
+
+**Paragraph::line**() : [Text](../../../Text.md)
 
 
 

@@ -229,9 +229,7 @@ class Text implements Stringifable, Hashable
     {
         $pieces = preg_split($pattern, $this->text, $limit, $flags);
 
-        if (false === $pieces) {
-            $pieces = [];
-        }
+        $pieces = (array) $pieces;
 
         return TextVector::make($pieces);
     }

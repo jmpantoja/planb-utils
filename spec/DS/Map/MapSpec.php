@@ -139,10 +139,11 @@ class MapSpec extends ObjectBehavior
         $this['b'] = self::VALUE_B;
 
         $this->pairs()
-            ->shouldBeLike(Vector::make([
+            ->shouldIterateLike([
                 new Pair('a', self::VALUE_A),
                 new Pair('b', self::VALUE_B)
-            ]));
+            ]);
+
     }
 
     public function it_returns_a_set_with_keys()
@@ -151,10 +152,10 @@ class MapSpec extends ObjectBehavior
         $this['b'] = self::VALUE_B;
 
         $this->keys()
-            ->shouldBeLike(Set::make([
+            ->shouldIterateLike([
                 'a',
                 'b'
-            ]));
+            ]);
     }
 
 
@@ -164,10 +165,10 @@ class MapSpec extends ObjectBehavior
         $this['b'] = self::VALUE_B;
 
         $this->values()
-            ->shouldBeLike(Vector::make([
+            ->shouldIterateLike([
                 self::VALUE_A,
                 self::VALUE_B
-            ]));
+            ]);
     }
 
 

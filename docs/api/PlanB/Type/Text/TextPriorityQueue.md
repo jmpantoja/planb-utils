@@ -115,11 +115,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **TextPriorityQueue::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TextPriorityQueue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -133,7 +133,7 @@ protected **TextPriorityQueue::__construct**([Resolver](../../../Resolver.md) $r
 Configura esta colección
 
 
-**TextPriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**TextPriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -169,13 +169,12 @@ abstract protected **TextPriorityQueue::makeInternal**() : [Collection](../../..
 Named Constructor
 
 
-static **TextPriorityQueue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **TextPriorityQueue::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -191,6 +190,21 @@ protected **TextPriorityQueue::hook**(callable $callback, mixed ...$values) :
 | --- | --- | --- |
 |callable |$callback |  |
 |mixed |...$values |  |
+
+---
+
+
+### __construct
+AbstractPriorityQueue constructor.
+
+
+**TextPriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

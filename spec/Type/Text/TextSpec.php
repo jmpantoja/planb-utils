@@ -236,7 +236,6 @@ class TextSpec extends ObjectBehavior
     {
         $this->beConstructedThrough('make', ['separa|por-espacios_o guiones']);
 
-
         $response = $this->split('/[_\s\W]+/');
         $response->shouldHaveType(TextVector::class);
 
@@ -245,6 +244,16 @@ class TextSpec extends ObjectBehavior
         $response->get(2)->stringify()->shouldReturn('espacios');
         $response->get(3)->stringify()->shouldReturn('o');
         $response->get(4)->stringify()->shouldReturn('guiones');
+    }
+
+    public function it_can_split_a_string_using_a_regex_than_have_not_matches()
+    {
+        $this->beConstructedThrough('make', ['separa|por-espacios_o guiones']);
+
+        $response = $this->split('/[0-9]/');
+        $response->shouldHaveType(TextVector::class);
+
+        $response->get(0)->stringify()->shouldReturn('separa|por-espacios_o guiones');
     }
 
     public function it_can_split_a_string_using_a_delimiter()
@@ -257,7 +266,6 @@ class TextSpec extends ObjectBehavior
         $response->get(0)->stringify()->shouldReturn('separa');
         $response->get(1)->stringify()->shouldReturn('por');
         $response->get(2)->stringify()->shouldReturn('guiones');
-
 
     }
 

@@ -47,6 +47,20 @@ protected **AssuranceMethod::__construct**([object](../../../object.md) $object,
 ---
 
 
+### calculeInverted
+Calcula el nombre del método inverso al original
+
+
+protected **AssuranceMethod::calculeInverted**(array $matches) : string
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|array |$matches |  |
+
+---
+
+
 ### getCallable
 Devuelve la Closure lista para ejecutar
 

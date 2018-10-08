@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PlanB\DS\PriorityQueue;
 
 use PlanB\DS\Collection;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
 
@@ -30,6 +31,18 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
      * @var \Ds\PriorityQueue
      */
     protected $items;
+
+    /**
+     * AbstractPriorityQueue constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->pushAll($input);
+    }
 
     /**
      * Crea la estructura de datos interna
@@ -83,7 +96,7 @@ abstract class AbstractPriorityQueue implements \IteratorAggregate, PriorityQueu
      */
     public function push($value, int $priority = 0): PriorityQueueInterface
     {
-        $this->hook(function ($value) use ($priority): void {
+        $this->resolver->value(function ($value) use ($priority): void {
             $this->items->push($value, $priority);
         }, $value);
 

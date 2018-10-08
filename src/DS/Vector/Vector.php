@@ -26,15 +26,13 @@ final class Vector extends AbstractVector
     /**
      * Vector named constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Vector\Vector
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Vector
+    public static function make(iterable $input = []): Vector
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 
     /**
@@ -47,8 +45,8 @@ final class Vector extends AbstractVector
      */
     public static function typed(string $type, iterable $input = []): Vector
     {
-        return VectorBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

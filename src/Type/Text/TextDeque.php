@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\Deque\AbstractDeque;
-use PlanB\DS\Resolver\Resolver;
 
 /**
  * Deque para objetos Text
@@ -26,15 +25,12 @@ class TextDeque extends AbstractDeque
     /**
      * TextDeque named constructor
      *
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextDeque
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextDeque
+    public static function make(iterable $input = []): TextDeque
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 }

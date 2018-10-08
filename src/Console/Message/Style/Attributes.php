@@ -14,6 +14,7 @@ namespace PlanB\Console\Message\Style;
 use PlanB\Type\Stringifable;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextListBuilder;
+use PlanB\Type\Text\TextVector;
 use PlanB\Utils\Traits\Stringify;
 
 /**
@@ -200,7 +201,21 @@ class Attributes implements Stringifable
             return Text::EMPTY_TEXT;
         }
 
-        $pieces = TextListBuilder::make()
+        $attributesList = $this->buildAttributesList();
+
+        return $attributesList
+            ->concat(';')
+            ->stringify();
+    }
+
+    /**
+     * Devuelve un TextVector con los atributos
+     *
+     * @return \PlanB\Type\Text\TextVector
+     */
+    protected function buildAttributesList(): TextVector
+    {
+        return TextListBuilder::make()
             ->ignoreBlank()
             ->values([
                 $this->fgColor->toAttributeFormat('fg'),
@@ -208,7 +223,5 @@ class Attributes implements Stringifable
                 $this->options->toAttributeFormat('options'),
             ])
             ->vector();
-
-        return $pieces->concat(';')->stringify();
     }
 }

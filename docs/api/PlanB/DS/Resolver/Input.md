@@ -1,24 +1,152 @@
 
                                                                                                                                             
     
-# PlanB\DS\Resolver\Input
+# Input
+
+
+> Representa a un valor que se está evaluando antes de ser añadido
+>
+> 
 
 
 
-## Classes
-| | |
-| --- | --- |
-| [PlanB\DS\Resolver\Input\AbstractInput](../../../PlanB/DS/Resolver/Input/AbstractInput.md) | Clase base para valores que se tratan de añadir a una colección |
-| [PlanB\DS\Resolver\Input\FailedInput](../../../PlanB/DS/Resolver/Input/FailedInput.md) | El valor no es correcto |
-| [PlanB\DS\Resolver\Input\IgnoredInput](../../../PlanB/DS/Resolver/Input/IgnoredInput.md) | El valor debe ser ignorado |
-| [PlanB\DS\Resolver\Input\Input](../../../PlanB/DS/Resolver/Input/Input.md) | Valor que se intenta resolver,
-En este estado se considera valido |
 
 
-## Interfaces
-- [PlanB\DS\Resolver\Input\InputInterface](../../../PlanB/DS/Resolver/Input/InputInterface.md)
 
 
+
+## Methods
+
+### make
+Input named constructor.
+
+
+static **Input::make**(mixed $value) : [Input](../../../Input.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### __construct
+Input constructor.
+
+
+protected **Input::__construct**(mixed $value) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### value
+Devuelve el valor en su estado actual
+
+
+**Input::value**() : mixed
+
+
+
+---
+
+
+### isValid
+Indica si el input sigue siendo válido
+
+
+**Input::isValid**() : bool
+
+
+
+---
+
+
+### isEvaluableForTypes
+Indica si este input se debe evaluar para alguno de los tipos dados
+
+
+**Input::isEvaluableForTypes**(string ...$types) : bool
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |...$types |  |
+
+---
+
+
+### next
+Aplica un nuevo valor al input, para que sea recogido por la siguiente regla
+
+
+**Input::next**(mixed $value) : [Input](../../../Input.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$value |  |
+
+---
+
+
+### ignore
+Ignora este input
+
+
+**Input::ignore**() : [Input](../../../Input.md)
+
+
+
+---
+
+
+### reject
+Rechaza este input
+
+
+**Input::reject**(string $format = &#039;&#039;, mixed ...$arguments) : [$this](../../../$this.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$format |  |
+|mixed |...$arguments |  |
+
+---
+
+
+### throws
+Rechaza este input
+
+
+**Input::throws**([Throwable](../../../Throwable.md) $exception) : [Input](../../../Input.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Throwable](../../../Throwable.md) |$exception |  |
+
+---
+
+
+### resolve
+Resuelve este input, aplicando la respuesta de un callback
+
+
+**Input::resolve**(mixed $response = null) : [Input](../../../Input.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$response |  |
+
+---
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

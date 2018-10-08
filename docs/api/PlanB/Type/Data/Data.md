@@ -9,8 +9,6 @@
 > 
 
 
-## Traits
-- PlanB\Utils\Traits\Stringify
 
 
 ## Constants
@@ -20,28 +18,6 @@
 
 
 ## Methods
-
-### stringify
-__toString alias
-
-
-**Data::stringify**() : string
-
-
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**Data::__toString**() : string
-
-
-
----
-
 
 ### __construct
 Input constructor.
@@ -242,11 +218,11 @@ Comprueba si la variable es de un tipo (o subtipo) de los permitidos
 ---
 
 
-### getType
-Devuelve el DataType
+### isHashable
+Indica si la variable es hashable
 
 
-**Data::getType**() : [DataType](../../../DataType.md)
+**Data::isHashable**() : bool
 
 
 
@@ -264,11 +240,22 @@ Indica si la variable se puede expresar como una cadena de texto
 ---
 
 
-### decorate
-Devuelve el nombre del tipo, decorado
+### getType
+Devuelve el DataType
 
 
-**Data::decorate**() : string
+**Data::getType**() : [DataType](../../../DataType.md)
+
+
+
+---
+
+
+### getValue
+Devuelve el valor
+
+
+**Data::getValue**() : mixed
 
 
 

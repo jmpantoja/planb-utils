@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Stack\AbstractStack;
 
 /**
@@ -26,14 +25,12 @@ class TextStack extends AbstractStack
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextStack
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextStack
+    public static function make(iterable $input = []): TextStack
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 }

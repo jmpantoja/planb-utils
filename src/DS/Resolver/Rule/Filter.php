@@ -13,26 +13,25 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver\Rule;
 
-use PlanB\DS\Resolver\Input\IgnoredInput;
-use PlanB\DS\Resolver\Input\Input;
-use PlanB\DS\Resolver\Input\InputInterface;
+use PlanB\DS\Resolver\Input;
 
 /**
- * Discrimina los valores que se consideran validos de los que no
- * No lanza excepciones ante un valor incorrecto, simplemente lo ignora
+ * Regla que permite ignorar Inputs
  */
-class Filter extends Rule
+class Filter extends AbstractRule
 {
 
     /**
      * @inheritdoc
      */
-    public function buildInput($response, $value): InputInterface
+    protected function resolve(Input $input): Input
     {
-        if (false === boolval($response)) {
-            return IgnoredInput::make($value);
+        $output = $this->call($input->value());
+
+        if (false === $output) {
+            $input->ignore();
         }
 
-        return Input::make($value);
+        return $input;
     }
 }

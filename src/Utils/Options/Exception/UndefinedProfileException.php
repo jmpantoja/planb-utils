@@ -42,6 +42,21 @@ class UndefinedProfileException extends \OutOfRangeException
     public static function forProfile(string $name, ?\Throwable $previous = null): self
     {
 
+        $example = self::getExample($name);
+        $message = sprintf("Undefined profile: %s\n%s", $name, $example);
+
+        return new static($message, $previous);
+    }
+
+    /**
+     * Devuelve el texto de ejemplo
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    private static function getExample(string $name): string
+    {
         $example = <<<eof
     Add new profiles overriding customize method
     Example:    
@@ -53,8 +68,6 @@ class UndefinedProfileException extends \OutOfRangeException
        
 eof;
 
-        $message = sprintf("Undefined profile: %s\n%s", $name, $example);
-
-        return new static($message, $previous);
+        return $example;
     }
 }

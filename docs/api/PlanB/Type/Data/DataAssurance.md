@@ -9,8 +9,6 @@
 > 
 
 
-## Traits
-- PlanB\Utils\Traits\Stringify
 
 
 
@@ -56,28 +54,6 @@ Captura las llamadas a métodos
 ---
 
 
-### stringify
-__toString alias
-
-
-**DataAssurance::stringify**() : string
-
-
-
----
-
-
-### __toString
-Devuelve la cadena de texto
-
-
-**DataAssurance::__toString**() : string
-
-
-
----
-
-
 ### __construct
 ValueAssurance constructor.
 DataAssurance constructor.
@@ -102,17 +78,6 @@ static **DataAssurance::make**(mixed $variable) : [DataAssurance](../../../DataA
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$variable |  |
-
----
-
-
-### decorate
-Devuelve el nombre del tipo, decorado
-
-
-**DataAssurance::decorate**() : string
-
-
 
 ---
 
@@ -296,6 +261,17 @@ Devuelve el nombre del tipo, decorado
 ---
 
 
+### isHashable
+
+
+
+**DataAssurance::isHashable**() : bool
+
+
+
+---
+
+
 ### isNotArray
 
 
@@ -469,6 +445,17 @@ Devuelve el nombre del tipo, decorado
 
 
 **DataAssurance::isNotConvertibleToString**() : bool
+
+
+
+---
+
+
+### isNotHashable
+
+
+
+**DataAssurance::isNotHashable**() : bool
 
 
 

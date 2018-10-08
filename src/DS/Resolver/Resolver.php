@@ -11,108 +11,132 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver;
 
-use Ds\Map;
-use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\DS\Resolver\Input\Input;
-use PlanB\DS\Resolver\Input\InputInterface;
-use PlanB\DS\Resolver\Rule\Converter;
-use PlanB\DS\Resolver\Rule\Filter;
-use PlanB\DS\Resolver\Rule\Normalizer;
+use Ds\PriorityQueue;
+use PlanB\Console\Beautifier\Beautifier;
 use PlanB\DS\Resolver\Rule\Rule;
-use PlanB\DS\Resolver\Rule\Validator;
+use PlanB\DS\Resolver\Rule\RuleFactory;
+use PlanB\DS\Resolver\Rule\RuleInterface;
 use PlanB\Type\DataType\DataType;
+use PlanB\Type\Text\Text;
 
 /**
- * Procesa un valor antes de ser añadido a una colección
+ * Resuelve un valor antes de ser añadido a una colección
  *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Resolver
 {
-    private const FILTERS = 'filters';
 
-    private const CONVERTERS = 'converters';
+    public const VERY_HIGHT_PRIORITY = PHP_INT_MAX;
+    public const HIGHT_PRIORITY = PHP_INT_MAX - 10;
+    public const NORMAL_PRIORITY = 0;
+    public const LOW_PRIORITY = PHP_INT_MIN + 10;
+    public const VERY_LOW_PRIORITY = PHP_INT_MIN;
 
-    private const ENSURE_TYPE = 'ensure_type';
-
-    private const VALIDATORS = 'validators';
-
-    private const NORMALIZERS = 'normalizers';
 
     /**
-     * @var \DS\Map
+     * @var \Ds\PriorityQueue
      */
-    private $mapOfRules;
+    private $queueOfRules;
+
+    /**
+     * @var callable
+     */
+    private $throwCallback;
 
     /**
      * @var null|\PlanB\Type\DataType\DataType
      */
-    private $type;
+    private $type = null;
 
     /**
      * Resolver named constructor.
      *
-     * @param string|null $type
-     *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public static function make(?string $type = null): Resolver
+    public static function make(): self
     {
-        return new static($type);
+        return new static();
     }
 
     /**
-     * Resolver constructor.
-     *
-     * @param null|\PlanB\Type\DataType\DataType $type
-     */
-    protected function __construct(?string $type = null)
-    {
-        $this->type = null;
-
-        $this->mapOfRules = new Map();
-        $this->mapOfRules[self::FILTERS] = RuleQueue::make();
-        $this->mapOfRules[self::CONVERTERS] = RuleQueue::make();
-        $this->mapOfRules[self::ENSURE_TYPE] = RuleQueue::make();
-        $this->mapOfRules[self::VALIDATORS] = RuleQueue::make();
-        $this->mapOfRules[self::NORMALIZERS] = RuleQueue::make();
-
-        if (!is_string($type)) {
-            return;
-        }
-
-        $this->setType($type);
-    }
-
-    /**
-     * Asigna un tipo
+     * Resolver named constructor.
      *
      * @param string $type
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function setType(string $type): self
+    public static function typed(string $type): self
     {
+        return new static($type);
+    }
 
-        $type = ensure_type($type)
-            ->isValid()
-            ->end();
 
-        $this->type = $type;
+    /**
+     * Resolver constructor.
+     *
+     * @param string|null $type
+     */
+    protected function __construct(?string $type = null)
+    {
+        $this->queueOfRules = new PriorityQueue();
 
-        $validator = Validator::make(function ($input) use ($type) {
-            return $type->isTheTypeOf($input);
+        $this->catcher(function ($exception): void {
+            throw $exception;
         });
 
-        $this->mapOfRules[self::ENSURE_TYPE]->push($validator, 0);
+
+        if (is_null($type)) {
+            return;
+        }
+
+        $this->type($type);
+    }
+
+    /**
+     * Asigna la función que debe invocarse cuando se lanza una excepción,
+     * con el fin de poder lanzar otra personalizada
+     *
+     * @param callable $callback
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function catcher(callable $callback): self
+    {
+        $this->throwCallback = $callback;
 
         return $this;
     }
 
     /**
-     * Devuelve el tipo del resolver
+     * Indica si aun no se han añadido reglas
      *
-     * @return null|string
+     * @return bool
+     */
+    public function isEmpty(): bool
+    {
+        return $this->queueOfRules->isEmpty();
+    }
+
+    /**
+     * Asigna un tipo a este resolver
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function type(string $type): self
+    {
+        $this->type = DataType::make($type);
+
+        return $this;
+    }
+
+    /**
+     * Devuelve el tipo de este resolver
+     *
+     * @return null|\PlanB\Type\DataType\DataType
      */
     public function getType(): ?DataType
     {
@@ -120,145 +144,303 @@ class Resolver
     }
 
     /**
-     * Añade un filtro a la cola
+     * Añade un nuevo loader
      *
-     * @param callable $filter
-     * @param int      $priority
+     * @param callable $callback
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function addFilter(callable $filter, int $priority = 0): self
+    public function loader(callable $callback, string ...$types): self
     {
 
-        if (!($filter instanceof Rule)) {
-            $filter = Filter::make($filter);
-        }
-
-        $this->mapOfRules[self::FILTERS]->push($filter, $priority);
+        $rule = RuleFactory::loader($callback, ...$types);
+        $this->addRule($rule, self::VERY_HIGHT_PRIORITY);
 
         return $this;
     }
 
     /**
-     * Añade un filtro para un tipo determinado
+     * Asigna varios loaders
      *
-     * @param string   $type
-     * @param callable $filter
-     * @param int      $priority
+     * @param callable[] $loaders
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function addTypedFilter(string $type, callable $filter, int $priority = 0): self
+    public function loaders(array $loaders): self
     {
-        return $this->addFilter(Filter::typed($type, $filter), $priority);
-    }
-
-    /**
-     * Añade un converter
-     *
-     * @param string   $type
-     * @param callable $converter
-     * @param int      $priority
-     *
-     * @return \PlanB\DS\Resolver\Resolver
-     */
-    public function addConverter(string $type, callable $converter, int $priority = 0): self
-    {
-        if (!($converter instanceof Rule)) {
-            $converter = Converter::typed($type, $converter);
+        foreach ($loaders as $type => $loader) {
+            $this->loader($loader, $type);
         }
-
-        $this->mapOfRules[self::CONVERTERS]->push($converter, $priority);
 
         return $this;
     }
 
 
     /**
-     * Añade un validator
+     * Añade una nueva regla
      *
-     * @param callable $validator
-     * @param int      $priority
+     * @param callable $callback
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function addValidator(callable $validator, int $priority = 0): self
+    public function rule(callable $callback, string ...$types): self
     {
-        if (!($validator instanceof Rule)) {
-            $validator = Validator::make($validator);
-        }
-
-        $this->mapOfRules[self::VALIDATORS]->push($validator, $priority);
+        $rule = RuleFactory::rule($callback, ...$types);
+        $this->addRule($rule, self::HIGHT_PRIORITY);
 
         return $this;
     }
 
     /**
-     * Añade un validator para un tipo determinado
+     * Asigna varias reglas
      *
-     * @param string   $type
-     * @param callable $validator
-     * @param int      $priority
+     * @param callable[] $rules
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function addTypedValidator(string $type, callable $validator, int $priority = 0): self
+    public function rules(array $rules): self
     {
-        return $this->addFilter(Validator::typed($type, $validator), $priority);
-    }
-
-    /**
-     * Añade un normalizer
-     *
-     * @param callable $normalizer
-     * @param int      $priority
-     *
-     * @return \PlanB\DS\Resolver\Resolver
-     */
-    public function addNormalizer(callable $normalizer, int $priority = 0): self
-    {
-        if (!($normalizer instanceof Rule)) {
-            $normalizer = Normalizer::make($normalizer);
+        foreach ($rules as $type => $rule) {
+            $this->rule($rule, $type);
         }
 
-        $this->mapOfRules[self::NORMALIZERS]->push($normalizer, $priority);
+        return $this;
+    }
+
+
+    /**
+     * Añade un nuevo converter
+     *
+     * @param callable $callback
+     * @param string   ...$types
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function converter(callable $callback, string ...$types): self
+    {
+        $rule = RuleFactory::converter($callback, ...$types);
+        $this->addRule($rule, self::NORMAL_PRIORITY);
 
         return $this;
     }
 
     /**
-     * Añade un normalizer para un tipo determinado
+     * Asigna varios converters
      *
-     * @param string   $type
-     * @param callable $normalizer
-     * @param int      $priority
+     * @param callable[] $converters
      *
      * @return \PlanB\DS\Resolver\Resolver
      */
-    public function addTypedNormalizer(string $type, callable $normalizer, int $priority = 0): self
+    public function converters(array $converters): self
     {
-        return $this->addFilter(Normalizer::typed($type, $normalizer), $priority);
+        foreach ($converters as $type => $converter) {
+            $this->converter($converter, $type);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * Añade un nuevo converter
+     *
+     * @param callable $callback
+     * @param string   ...$types
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function validator(callable $callback, string ...$types): self
+    {
+        $rule = RuleFactory::validator($callback, ...$types);
+        $this->addRule($rule, self::NORMAL_PRIORITY);
+
+        return $this;
     }
 
     /**
-     * @inheritdoc
+     * Asigna varios validators
+     *
+     * @param callable[] $validators
+     *
+     * @return \PlanB\DS\Resolver\Resolver
      */
-    public function resolve($value): InputInterface
+    public function validators(array $validators): self
     {
-
-        $input = Input::make($value);
-        $type = $this->getType();
-
-        foreach ($this->mapOfRules as $queue) {
-            $queue->setInnerType($type);
-
-            $input = $queue->resolve($input);
+        foreach ($validators as $type => $validator) {
+            $this->validator($validator, $type);
         }
 
-        if ($input instanceof FailedInput) {
-            $input->setOriginal($value);
+        return $this;
+    }
+
+    /**
+     * Añade un nuevo filter
+     *
+     * @param callable $callback
+     * @param string   ...$types
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function filter(callable $callback, string ...$types): self
+    {
+        $rule = RuleFactory::filter($callback, ...$types);
+        $this->addRule($rule, self::NORMAL_PRIORITY);
+
+        return $this;
+    }
+
+    /**
+     * Asigna varios filters
+     *
+     * @param callable[] $filters
+     *
+     * @return \PlanB\DS\Resolver\Resolver
+     */
+    public function filters(array $filters): self
+    {
+        foreach ($filters as $type => $filter) {
+            $this->filter($filter, $type);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * Añade una nueva regla, con prioridad
+     *
+     * @param \PlanB\DS\Resolver\Rule\RuleInterface $rule
+     * @param int                                   $priority
+     */
+    private function addRule(RuleInterface $rule, int $priority): void
+    {
+        $this->queueOfRules->push($rule, $priority);
+    }
+
+    /**
+     * Resuelve un valor
+     *
+     * @param callable $callback
+     * @param mixed    $value
+     *
+     * @param mixed    $key
+     *
+     * @throws \Throwable
+     */
+    public function value(callable $callback, $value, $key = null): void
+    {
+        $input = $this->resolve($value);
+
+        if (!$input->isValid()) {
+            return;
+        }
+
+        call_user_func($callback, $input->value(), $key);
+    }
+
+    /**
+     * Resuelve un conjunto de valores
+     *
+     * @param callable $callback
+     * @param mixed[]  $values
+     *
+     * @throws \Throwable
+     */
+    public function values(callable $callback, iterable $values): void
+    {
+        $listOfValues = ResolvedValuesList::make();
+
+        foreach ($values as $key => $value) {
+            $input = $this->resolve($value);
+            $listOfValues->set($key, $input);
+        }
+
+        if ($listOfValues->isEmpty()) {
+            return;
+        }
+
+        call_user_func($callback, $listOfValues->getValues());
+    }
+
+    /**
+     * Evalua un valor, capturando las excepciones
+     *
+     * @param mixed $value
+     *
+     * @return \PlanB\DS\Resolver\Input
+     *
+     * @throws \Throwable
+     */
+    private function resolve($value): Input
+    {
+        try {
+            $input = $this->tryResolve($value);
+        } catch (\Throwable $exception) {
+            call_user_func($this->throwCallback, $exception, $value);
         }
 
         return $input;
+    }
+
+    /**
+     * Intenta evaluar un valor, y lanza las excepciones que se produzcan en el proceso
+     *
+     * @param mixed $value
+     *
+     * @return \PlanB\DS\Resolver\Input
+     *
+     * @throws \Throwable
+     */
+    private function tryResolve($value): Input
+    {
+        $rules = $this->queueOfRules->toArray();
+        $input = Input::make($value);
+
+        foreach ($rules as $rule) {
+            $input = $rule->execute($input);
+        }
+
+        $input = $this->applyTypeValidation($input);
+
+        return $input;
+    }
+
+    /**
+     * Nos aseguramos de que el valor añadido es del tipo correcto
+     *
+     * @param \PlanB\DS\Resolver\Input $input
+     *
+     * @return \PlanB\DS\Resolver\Input
+     *
+     * @throws \Throwable
+     */
+    private function applyTypeValidation(Input $input): Input
+    {
+        return Rule::make(function ($value, Input $input): void {
+            if ($this->isValidType($value)) {
+                return;
+            }
+
+            $beautifier = Beautifier::make();
+            $input->reject('a %s was expected', $beautifier->type(Text::class));
+        })->execute($input);
+    }
+
+    /**
+     * Indica si un valor es del tipo correcto
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    private function isValidType($value): bool
+    {
+        if ($this->type instanceof DataType) {
+            return $this->type->isTheTypeOf($value);
+        }
+
+        return true;
     }
 }

@@ -12,12 +12,36 @@ declare(strict_types=1);
 namespace PlanB\DS\Stack;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 
 /**
  * Builder para Stack
  */
 class StackBuilder extends AbstractBuilder
 {
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\DS\Stack\StackBuilder
+     */
+    public static function make(): StackBuilder
+    {
+        return new static(Resolver::make());
+    }
+
+    /**
+     * Named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Stack\StackBuilder
+     */
+    public static function typed(string $type): StackBuilder
+    {
+        return new static(Resolver::typed($type));
+    }
+
     /**
      * Crea el objeto
      *
@@ -25,7 +49,7 @@ class StackBuilder extends AbstractBuilder
      */
     public function build(): Stack
     {
-        return Stack::make(
+        return new Stack(
             $this->getInput(),
             $this->getResolver()
         );

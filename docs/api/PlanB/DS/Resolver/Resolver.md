@@ -4,7 +4,7 @@
 # Resolver
 
 
-> Procesa un valor antes de ser añadido a una colección
+> Resuelve un valor antes de ser añadido a una colección
 >
 > 
 
@@ -12,11 +12,11 @@
 
 
 ## Constants
-- FILTERS
-- CONVERTERS
-- ENSURE_TYPE
-- VALIDATORS
-- NORMALIZERS
+- VERY_HIGHT_PRIORITY
+- HIGHT_PRIORITY
+- NORMAL_PRIORITY
+- LOW_PRIORITY
+- VERY_LOW_PRIORITY
 
 
 
@@ -27,7 +27,18 @@
 Resolver named constructor.
 
 
-static **Resolver::make**(string $type = null) : [Resolver](../../../Resolver.md)
+static **Resolver::make**() : [Resolver](../../../Resolver.md)
+
+
+
+---
+
+
+### typed
+Resolver named constructor.
+
+
+static **Resolver::typed**(string $type) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
@@ -51,11 +62,37 @@ protected **Resolver::__construct**(string $type = null) :
 ---
 
 
-### setType
-Asigna un tipo
+### catcher
+Asigna la función que debe invocarse cuando se lanza una excepción,
+con el fin de poder lanzar otra personalizada
 
 
-**Resolver::setType**(string $type) : [Resolver](../../../Resolver.md)
+**Resolver::catcher**(callable $callback) : [Resolver](../../../Resolver.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+
+---
+
+
+### isEmpty
+Indica si aun no se han añadido reglas
+
+
+**Resolver::isEmpty**() : bool
+
+
+
+---
+
+
+### type
+Asigna un tipo a este resolver
+
+
+**Resolver::type**(string $type) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
@@ -66,135 +103,188 @@ Asigna un tipo
 
 
 ### getType
-Devuelve el tipo del resolver
+Devuelve el tipo de este resolver
 
 
-**Resolver::getType**() : null|string
+**Resolver::getType**() : null|[DataType](../../../DataType.md)
 
 
 
 ---
 
 
-### addFilter
-Añade un filtro a la cola
+### loader
+Añade un nuevo loader
 
 
-**Resolver::addFilter**(callable $filter, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::loader**(callable $callback, string ...$types) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|callable |$filter |  |
-|int |$priority |  |
+|callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
-### addTypedFilter
-Añade un filtro para un tipo determinado
+### loaders
+Asigna varios loaders
 
 
-**Resolver::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::loaders**(array $loaders) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-|callable |$filter |  |
-|int |$priority |  |
+|array |$loaders |  |
 
 ---
 
 
-### addConverter
-Añade un converter
+### rule
+Añade una nueva regla
 
 
-**Resolver::addConverter**(string $type, callable $converter, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::rule**(callable $callback, string ...$types) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-|callable |$converter |  |
-|int |$priority |  |
+|callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
-### addValidator
-Añade un validator
+### rules
+Asigna varias reglas
 
 
-**Resolver::addValidator**(callable $validator, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::rules**(array $rules) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|callable |$validator |  |
-|int |$priority |  |
+|array |$rules |  |
 
 ---
 
 
-### addTypedValidator
-Añade un validator para un tipo determinado
+### converter
+Añade un nuevo converter
 
 
-**Resolver::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::converter**(callable $callback, string ...$types) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-|callable |$validator |  |
-|int |$priority |  |
+|callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
-### addNormalizer
-Añade un normalizer
+### converters
+Asigna varios converters
 
 
-**Resolver::addNormalizer**(callable $normalizer, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::converters**(array $converters) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|callable |$normalizer |  |
-|int |$priority |  |
+|array |$converters |  |
 
 ---
 
 
-### addTypedNormalizer
-Añade un normalizer para un tipo determinado
+### validator
+Añade un nuevo converter
 
 
-**Resolver::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [Resolver](../../../Resolver.md)
+**Resolver::validator**(callable $callback, string ...$types) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
-|callable |$normalizer |  |
-|int |$priority |  |
+|callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
-### resolve
+### validators
+Asigna varios validators
 
 
-
-**Resolver::resolve**($value) : 
+**Resolver::validators**(array $validators) : [Resolver](../../../Resolver.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$value |  |
+|array |$validators |  |
+
+---
+
+
+### filter
+Añade un nuevo filter
+
+
+**Resolver::filter**(callable $callback, string ...$types) : [Resolver](../../../Resolver.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|string |...$types |  |
+
+---
+
+
+### filters
+Asigna varios filters
+
+
+**Resolver::filters**(array $filters) : [Resolver](../../../Resolver.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|array |$filters |  |
+
+---
+
+
+### value
+Resuelve un valor
+
+
+**Resolver::value**(callable $callback, mixed $value, mixed $key = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|mixed |$value |  |
+|mixed |$key |  |
+
+---
+
+
+### values
+Resuelve un conjunto de valores
+
+
+**Resolver::values**(callable $callback, [iterable](../../../iterable.md) $values) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$callback |  |
+|[iterable](../../../iterable.md) |$values |  |
 
 ---
 

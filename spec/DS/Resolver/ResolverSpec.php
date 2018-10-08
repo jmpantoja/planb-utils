@@ -1,33 +1,26 @@
 <?php
 
-declare(strict_types=1);
-
 namespace spec\PlanB\DS\Resolver;
 
-
 use PlanB\DS\Exception\InvalidArgumentException;
-use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\DS\Resolver\Input\InputInterface;
-use PlanB\DS\Resolver\ResolvedValue;
+use PlanB\DS\Resolver\Input;
 use PlanB\DS\Resolver\Resolver;
 use PhpSpec\ObjectBehavior;
-use PlanB\DS\Resolver\Input\IgnoredInput;
-use PlanB\DS\Resolver\Input\NormalizedValue;
-use PlanB\DS\Resolver\Input\Input;
-use PlanB\DS\Resolver\Rule\Converter;
-use PlanB\DS\Resolver\Rule\Exception\InvalidRuleReturnedType;
-use PlanB\DS\Resolver\Rule\Filter;
-use PlanB\DS\Resolver\Rule\Validator;
+use PlanB\DS\Vector\Vector;
+use PlanB\DS\Vector\VectorBuilder;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
-use PlanB\Type\Data\Data;
 use Prophecy\Argument;
-use spec\PlanB\Matchers;
+use Prophecy\Prophet;
 
 
 class ResolverSpec extends ObjectBehavior
 {
+
+    protected const INPUT = 'input';
+    protected const RESPONSE = 'response';
+
     public function let()
     {
         $this->beConstructedThrough('make');
@@ -38,206 +31,354 @@ class ResolverSpec extends ObjectBehavior
         $this->shouldHaveType(Resolver::class);
     }
 
-    public function it_can_make_a_non_typed_resolver()
+    public function it_is_empty_by_default()
     {
-        $this->beConstructedThrough('make');
-
-        $this->getType()->shouldReturn(null);
+        $this->isEmpty()->shouldReturn(true);
     }
 
-    public function it_can_make_a_typed_resolver()
+
+    public function it_is_not_empty_when_add_a_rule()
     {
-        $this->beConstructedThrough('make');
+        $this
+            ->rule(function ($value, Input $input) {
+                return self::RESPONSE;
+            });
 
-        $this->setType(Type::STRING);
+        $this->isEmpty()->shouldReturn(false);
+    }
 
+    public function it_can_add_one_rule()
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+                return self::RESPONSE;
+            });
+
+        $this->assertValues([self::INPUT, self::INPUT], [self::RESPONSE, self::RESPONSE]);
+        $this->assertValue(self::INPUT, self::RESPONSE);
+    }
+
+
+    public function it_can_add_one_converter(InvokerMock $invoker)
+    {
+
+        $this
+            ->converter(function ($value) {
+                return self::RESPONSE;
+            });
+
+
+        $this->assertValues([self::INPUT, self::INPUT], [self::RESPONSE, self::RESPONSE]);
+        $this->assertValue(self::INPUT, self::RESPONSE);
+    }
+
+    public function it_can_add_some_converters_as_array(InvokerMock $invoker)
+    {
+        $this
+            ->converters([
+                Type::STRING => function (string $value) {
+                    return 'A';
+                },
+                Type::NUMERIC => function (string $value) {
+                    return 'B';
+                }
+            ]);
+
+        $this->assertValues(['texto', 234], ['A', 'B']);
+        $this->assertValue('texto', 'A');
+        $this->assertValue(234, 'B');
+    }
+
+
+    public function it_can_add_some_rules_as_array(InvokerMock $invoker)
+    {
+        $this
+            ->rules([
+                Type::STRING => function (string $value) {
+                    return 'A';
+                },
+                Type::NUMERIC => function (string $value) {
+                    return 'B';
+                }
+            ]);
+
+        $this->assertValues(['texto', 234], ['A', 'B']);
+
+        $this->assertValue('texto', 'A');
+        $this->assertValue(234, 'B');
+    }
+
+    public function it_can_add_one_or_more_typed_rules(InvokerMock $invoker)
+    {
+        $this
+            ->rule(function ($value) {
+                return Text::make($value);
+            }, Type::STRINGIFABLE)
+            ->rule(function (object $object) {
+                return get_class($object);
+            }, Type::OBJECT);
+
+        $this->assertValues([self::INPUT, new \stdClass()], [Text::make(self::INPUT), \stdClass::class]);
+
+        $this->assertValue(new \stdClass(), \stdClass::class);
+
+    }
+
+    public function it_can_concatenated_one_or_more_rule()
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+
+                return sprintf('A: %s', $value);
+            })->rule(function ($value, Input $input) {
+                return sprintf('B: %s', $value);
+            });
+
+        $output = 'B: A: input';
+        $this->assertValues([self::INPUT, self::INPUT], [$output, $output]);
+        $this->assertValue(self::INPUT, $output);
+
+    }
+
+    public function it_stop_when_first_rule_fails(StubCallback $callback)
+    {
+        $callback->make()->willReturn(self::RESPONSE)
+            ->shouldBeCalledTimes(1);
+
+        $this
+            ->rule(function ($value, Input $input) use ($callback) {
+                $input->ignore();
+                return $callback->getWrappedObject()->make();
+
+            })->rule(function ($value, Input $input) use ($callback) {
+                return $callback->getWrappedObject()->make();
+            });
+
+        $this->assertNever([self::INPUT]);
+    }
+
+
+    public function it_can_ignore_a_value()
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+                if (0 !== $value % 2) {
+                    $input->ignore();
+                }
+            });
+
+        $this->assertValues([1, 2, 3, 4, 5, 6], [2, 4, 6]);
+    }
+
+    public function it_can_ignore_a_value_using_a_filter()
+    {
+        $this
+            ->filter(function ($value) {
+                return (0 === $value % 2);
+            });
+
+        $this->assertValues([1, 2, 3, 4, 5, 6], [2, 4, 6]);
+    }
+
+
+    public function it_can_use_a_loader(InvokerMock $invoker)
+    {
+        $target = $invoker->getWrappedObject();
+
+        $this->loader(function ($value) use ($target) {
+            $target->call($value);
+        });
+
+        $invoker->call('xx')->shouldBeCalled();
+
+        $this->value(function () {
+        }, 'xx');
+
+    }
+
+    public function it_can_use_some_loaders(InvokerMock $invoker)
+    {
+        $target = $invoker->getWrappedObject();
+
+        $this->loaders([Type::STRING => function ($value) use ($target) {
+            $target->call($value);
+        }]);
+
+        $invoker->call('xx')->shouldBeCalled();
+
+        $this->value(function () {
+        }, 'xx');
+
+    }
+
+    public function it_can_add_some_filtes_as_array()
+    {
+        $this
+            ->filters([
+                Type::STRING => function (string $value) {
+                    return false;
+                },
+                Type::NUMERIC => function (string $value) {
+                    return true;
+                }
+            ]);
+
+        $this->assertValues(['texto', 234], [234]);
+
+    }
+
+    public function it_can_ignore_all_values()
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+                if ($value < 100) {
+                    $input->ignore();
+                }
+            });
+
+        $this->assertNever([1, 2, 3, 4, 5, 6]);
+    }
+
+
+    public function it_can_reject_a_value(InvokerMock $invoker)
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+                if (0 !== $value % 2) {
+                    $input->reject('%s no es par', $value);
+                }
+            });
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, [1, 2, 3, 4, 5, 6]);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 1);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 3);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 5);
+    }
+
+
+    public function it_can_reject_a_value_using_a_validator(InvokerMock $invoker)
+    {
+        $this
+            ->validator(function ($value) {
+                return (0 === $value % 2);
+            });
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, [1, 2, 3, 4, 5, 6]);
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 1);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 3);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 5);
+    }
+
+
+    public function it_catch_and_throws_a_custom_exception(InvokerMock $invoker)
+    {
+        $this
+            ->rule(function ($value) {
+                throw new \Exception("Message");
+
+            })
+            ->catcher(function (\Throwable $exception) {
+                throw new \RuntimeException($exception->getMessage());
+            });
+
+        $this->shouldThrow(new \RuntimeException("Message"))->duringValue($invoker, 1);
+        $this->shouldThrow(new \RuntimeException("Message"))->duringValues($invoker, [1, 2, 3]);
+    }
+
+
+    public function it_can_add_some_validators_as_array(InvokerMock $invoker)
+    {
+        $this
+            ->validators([
+                Type::STRING => function (string $value) {
+                    return false;
+                },
+                Type::NUMERIC => function (string $value) {
+                    return true;
+                }
+            ]);
+
+
+        $this->assertValues([90992, 234], [90992, 234]);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, ['texto   ', 234]);
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 'texto');
+    }
+
+
+    public function it_can_reject_a_value_and_throw_a_custom_exception(InvokerMock $invoker)
+    {
+        $this
+            ->rule(function ($value, Input $input) {
+                if (0 !== $value % 2) {
+                    $input->throws(new \LogicException());
+                }
+            });
+
+        $this->shouldThrow(\LogicException::class)->duringValues($invoker, [1, 2, 3, 4, 5, 6]);
+
+        $this->shouldThrow(\LogicException::class)->duringValue($invoker, 1);
+        $this->shouldThrow(\LogicException::class)->duringValue($invoker, 3);
+        $this->shouldThrow(\LogicException::class)->duringValue($invoker, 5);
+    }
+
+
+    public function it_can_create_a_typed_resolver(InvokerMock $invoker)
+    {
+        $this->beConstructedThrough('typed', [Type::STRING]);
+
+        $this->assertValues(['xxx'], ['xxx']);
         $this->getType()->shouldBeLike(DataType::make(Type::STRING));
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, [21234]);
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 21234);
     }
 
-    public function it_ignore_a_value_when_filter_return_false()
+    public function it_can_assing_a_type_to_a_created_resolver(InvokerMock $invoker)
     {
-        $this->addFilter(function (int $value) {
-            $isEven = ($value % 2 == 0);
-            return $isEven;
-        });
+        $this->beConstructedThrough('make');
 
-        $this->resolve(15)->shouldHaveType(IgnoredInput::class);
-        $this->resolve(6)->shouldHaveType(Input::class);
+        $this->type(Type::STRING);
+        $this->getType()->shouldBeLike(DataType::make(Type::STRING));
+
+        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, [21234]);
+        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 21234);
     }
 
-    public function it_accept_a_value_when_filter_return_true()
+
+    private function assertValues(array $input, array $output)
     {
-        $this->addFilter(Filter::make(function (int $value) {
-            return $value <= 10;
-        }));
 
-        $this->resolve(15)->shouldHaveType(IgnoredInput::class);
-        $this->resolve(6)->shouldHaveType(Input::class);
+        $prophet = new Prophet();
+        $invoker = $prophet->prophesize(InvokerMock::class);
+
+        $invoker->__invoke(new \DS\Map($output))->shouldBeCalledTimes(1);
+
+
+        $this->values($invoker, $input);
     }
 
-    public function it_filter_values_of_one_single_type_using_method()
+
+    private function assertValue($input, $output)
     {
-        $this->addTypedFilter(Type::INTEGER, function (int $value) {
-            return $value <= 10;
-        });
 
-        $this->resolve(15)->shouldHaveType(IgnoredInput::class);
-        $this->resolve("15")->shouldHaveType(Input::class);
+        $prophet = new Prophet();
+        $invoker = $prophet->prophesize(InvokerMock::class);
 
+        $invoker->__invoke($output, null)->shouldBeCalledTimes(1);
+        $this->value($invoker, $input);
     }
 
-    public function it_filter_values_of_one_single_type_using_typed_filter()
+
+    private function assertNever(array $input)
     {
-        $this->addFilter(Filter::typed(Type::INTEGER, function (int $value) {
-            return $value <= 10;
-        }));
 
-        $this->resolve(15)->shouldHaveType(IgnoredInput::class);
-        $this->resolve("15")->shouldHaveType(Input::class);
+        $prophet = new Prophet();
+        $invoker = $prophet->prophesize(InvokerMock::class);
 
+        $invoker->__invoke(Argument::any(), Argument::any())->shouldBeCalledTimes(0);
+        $this->values($invoker, $input);
     }
-
-    public function it_convert_a_value_from_a_type_to_another()
-    {
-        $this->addConverter(Type::STRING, function (string $value) {
-            return strlen($value);
-        });
-
-        $this->resolve('')
-            ->shouldBeLike(Input::make(0));
-
-        $this->resolve('a')
-            ->shouldBeLike(Input::make(1));
-
-        $this->resolve('ab')
-            ->shouldBeLike(Input::make(2));
-
-        $this->resolve([1, 2, 3])
-            ->shouldBeLike(Input::make([1, 2, 3]));
-
-    }
-
-    public function it_convert_a_value_with_a_chain_of_converters(Converter $first, Converter $second)
-    {
-        $first->setInnerType(null)
-            ->shouldBeCalledTimes(1);
-
-        $second->setInnerType(null)
-            ->shouldNotBeCalled();
-
-        $first->resolve(Argument::type(InputInterface::class))
-            ->willReturn(IgnoredInput::make('input'))
-            ->shouldBeCalledTimes(1);
-
-        $second->resolve(Argument::type(InputInterface::class))
-            ->willReturn(Input::make('este valor se ignora'))
-            ->shouldNotBeCalled();
-
-        $this->addConverter(Type::STRING, $first);
-        $this->addConverter(Type::STRING, $second);
-
-        $this->resolve('cadena de texto')
-            ->shouldBeLike(IgnoredInput::make('input'));
-
-    }
-
-    public function it_return_a_failed_input_when_add_an_invalid_input_type()
-    {
-        $this->beConstructedThrough('make', [Type::STRING]);
-
-        $this->resolve('cadena de texto')->shouldHaveType(Input::class);
-        $this->resolve(9)->shouldHaveType(FailedInput::class);
-
-    }
-
-    public function it_return_a_failed_input_when_add_an_invalid_input_value()
-    {
-        $this->addValidator(function (int $value) {
-            return $value < 10;
-        });
-
-        $this->resolve(9)->shouldHaveType(Input::class);
-        $this->resolve(11)->shouldHaveType(FailedInput::class);
-    }
-
-    public function it_return_a_failed_input_when_add_an_invalid_input_value_using_typed_validator()
-    {
-        $this->addTypedValidator(Type::INTEGER, function (int $value) {
-            return $value < 10;
-        });
-
-        $this->resolve(9)->shouldHaveType(Input::class);
-        $this->resolve(11)->shouldHaveType(FailedInput::class);
-    }
-
-    public function it_normalize_a_value()
-    {
-        $this
-            ->addFilter(function ($value) {
-
-                return Data::make($value)->isConvertibleToString();
-            })->addConverter(Type::STRING, function (string $value) {
-
-                return Text::make($value);
-            })->addNormalizer(function (Text $value) {
-
-                return $value->toUpper();
-            });
-
-        $this->resolve([1, 2, 3])
-            ->shouldHaveType(IgnoredInput::class);
-
-        $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::make('HOLA QUE TAL')));
-
-    }
-
-    public function it_normalize_a_value_using_a_typed_normalizer()
-    {
-        $this
-            ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::make($value);
-            })
-            ->addTypedNormalizer(Text::class, function (Text $text) {
-                return $text->toUpper();
-            });
-
-        $this->resolve('hola que tal')
-            ->shouldBeLike(Input::make(Text::make('HOLA QUE TAL')));
-    }
-
-
-    public function it_ensure_than_a_normalizer_dont_change_the_value_type()
-    {
-        $this
-            ->setType(Text::class)
-            ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::make($value);
-            })
-            ->addTypedNormalizer(Text::class, function (Text $text) {
-
-                return $text->toUpper()->stringify();
-            });
-
-        $expected = FailedInput::make(Text::make('HOLA QUE TAL'))
-            ->setOriginal('hola que tal');
-
-        $this->resolve('hola que tal')
-            ->shouldBeLike($expected);
-    }
-
-
-    public function it_throws_an_exception_when_a_rule_fails()
-    {
-        $this
-            ->addTypedNormalizer(Type::STRING, function (string $value) {
-                return Text::make($value);
-            })
-            ->addTypedNormalizer(Text::class, function (Text $text) {
-                throw new Exception('algo malo ha pasado');
-            });
-
-        $this->shouldThrow(InvalidArgumentException::class)->duringResolve('hola que tal');
-    }
-
 }

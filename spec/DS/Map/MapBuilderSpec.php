@@ -79,7 +79,7 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_can_add_a_filter()
     {
         $target = $this
-            ->addFilter(function ($value) {
+            ->filter(function ($value) {
                 return Data::make($value)->isConvertibleToString();
             })
             ->values([
@@ -98,9 +98,9 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_can_add_a_typed_filter()
     {
         $target = $this
-            ->addTypedFilter(Type::STRING, function (string $value) {
+            ->filter(function (string $value) {
                 return $value != self::VALUE_D;
-            })
+            }, Type::STRING)
             ->values([
                 'a' => self::VALUE_A,
                 'b' => self::VALUE_B,
@@ -118,9 +118,9 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_can_add_a_converter()
     {
         $target = $this
-            ->addConverter(Type::ARRAY, function (array $value) {
+            ->converter(function (array $value) {
                 return self::VALUE_B;
-            })
+            }, Type::ARRAY)
             ->values([
                 'a' => self::VALUE_A,
                 'b' => [self::VALUE_A, self::VALUE_B],
@@ -135,7 +135,7 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_can_add_a_validator()
     {
         $target = $this
-            ->addValidator(function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
             })
             ->values([
@@ -152,7 +152,7 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_throws_an_exception_when_values_are_invalid()
     {
         $this
-            ->addValidator(function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
             })
             ->values([
@@ -169,9 +169,9 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_can_add_a_typed_validator()
     {
         $target = $this
-            ->addTypedValidator(Type::STRING, function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
-            })
+            }, Type::STRING)
             ->values([
                 'a' => self::VALUE_A,
                 'b' => self::VALUE_B,
@@ -186,9 +186,9 @@ class MapBuilderSpec extends ObjectBehavior
     public function it_throws_an_exception_when_values_are_invalid_for_typed_validator()
     {
         $this
-            ->addTypedValidator(Type::STRING, function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
-            })
+            }, Type::STRING)
             ->values([
                 'a' => self::VALUE_A,
                 'x' => 'XXXX',
@@ -197,39 +197,6 @@ class MapBuilderSpec extends ObjectBehavior
             ]);
 
         $this->shouldThrow(InvalidArgumentException::class)->duringBuild();
-    }
-
-
-    public function it_can_add_a_normalizer()
-    {
-        $target = $this
-            ->addNormalizer(function ($value) {
-                return Text::make($value);
-            })
-            ->values([
-                'a' => self::VALUE_A,
-                'b' => self::VALUE_B,
-                'c' => self::VALUE_C,
-            ])
-            ->build();
-
-        $target->shouldIterateLike($this->getResponseWithText());
-    }
-
-    public function it_can_add_a_typed_normalizer()
-    {
-        $target = $this
-            ->addTypedNormalizer(Type::STRING, function ($value) {
-                return Text::make($value);
-            })
-            ->values([
-                'a' => self::VALUE_A,
-                'b' => self::VALUE_B,
-                'c' => self::VALUE_C,
-            ])
-            ->build();
-
-        $target->shouldIterateLike($this->getResponseWithText());
     }
 
     /**

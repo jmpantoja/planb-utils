@@ -192,6 +192,17 @@ static **DataTypeAssurance::make**(string $type) : [DataTypeAssurance](../../../
 ---
 
 
+### isClassOrInterfaceOrTrait
+
+
+
+**DataTypeAssurance::isClassOrInterfaceOrTrait**() : bool
+
+
+
+---
+
+
 ### isTrait
 
 
@@ -319,6 +330,17 @@ static **DataTypeAssurance::make**(string $type) : [DataTypeAssurance](../../../
 
 
 **DataTypeAssurance::isNotClassOrInterface**() : bool
+
+
+
+---
+
+
+### isNotClassOrInterfaceOrTrait
+
+
+
+**DataTypeAssurance::isNotClassOrInterfaceOrTrait**() : bool
 
 
 

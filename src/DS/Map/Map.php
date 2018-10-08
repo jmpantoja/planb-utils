@@ -22,16 +22,13 @@ use PlanB\DS\Resolver\Resolver;
 final class Map extends AbstractMap
 {
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Map\Map
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Map
+    public static function make(iterable $input = []): Map
     {
-        return (new static($resolver))
-            ->putAll($input);
+        return new static($input);
     }
 
     /**
@@ -44,8 +41,8 @@ final class Map extends AbstractMap
      */
     public static function typed(string $type, iterable $input = []): Map
     {
-        return MapBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

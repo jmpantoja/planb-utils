@@ -41,11 +41,11 @@ interface StackInterface extends Collection
     /**
      * Pushes one value onto the top of the stack.
      *
-     * @param mixed $input
+     * @param mixed $value
      *
      * @return \PlanB\DS\Stack
      */
-    public function push($input): StackInterface;
+    public function push($value): StackInterface;
 
     /**
      * Pushes zero or more values onto the top of the stack.

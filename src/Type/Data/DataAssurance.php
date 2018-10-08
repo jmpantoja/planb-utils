@@ -14,8 +14,6 @@ declare(strict_types=1);
 namespace PlanB\Type\Data;
 
 use PlanB\Type\Assurance\Assurance;
-use PlanB\Type\Stringifable;
-use PlanB\Utils\Traits\Stringify;
 
 /**
  * Assurance para Types
@@ -36,6 +34,7 @@ use PlanB\Utils\Traits\Stringify;
  * @method bool isInstanceOf(string $classOrInterfaceName)
  * @method bool isTypeOf(string ...$allowed)
  * @method bool isConvertibleToString()
+ * @method bool isHashable()
  *
  * @method bool isNotArray()
  * @method bool isNotBoolean()
@@ -53,11 +52,10 @@ use PlanB\Utils\Traits\Stringify;
  * @method bool isNotInstanceOf(string $classOrInterfaceName)
  * @method bool isNotTypeOf(string ...$allowed)
  * @method bool isNotConvertibleToString()
+ * @method bool isNotHashable()
  */
-class DataAssurance extends Assurance implements Stringifable
+class DataAssurance extends Assurance
 {
-    use Stringify;
-
     /**
      * @var \PlanB\Type\Data\Data
      */
@@ -98,25 +96,5 @@ class DataAssurance extends Assurance implements Stringifable
     protected function getEvaluatedObject(): object
     {
         return $this->data;
-    }
-
-    /**
-     * __toString alias
-     *
-     * @inheritdoc
-     */
-    public function stringify(): string
-    {
-        return $this->end()->stringify();
-    }
-
-    /**
-     * Devuelve el nombre del tipo, decorado
-     *
-     * @return string
-     */
-    public function decorate(): string
-    {
-        return $this->end()->decorate();
     }
 }

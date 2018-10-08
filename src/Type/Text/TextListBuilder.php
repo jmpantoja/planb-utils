@@ -23,7 +23,6 @@ use PlanB\Type\DataType\Type;
 class TextListBuilder extends AbstractBuilder
 {
 
-
     /**
      * Named constructor.
      *
@@ -35,27 +34,16 @@ class TextListBuilder extends AbstractBuilder
     }
 
     /**
-     * Crea la colección de textos por defecto
-     *
-     * @return \PlanB\Type\Text\TextVector
-     */
-    public function build(): TextVector
-    {
-        return new TextVector(
-            $this->getInput(),
-            $this->getResolver()
-        );
-    }
-
-
-    /**
      * Crea un TextVector
      *
      * @return \PlanB\Type\Text\TextVector
      */
     public function vector(): TextVector
     {
-        return $this->build();
+        return new TextVector(
+            $this->getInput(),
+            $this->getResolver()
+        );
     }
 
     /**

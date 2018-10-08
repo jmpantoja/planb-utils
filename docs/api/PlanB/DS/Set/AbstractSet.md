@@ -119,12 +119,12 @@ Retrieve an external iterator
 
 
 
-protected **AbstractSet::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractSet::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -133,12 +133,12 @@ protected **AbstractSet::bind**([Resolver](../../../Resolver.md) $resolver = nul
 Configura esta colección
 
 
-**AbstractSet::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**AbstractSet::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -161,20 +161,6 @@ Devuelve el tipo de la colección
 protected **AbstractSet::makeInternal**() : 
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-abstract static **AbstractSet::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 
@@ -243,13 +229,13 @@ Offset to unset
 AbstractSet constructor.
 
 
-**AbstractSet::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**AbstractSet::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

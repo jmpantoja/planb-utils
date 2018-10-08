@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Map;
 
 use Ds\Pair;
-use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\DS\Sequence;
 use PlanB\DS\Set\Set;
 use PlanB\DS\Traits\TraitArray;
@@ -44,10 +44,10 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
     /**
      * AbstractMap constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[]                                   $input
+     * @param null|\PlanB\DS\Resolver\ResolverInterface $resolver
      */
-    public function __construct(iterable $input, ?Resolver $resolver = null)
+    public function __construct(iterable $input, ?ResolverInterface $resolver = null)
     {
         $this->bind($resolver);
         $this->putAll($input);

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace spec\PlanB\DS\Resolver;
+namespace spec\PlanB\DS;
 
 
 class InvokerMock
@@ -19,6 +19,10 @@ class InvokerMock
 
     public function __invoke($value)
     {
+
+    }
+
+    public function call($value){
 
     }
 }

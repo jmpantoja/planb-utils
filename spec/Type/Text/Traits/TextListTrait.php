@@ -15,6 +15,7 @@ namespace spec\PlanB\Type\Text\Traits;
 
 
 use PlanB\DS\Exception\InvalidArgumentException;
+use PlanB\DS\Resolver\AbstractResolver;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\Text\Text;

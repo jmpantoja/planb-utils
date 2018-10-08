@@ -1,7 +1,7 @@
 
                                                                                                                                             
     
-# Resolver
+# AbstractResolver
 
 
 > Resuelve un valor antes de ser añadido a una colección
@@ -25,7 +25,7 @@
 Resolver constructor.
 
 
-protected **Resolver::__construct**() : 
+protected **AbstractResolver::__construct**() : 
 
 
 
@@ -36,7 +36,7 @@ protected **Resolver::__construct**() :
 Indica si aun no se han añadido reglas
 
 
-**Resolver::isEmpty**() : bool
+**AbstractResolver::isEmpty**() : bool
 
 
 
@@ -47,7 +47,7 @@ Indica si aun no se han añadido reglas
 Asigna un tipo a este resolver
 
 
-**Resolver::type**(string $type) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::type**(string $type) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -61,7 +61,7 @@ Asigna un tipo a este resolver
 Devuelve el tipo de este resolver
 
 
-**Resolver::getType**() : null|[DataType](../../../DataType.md)
+**AbstractResolver::getType**() : null|[DataType](../../../DataType.md)
 
 
 
@@ -72,7 +72,7 @@ Devuelve el tipo de este resolver
 Añade un nuevo loader
 
 
-**Resolver::loader**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::loader**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -87,7 +87,7 @@ Añade un nuevo loader
 Añade una nueva regla
 
 
-**Resolver::rule**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::rule**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -102,7 +102,7 @@ Añade una nueva regla
 Añade un nuevo converter
 
 
-**Resolver::converter**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::converter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -117,7 +117,7 @@ Añade un nuevo converter
 Añade un nuevo converter
 
 
-**Resolver::validator**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::validator**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -132,7 +132,7 @@ Añade un nuevo converter
 Añade un nuevo filter
 
 
-**Resolver::filter**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**AbstractResolver::filter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -147,7 +147,7 @@ Añade un nuevo filter
 Resuelve un valor
 
 
-**Resolver::value**(callable $callback, mixed $value, mixed $key = null) : 
+**AbstractResolver::value**(callable $callback, mixed $value, mixed $key = null) : 
 
 
 |Parameters: | | |
@@ -163,38 +163,13 @@ Resuelve un valor
 Resuelve un conjunto de valores
 
 
-**Resolver::values**(callable $callback, [iterable](../../../iterable.md) $values) : 
+**AbstractResolver::values**(callable $callback, [iterable](../../../iterable.md) $values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
 |[iterable](../../../iterable.md) |$values |  |
-
----
-
-
-### make
-Resolver named constructor.
-
-
-static **Resolver::make**() : [AbstractResolver](../../../AbstractResolver.md)
-
-
-
----
-
-
-### typed
-Resolver named constructor.
-
-
-static **Resolver::typed**(string $type) : [Resolver](../../../Resolver.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 

@@ -21,12 +21,12 @@
 
 
 
-**TraitTextList::configure**([Resolver](../../../Resolver.md) $resolver) : 
+**TraitTextList::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

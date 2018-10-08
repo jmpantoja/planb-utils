@@ -120,12 +120,12 @@ Retrieve an external iterator
 
 
 
-protected **AbstractStack::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractStack::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -134,12 +134,12 @@ protected **AbstractStack::bind**([Resolver](../../../Resolver.md) $resolver = n
 Configura esta colección
 
 
-**AbstractStack::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**AbstractStack::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -162,20 +162,6 @@ Devuelve el tipo de la colección
 protected **AbstractStack::makeInternal**() : 
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-abstract static **AbstractStack::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 
@@ -244,13 +230,13 @@ Offset to unset
 AbstractStack constructor.
 
 
-**AbstractStack::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**AbstractStack::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

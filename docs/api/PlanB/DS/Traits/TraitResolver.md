@@ -23,12 +23,12 @@
 
 
 
-protected **TraitResolver::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TraitResolver::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -37,12 +37,12 @@ protected **TraitResolver::bind**([Resolver](../../../Resolver.md) $resolver = n
 Configura esta colección
 
 
-**TraitResolver::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**TraitResolver::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -65,20 +65,6 @@ Crea la estructura de datos interna
 abstract protected **TraitResolver::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-abstract static **TraitResolver::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

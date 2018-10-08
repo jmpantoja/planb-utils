@@ -32,12 +32,12 @@ abstract static **AbstractBuilder::make**() : mixed
 AbstractBuilder constructor.
 
 
-protected **AbstractBuilder::__construct**([Resolver](../../Resolver.md) $resolver = null) : 
+protected **AbstractBuilder::__construct**([ResolverInterface](../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -57,7 +57,7 @@ protected **AbstractBuilder::getInput**() : mixed[]|[Traversable](../../Traversa
 Devuelve el resolver
 
 
-protected **AbstractBuilder::getResolver**() : [Resolver](../../Resolver.md)
+protected **AbstractBuilder::getResolver**() : [ResolverInterface](../../ResolverInterface.md)
 
 
 
@@ -68,7 +68,7 @@ protected **AbstractBuilder::getResolver**() : [Resolver](../../Resolver.md)
 Asigna una colección de valores para incializar la colección
 
 
-**AbstractBuilder::values**([iterable](../../iterable.md) $input) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::values**([iterable](../../iterable.md) $input) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -78,11 +78,41 @@ Asigna una colección de valores para incializar la colección
 ---
 
 
+### rule
+Añade una regla
+
+
+**AbstractBuilder::rule**(callable $rule, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$rule |  |
+|string |...$types |  |
+
+---
+
+
+### loader
+Añade un loader
+
+
+**AbstractBuilder::loader**(callable $loader, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|callable |$loader |  |
+|string |...$types |  |
+
+---
+
+
 ### filter
 Añade un filtro a la cola
 
 
-**AbstractBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::filter**(callable $filter, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -97,7 +127,7 @@ Añade un filtro a la cola
 Añade un converter
 
 
-**AbstractBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::converter**(callable $converter, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -112,39 +142,13 @@ Añade un converter
 Añade un validator
 
 
-**AbstractBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**AbstractBuilder::validator**(callable $validator, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$validator |  |
 |string |...$types |  |
-
----
-
-
-### rule
-Añade una regla
-
-
-**AbstractBuilder::rule**(callable $rule, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$rule |  |
-|string |...$types |  |
-
----
-
-
-### build
-Crea el objeto
-
-
-abstract **AbstractBuilder::build**() : mixed
-
-
 
 ---
 

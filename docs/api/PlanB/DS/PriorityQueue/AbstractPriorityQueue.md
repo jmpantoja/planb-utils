@@ -120,12 +120,12 @@ Retrieve an external iterator
 
 
 
-protected **AbstractPriorityQueue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractPriorityQueue::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -134,12 +134,12 @@ protected **AbstractPriorityQueue::bind**([Resolver](../../../Resolver.md) $reso
 Configura esta colección
 
 
-**AbstractPriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**AbstractPriorityQueue::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -166,31 +166,17 @@ protected **AbstractPriorityQueue::makeInternal**() : [PriorityQueue](../../../P
 ---
 
 
-### make
-Named constructor.
-
-
-abstract static **AbstractPriorityQueue::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
 ### __construct
 AbstractPriorityQueue constructor.
 
 
-**AbstractPriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**AbstractPriorityQueue::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

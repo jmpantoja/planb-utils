@@ -2,17 +2,18 @@
 
 namespace spec\PlanB\DS\Resolver;
 
+use PhpSpec\ObjectBehavior;
 use PlanB\DS\Exception\InvalidArgumentException;
+use PlanB\DS\Resolver\AbstractResolver;
 use PlanB\DS\Resolver\Input;
 use PlanB\DS\Resolver\Resolver;
-use PhpSpec\ObjectBehavior;
-use PlanB\DS\Vector\Vector;
 use PlanB\DS\Vector\VectorBuilder;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use spec\PlanB\DS\InvokerMock;
 
 
 class ResolverSpec extends ObjectBehavior
@@ -29,6 +30,7 @@ class ResolverSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType(Resolver::class);
+        $this->shouldHaveType(AbstractResolver::class);
     }
 
     public function it_is_empty_by_default()
@@ -61,52 +63,15 @@ class ResolverSpec extends ObjectBehavior
 
     public function it_can_add_one_converter(InvokerMock $invoker)
     {
-
         $this
             ->converter(function ($value) {
                 return self::RESPONSE;
             });
 
-
         $this->assertValues([self::INPUT, self::INPUT], [self::RESPONSE, self::RESPONSE]);
         $this->assertValue(self::INPUT, self::RESPONSE);
     }
 
-    public function it_can_add_some_converters_as_array(InvokerMock $invoker)
-    {
-        $this
-            ->converters([
-                Type::STRING => function (string $value) {
-                    return 'A';
-                },
-                Type::NUMERIC => function (string $value) {
-                    return 'B';
-                }
-            ]);
-
-        $this->assertValues(['texto', 234], ['A', 'B']);
-        $this->assertValue('texto', 'A');
-        $this->assertValue(234, 'B');
-    }
-
-
-    public function it_can_add_some_rules_as_array(InvokerMock $invoker)
-    {
-        $this
-            ->rules([
-                Type::STRING => function (string $value) {
-                    return 'A';
-                },
-                Type::NUMERIC => function (string $value) {
-                    return 'B';
-                }
-            ]);
-
-        $this->assertValues(['texto', 234], ['A', 'B']);
-
-        $this->assertValue('texto', 'A');
-        $this->assertValue(234, 'B');
-    }
 
     public function it_can_add_one_or_more_typed_rules(InvokerMock $invoker)
     {
@@ -170,7 +135,6 @@ class ResolverSpec extends ObjectBehavior
         $this->assertValues([1, 2, 3, 4, 5, 6], [2, 4, 6]);
     }
 
-
     public function it_can_ignore_a_value_using_a_filter()
     {
         $this
@@ -181,19 +145,19 @@ class ResolverSpec extends ObjectBehavior
         $this->assertValues([1, 2, 3, 4, 5, 6], [2, 4, 6]);
     }
 
-    public function it_can_add_some_filtes_as_array()
-    {
-        $this
-            ->filters([
-                Type::STRING => function (string $value) {
-                    return false;
-                },
-                Type::NUMERIC => function (string $value) {
-                    return true;
-                }
-            ]);
 
-        $this->assertValues(['texto', 234], [234]);
+    public function it_can_use_a_loader(InvokerMock $invoker)
+    {
+        $target = $invoker->getWrappedObject();
+
+        $this->loader(function ($value) use ($target) {
+            $target->call($value);
+        });
+
+        $invoker->call('xx')->shouldBeCalled();
+
+        $this->value(function () {
+        }, 'xx');
 
     }
 
@@ -238,25 +202,6 @@ class ResolverSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 1);
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 3);
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 5);
-    }
-
-    public function it_can_add_some_validators_as_array(InvokerMock $invoker)
-    {
-        $this
-            ->validators([
-                Type::STRING => function (string $value) {
-                    return false;
-                },
-                Type::NUMERIC => function (string $value) {
-                    return true;
-                }
-            ]);
-
-
-        $this->assertValues([90992, 234], [90992, 234]);
-        $this->shouldThrow(InvalidArgumentException::class)->duringValues($invoker, ['texto   ', 234]);
-
-        $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 'texto');
     }
 
 

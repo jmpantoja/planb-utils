@@ -17,7 +17,7 @@ use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Color;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Stringifable;
 use PlanB\Type\Text\Text;
@@ -40,7 +40,7 @@ class Paragraph extends TextVector implements Stringifable
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): void
+    public function configure(ResolverInterface $resolver): void
     {
 
         $resolver->type(LineWithStyle::class);
@@ -59,10 +59,10 @@ class Paragraph extends TextVector implements Stringifable
     /**
      * Paragraph constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[]                                   $input
+     * @param null|\PlanB\DS\Resolver\ResolverInterface $resolver
      */
-    public function __construct(iterable $input, ?Resolver $resolver = null)
+    public function __construct(iterable $input, ?ResolverInterface $resolver = null)
     {
         $this->style = Style::make();
         parent::__construct($input, $resolver);

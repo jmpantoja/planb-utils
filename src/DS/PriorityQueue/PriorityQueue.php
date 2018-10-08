@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace PlanB\DS\PriorityQueue;
 
+use PlanB\DS\Resolver\Resolver;
+
 /**
  * A PriorityQueue is very similar to a Queue. Values are pushed into the queue
  * with an assigned priority, and the value with the highest priority will
@@ -41,8 +43,8 @@ final class PriorityQueue extends AbstractPriorityQueue
      */
     public static function typed(string $type, iterable $input = []): PriorityQueue
     {
-        return PriorityQueueBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

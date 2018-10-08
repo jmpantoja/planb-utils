@@ -14,14 +14,12 @@ declare(strict_types=1);
 namespace PlanB\DS;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 
 /**
  * Clase Base para Builders
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-abstract class AbstractBuilder
+abstract class AbstractBuilder implements BuilderInterface
 {
     /**
      * @var mixed[]\Traversable
@@ -29,7 +27,7 @@ abstract class AbstractBuilder
     private $input;
 
     /**
-     * @var \PlanB\DS\Resolver\Resolver
+     * @var \PlanB\DS\Resolver\ResolverInterface
      */
     private $resolver;
 
@@ -43,9 +41,9 @@ abstract class AbstractBuilder
     /**
      * AbstractBuilder constructor.
      *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param null|\PlanB\DS\Resolver\ResolverInterface $resolver
      */
-    protected function __construct(?Resolver $resolver = null)
+    protected function __construct(?ResolverInterface $resolver = null)
     {
         $this->resolver = $resolver ?? Resolver::make();
         $this->input = [];
@@ -64,9 +62,9 @@ abstract class AbstractBuilder
     /**
      * Devuelve el resolver
      *
-     * @return \PlanB\DS\Resolver\Resolver
+     * @return \PlanB\DS\Resolver\ResolverInterface
      */
-    protected function getResolver(): Resolver
+    protected function getResolver(): ResolverInterface
     {
         return $this->resolver;
     }
@@ -77,14 +75,46 @@ abstract class AbstractBuilder
      *
      * @param mixed[] $input
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return \PlanB\DS\BuilderInterface
      */
-    public function values(iterable $input): self
+    public function values(iterable $input): BuilderInterface
     {
         $this->input = $input;
 
         return $this;
     }
+
+
+    /**
+     * Añade una regla
+     *
+     * @param callable $rule
+     * @param string   ...$types
+     *
+     * @return \PlanB\DS\BuilderInterface
+     */
+    public function rule(callable $rule, string ...$types): BuilderInterface
+    {
+        $this->resolver->rule($rule, ...$types);
+
+        return $this;
+    }
+
+    /**
+     * Añade un loader
+     *
+     * @param callable $loader
+     * @param string   ...$types
+     *
+     * @return \PlanB\DS\BuilderInterface
+     */
+    public function loader(callable $loader, string ...$types): BuilderInterface
+    {
+        $this->resolver->loader($loader, ...$types);
+
+        return $this;
+    }
+
 
     /**
      * Añade un filtro a la cola
@@ -92,9 +122,9 @@ abstract class AbstractBuilder
      * @param callable $filter
      * @param string   ...$types
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return \PlanB\DS\BuilderInterface
      */
-    public function filter(callable $filter, string ...$types): self
+    public function filter(callable $filter, string ...$types): BuilderInterface
     {
         $this->resolver->filter($filter, ...$types);
 
@@ -107,9 +137,9 @@ abstract class AbstractBuilder
      * @param callable $converter
      * @param string   ...$types
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return \PlanB\DS\BuilderInterface
      */
-    public function converter(callable $converter, string ...$types): self
+    public function converter(callable $converter, string ...$types): BuilderInterface
     {
         $this->resolver->converter($converter, ...$types);
 
@@ -123,36 +153,12 @@ abstract class AbstractBuilder
      * @param callable $validator
      * @param string   ...$types
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return \PlanB\DS\BuilderInterface
      */
-    public function validator(callable $validator, string ...$types): self
+    public function validator(callable $validator, string ...$types): BuilderInterface
     {
         $this->resolver->validator($validator, ...$types);
 
         return $this;
     }
-
-
-    /**
-     * Añade una regla
-     *
-     * @param callable $rule
-     * @param string   ...$types
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public function rule(callable $rule, string ...$types): self
-    {
-        $this->resolver->rule($rule, ...$types);
-
-        return $this;
-    }
-
-
-    /**
-     * Crea el objeto
-     *
-     * @return mixed
-     */
-    abstract public function build();
 }

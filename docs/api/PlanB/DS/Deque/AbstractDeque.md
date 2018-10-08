@@ -123,12 +123,12 @@ Retrieve an external iterator
 
 
 
-protected **AbstractDeque::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractDeque::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -137,12 +137,12 @@ protected **AbstractDeque::bind**([Resolver](../../../Resolver.md) $resolver = n
 Configura esta colección
 
 
-**AbstractDeque::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**AbstractDeque::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -165,35 +165,6 @@ Devuelve el tipo de la colección
 protected **AbstractDeque::makeInternal**() : 
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-abstract static **AbstractDeque::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **AbstractDeque::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -667,13 +638,13 @@ Offset to unset
 AbstractDeque constructor.
 
 
-**AbstractDeque::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**AbstractDeque::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

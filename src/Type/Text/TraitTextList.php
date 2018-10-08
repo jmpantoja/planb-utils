@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Text;
 
-use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\Type\DataType\Type;
 
 /**
@@ -25,16 +25,14 @@ trait TraitTextList
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): void
+    public function configure(ResolverInterface $resolver): void
     {
 
         $resolver
             ->type(Text::class)
-            ->rules([
-                Type::STRINGIFABLE => function ($value) {
-                    return Text::make($value);
-                },
-            ]);
+            ->rule(function ($value) {
+                return Text::make($value);
+            }, Type::STRINGIFABLE);
     }
 
     /**

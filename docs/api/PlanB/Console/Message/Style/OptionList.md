@@ -119,12 +119,12 @@ Retrieve an external iterator
 
 
 
-protected **OptionList::bind**([Resolver](../../../../Resolver.md) $resolver = null) : 
+protected **OptionList::bind**([ResolverInterface](../../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -133,12 +133,12 @@ protected **OptionList::bind**([Resolver](../../../../Resolver.md) $resolver = n
 
 
 
-**OptionList::configure**([Resolver](../../../../Resolver.md) $resolver) : void
+**OptionList::configure**([ResolverInterface](../../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -161,20 +161,6 @@ Crea la estructura de datos interna
 abstract protected **OptionList::makeInternal**() : [Collection](../../../../Collection.md)
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-static **OptionList::make**([iterable](../../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 
@@ -243,13 +229,13 @@ Offset to unset
 AbstractSet constructor.
 
 
-**OptionList::__construct**([iterable](../../../../iterable.md) $input, [Resolver](../../../../Resolver.md) $resolver = null) : 
+**OptionList::__construct**([iterable](../../../../iterable.md) $input, [ResolverInterface](../../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../../iterable.md) |$input |  |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -532,6 +518,20 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 |Parameters: | | |
 | --- | --- | --- |
 |[Set](../../../../Set.md) |$set |  |
+
+---
+
+
+### make
+Named constructor.
+
+
+static **OptionList::make**([iterable](../../../../iterable.md) $input = []) : [Collection](../../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 

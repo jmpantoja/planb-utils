@@ -14,7 +14,21 @@ declare(strict_types=1);
 use PlanB\Type\DataType\DataTypeAssurance;
 use PlanB\Type\Data\DataAssurance;
 use PlanB\Type\Data\Data;
+use PlanB\Type\DataType\DataType;
 
+if (!function_exists('data_type')) {
+
+    /**
+     * Crea un objeto DataType
+     *
+     * @param string $classname
+     * @return DataType
+     */
+    function data_type(string $classname): DataType
+    {
+        return DataType::make($classname);
+    }
+}
 
 if (!function_exists('ensure_type')) {
 

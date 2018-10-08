@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
-use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\DS\Set\AbstractSet;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
@@ -37,7 +37,7 @@ class OptionList extends AbstractSet
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): void
+    public function configure(ResolverInterface $resolver): void
     {
         $resolver
             ->type(Type::STRING)

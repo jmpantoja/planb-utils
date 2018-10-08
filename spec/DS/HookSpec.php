@@ -10,7 +10,7 @@ use PlanB\DS\PriorityQueue\PriorityQueue;
 use PlanB\DS\Queue\Queue;
 use PlanB\DS\Resolver\Input;
 use PlanB\DS\Resolver\ResolvedValuesList;
-use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\AbstractResolver;
 use PlanB\DS\Set\Set;
 use PlanB\DS\Stack\Stack;
 use PlanB\DS\Vector\Vector;
@@ -19,7 +19,7 @@ use Prophecy\Argument;
 class HookSpec extends ObjectBehavior
 {
 
-    private function buildWithRange(string $className, Resolver $resolver, ...$values): void
+    private function buildWithRange(string $className, AbstractResolver $resolver, ...$values): void
     {
         $this->beAnInstanceOf($className);
 

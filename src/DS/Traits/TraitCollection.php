@@ -20,6 +20,7 @@ use PlanB\DS\Collection;
  */
 trait TraitCollection
 {
+
     /**
      * Removes all values from the collection.
      *
@@ -76,7 +77,7 @@ trait TraitCollection
      */
     public function copy(): Collection
     {
-        return static::make($this->items, $this->resolver);
+        return new static($this->items, $this->resolver);
     }
 
     /**

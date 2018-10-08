@@ -24,6 +24,21 @@ always be at the front of the queue.
 
 ## Methods
 
+### __construct
+AbstractVector constructor.
+
+
+abstract **PriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### clear
 Removes all values from the collection.
 
@@ -166,50 +181,6 @@ abstract protected **PriorityQueue::makeInternal**() : [Collection](../../../Col
 ---
 
 
-### make
-
-
-
-static **PriorityQueue::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-protected **PriorityQueue::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
-
----
-
-
-### __construct
-
-
-
-**PriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
 ### peek
 Returns the value with the highest priority in the priority queue.
 
@@ -252,6 +223,20 @@ Pushes zero or more values onto the top of the queue.
 
 
 **PriorityQueue::pushAll**([iterable](../../../iterable.md) $input) : [PriorityQueue](../../../PriorityQueue.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### make
+
+
+
+static **PriorityQueue::make**([iterable](../../../iterable.md) $input = []) : [PriorityQueue](../../../PriorityQueue.md)
 
 
 |Parameters: | | |

@@ -120,6 +120,22 @@ if (!function_exists('beautify')) {
     }
 }
 
+if (!function_exists('beautify_type')) {
+
+    /**
+     * Devuelve la representación de $value como cadena de texto
+     *
+     * @param mixed $value
+     * @param bool|int|Format $format
+     *
+     * @return string
+     */
+    function beautify_type($type): string
+    {
+        return Beautifier::make()
+            ->type($type);
+    }
+}
 
 if (!function_exists('to_string')) {
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Traits;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\Type\DataType\DataType;
 
 /**
@@ -27,7 +28,7 @@ trait TraitResolver
     protected $items;
 
     /**
-     * @var \PlanB\DS\Resolver\Resolver
+     * @var \PlanB\DS\Resolver\ResolverInterface
      */
     private $resolver;
 
@@ -35,7 +36,7 @@ trait TraitResolver
     /**
      * @inheritDoc
      */
-    protected function bind(?Resolver $resolver = null)
+    protected function bind(?ResolverInterface $resolver = null)
     {
         $this->resolver = $resolver ?? Resolver::make();
         $this->configure($this->resolver);
@@ -46,13 +47,13 @@ trait TraitResolver
     /**
      * Configura esta colección
      *
-     * @param \PlanB\DS\Resolver\Resolver $resolver
+     * @param \PlanB\DS\Resolver\ResolverInterface $resolver
      *
      * @return void
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function configure(Resolver $resolver): void
+    public function configure(ResolverInterface $resolver): void
     {
     }
 
@@ -72,13 +73,4 @@ trait TraitResolver
      * @return \DS\Collection
      */
     abstract protected function makeInternal(): \DS\Collection;
-
-    /**
-     * Named constructor.
-     *
-     * @param mixed[] $input
-     *
-     * @return mixed
-     */
-    abstract static public function make(iterable $input = []);
 }

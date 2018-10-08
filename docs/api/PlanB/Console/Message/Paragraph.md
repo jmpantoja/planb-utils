@@ -122,12 +122,12 @@ Retrieve an external iterator
 
 
 
-protected **Paragraph::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Paragraph::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -136,12 +136,12 @@ protected **Paragraph::bind**([Resolver](../../../Resolver.md) $resolver = null)
 
 
 
-**Paragraph::configure**([Resolver](../../../Resolver.md) $resolver) : void
+**Paragraph::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -164,20 +164,6 @@ Crea la estructura de datos interna
 abstract protected **Paragraph::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-Named constructor.
-
-
-abstract static **Paragraph::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
 
 ---
 
@@ -651,13 +637,13 @@ Offset to unset
 Paragraph constructor.
 
 
-**Paragraph::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Paragraph::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -683,6 +669,20 @@ Convierte la lista en un array de strings
 **Paragraph::toArrayOfStrings**() : string[]
 
 
+
+---
+
+
+### make
+Named constructor.
+
+
+static **Paragraph::make**([iterable](../../../iterable.md) $input = []) : mixed
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

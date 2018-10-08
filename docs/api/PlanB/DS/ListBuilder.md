@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# TextListBuilder
+# ListBuilder
 
 
-> Builder para TextList
+> Builder para crear objetos Collection
 >
 > 
 
@@ -21,7 +21,7 @@
 Named constructor.
 
 
-static **TextListBuilder::make**() : mixed
+static **ListBuilder::make**() : mixed
 
 
 
@@ -32,12 +32,12 @@ static **TextListBuilder::make**() : mixed
 AbstractBuilder constructor.
 
 
-protected **TextListBuilder::__construct**([AbstractResolver](../../../AbstractResolver.md) $resolver = null) : 
+protected **ListBuilder::__construct**([AbstractResolver](../../AbstractResolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[AbstractResolver](../../../AbstractResolver.md) |$resolver |  |
+|[AbstractResolver](../../AbstractResolver.md) |$resolver |  |
 
 ---
 
@@ -46,7 +46,7 @@ protected **TextListBuilder::__construct**([AbstractResolver](../../../AbstractR
 Devuelve el input
 
 
-protected **TextListBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
+protected **ListBuilder::getInput**() : mixed[]|[Traversable](../../Traversable.md)
 
 
 
@@ -57,7 +57,7 @@ protected **TextListBuilder::getInput**() : mixed[]|[Traversable](../../../Trave
 Devuelve el resolver
 
 
-protected **TextListBuilder::getResolver**() : [AbstractResolver](../../../AbstractResolver.md)
+protected **ListBuilder::getResolver**() : [AbstractResolver](../../AbstractResolver.md)
 
 
 
@@ -68,12 +68,12 @@ protected **TextListBuilder::getResolver**() : [AbstractResolver](../../../Abstr
 Asigna una colección de valores para incializar la colección
 
 
-**TextListBuilder::values**([iterable](../../../iterable.md) $input) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::values**([iterable](../../iterable.md) $input) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
+|[iterable](../../iterable.md) |$input |  |
 
 ---
 
@@ -82,7 +82,7 @@ Asigna una colección de valores para incializar la colección
 Añade una regla
 
 
-**TextListBuilder::rule**(callable $rule, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::rule**(callable $rule, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
@@ -97,7 +97,7 @@ Añade una regla
 Asigna varias reglas
 
 
-**TextListBuilder::rules**(array $rules) : [AbstractResolver](../../../AbstractResolver.md)
+**ListBuilder::rules**(array $rules) : [AbstractResolver](../../AbstractResolver.md)
 
 
 |Parameters: | | |
@@ -111,7 +111,7 @@ Asigna varias reglas
 Añade un loader
 
 
-**TextListBuilder::loader**(callable $loader, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::loader**(callable $loader, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
@@ -126,7 +126,7 @@ Añade un loader
 Asigna varios loaders
 
 
-**TextListBuilder::loaders**(array $loaders) : [AbstractResolver](../../../AbstractResolver.md)
+**ListBuilder::loaders**(array $loaders) : [AbstractResolver](../../AbstractResolver.md)
 
 
 |Parameters: | | |
@@ -140,7 +140,7 @@ Asigna varios loaders
 Añade un filtro a la cola
 
 
-**TextListBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
@@ -155,7 +155,7 @@ Añade un filtro a la cola
 Asigna varios filters
 
 
-**TextListBuilder::filters**(array $filters) : [AbstractResolver](../../../AbstractResolver.md)
+**ListBuilder::filters**(array $filters) : [AbstractResolver](../../AbstractResolver.md)
 
 
 |Parameters: | | |
@@ -169,7 +169,7 @@ Asigna varios filters
 Añade un converter
 
 
-**TextListBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
@@ -184,7 +184,7 @@ Añade un converter
 Asigna varios converters
 
 
-**TextListBuilder::converters**(array $converters) : [AbstractResolver](../../../AbstractResolver.md)
+**ListBuilder::converters**(array $converters) : [AbstractResolver](../../AbstractResolver.md)
 
 
 |Parameters: | | |
@@ -198,7 +198,7 @@ Asigna varios converters
 Añade un validator
 
 
-**TextListBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
+**ListBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
 
 
 |Parameters: | | |
@@ -213,7 +213,7 @@ Añade un validator
 Asigna varios validators
 
 
-**TextListBuilder::validators**(array $validators) : [AbstractResolver](../../../AbstractResolver.md)
+**ListBuilder::validators**(array $validators) : [AbstractResolver](../../AbstractResolver.md)
 
 
 |Parameters: | | |
@@ -224,10 +224,10 @@ Asigna varios validators
 
 
 ### vector
-Crea un TextVector
+Crea un vector
 
 
-**TextListBuilder::vector**() : mixed
+**ListBuilder::vector**() : mixed
 
 
 
@@ -238,7 +238,7 @@ Crea un TextVector
 Crea un deque
 
 
-**TextListBuilder::deque**() : mixed
+**ListBuilder::deque**() : mixed
 
 
 
@@ -249,7 +249,7 @@ Crea un deque
 Crea un stack
 
 
-**TextListBuilder::stack**() : mixed
+**ListBuilder::stack**() : mixed
 
 
 
@@ -260,7 +260,7 @@ Crea un stack
 Crea un queue
 
 
-**TextListBuilder::queue**() : mixed
+**ListBuilder::queue**() : mixed
 
 
 
@@ -271,7 +271,7 @@ Crea un queue
 Crea un prioriy queue
 
 
-**TextListBuilder::priorityQueue**() : mixed
+**ListBuilder::priorityQueue**() : mixed
 
 
 
@@ -282,7 +282,7 @@ Crea un prioriy queue
 Crea un map
 
 
-**TextListBuilder::map**() : mixed
+**ListBuilder::map**() : mixed
 
 
 
@@ -293,31 +293,37 @@ Crea un map
 Crea un set
 
 
-**TextListBuilder::set**() : mixed
+**ListBuilder::set**() : mixed
 
 
 
 ---
 
 
-### ignoreBlank
-Añade un filtro que ignora los textos en blanco
+### typed
+Named constructor.
 
 
-**TextListBuilder::ignoreBlank**() : [$this](../../../$this.md)
+static **ListBuilder::typed**(string $type) : [ListBuilder](../../ListBuilder.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 
 
-### ignoreEmpty
-Añade un filtro que ignora los textos vacios
+### bind
+Named constructor.
 
 
-**TextListBuilder::ignoreEmpty**() : [$this](../../../$this.md)
+static **ListBuilder::bind**([Resolver](../../Resolver.md) $resolver) : [ListBuilder](../../ListBuilder.md)
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../Resolver.md) |$resolver |  |
 
 ---
 

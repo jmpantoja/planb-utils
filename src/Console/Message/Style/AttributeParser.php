@@ -31,6 +31,12 @@ class AttributeParser
      */
     private $options;
 
+    private const FOREGROUND_COLOR_KEY = 'fg';
+
+    private const BACKGROUND_COLOR_KEY = 'bg';
+
+    private const OPTIONS_KEY = 'options';
+
 
     /**
      * AttributeParser named constructor.
@@ -78,72 +84,67 @@ class AttributeParser
         $key = $matches[1];
         $value = $matches[2];
 
-        $this->parseValue($key, $value);
+        $this->parseForegroundColor($key, $value);
+        $this->parseBackgroundColor($key, $value);
+        $this->parseOptions($key, $value);
     }
 
-    /**
-     * Parsea un valor en su propiedad correspondiente
-     *
-     * @param string $key
-     * @param string $value
-     */
-    private function parseValue(string $key, string $value): void
-    {
-        switch ($key) {
-            case 'fg':
-                $this->parseForegroundColor($value);
-                break;
-            case 'bg':
-                $this->parseBackgroundColor($value);
-                break;
-            default:
-                $this->parseOptions($value);
-        }
-    }
-
-    /**
-     * Parsea la propiedad options
-     *
-     * @param string $options
-     *
-     * @return \PlanB\Console\Message\Style\AttributeParser
-     */
-    private function parseOptions(string $options): self
-    {
-        $this->options->clear();
-
-        $pieces = explode(',', $options);
-        foreach ($pieces as $optionName) {
-            $this->options->addIfIsValid($optionName);
-        }
-
-        return $this;
-    }
 
     /**
      * Parsea la propiedad foreground color
      *
+     * @param string $key
      * @param string $colorName
      *
      * @return \PlanB\Console\Message\Style\AttributeParser
      */
-    private function parseForegroundColor(string $colorName): self
+    private function parseForegroundColor(string $key, string $colorName): self
     {
+        if (self::FOREGROUND_COLOR_KEY !== $key) {
+            return $this;
+        }
+
         $this->fgColor = $this->buildColor($colorName);
 
         return $this;
     }
 
+
     /**
      * Parsea la propiedad background color
      *
+     * @param string $key
      * @param string $colorName
      *
      * @return \PlanB\Console\Message\Style\AttributeParser
      */
-    private function parseBackgroundColor(string $colorName): self
+    private function parseBackgroundColor(string $key, string $colorName): self
     {
+        if (self::BACKGROUND_COLOR_KEY !== $key) {
+            return $this;
+        }
+
         $this->bgColor = $this->buildColor($colorName);
+
+        return $this;
+    }
+
+
+    /**
+     * Parsea la propiedad options
+     *
+     * @param string $key
+     * @param string $options
+     *
+     * @return \PlanB\Console\Message\Style\AttributeParser
+     */
+    private function parseOptions(string $key, string $options): self
+    {
+        if (self::OPTIONS_KEY !== $key) {
+            return $this;
+        }
+
+        $this->options->addFromString($options);
 
         return $this;
     }

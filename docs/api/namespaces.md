@@ -5,6 +5,9 @@
 
 * [PlanB](PlanB.md)
 * [PlanB\Console](PlanB/Console.md)
+* [PlanB\Console\Beautifier](PlanB/Console/Beautifier.md)
+* [PlanB\Console\Beautifier\Formatter](PlanB/Console/Beautifier/Formatter.md)
+* [PlanB\Console\Beautifier\Formatter\ExceptionFormatter](PlanB/Console/Beautifier/Formatter/ExceptionFormatter.md)
 * [PlanB\Console\Message](PlanB/Console/Message.md)
 * [PlanB\Console\Message\Decorator](PlanB/Console/Message/Decorator.md)
 * [PlanB\Console\Message\Style](PlanB/Console/Message/Style.md)
@@ -15,7 +18,6 @@
 * [PlanB\DS\PriorityQueue](PlanB/DS/PriorityQueue.md)
 * [PlanB\DS\Queue](PlanB/DS/Queue.md)
 * [PlanB\DS\Resolver](PlanB/DS/Resolver.md)
-* [PlanB\DS\Resolver\Input](PlanB/DS/Resolver/Input.md)
 * [PlanB\DS\Resolver\Rule](PlanB/DS/Resolver/Rule.md)
 * [PlanB\DS\Set](PlanB/DS/Set.md)
 * [PlanB\DS\Stack](PlanB/DS/Stack.md)

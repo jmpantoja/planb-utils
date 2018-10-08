@@ -14,6 +14,8 @@ declare(strict_types=1);
 use \PlanB\Type\Text\Text;
 use \PlanB\Type\Text\TextAssurance;
 use \PlanB\Type\Data\Data;
+use \PlanB\Console\Beautifier\Beautifier;
+use \PlanB\Console\Beautifier\Format;
 
 
 if (!function_exists('ensure_text')) {
@@ -99,18 +101,22 @@ if (!function_exists('to_snake_case')) {
     }
 }
 
-if (!function_exists('force_to_string')) {
+if (!function_exists('beautify')) {
 
     /**
      * Devuelve la representación de $value como cadena de texto
-     *Forzandola cuando no es posible
      *
      * @param mixed $value
+     * @param bool|int|Format $format
+     *
      * @return string
      */
-    function force_to_string($value): string
+    function beautify($value, $format = Format::FULL): string
     {
-        return Data::make($value)->decorate();
+        $format = Format::make($format);
+
+        return Beautifier::make()
+            ->render($value, $format);
     }
 }
 
@@ -129,6 +135,7 @@ if (!function_exists('to_string')) {
         return Text::make($value)->stringify();
     }
 }
+
 
 if (!function_exists('to_text')) {
 

@@ -4,8 +4,7 @@
 # Rule
 
 
-> Regla que tiene que cumplir un valor antes de ser añadido
-a una colección
+> Manipula un valor antes de ser añadido a la colección
 >
 > 
 
@@ -18,118 +17,74 @@ a una colección
 
 ## Methods
 
-### typed
-Resolver named constructor.
-
-
-static **Rule::typed**(string $type, callable $callback) : [Rule](../../../../Rule.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$callback |  |
-
----
-
-
 ### make
-Resolver named constructor.
+Rule named constructor.
 
 
-static **Rule::make**(callable $callback) : [Rule](../../../../Rule.md)
+static **Rule::make**(callable $callback, string ...$types) : [Rule](../../../../Rule.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
 ### __construct
-Resolver constructor.
+Rule constructor.
 
 
-protected **Rule::__construct**(callable $callback, string $type = null) : 
+protected **Rule::__construct**(callable $callback, string ...$types) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|string |$type |  |
+|string |...$types |  |
 
 ---
 
 
-### setInnerType
-Informa a la regla de cual es el tipo del resolver padre
+### execute
+Manipula un input
 
 
-**Rule::setInnerType**([DataType](../../../../DataType.md) $type) : [Rule](../../../../Rule.md)
+**Rule::execute**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[DataType](../../../../DataType.md) |$type |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 
 
-### isOfInnerType
-Indica si un valor es del tipo interno de esta regla
-El tipo interno es el tipo del resolver al que pertenece esta regla
+### call
+Ejecuta el callback
 
 
-protected **Rule::isOfInnerType**(mixed $value) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$value |  |
-
----
-
-
-### __invoke
-Ejecuta la regla
-
-
-**Rule::__invoke**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
+protected **Rule::call**(mixed ...$arguments) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
+|mixed |...$arguments |  |
 
 ---
 
 
 ### resolve
-Ejecuta la regla
+Resuelve un input
 
 
-**Rule::resolve**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
-
----
-
-
-### buildInput
-Convierte la respuesta obtenida en un objeto InputInterface
-
-
-abstract **Rule::buildInput**(mixed $response, mixed $value) : [InputInterface](../../../../InputInterface.md)
+protected **Rule::resolve**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$response |  |
-|mixed |$value |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 

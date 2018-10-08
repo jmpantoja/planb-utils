@@ -115,11 +115,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **OptionList::__construct**([Resolver](../../../../Resolver.md) $resolver = null) : 
+protected **OptionList::bind**([Resolver](../../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -133,7 +133,7 @@ protected **OptionList::__construct**([Resolver](../../../../Resolver.md) $resol
 
 
 
-**OptionList::configure**([Resolver](../../../../Resolver.md) $resolver) : [Collection](../../../../Collection.md)
+**OptionList::configure**([Resolver](../../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -169,42 +169,12 @@ abstract protected **OptionList::makeInternal**() : [Collection](../../../../Col
 Named constructor.
 
 
-static **OptionList::make**([iterable](../../../../iterable.md) $input = [], [Resolver](../../../../Resolver.md) $resolver = null) : [Collection](../../../../Collection.md)
+static **OptionList::make**([iterable](../../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../../iterable.md) |$input |  |
-|[Resolver](../../../../Resolver.md) |$resolver |  |
-
----
-
-
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
-
-
-abstract protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [Collection](../../../../Collection.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-protected **OptionList::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -265,6 +235,35 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractSet constructor.
+
+
+**OptionList::__construct**([iterable](../../../../iterable.md) $input, [Resolver](../../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
+|[Resolver](../../../../Resolver.md) |$resolver |  |
+
+---
+
+
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **OptionList::duplicate**([iterable](../../../../iterable.md) $input = []) : [SetInterface](../../../../SetInterface.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../../iterable.md) |$input |  |
 
 ---
 
@@ -537,16 +536,17 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 ---
 
 
-### addIfIsValid
-Añade una nueva option solo si es valida
+### addFromString
+Añade las opciones contenidas en una cadena de texto
+ignorando las que no sean correctas
 
 
-**OptionList::addIfIsValid**(string $option) : [OptionList](../../../../OptionList.md)
+**OptionList::addFromString**(string $options) : [OptionList](../../../../OptionList.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$option |  |
+|string |$options |  |
 
 ---
 

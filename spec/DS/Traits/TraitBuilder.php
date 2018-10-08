@@ -15,6 +15,8 @@ namespace spec\PlanB\DS\Traits;
 
 use PlanB\DS\AbstractBuilder;
 use PlanB\DS\Exception\InvalidArgumentException;
+use PlanB\DS\Resolver\Input;
+use PlanB\DS\Vector\VectorBuilder;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Text\Text;
@@ -62,6 +64,7 @@ trait TraitBuilder
 
     public function it_throws_an_exception_when_build_with_invalid_type_values()
     {
+
         $this->beConstructedThrough('typed', [Type::STRING]);
 
         $this
@@ -75,11 +78,35 @@ trait TraitBuilder
         $this->shouldThrow(InvalidArgumentException::class)->duringBuild();
     }
 
+    public function it_can_add_a_custom_rule()
+    {
+        $target = $this
+            ->rule(function ($value, Input $input) {
+                $isString = Data::make($value)->isConvertibleToString();
+
+                if (!$isString) {
+                    $input->ignore();
+                }
+            })
+            ->values([
+                self::VALUE_A,
+                [self::VALUE_A, self::VALUE_B],
+                self::VALUE_B,
+                new \stdClass(),
+                self::VALUE_C,
+            ])
+            ->build();
+
+        $target->getInnerType()->shouldReturn(null);
+        $target->shouldIterateLike($this->getResponse());
+
+    }
+
 
     public function it_can_add_a_filter()
     {
         $target = $this
-            ->addFilter(function ($value) {
+            ->filter(function ($value) {
                 return Data::make($value)->isConvertibleToString();
             })
             ->values([
@@ -99,9 +126,9 @@ trait TraitBuilder
     public function it_can_add_a_typed_filter()
     {
         $target = $this
-            ->addTypedFilter(Type::STRING, function (string $value) {
+            ->filter(function (string $value) {
                 return $value != self::VALUE_D;
-            })
+            }, Type::STRING)
             ->values([
                 self::VALUE_A,
                 self::VALUE_B,
@@ -119,9 +146,9 @@ trait TraitBuilder
     public function it_can_add_a_converter()
     {
         $target = $this
-            ->addConverter(Type::ARRAY, function (array $value) {
+            ->converter(function (array $value) {
                 return self::VALUE_B;
-            })
+            }, Type::ARRAY)
             ->values([
                 self::VALUE_A,
                 [self::VALUE_A, self::VALUE_B],
@@ -136,7 +163,7 @@ trait TraitBuilder
     public function it_can_add_a_validator()
     {
         $target = $this
-            ->addValidator(function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
             })
             ->values([
@@ -153,7 +180,7 @@ trait TraitBuilder
     public function it_throws_an_exception_when_values_are_invalid()
     {
         $this
-            ->addValidator(function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
             })
             ->values([
@@ -170,9 +197,9 @@ trait TraitBuilder
     public function it_can_add_a_typed_validator()
     {
         $target = $this
-            ->addTypedValidator(Type::STRING, function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
-            })
+            }, Type::STRING)
             ->values([
                 self::VALUE_A,
                 self::VALUE_B,
@@ -187,9 +214,9 @@ trait TraitBuilder
     public function it_throws_an_exception_when_values_are_invalid_for_typed_validator()
     {
         $this
-            ->addTypedValidator(Type::STRING, function (string $value) {
+            ->validator(function (string $value) {
                 return $value != 'XXXX';
-            })
+            }, Type::STRING)
             ->values([
                 self::VALUE_A,
                 'XXXX',
@@ -198,39 +225,6 @@ trait TraitBuilder
             ]);
 
         $this->shouldThrow(InvalidArgumentException::class)->duringBuild();
-    }
-
-
-    public function it_can_add_a_normalizer()
-    {
-        $target = $this
-            ->addNormalizer(function ($value) {
-                return Text::make($value);
-            })
-            ->values([
-                self::VALUE_A,
-                self::VALUE_B,
-                self::VALUE_C,
-            ])
-            ->build();
-
-        $target->shouldIterateLike($this->getResponseWithText());
-    }
-
-    public function it_can_add_a_typed_normalizer()
-    {
-        $target = $this
-            ->addTypedNormalizer(Type::STRING, function ($value) {
-                return Text::make($value);
-            })
-            ->values([
-                self::VALUE_A,
-                self::VALUE_B,
-                self::VALUE_C,
-            ])
-            ->build();
-
-        $target->shouldIterateLike($this->getResponseWithText());
     }
 
     /**

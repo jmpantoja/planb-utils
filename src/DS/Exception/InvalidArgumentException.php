@@ -13,8 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Exception;
 
-use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\Type\Data\Data;
+use PlanB\Type\Text\Text;
 
 /**
  * Se lanza cuando se trata de añadir un valor considerado no valido
@@ -29,30 +28,46 @@ class InvalidArgumentException extends \InvalidArgumentException
      */
     public function __construct(string $message, ?\Throwable $previous = null)
     {
-
-        if ($previous instanceof \Throwable) {
-            $message = sprintf("%s because: \n\n%s", $message, $previous->getMessage());
-        }
-
         parent::__construct($message, 100, $previous);
     }
 
     /**
-     * Crea una instancia
+     * InvalidItemException named constructor.
      *
-     * @param \PlanB\DS\Resolver\Input\FailedInput $input
-     * @param null|\Throwable                      $previous
+     * @param mixed           $data
+     * @param string          $reason
+     * @param null|\Throwable $previous
      *
      * @return \PlanB\DS\Exception\InvalidArgumentException
      */
-    public static function make(FailedInput $input, ?\Throwable $previous = null): self
+    public static function make($data, string $reason, ?\Throwable $previous = null): self
+    {
+        $message = self::buildMessage($data, $reason);
+
+        return new static($message->stringify(), $previous);
+    }
+
+    /**
+     * Construye el mensaje de la excepción
+     *
+     * @param mixed  $data
+     * @param string $reason
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    private static function buildMessage($data, string $reason): Text
     {
 
-        $original = $input->getOriginal();
-        $value = Data::make($original)->decorate();
+        $notValid = cli_line('NOT VALID')->bold()->underscore();
 
-        $message = sprintf("%s \n\nis <options=bold,underscore>NOT VALID</>", $value);
+        $message = cli_msg([
+            beautify($data),
+            cli_line('is %s', $notValid),
+            cli_blank(),
+            'because:',
+            $reason,
+        ]);
 
-        return new static($message, $previous);
+        return $message->block();
     }
 }

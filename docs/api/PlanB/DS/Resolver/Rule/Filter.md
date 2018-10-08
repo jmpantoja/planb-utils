@@ -4,8 +4,7 @@
 # Filter
 
 
-> Discrimina los valores que se consideran validos de los que no
-No lanza excepciones ante un valor incorrecto, simplemente lo ignora
+> Regla que permite ignorar Inputs
 >
 > 
 
@@ -18,118 +17,74 @@ No lanza excepciones ante un valor incorrecto, simplemente lo ignora
 
 ## Methods
 
-### typed
-Resolver named constructor.
-
-
-static **Filter::typed**(string $type, callable $callback) : [Rule](../../../../Rule.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$callback |  |
-
----
-
-
 ### make
-Resolver named constructor.
+Rule named constructor.
 
 
-static **Filter::make**(callable $callback) : [Rule](../../../../Rule.md)
+static **Filter::make**(callable $callback, string ...$types) : [Rule](../../../../Rule.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
+|string |...$types |  |
 
 ---
 
 
 ### __construct
-Resolver constructor.
+Rule constructor.
 
 
-protected **Filter::__construct**(callable $callback, string $type = null) : 
+protected **Filter::__construct**(callable $callback, string ...$types) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-|string |$type |  |
+|string |...$types |  |
 
 ---
 
 
-### setInnerType
-Informa a la regla de cual es el tipo del resolver padre
+### execute
+Manipula un input
 
 
-**Filter::setInnerType**([DataType](../../../../DataType.md) $type) : [RuleQueue](../../../../RuleQueue.md)
+**Filter::execute**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[DataType](../../../../DataType.md) |$type |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 
 
-### isOfInnerType
-Indica si un valor es del tipo interno de esta regla
-El tipo interno es el tipo del resolver al que pertenece esta regla
+### call
+Ejecuta el callback
 
 
-protected **Filter::isOfInnerType**(mixed $value) : bool
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$value |  |
-
----
-
-
-### __invoke
-Ejecuta la regla
-
-
-**Filter::__invoke**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
+protected **Filter::call**(mixed ...$arguments) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
+|mixed |...$arguments |  |
 
 ---
 
 
 ### resolve
-Ejecuta la regla
-
-
-**Filter::resolve**([InputInterface](../../../../InputInterface.md) $input) : [InputInterface](../../../../InputInterface.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[InputInterface](../../../../InputInterface.md) |$input |  |
-
----
-
-
-### buildInput
 
 
 
-**Filter::buildInput**(mixed $response, mixed $value) : [InputInterface](../../../../InputInterface.md)
+protected **Filter::resolve**([Input](../../../../Input.md) $input) : [Input](../../../../Input.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$response |  |
-|mixed |$value |  |
+|[Input](../../../../Input.md) |$input |  |
 
 ---
 

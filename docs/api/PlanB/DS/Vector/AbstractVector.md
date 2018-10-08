@@ -119,11 +119,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **AbstractVector::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractVector::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -137,7 +137,7 @@ protected **AbstractVector::__construct**([Resolver](../../../Resolver.md) $reso
 Configura esta colección
 
 
-**AbstractVector::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**AbstractVector::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -173,28 +173,12 @@ protected **AbstractVector::makeInternal**() :
 Named constructor.
 
 
-abstract static **AbstractVector::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **AbstractVector::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-protected **AbstractVector::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -590,6 +574,38 @@ Return the minimun value
 ---
 
 
+### duplicate
+Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+
+
+protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### offsetSet
+Offset to set
+
+
+**AbstractVector::offsetSet**(mixed $offset, mixed $value) : void
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|mixed |$offset | The offset to assign the value to. |
+|mixed |$value | The
+                     value
+                     to
+                     set. |
+
+---
+
+
 ### offsetExists
 Whether a offset exists
 
@@ -618,24 +634,6 @@ Offset to retrieve
 ---
 
 
-### offsetSet
-Offset to set
-
-
-**AbstractVector::offsetSet**(mixed $offset, mixed $value) : void
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|mixed |$offset | The offset to assign the value to. |
-|mixed |$value | The
-                     value
-                     to
-                     set. |
-
----
-
-
 ### offsetUnset
 Offset to unset
 
@@ -650,16 +648,17 @@ Offset to unset
 ---
 
 
-### duplicate
-Crea un objeto del mismo tipo que el actual, y le aplica el mismo resolver
+### __construct
+AbstractVector constructor.
 
 
-protected **AbstractVector::duplicate**([iterable](../../../iterable.md) $input = []) : [Collection](../../../Collection.md)
+**AbstractVector::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

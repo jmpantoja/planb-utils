@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PlanB\Console\Message\Style;
 
-use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Set\AbstractSet;
 use PlanB\Type\DataType\Type;
@@ -26,34 +25,49 @@ class OptionList extends AbstractSet
     /**
      * Named constructor.
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Collection
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): OptionList
+    public static function make(iterable $input = []): OptionList
     {
-        return (new static($resolver))
-            ->addAll($input);
+        return new static($input);
     }
 
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
         $resolver
-            ->setType(Type::STRING)
-            ->addConverter(Type::STRING, function ($value) {
+            ->type(Type::STRING)
+            ->converter(function ($value) {
                 return Option::get($value);
-            })
-            ->addConverter(Option::class, function (Option $option) {
+            }, Type::STRING)
+            ->converter(function (Option $option) {
                 return $option->getValue();
-            });
+            }, Option::class);
+    }
+
+    /**
+     * Añade las opciones contenidas en una cadena de texto
+     * ignorando las que no sean correctas
+     *
+     * @param string $options
+     *
+     * @return \PlanB\Console\Message\Style\OptionList
+     */
+    public function addFromString(string $options): self
+    {
+        $this->clear();
+
+        $pieces = explode(',', $options);
+        foreach ($pieces as $optionName) {
+            $this->addIfIsValid($optionName);
+        }
 
         return $this;
     }
-
 
     /**
      * Añade una nueva option solo si es valida
@@ -62,7 +76,7 @@ class OptionList extends AbstractSet
      *
      * @return \PlanB\Console\Message\Style\OptionList
      */
-    public function addIfIsValid(string $option): self
+    private function addIfIsValid(string $option): self
     {
         if (Option::has($option)) {
             $this->add($option);

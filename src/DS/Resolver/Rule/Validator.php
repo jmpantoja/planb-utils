@@ -13,30 +13,27 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver\Rule;
 
-use PlanB\DS\Resolver\Input\FailedInput;
-use PlanB\DS\Resolver\Input\Input;
-use PlanB\DS\Resolver\Input\InputInterface;
+use PlanB\DS\Resolver\Input;
 
 /**
- * Regla que comprueba si un valor es valido
+ * Regla que permite validar Inputs
  */
-class Validator extends Rule
+class Validator extends AbstractRule
 {
 
     /**
-     * Convierte la respuesta obtenida en un objeto InputInterface
-     *
-     * @param mixed $response
-     * @param mixed $value
-     *
-     * @return \PlanB\DS\Resolver\Input\InputInterface
+     * @inheritdoc
      */
-    public function buildInput($response, $value): InputInterface
+    protected function resolve(Input $input): Input
     {
-        if (false === boolval($response)) {
-            return FailedInput::make($value);
+        $output = $this->call($input->value());
+
+        if (false === $output) {
+            $input
+                ->reject()
+                ->resolve();
         }
 
-        return Input::make($value);
+        return $input;
     }
 }

@@ -12,12 +12,38 @@ declare(strict_types=1);
 namespace PlanB\DS\Set;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 
 /**
  * Builder para Set
  */
 class SetBuilder extends AbstractBuilder
 {
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\DS\Set\SetBuilder
+     */
+    public static function make(): SetBuilder
+    {
+        return new static(Resolver::make());
+    }
+
+    /**
+     * Named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Set\SetBuilder
+     */
+    public static function typed(string $type): SetBuilder
+    {
+        $resolver = Resolver::typed($type);
+
+        return new static($resolver);
+    }
+
     /**
      * Crea el objeto
      *
@@ -25,7 +51,8 @@ class SetBuilder extends AbstractBuilder
      */
     public function build()
     {
-        return Set::make(
+
+        return new Set(
             $this->getInput(),
             $this->getResolver()
         );

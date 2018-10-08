@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **MapBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **MapBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **MapBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **MapBuilder::typed**(string $type) : [AbstractBuilder](../../../Abstract
 AbstractBuilder constructor.
 
 
-protected **MapBuilder::__construct**() : 
+protected **MapBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **MapBuilder::__construct**() :
 Devuelve el input
 
 
-protected **MapBuilder::getInput**() : mixed[]
+protected **MapBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **MapBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **MapBuilder::typed**(string $type) : [MapBuilder](../../../MapBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

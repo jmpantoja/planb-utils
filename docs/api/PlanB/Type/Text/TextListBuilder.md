@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **TextListBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **TextListBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **TextListBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **TextListBuilder::typed**(string $type) : [AbstractBuilder](../../../Abs
 AbstractBuilder constructor.
 
 
-protected **TextListBuilder::__construct**() : 
+protected **TextListBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **TextListBuilder::__construct**() :
 Devuelve el input
 
 
-protected **TextListBuilder::getInput**() : mixed[]
+protected **TextListBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -89,111 +78,62 @@ Asigna una colección de valores para incializar la colección
 ---
 
 
-### addFilter
+### filter
 Añade un filtro a la cola
 
 
-**TextListBuilder::addFilter**(callable $filter, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
+**TextListBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$filter |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addTypedFilter
-Añade un filtro para un tipo determinado
-
-
-**TextListBuilder::addTypedFilter**(string $type, callable $filter, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$filter |  |
-|int |$priority |  |
-
----
-
-
-### addConverter
+### converter
 Añade un converter
 
 
-**TextListBuilder::addConverter**(string $type, callable $converter, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
+**TextListBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
 |callable |$converter |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addValidator
+### validator
 Añade un validator
 
 
-**TextListBuilder::addValidator**(callable $validator, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
+**TextListBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$validator |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 
 
-### addTypedValidator
-Añade un validator para un tipo determinado
+### rule
+Añade una regla
 
 
-**TextListBuilder::addTypedValidator**(string $type, callable $validator, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
+**TextListBuilder::rule**(callable $validator, string ...$types) : [AbstractBuilder](../../../AbstractBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string |$type |  |
 |callable |$validator |  |
-|int |$priority |  |
-
----
-
-
-### addNormalizer
-Añade un normalizer
-
-
-**TextListBuilder::addNormalizer**(callable $normalizer, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$normalizer |  |
-|int |$priority |  |
-
----
-
-
-### addTypedNormalizer
-Añade un normalizer para un tipo determinado
-
-
-**TextListBuilder::addTypedNormalizer**(string $type, callable $normalizer, int $priority = 0) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-|callable |$normalizer |  |
-|int |$priority |  |
+|string |...$types |  |
 
 ---
 

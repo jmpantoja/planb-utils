@@ -205,7 +205,10 @@ class Style
      */
     public function getWidth(): int
     {
-        return $this->position->getWidth();
+        $width = $this->position->getWidth();
+        $maxWidth = 180;
+
+        return min($maxWidth, $width) ;
     }
 
     /**

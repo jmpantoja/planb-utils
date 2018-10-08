@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **AbstractStack::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **AbstractStack::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **AbstractStack::__construct**([Resolver](../../../Resolver.md) $resol
 Configura esta colección
 
 
-**AbstractStack::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**AbstractStack::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,28 +170,12 @@ protected **AbstractStack::makeInternal**() :
 Named constructor.
 
 
-abstract static **AbstractStack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+abstract static **AbstractStack::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
-
-### hook
-
-
-
-abstract protected **AbstractStack::hook**(callable $callback, ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-| |...$values |  |
 
 ---
 
@@ -256,6 +240,21 @@ Offset to unset
 ---
 
 
+### __construct
+AbstractStack constructor.
+
+
+**AbstractStack::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
+
+---
+
+
 ### peek
 Returns the value at the top of the stack without removing it.
 
@@ -282,12 +281,12 @@ Returns and removes the value at the top of the stack.
 Pushes one value onto the top of the stack.
 
 
-**AbstractStack::push**(mixed $input) : [Stack](../../../Stack.md)
+**AbstractStack::push**(mixed $value) : [Stack](../../../Stack.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 

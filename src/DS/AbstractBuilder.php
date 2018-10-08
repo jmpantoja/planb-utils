@@ -36,34 +36,18 @@ abstract class AbstractBuilder
     /**
      * AbstractBuilder named constructor.
      *
-     * @return \PlanB\DS\AbstractBuilder
+     * @return mixed
      */
-    public static function make(): AbstractBuilder
-    {
-        return new static();
-    }
-
-    /**
-     * AbstractBuilder named constructor.
-     *
-     * @param string $type
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public static function typed(string $type): AbstractBuilder
-    {
-        $builder = new static();
-        $builder->resolver->setType($type);
-
-        return $builder;
-    }
+    abstract public static function make();
 
     /**
      * AbstractBuilder constructor.
+     *
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
      */
-    protected function __construct()
+    protected function __construct(?Resolver $resolver = null)
     {
-        $this->resolver = Resolver::make();
+        $this->resolver = $resolver ?? Resolver::make();
         $this->input = [];
     }
 
@@ -91,7 +75,7 @@ abstract class AbstractBuilder
     /**
      * Asigna una colección de valores para incializar la colección
      *
-     * @param mixed[]|\Traversable $input
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\AbstractBuilder
      */
@@ -106,30 +90,13 @@ abstract class AbstractBuilder
      * Añade un filtro a la cola
      *
      * @param callable $filter
-     * @param int      $priority
+     * @param string   ...$types
      *
      * @return \PlanB\DS\AbstractBuilder
      */
-    public function addFilter(callable $filter, int $priority = 0): self
+    public function filter(callable $filter, string ...$types): self
     {
-        $this->resolver->addFilter($filter, $priority);
-
-        return $this;
-    }
-
-
-    /**
-     * Añade un filtro para un tipo determinado
-     *
-     * @param string   $type
-     * @param callable $filter
-     * @param int      $priority
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public function addTypedFilter(string $type, callable $filter, int $priority = 0): self
-    {
-        $this->resolver->addTypedFilter($type, $filter, $priority);
+        $this->resolver->filter($filter, ...$types);
 
         return $this;
     }
@@ -137,15 +104,14 @@ abstract class AbstractBuilder
     /**
      * Añade un converter
      *
-     * @param string   $type
      * @param callable $converter
-     * @param int      $priority
+     * @param string   ...$types
      *
      * @return \PlanB\DS\AbstractBuilder
      */
-    public function addConverter(string $type, callable $converter, int $priority = 0): self
+    public function converter(callable $converter, string ...$types): self
     {
-        $this->resolver->addConverter($type, $converter, $priority);
+        $this->resolver->converter($converter, ...$types);
 
         return $this;
     }
@@ -155,60 +121,29 @@ abstract class AbstractBuilder
      * Añade un validator
      *
      * @param callable $validator
-     * @param int      $priority
+     * @param string   ...$types
      *
      * @return \PlanB\DS\AbstractBuilder
      */
-    public function addValidator(callable $validator, int $priority = 0): self
+    public function validator(callable $validator, string ...$types): self
     {
-        $this->resolver->addValidator($validator, $priority);
+        $this->resolver->validator($validator, ...$types);
 
         return $this;
     }
 
+
     /**
-     * Añade un validator para un tipo determinado
+     * Añade una regla
      *
-     * @param string   $type
-     * @param callable $validator
-     * @param int      $priority
+     * @param callable $rule
+     * @param string   ...$types
      *
      * @return \PlanB\DS\AbstractBuilder
      */
-    public function addTypedValidator(string $type, callable $validator, int $priority = 0): self
+    public function rule(callable $rule, string ...$types): self
     {
-        $this->resolver->addTypedValidator($type, $validator, $priority);
-
-        return $this;
-    }
-
-    /**
-     * Añade un normalizer
-     *
-     * @param callable $normalizer
-     * @param int      $priority
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public function addNormalizer(callable $normalizer, int $priority = 0): self
-    {
-        $this->resolver->addNormalizer($normalizer, $priority);
-
-        return $this;
-    }
-
-    /**
-     * Añade un normalizer para un tipo determinado
-     *
-     * @param string   $type
-     * @param callable $normalizer
-     * @param int      $priority
-     *
-     * @return \PlanB\DS\AbstractBuilder
-     */
-    public function addTypedNormalizer(string $type, callable $normalizer, int $priority = 0): self
-    {
-        $this->resolver->addTypedNormalizer($type, $normalizer, $priority);
+        $this->resolver->rule($rule, ...$types);
 
         return $this;
     }

@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **Queue::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Queue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **Queue::__construct**([Resolver](../../../Resolver.md) $resolver = nu
 Configura esta colección
 
 
-**Queue::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**Queue::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,13 +170,12 @@ abstract protected **Queue::makeInternal**() : [Collection](../../../Collection.
 
 
 
-static **Queue::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **Queue::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -185,7 +184,7 @@ static **Queue::make**([iterable](../../../iterable.md) $input = [], [Resolver](
 Resuelve los valores antes de ser añadidos desde algun método
 
 
-protected **Queue::hook**(callable $callback, mixed ...$values) : 
+abstract protected **Queue::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
@@ -252,6 +251,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractQueue constructor.
+
+
+**Queue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

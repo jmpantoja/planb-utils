@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace PlanB\Type\Text;
 
 use PlanB\DS\PriorityQueue\AbstractPriorityQueue;
-use PlanB\DS\Resolver\Resolver;
 
 /**
  * PriorityQueue para objetos Text
@@ -27,14 +26,12 @@ class TextPriorityQueue extends AbstractPriorityQueue
     /**
      * Named Constructor
      *
-     * @param mixed[]                          $input
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\Type\Text\TextPriorityQueue
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): TextPriorityQueue
+    public static function make(iterable $input = []): TextPriorityQueue
     {
-        return (new static($resolver))
-            ->pushAll($input);
+        return new static($input);
     }
 }

@@ -160,6 +160,17 @@ Indica si es un nombre de clase o interfaz
 ---
 
 
+### isClassOrInterfaceOrTrait
+Indica si es un nombre de clase, de interfaz o de trait
+
+
+**DataType::isClassOrInterfaceOrTrait**() : bool
+
+
+
+---
+
+
 ### isTrait
 Indica si es un nombre de rasgo
 

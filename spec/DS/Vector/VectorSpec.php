@@ -47,4 +47,12 @@ class VectorSpec extends ObjectBehavior
             DataType::make(Type::NUMERIC)
         );
     }
+
+
+    public function it_borrame()
+    {
+
+        $this[] = 'aaaa';
+
+    }
 }

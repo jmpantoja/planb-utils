@@ -79,8 +79,8 @@ trait TraitArray
      */
     public function offsetSet($offset, $value): void
     {
+        $this->resolver->value(function ($value, $offset): void {
 
-        $this->hook(function ($value) use ($offset): void {
             if (is_null($offset)) {
                 $this->items->push($value);
 
@@ -88,7 +88,7 @@ trait TraitArray
             }
 
             $this->items->set($offset, $value);
-        }, $value);
+        }, $value, $offset);
     }
 
     /**
@@ -108,12 +108,4 @@ trait TraitArray
     {
         unset($this->items[$offset]);
     }
-
-    /**
-     * Resuelve los valores antes de ser añadidos desde algun método
-     *
-     * @param callable $callback
-     * @param mixed    ...$values
-     */
-    abstract protected function hook(callable $callback, ...$values): void;
 }

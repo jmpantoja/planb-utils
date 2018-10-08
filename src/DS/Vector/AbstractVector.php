@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Vector;
 
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Traits\TraitArray;
 use PlanB\DS\Traits\TraitCollection;
 use PlanB\DS\Traits\TraitResolver;
@@ -31,12 +32,23 @@ abstract class AbstractVector implements \IteratorAggregate, \ArrayAccess, Vecto
     use TraitSequence;
     use TraitArray;
 
-
-
     /**
      * @var \Ds\Vector
      */
     protected $items;
+
+    /**
+     * AbstractVector constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+
+        $this->pushAll($input);
+    }
 
     /**
      * @inheritdoc
@@ -55,6 +67,6 @@ abstract class AbstractVector implements \IteratorAggregate, \ArrayAccess, Vecto
      */
     protected function duplicate(iterable $input = []): VectorInterface
     {
-        return static::make($input, $this->resolver);
+        return new static($input, $this->resolver);
     }
 }

@@ -18,26 +18,12 @@
 ## Methods
 
 ### make
-AbstractBuilder named constructor.
+Named constructor.
 
 
-static **PriorityQueueBuilder::make**() : [AbstractBuilder](../../../AbstractBuilder.md)
+static **PriorityQueueBuilder::make**() : mixed
 
 
-
----
-
-
-### typed
-AbstractBuilder named constructor.
-
-
-static **PriorityQueueBuilder::typed**(string $type) : [AbstractBuilder](../../../AbstractBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
 
 ---
 
@@ -46,9 +32,12 @@ static **PriorityQueueBuilder::typed**(string $type) : [AbstractBuilder](../../.
 AbstractBuilder constructor.
 
 
-protected **PriorityQueueBuilder::__construct**() : 
+protected **PriorityQueueBuilder::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
@@ -57,7 +46,7 @@ protected **PriorityQueueBuilder::__construct**() :
 Devuelve el input
 
 
-protected **PriorityQueueBuilder::getInput**() : mixed[]
+protected **PriorityQueueBuilder::getInput**() : mixed[]|[Traversable](../../../Traversable.md)
 
 
 
@@ -205,6 +194,20 @@ Crea el objeto
 **PriorityQueueBuilder::build**() : mixed
 
 
+
+---
+
+
+### typed
+Named constructor.
+
+
+static **PriorityQueueBuilder::typed**(string $type) : [PriorityQueueBuilder](../../../PriorityQueueBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|string |$type |  |
 
 ---
 

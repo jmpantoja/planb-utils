@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Map;
 
 use Ds\Pair;
+use PlanB\DS\Resolver\Resolver;
 use PlanB\DS\Sequence;
 use PlanB\DS\Set\Set;
 use PlanB\DS\Traits\TraitArray;
@@ -39,6 +40,20 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     protected $items;
 
+
+    /**
+     * AbstractMap constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     */
+    public function __construct(iterable $input, ?Resolver $resolver = null)
+    {
+        $this->bind($resolver);
+        $this->putAll($input);
+    }
+
+
     /**
      * @inheritdoc
      */
@@ -56,7 +71,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     protected function duplicate(iterable $input = []): MapInterface
     {
-        return static::make($input, $this->resolver);
+        return new static($input, $this->resolver);
     }
 
     /**
@@ -80,9 +95,9 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     public function offsetSet($offset, $value): void
     {
-        $this->hook(function ($value) use ($offset): void {
+        $this->resolver->value(function ($value, $offset): void {
             $this->items[$offset] = $value;
-        }, $value);
+        }, $value, $offset);
     }
 
 
@@ -303,9 +318,9 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     public function put($key, $value): MapInterface
     {
-        $this->hook(function ($value) use ($key): void {
+        $this->resolver->value(function ($value, $key): void {
             $this->items->put($key, $value);
-        }, $value);
+        }, $value, $key);
 
         return $this;
     }

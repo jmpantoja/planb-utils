@@ -17,18 +17,21 @@ use PlanB\Console\Message\Style\Align;
 use PlanB\Console\Message\Style\Color;
 use PlanB\Console\Message\Style\Option;
 use PlanB\Console\Message\Style\Style;
-use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
 use PlanB\Type\DataType\Type;
+use PlanB\Type\Stringifable;
 use PlanB\Type\Text\Text;
 use PlanB\Type\Text\TextListBuilder;
 use PlanB\Type\Text\TextVector;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class Paragraph extends TextVector
+class Paragraph extends TextVector implements Stringifable
 {
+    use Stringify;
+
     /**
      * @var \PlanB\Console\Message\Style\Style
      */
@@ -37,35 +40,33 @@ class Paragraph extends TextVector
     /**
      * @inheritdoc
      */
-    public function configure(Resolver $resolver): Collection
+    public function configure(Resolver $resolver): void
     {
-        $resolver
-            ->setType(LineWithStyle::class)
-            ->addTypedFilter(Paragraph::class, function (Paragraph $paragraph) {
-                $this->pushAll($paragraph->getLines());
 
-                return false;
-            })
-            ->addConverter(Type::SCALAR, function ($value) {
-                return Text::make($value);
-            })->addConverter(Text::class, function (Text $text) {
-                $line = Line::make($text);
+        $resolver->type(LineWithStyle::class);
 
-                return LineWithStyle::make($line, $this->style->clone());
-            });
+        $resolver->loader(function (Paragraph $paragraph): void {
+            $this->pushAll($paragraph->getLines());
+        }, Paragraph::class);
 
-        return $this;
+        $resolver->converter(function ($text) {
+            $line = Line::make($text);
+
+            return LineWithStyle::make($line, $this->style->clone());
+        }, Type::STRINGIFABLE);
     }
 
     /**
-     * @inheritDoc
+     * Paragraph constructor.
+     *
+     * @param mixed[]                          $input
+     * @param null|\PlanB\DS\Resolver\Resolver $resolver
      */
-    public function __construct()
+    public function __construct(iterable $input, ?Resolver $resolver = null)
     {
-        parent::__construct(null);
         $this->style = Style::make();
+        parent::__construct($input, $resolver);
     }
-
 
     /**
      * Devuelve una lista con todas las lineas que componen el párrafo
@@ -80,25 +81,52 @@ class Paragraph extends TextVector
     }
 
     /**
-     * Devuelve el texto con el estilo aplicado
+     * Devuelve el texto con el estilo aplicado en forma de bloque
      *
      * @return \PlanB\Type\Text\Text
      */
-    public function render(): Text
+    public function block(): Text
     {
         $width = $this->getWidth();
 
-        $list = TextListBuilder::make()
-            ->addTypedNormalizer(LineWithStyle::class, function (LineWithStyle $line) use ($width) {
+        $callback = function (LineWithStyle $line) use ($width) {
+            $this->style->expandTo($width);
 
-                $this->style->expandTo($width);
+            return $line->render($this->style);
+        };
 
-                return $line->render($this->style);
-            })
+        return $this->buildTextVector($callback)
+            ->concat(Text::LINE_BREAK);
+    }
+
+    /**
+     * Devuelve el texto con el estilo aplicado en forma de una linea
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    public function line(): Text
+    {
+
+        $callback = function (LineWithStyle $line) {
+            return $line->render($this->style);
+        };
+
+        return $this->buildTextVector($callback)->concat(Text::BLANK_TEXT);
+    }
+
+    /**
+     * Devuelve un vector con todas las lineas con el estilo aplicado, segun callback
+     *
+     * @param callable $callback
+     *
+     * @return \PlanB\Type\Text\TextVector
+     */
+    private function buildTextVector(callable $callback): TextVector
+    {
+        return TextListBuilder::make()
+            ->converter($callback, LineWithStyle::class)
             ->values($this)
-            ->build();
-
-        return $list->concat(Text::LINE_BREAK);
+            ->vector();
     }
 
     /**
@@ -263,5 +291,15 @@ class Paragraph extends TextVector
         $this->style->expandTo($width, Align::CENTER());
 
         return $this;
+    }
+
+    /**
+     * __toString alias
+     *
+     * @return string
+     */
+    public function stringify(): string
+    {
+        return $this->block()->stringify();
     }
 }

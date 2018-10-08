@@ -22,16 +22,13 @@ use PlanB\DS\Resolver\Resolver;
 final class Set extends AbstractSet
 {
     /**
-     * @param mixed[]                          $input
-     *
-     * @param null|\PlanB\DS\Resolver\Resolver $resolver
+     * @param mixed[] $input
      *
      * @return \PlanB\DS\Set\Set
      */
-    public static function make(iterable $input = [], ?Resolver $resolver = null): Collection
+    public static function make(iterable $input = []): Collection
     {
-        return (new static($resolver))
-            ->addAll($input);
+        return new static($input);
     }
 
 
@@ -45,8 +42,8 @@ final class Set extends AbstractSet
      */
     public static function typed(string $type, iterable $input = []): Set
     {
-        return SetBuilder::typed($type)
-            ->values($input)
-            ->build();
+        $resolver = Resolver::typed($type);
+
+        return new static($input, $resolver);
     }
 }

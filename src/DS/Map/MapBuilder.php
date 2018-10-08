@@ -12,12 +12,37 @@ declare(strict_types=1);
 namespace PlanB\DS\Map;
 
 use PlanB\DS\AbstractBuilder;
+use PlanB\DS\Resolver\Resolver;
 
 /**
  * Builder para Map
  */
 class MapBuilder extends AbstractBuilder
 {
+
+    /**
+     * Named constructor.
+     *
+     * @return \PlanB\DS\Map\MapBuilder
+     */
+    public static function make(): MapBuilder
+    {
+        return new static(Resolver::make());
+    }
+
+    /**
+     * Named constructor.
+     *
+     * @param string $type
+     *
+     * @return \PlanB\DS\Map\MapBuilder
+     */
+    public static function typed(string $type): MapBuilder
+    {
+        return new static(Resolver::typed($type));
+    }
+
+
     /**
      * Crea el objeto
      *
@@ -25,7 +50,7 @@ class MapBuilder extends AbstractBuilder
      */
     public function build(): Map
     {
-        return Map::make(
+        return new Map(
             $this->getInput(),
             $this->getResolver()
         );

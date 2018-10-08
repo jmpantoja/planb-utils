@@ -116,11 +116,11 @@ Retrieve an external iterator
 ---
 
 
-### __construct
+### bind
 
 
 
-protected **TextStack::__construct**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **TextStack::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
 
 
 |Parameters: | | |
@@ -134,7 +134,7 @@ protected **TextStack::__construct**([Resolver](../../../Resolver.md) $resolver 
 Configura esta colección
 
 
-**TextStack::configure**([Resolver](../../../Resolver.md) $resolver) : [Collection](../../../Collection.md)
+**TextStack::configure**([Resolver](../../../Resolver.md) $resolver) : void
 
 
 |Parameters: | | |
@@ -170,28 +170,27 @@ abstract protected **TextStack::makeInternal**() : [Collection](../../../Collect
 Named Constructor
 
 
-static **TextStack::make**([iterable](../../../iterable.md) $input = [], [Resolver](../../../Resolver.md) $resolver = null) : mixed
+static **TextStack::make**([iterable](../../../iterable.md) $input = []) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 
 
 ### hook
+Resuelve los valores antes de ser añadidos desde algun método
 
 
-
-abstract protected **TextStack::hook**(callable $callback, ...$values) : 
+abstract protected **TextStack::hook**(callable $callback, mixed ...$values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
-| |...$values |  |
+|mixed |...$values |  |
 
 ---
 
@@ -252,6 +251,21 @@ Offset to unset
 |Parameters: | | |
 | --- | --- | --- |
 |mixed |$offset | The offset to unset. |
+
+---
+
+
+### __construct
+AbstractStack constructor.
+
+
+**TextStack::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[Resolver](../../../Resolver.md) |$resolver |  |
 
 ---
 

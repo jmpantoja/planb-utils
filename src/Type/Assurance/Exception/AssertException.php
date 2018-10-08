@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Assurance\Exception;
 
+use PlanB\Console\Beautifier\Format;
+use PlanB\Type\Text\Text;
 use Throwable;
 
 /**
@@ -44,15 +46,33 @@ class AssertException extends \AssertionError
     public static function make(object $wrapped, string $method, array $arguments, ?\Throwable $previous = null): self
     {
 
-        $wrapped = force_to_string($wrapped);
+        $message = self::buildMessage($wrapped, $method, $arguments);
+
+        return new static($message->stringify(), $previous);
+    }
+
+    /**
+     * @param object  $wrapped
+     * @param string  $method
+     * @param mixed[] $arguments
+     *
+     * @return \PlanB\Type\Text\Text
+     */
+    private static function buildMessage(object $wrapped, string $method, array $arguments): Text
+    {
         $method = to_snake_case($method, ' ');
         $params = self::parseParams($arguments);
 
-        $format = "<fg=cyan>%s</> "."<options=bold,underscore>fails ensuring</> that "."<options=bold,underscore>%s</> "."<fg=green>%s</>";
+        $message = cli_msg([
+            beautify($wrapped),
+            cli_line('fails ensuring')->bold()->underscore(),
+            'that',
+            cli_line($method)->bold()->underscore(),
+            $params,
 
-        $message = sprintf($format, $wrapped, $method, $params);
+        ])->line();
 
-        return new static($message, $previous);
+        return $message;
     }
 
     /**
@@ -69,7 +89,7 @@ class AssertException extends \AssertionError
         }
 
         $arguments = array_map(function ($argument) {
-            return force_to_string($argument);
+            return beautify($argument, Format::SIMPLE());
         }, $arguments);
 
         $parameters = implode(', ', $arguments);

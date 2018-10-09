@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Resolver;
 
+use PlanB\Type\DataType\DataType;
+
 /**
  * Interfaz para Resolver
  */
@@ -33,6 +35,13 @@ interface ResolverInterface
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
     public function type(string $type): ResolverInterface;
+
+    /**
+     * Devuelve el tipo de este resolver
+     *
+     * @return null|\PlanB\Type\DataType\DataType
+     */
+    public function getType(): ?DataType;
 
     /**
      * Añade un nuevo loader

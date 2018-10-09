@@ -42,6 +42,17 @@ Asigna un tipo a este resolver
 ---
 
 
+### getType
+Devuelve el tipo de este resolver
+
+
+**ResolverInterface::getType**() : null|[DataType](../../../DataType.md)
+
+
+
+---
+
+
 ### loader
 Añade un nuevo loader
 

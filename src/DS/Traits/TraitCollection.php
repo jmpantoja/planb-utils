@@ -77,7 +77,10 @@ trait TraitCollection
      */
     public function copy(): Collection
     {
-        return new static($this->items, $this->resolver);
+        $items = $this->items;
+        $resolver = $this->resolver;
+
+        return new static($items, $resolver);
     }
 
     /**

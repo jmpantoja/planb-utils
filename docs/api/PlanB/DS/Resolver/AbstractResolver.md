@@ -21,6 +21,17 @@
 
 ## Methods
 
+### make
+Resolver named constructor.
+
+
+static **AbstractResolver::make**() : mixed
+
+
+
+---
+
+
 ### __construct
 Resolver constructor.
 

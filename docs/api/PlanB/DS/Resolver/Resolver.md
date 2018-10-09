@@ -21,6 +21,17 @@
 
 ## Methods
 
+### make
+Resolver named constructor.
+
+
+static **Resolver::make**() : mixed
+
+
+
+---
+
+
 ### __construct
 Resolver constructor.
 
@@ -47,7 +58,7 @@ Indica si aun no se han añadido reglas
 Asigna un tipo a este resolver
 
 
-**Resolver::type**(string $type) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::type**(string $type) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -72,7 +83,7 @@ Devuelve el tipo de este resolver
 Añade un nuevo loader
 
 
-**Resolver::loader**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::loader**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -87,7 +98,7 @@ Añade un nuevo loader
 Añade una nueva regla
 
 
-**Resolver::rule**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::rule**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -102,7 +113,7 @@ Añade una nueva regla
 Añade un nuevo converter
 
 
-**Resolver::converter**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::converter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -117,7 +128,7 @@ Añade un nuevo converter
 Añade un nuevo converter
 
 
-**Resolver::validator**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::validator**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -132,7 +143,7 @@ Añade un nuevo converter
 Añade un nuevo filter
 
 
-**Resolver::filter**(callable $callback, string ...$types) : [AbstractResolver](../../../AbstractResolver.md)
+**Resolver::filter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -170,17 +181,6 @@ Resuelve un conjunto de valores
 | --- | --- | --- |
 |callable |$callback |  |
 |[iterable](../../../iterable.md) |$values |  |
-
----
-
-
-### make
-Resolver named constructor.
-
-
-static **Resolver::make**() : [AbstractResolver](../../../AbstractResolver.md)
-
-
 
 ---
 

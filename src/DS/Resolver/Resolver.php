@@ -41,4 +41,12 @@ class Resolver extends AbstractResolver
 
         return $resolver->type($type);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function configure(): void
+    {
+        // TODO: Implement configure() method.
+    }
 }

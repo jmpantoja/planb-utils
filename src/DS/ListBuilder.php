@@ -18,6 +18,7 @@ use PlanB\DS\Map\Map;
 use PlanB\DS\PriorityQueue\PriorityQueue;
 use PlanB\DS\Queue\Queue;
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 use PlanB\DS\Set\Set;
 use PlanB\DS\Stack\Stack;
 use PlanB\DS\Vector\Vector;
@@ -53,11 +54,11 @@ class ListBuilder extends AbstractBuilder
     /**
      * Named constructor.
      *
-     * @param \PlanB\DS\Resolver\Resolver $resolver
+     * @param \PlanB\DS\Resolver\ResolverInterface $resolver
      *
      * @return \PlanB\DS\ListBuilder
      */
-    public static function bind(Resolver $resolver): self
+    public static function bind(ResolverInterface $resolver): self
     {
         return new static($resolver);
     }

@@ -21,22 +21,22 @@
 
 ## Methods
 
-### make
-Resolver named constructor.
+### __construct
+Resolver constructor.
 
 
-static **Resolver::make**() : mixed
+protected **Resolver::__construct**() : 
 
 
 
 ---
 
 
-### __construct
-Resolver constructor.
+### configure
 
 
-protected **Resolver::__construct**() : 
+
+**Resolver::configure**() : void
 
 
 
@@ -181,6 +181,17 @@ Resuelve un conjunto de valores
 | --- | --- | --- |
 |callable |$callback |  |
 |[iterable](../../../iterable.md) |$values |  |
+
+---
+
+
+### make
+Resolver named constructor.
+
+
+static **Resolver::make**() : [Resolver](../../../Resolver.md)
+
+
 
 ---
 

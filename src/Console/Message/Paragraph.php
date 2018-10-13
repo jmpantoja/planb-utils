@@ -42,30 +42,26 @@ class Paragraph extends TextVector implements Stringifable
      */
     public function configure(ResolverInterface $resolver): void
     {
-
-        $resolver->type(LineWithStyle::class);
-
-        $resolver->loader(function (Paragraph $paragraph): void {
-            $this->pushAll($paragraph->getLines());
-        }, Paragraph::class);
-
-        $resolver->converter(function ($text) {
-            $line = Line::make($text);
-
-            return LineWithStyle::make($line, $this->style->clone());
-        }, Type::STRINGIFABLE);
+        $resolver
+            ->type(LineWithStyle::class)
+            ->loader(function (Paragraph $paragraph): void {
+                $this->pushAll($paragraph->getLines());
+            }, Paragraph::class)
+            ->converter(function ($text) {
+                $line = Line::make($text);
+                return LineWithStyle::make($line, $this->style->clone());
+            }, Type::STRINGIFABLE);
     }
 
     /**
      * Paragraph constructor.
      *
-     * @param mixed[]                                   $input
-     * @param null|\PlanB\DS\Resolver\ResolverInterface $resolver
+     * @param mixed[] $input
      */
-    public function __construct(iterable $input, ?ResolverInterface $resolver = null)
+    public function __construct(iterable $input)
     {
         $this->style = Style::make();
-        parent::__construct($input, $resolver);
+        parent::__construct($input);
     }
 
     /**
@@ -210,7 +206,7 @@ class Paragraph extends TextVector implements Stringifable
     /**
      * Asigna el padding
      *
-     * @param int      $left
+     * @param int $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Paragraph
@@ -225,7 +221,7 @@ class Paragraph extends TextVector implements Stringifable
     /**
      * Asigna el margin
      *
-     * @param int      $left
+     * @param int $left
      * @param int|null $right
      *
      * @return \PlanB\Console\Message\Paragraph

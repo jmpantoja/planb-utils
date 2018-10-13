@@ -637,13 +637,12 @@ Offset to unset
 Paragraph constructor.
 
 
-**Paragraph::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
+**Paragraph::__construct**([iterable](../../../iterable.md) $input) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

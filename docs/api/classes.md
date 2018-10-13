@@ -30,6 +30,7 @@
 * [PlanB\Console\Message\LineWithStyle](PlanB/Console/Message/LineWithStyle.md)
 * [PlanB\Console\Message\Message](PlanB/Console/Message/Message.md)
 * [PlanB\Console\Message\Paragraph](PlanB/Console/Message/Paragraph.md)
+* [PlanB\Console\Message\ParagraphResolver](PlanB/Console/Message/ParagraphResolver.md)
 * [PlanB\Console\Message\Renderer](PlanB/Console/Message/Renderer.md)
 * [PlanB\Console\Message\Style\Align](PlanB/Console/Message/Style/Align.md)
 * [PlanB\Console\Message\Style\AttributeParser](PlanB/Console/Message/Style/AttributeParser.md)

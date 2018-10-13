@@ -1,10 +1,10 @@
 
                                                                                                                                             
     
-# AbstractResolver
+# ParagraphResolver
 
 
-> Resuelve un valor antes de ser añadido a una colección
+> Resolver de la clase Paragraph
 >
 > 
 
@@ -22,12 +22,15 @@
 ## Methods
 
 ### __construct
-Resolver constructor.
+ParagraphResolver constructor.
 
 
-protected **AbstractResolver::__construct**() : 
+protected **ParagraphResolver::__construct**([Style](../../../Style.md) $style) : 
 
 
+|Parameters: | | |
+| --- | --- | --- |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 
@@ -36,7 +39,7 @@ protected **AbstractResolver::__construct**() :
 Configura este resolver
 
 
-abstract **AbstractResolver::configure**() : void
+**ParagraphResolver::configure**() : void
 
 
 
@@ -47,7 +50,7 @@ abstract **AbstractResolver::configure**() : void
 Indica si aun no se han añadido reglas
 
 
-**AbstractResolver::isEmpty**() : bool
+**ParagraphResolver::isEmpty**() : bool
 
 
 
@@ -58,7 +61,7 @@ Indica si aun no se han añadido reglas
 Asigna un tipo a este resolver
 
 
-**AbstractResolver::type**(string $type) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::type**(string $type) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -72,7 +75,7 @@ Asigna un tipo a este resolver
 Devuelve el tipo de este resolver
 
 
-**AbstractResolver::getType**() : null|[DataType](../../../DataType.md)
+**ParagraphResolver::getType**() : null|[DataType](../../../DataType.md)
 
 
 
@@ -83,7 +86,7 @@ Devuelve el tipo de este resolver
 Añade un nuevo loader
 
 
-**AbstractResolver::loader**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::loader**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -98,7 +101,7 @@ Añade un nuevo loader
 Añade una nueva regla
 
 
-**AbstractResolver::rule**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::rule**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -113,7 +116,7 @@ Añade una nueva regla
 Añade un nuevo converter
 
 
-**AbstractResolver::converter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::converter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -128,7 +131,7 @@ Añade un nuevo converter
 Añade un nuevo converter
 
 
-**AbstractResolver::validator**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::validator**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -143,7 +146,7 @@ Añade un nuevo converter
 Añade un nuevo filter
 
 
-**AbstractResolver::filter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
+**ParagraphResolver::filter**(callable $callback, string ...$types) : [ResolverInterface](../../../ResolverInterface.md)
 
 
 |Parameters: | | |
@@ -158,7 +161,7 @@ Añade un nuevo filter
 Resuelve un valor
 
 
-**AbstractResolver::value**(callable $callback, mixed $value, mixed $key = null) : 
+**ParagraphResolver::value**(callable $callback, mixed $value, mixed $key = null) : 
 
 
 |Parameters: | | |
@@ -174,13 +177,27 @@ Resuelve un valor
 Resuelve un conjunto de valores
 
 
-**AbstractResolver::values**(callable $callback, [iterable](../../../iterable.md) $values) : 
+**ParagraphResolver::values**(callable $callback, [iterable](../../../iterable.md) $values) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |callable |$callback |  |
 |[iterable](../../../iterable.md) |$values |  |
+
+---
+
+
+### make
+Named Constructor
+
+
+static **ParagraphResolver::make**([Style](../../../Style.md) $style) : [ParagraphResolver](../../../ParagraphResolver.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[Style](../../../Style.md) |$style |  |
 
 ---
 

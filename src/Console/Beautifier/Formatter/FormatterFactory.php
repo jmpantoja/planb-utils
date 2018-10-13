@@ -65,6 +65,7 @@ class FormatterFactory
     private function addFormatter(?FormatterInterface $formatter): self
     {
         if ($this->isValid($formatter)) {
+
             $this->formatter = $formatter;
         }
 

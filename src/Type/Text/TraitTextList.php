@@ -30,7 +30,7 @@ trait TraitTextList
 
         $resolver
             ->type(Text::class)
-            ->rule(function ($value) {
+            ->converter(function ($value) {
                 return Text::make($value);
             }, Type::STRINGIFABLE);
     }

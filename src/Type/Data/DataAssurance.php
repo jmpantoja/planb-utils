@@ -22,6 +22,7 @@ use PlanB\Type\Assurance\Assurance;
  * @method bool isBoolean()
  * @method bool isCallable()
  * @method bool isCountable()
+ * @method bool isThrowable()
  * @method bool isFloat()
  * @method bool isInteger()
  * @method bool isIterable()
@@ -40,6 +41,7 @@ use PlanB\Type\Assurance\Assurance;
  * @method bool isNotBoolean()
  * @method bool isNotCallable()
  * @method bool isNotCountable()
+ * @method bool isNotThrowable()
  * @method bool isNotFloat()
  * @method bool isNotInteger()
  * @method bool isNotIterable()
@@ -83,9 +85,13 @@ class DataAssurance extends Assurance
      */
     public static function make($variable): self
     {
-        $type = Data::make($variable);
+        if ($variable instanceof Data) {
+            return new static($variable);
+        }
 
-        return new static($type);
+        $data = Data::make($variable);
+
+        return new static($data);
     }
 
     /**

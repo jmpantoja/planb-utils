@@ -46,7 +46,6 @@ abstract class AbstractVector implements \IteratorAggregate, \ArrayAccess, Vecto
     public function __construct(iterable $input, ?ResolverInterface $resolver = null)
     {
         $this->bind($resolver);
-
         $this->pushAll($input);
     }
 

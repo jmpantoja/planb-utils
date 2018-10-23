@@ -29,9 +29,7 @@ class PriorityQueueSpec extends ObjectBehavior
 
     public function populate(...$values)
     {
-        foreach ($values as $value) {
-            $this->push($value, 1);
-        }
+        $this->pushAll($values);
     }
 
     public function it_can_be_created_with_a_type()

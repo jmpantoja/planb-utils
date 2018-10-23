@@ -126,6 +126,17 @@ static **DataAssurance::make**(mixed $variable) : [DataAssurance](../../../DataA
 ---
 
 
+### isThrowable
+
+
+
+**DataAssurance::isThrowable**() : bool
+
+
+
+---
+
+
 ### isFloat
 
 
@@ -310,6 +321,17 @@ static **DataAssurance::make**(mixed $variable) : [DataAssurance](../../../DataA
 
 
 **DataAssurance::isNotCountable**() : bool
+
+
+
+---
+
+
+### isNotThrowable
+
+
+
+**DataAssurance::isNotThrowable**() : bool
 
 
 

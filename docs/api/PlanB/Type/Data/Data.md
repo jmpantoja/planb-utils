@@ -9,6 +9,8 @@
 > 
 
 
+## Traits
+- PlanB\Utils\Traits\Stringify
 
 
 ## Constants
@@ -18,6 +20,28 @@
 
 
 ## Methods
+
+### stringify
+__toString alias
+
+
+**Data::stringify**() : string
+
+
+
+---
+
+
+### __toString
+Devuelve la cadena de texto
+
+
+**Data::__toString**() : string
+
+
+
+---
+
 
 ### __construct
 Input constructor.
@@ -85,6 +109,17 @@ Indica si la variable es contable
 
 
 **Data::isCountable**() : bool
+
+
+
+---
+
+
+### isThrowable
+Indica si la variable es throwable
+
+
+**Data::isThrowable**() : bool
 
 
 
@@ -245,6 +280,17 @@ Devuelve el DataType
 
 
 **Data::getType**() : [DataType](../../../DataType.md)
+
+
+
+---
+
+
+### getTypeName
+Devuelve el tipo
+
+
+**Data::getTypeName**() : string
 
 
 

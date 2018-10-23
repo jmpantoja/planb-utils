@@ -12,10 +12,10 @@
 
 
 ## Constants
-- LEFT
-- CENTER
-- RIGHT
 - DEFAULT
+- CENTER
+- LEFT
+- RIGHT
 
 
 

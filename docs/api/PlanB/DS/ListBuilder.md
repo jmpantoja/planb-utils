@@ -32,12 +32,12 @@ static **ListBuilder::make**() : mixed
 AbstractBuilder constructor.
 
 
-protected **ListBuilder::__construct**([AbstractResolver](../../AbstractResolver.md) $resolver = null) : 
+protected **ListBuilder::__construct**([ResolverInterface](../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[AbstractResolver](../../AbstractResolver.md) |$resolver |  |
+|[ResolverInterface](../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -57,7 +57,7 @@ protected **ListBuilder::getInput**() : mixed[]|[Traversable](../../Traversable.
 Devuelve el resolver
 
 
-protected **ListBuilder::getResolver**() : [AbstractResolver](../../AbstractResolver.md)
+protected **ListBuilder::getResolver**() : [ResolverInterface](../../ResolverInterface.md)
 
 
 
@@ -68,7 +68,7 @@ protected **ListBuilder::getResolver**() : [AbstractResolver](../../AbstractReso
 Asigna una colección de valores para incializar la colección
 
 
-**ListBuilder::values**([iterable](../../iterable.md) $input) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::values**([iterable](../../iterable.md) $input) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -82,7 +82,7 @@ Asigna una colección de valores para incializar la colección
 Añade una regla
 
 
-**ListBuilder::rule**(callable $rule, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::rule**(callable $rule, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -93,25 +93,11 @@ Añade una regla
 ---
 
 
-### rules
-Asigna varias reglas
-
-
-**ListBuilder::rules**(array $rules) : [AbstractResolver](../../AbstractResolver.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|array |$rules |  |
-
----
-
-
 ### loader
 Añade un loader
 
 
-**ListBuilder::loader**(callable $loader, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::loader**(callable $loader, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -122,25 +108,11 @@ Añade un loader
 ---
 
 
-### loaders
-Asigna varios loaders
-
-
-**ListBuilder::loaders**(array $loaders) : [AbstractResolver](../../AbstractResolver.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|array |$loaders |  |
-
----
-
-
 ### filter
 Añade un filtro a la cola
 
 
-**ListBuilder::filter**(callable $filter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::filter**(callable $filter, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -151,25 +123,11 @@ Añade un filtro a la cola
 ---
 
 
-### filters
-Asigna varios filters
-
-
-**ListBuilder::filters**(array $filters) : [AbstractResolver](../../AbstractResolver.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|array |$filters |  |
-
----
-
-
 ### converter
 Añade un converter
 
 
-**ListBuilder::converter**(callable $converter, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::converter**(callable $converter, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -180,25 +138,11 @@ Añade un converter
 ---
 
 
-### converters
-Asigna varios converters
-
-
-**ListBuilder::converters**(array $converters) : [AbstractResolver](../../AbstractResolver.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|array |$converters |  |
-
----
-
-
 ### validator
 Añade un validator
 
 
-**ListBuilder::validator**(callable $validator, string ...$types) : [AbstractBuilder](../../AbstractBuilder.md)
+**ListBuilder::validator**(callable $validator, string ...$types) : [BuilderInterface](../../BuilderInterface.md)
 
 
 |Parameters: | | |
@@ -209,16 +153,30 @@ Añade un validator
 ---
 
 
-### validators
-Asigna varios validators
+### typed
+Named constructor.
 
 
-**ListBuilder::validators**(array $validators) : [AbstractResolver](../../AbstractResolver.md)
+static **ListBuilder::typed**(string $type) : [ListBuilder](../../ListBuilder.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|array |$validators |  |
+|string |$type |  |
+
+---
+
+
+### bind
+Named constructor.
+
+
+static **ListBuilder::bind**([ResolverInterface](../../ResolverInterface.md) $resolver) : [ListBuilder](../../ListBuilder.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[ResolverInterface](../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -296,34 +254,6 @@ Crea un set
 **ListBuilder::set**() : mixed
 
 
-
----
-
-
-### typed
-Named constructor.
-
-
-static **ListBuilder::typed**(string $type) : [ListBuilder](../../ListBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$type |  |
-
----
-
-
-### bind
-Named constructor.
-
-
-static **ListBuilder::bind**([Resolver](../../Resolver.md) $resolver) : [ListBuilder](../../ListBuilder.md)
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Resolver](../../Resolver.md) |$resolver |  |
 
 ---
 

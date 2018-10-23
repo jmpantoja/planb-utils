@@ -2,6 +2,7 @@
 
 namespace spec\PlanB\Type\Data;
 
+use PlanB\Type\Data\Data;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Assurance\Exception\AssertException;
 use PlanB\Type\Assurance\Exception\InvalidAssuranceMethodException;
@@ -43,4 +44,15 @@ class DataAssuranceSpec extends ObjectBehavior
         $this->shouldThrow(AssertException::class)->duringIsString();
     }
 
+    public function it_can_be_make_with_a_data_as_argument()
+    {
+        $data = Data::make(new \Exception());
+        $this->beConstructedThrough('make', [$data]);
+
+        $this->isThrowable()
+            ->shouldReturn($this);
+
+        $this->shouldThrow(AssertException::class)->duringIsTypeOf(Data::class);
+        $this->shouldNotThrow()->duringIsTypeOf(\Exception::class);
+    }
 }

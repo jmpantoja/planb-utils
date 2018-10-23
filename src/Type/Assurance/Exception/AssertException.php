@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\Type\Assurance\Exception;
 
-use PlanB\Console\Beautifier\Format;
-use PlanB\Type\Text\Text;
 use Throwable;
 
 /**
@@ -46,34 +44,23 @@ class AssertException extends \AssertionError
     public static function make(object $wrapped, string $method, array $arguments, ?\Throwable $previous = null): self
     {
 
-        $message = self::buildMessage($wrapped, $method, $arguments);
+        $template = <<<eof
+        <data> <strong:fail> that <strong:method> <params>
+eof;
 
-        return new static($message->stringify(), $previous);
+        $message = beautify_parse($template, [
+            'data' => beautify_dump($wrapped),
+            'fail' => 'fails ensuring',
+            'method' => to_snake_case($method, ' '),
+            'params' => self::parseParams($arguments),
+
+        ]);
+
+
+
+        return new static($message, $previous);
     }
 
-    /**
-     * @param object  $wrapped
-     * @param string  $method
-     * @param mixed[] $arguments
-     *
-     * @return \PlanB\Type\Text\Text
-     */
-    private static function buildMessage(object $wrapped, string $method, array $arguments): Text
-    {
-        $method = to_snake_case($method, ' ');
-        $params = self::parseParams($arguments);
-
-        $message = cli_msg([
-            beautify($wrapped),
-            cli_line('fails ensuring')->bold()->underscore(),
-            'that',
-            cli_line($method)->bold()->underscore(),
-            $params,
-
-        ])->line();
-
-        return $message;
-    }
 
     /**
      * Convierte los argumentos en una cadena de texto
@@ -89,7 +76,9 @@ class AssertException extends \AssertionError
         }
 
         $arguments = array_map(function ($argument) {
-            return beautify($argument, Format::SIMPLE());
+            return beautify_parse('<argument:argument>', [
+                'argument' => sprintf('"%s"', $argument),
+            ]);
         }, $arguments);
 
         $parameters = implode(', ', $arguments);

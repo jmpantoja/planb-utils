@@ -70,13 +70,16 @@ trait TextListTrait
                 return !$text->isBlank();
             });
 
+
         $this->beConstructedWith([
             self::ENTRY,
             self::VALUE,
             Text::BLANK_TEXT
         ], $resolver);
 
-        $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
+        $this->shouldHaveType(self::CLASSNAME);
+
+//        $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
 
     }
 }

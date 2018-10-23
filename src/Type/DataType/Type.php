@@ -34,4 +34,5 @@ final class Type extends Enum
     public const SCALAR = 'scalar';
     public const STRING = 'string';
     public const STRINGIFABLE = 'stringifable';
+    public const THROWABLE = 'throwable';
 }

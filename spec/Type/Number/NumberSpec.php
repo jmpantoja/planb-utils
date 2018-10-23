@@ -106,4 +106,13 @@ class NumberSpec extends ObjectBehavior
         $this->equals(1235)->shouldReturn(false);
 
     }
+
+    public function it_retrieve_a_hash()
+    {
+        $this->beConstructedThrough('make', [1235]);
+
+        $this->hash()->shouldReturn(1235);
+
+
+    }
 }

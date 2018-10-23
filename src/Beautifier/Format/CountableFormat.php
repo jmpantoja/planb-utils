@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * This file is part of the planb project.
+ *
+ * (c) jmpantoja <jmpantoja@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace PlanB\Beautifier\Format;
+
+use PlanB\Type\Data\Data;
+
+/**
+ * Formato para un objeto de tipo Countable
+ */
+class CountableFormat extends DataFormat
+{
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function parseValue(Data $data): string
+    {
+        return (string) count($data->getValue());
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function parseKey(Data $data): string
+    {
+        return 'count';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function parseType(Data $data): string
+    {
+        return $data->getTypeName();
+    }
+}

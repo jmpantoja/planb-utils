@@ -101,7 +101,7 @@ if (!function_exists('to_snake_case')) {
     }
 }
 
-if (!function_exists('beautify')) {
+if (!function_exists('beautify2')) {
 
     /**
      * Devuelve la representación de $value como cadena de texto
@@ -111,31 +111,13 @@ if (!function_exists('beautify')) {
      *
      * @return string
      */
-    function beautify($value, $format = Format::FULL): string
+    function beautify2($value): string
     {
-        $format = Format::make($format);
-
-        return Beautifier::make()
-            ->render($value, $format);
+        return \PlanB\Beautifier\Beautifier::make()
+            ->dump($value);
     }
 }
 
-if (!function_exists('beautify_type')) {
-
-    /**
-     * Devuelve la representación de $value como cadena de texto
-     *
-     * @param mixed $value
-     * @param bool|int|Format $format
-     *
-     * @return string
-     */
-    function beautify_type($type): string
-    {
-        return Beautifier::make()
-            ->type($type);
-    }
-}
 
 if (!function_exists('to_string')) {
 

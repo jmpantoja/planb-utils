@@ -7,6 +7,8 @@ use PhpSpec\Wrapper\ObjectWrapper;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Data\Data;
 use PlanB\Type\DataType\DataType;
+use PlanB\Type\Number\Number;
+use PlanB\Type\Text\Text;
 
 class DataSpec extends ObjectBehavior
 {
@@ -88,6 +90,9 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
+
         fclose($resource);
     }
 
@@ -138,6 +143,9 @@ class DataSpec extends ObjectBehavior
 
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
+
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
     public function it_can_determine_if_is_integer()
@@ -187,6 +195,8 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
 
@@ -235,6 +245,9 @@ class DataSpec extends ObjectBehavior
 
 
         $this->isInstanceOf(\Exception::class)
+            ->shouldReturn(false);
+
+        $this->isThrowable()
             ->shouldReturn(false);
 
     }
@@ -293,6 +306,9 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
     public function it_can_determine_if_is_countable_array()
@@ -342,6 +358,8 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
 
@@ -390,10 +408,11 @@ class DataSpec extends ObjectBehavior
         $this->isString()
             ->shouldReturn(false);
 
-
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
     public function it_can_determine_if_is_boolean()
@@ -441,6 +460,9 @@ class DataSpec extends ObjectBehavior
 
 
         $this->isInstanceOf(\Exception::class)
+            ->shouldReturn(false);
+
+        $this->isThrowable()
             ->shouldReturn(false);
 
     }
@@ -493,6 +515,8 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
 
@@ -543,6 +567,8 @@ class DataSpec extends ObjectBehavior
         $this->isInstanceOf(\Exception::class)
             ->shouldReturn(false);
 
+        $this->isThrowable()
+            ->shouldReturn(false);
     }
 
     public function it_can_determine_if_is_an_instance_of_another_class_or_interface()
@@ -566,6 +592,7 @@ class DataSpec extends ObjectBehavior
         $this->isTypeOf(Type::CALLABLE)
             ->shouldReturn(false);
 
+
     }
 
     public function it_can_determine_if_is_an_type_of_native()
@@ -579,6 +606,18 @@ class DataSpec extends ObjectBehavior
             ->shouldReturn(true);
 
 
+    }
+
+    public function it_can_determine_if_is_throwable(\Throwable $object)
+    {
+
+        $this->build($object);
+
+        $this->isThrowable()
+            ->shouldReturn(true);
+
+        $this->isTypeOf(Type::STRING, Type::THROWABLE, Type::INTEGER)
+            ->shouldReturn(true);
     }
 
     public function it_can_determine_if_is_countable(\Countable $object)
@@ -633,7 +672,6 @@ class DataSpec extends ObjectBehavior
     }
 
 
-
     public function it_can_return_the_typename_on_scalar()
     {
         $this->build(self::TEXT);
@@ -678,6 +716,37 @@ class DataSpec extends ObjectBehavior
             ->shouldReturn(false);
 
     }
+
+    public function it_retrieve_the_type_of_the_data()
+    {
+
+        $this->build(new \Exception());
+
+        $this->getType()->shouldBeLike(DataType::make(\Exception::class));
+        $this->getTypeName()->shouldBeLike(\Exception::class);
+    }
+
+    public function it_retrieve_a_stringifable_data_as_string()
+    {
+
+        $this->build(Text::make('hola'));
+
+        $this->stringify()->shouldReturn('hola');
+    }
+
+    public function it_retrieve_a_hashable_data_as_string()
+    {
+        $this->build(Number::make(15674));
+        $this->stringify()->shouldReturn("15674");
+    }
+
+
+    public function it_retrieve_a_object_data_as_string()
+    {
+        $this->build(new \stdClass());
+        $this->stringify()->shouldReturn(\stdClass::class);
+    }
+
 
     private function build($variable = self::TEXT): void
     {

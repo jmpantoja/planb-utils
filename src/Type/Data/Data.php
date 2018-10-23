@@ -15,12 +15,15 @@ use Ds\Hashable;
 use PlanB\Type\DataType\DataType;
 use PlanB\Type\DataType\Type;
 use PlanB\Type\Stringifable;
+use PlanB\Utils\Traits\Stringify;
 
 /**
  * Representa al tipo de una variable
  */
-class Data
+class Data implements Stringifable
 {
+    use Stringify;
+
     /**
      * @var mixed
      */
@@ -95,7 +98,18 @@ class Data
      */
     public function isCountable(): bool
     {
-        return is_array($this->variable) || $this->variable instanceof \Countable;
+        return is_array($this->variable) || $this->isInstanceOf(\Countable::class);
+        ;
+    }
+
+    /**
+     * Indica si la variable es throwable
+     *
+     * @return bool
+     */
+    public function isThrowable(): bool
+    {
+        return $this->isInstanceOf(\Throwable::class);
     }
 
     /**
@@ -296,6 +310,17 @@ class Data
         return DataType::make($typeName);
     }
 
+
+    /**
+     * Devuelve el tipo
+     *
+     * @return string
+     */
+    public function getTypeName(): string
+    {
+        return $this->getType()->stringify();
+    }
+
     /**
      * Devuelve el valor
      *
@@ -304,5 +329,23 @@ class Data
     public function getValue()
     {
         return $this->variable;
+    }
+
+    /**
+     * __toString alias
+     *
+     * @return string
+     */
+    public function stringify(): string
+    {
+        if ($this->isConvertibleToString()) {
+            return (string) $this->getValue();
+        }
+
+        if ($this->isHashable()) {
+            return (string) $this->getValue()->hash();
+        }
+
+        return $this->getTypeName();
     }
 }

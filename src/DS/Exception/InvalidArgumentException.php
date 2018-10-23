@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace PlanB\DS\Exception;
 
-use PlanB\Type\Text\Text;
-
 /**
  * Se lanza cuando se trata de añadir un valor considerado no valido
  */
@@ -42,9 +40,10 @@ class InvalidArgumentException extends \InvalidArgumentException
      */
     public static function make($data, string $reason, ?\Throwable $previous = null): self
     {
+
         $message = self::buildMessage($data, $reason);
 
-        return new static($message->stringify(), $previous);
+        return new static($message, $previous);
     }
 
     /**
@@ -53,21 +52,35 @@ class InvalidArgumentException extends \InvalidArgumentException
      * @param mixed  $data
      * @param string $reason
      *
-     * @return \PlanB\Type\Text\Text
+     * @return string
      */
-    private static function buildMessage($data, string $reason): Text
+    private static function buildMessage($data, string $reason): string
     {
+        $template = self::getTemplate();
 
-        $notValid = cli_line('NOT VALID')->bold()->underscore();
-
-        $message = cli_msg([
-            beautify($data),
-            cli_line('is %s', $notValid),
-            cli_blank(),
-            'because:',
-            $reason,
+        $message = beautify_parse($template, [
+            'value' => $data,
+            'not_valid' => 'NOT VALID',
+            'reason' => $reason,
         ]);
 
-        return $message->block();
+        return $message;
+    }
+
+    /**
+     * Devuelve la template para el mensaje
+     *
+     * @return string
+     */
+    private static function getTemplate(): string
+    {
+        $template = <<<eof
+    <type:value>
+    is <strong:not_valid>
+    because:
+    <reason>
+eof;
+
+        return $template;
     }
 }

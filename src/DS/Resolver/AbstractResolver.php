@@ -12,12 +12,10 @@ declare(strict_types=1);
 namespace PlanB\DS\Resolver;
 
 use Ds\PriorityQueue;
-use PlanB\Console\Beautifier\Beautifier;
 use PlanB\DS\Resolver\Rule\Rule;
 use PlanB\DS\Resolver\Rule\RuleFactory;
 use PlanB\DS\Resolver\Rule\RuleInterface;
 use PlanB\Type\DataType\DataType;
-use PlanB\Type\Text\Text;
 
 /**
  * Resuelve un valor antes de ser añadido a una colección
@@ -96,7 +94,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade un nuevo loader
      *
      * @param callable $callback
-     * @param string ...$types
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
@@ -113,7 +111,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade una nueva regla
      *
      * @param callable $callback
-     * @param string ...$types
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
@@ -130,7 +128,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade un nuevo converter
      *
      * @param callable $callback
-     * @param string ...$types
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
@@ -147,7 +145,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade un nuevo converter
      *
      * @param callable $callback
-     * @param string ...$types
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
@@ -164,7 +162,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade un nuevo filter
      *
      * @param callable $callback
-     * @param string ...$types
+     * @param string   ...$types
      *
      * @return \PlanB\DS\Resolver\ResolverInterface
      */
@@ -181,7 +179,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Añade una nueva regla, con prioridad
      *
      * @param \PlanB\DS\Resolver\Rule\RuleInterface $rule
-     * @param int $priority
+     * @param int                                   $priority
      */
     private function addRule(RuleInterface $rule, int $priority): void
     {
@@ -192,9 +190,9 @@ abstract class AbstractResolver implements ResolverInterface
      * Resuelve un valor
      *
      * @param callable $callback
-     * @param mixed $value
+     * @param mixed    $value
      *
-     * @param mixed $key
+     * @param mixed    $key
      *
      * @throws \Throwable
      */
@@ -213,7 +211,7 @@ abstract class AbstractResolver implements ResolverInterface
      * Resuelve un conjunto de valores
      *
      * @param callable $callback
-     * @param mixed[] $values
+     * @param mixed[]  $values
      *
      * @throws \Throwable
      */
@@ -272,10 +270,11 @@ abstract class AbstractResolver implements ResolverInterface
                 return;
             }
 
-            $beautifier = Beautifier::make();
-            $type = $this->type->stringify();
+            $reason = beautify_parse('a <type:type> was expected', [
+                'type' => $this->type->stringify(),
+            ]);
 
-            $input->reject('a %s was expected', $beautifier->type($type));
+            $input->reject($reason);
         })->execute($input);
     }
 

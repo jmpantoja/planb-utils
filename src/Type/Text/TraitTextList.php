@@ -27,10 +27,9 @@ trait TraitTextList
      */
     public function configure(ResolverInterface $resolver): void
     {
-
         $resolver
             ->type(Text::class)
-            ->converter(function ($value) {
+            ->rule(function ($value) {
                 return Text::make($value);
             }, Type::STRINGIFABLE);
     }

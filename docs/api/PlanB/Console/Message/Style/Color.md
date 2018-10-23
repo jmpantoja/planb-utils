@@ -12,15 +12,15 @@
 
 
 ## Constants
-- DEFAULT
-- BLACK
-- RED
-- GREEN
-- YELLOW
-- BLUE
-- MAGENTA
-- CYAN
 - WHITE
+- DEFAULT
+- CYAN
+- RED
+- YELLOW
+- MAGENTA
+- GREEN
+- BLUE
+- BLACK
 
 
 

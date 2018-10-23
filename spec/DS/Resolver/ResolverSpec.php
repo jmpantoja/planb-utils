@@ -202,6 +202,10 @@ class ResolverSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 1);
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 3);
         $this->shouldThrow(InvalidArgumentException::class)->duringValue($invoker, 5);
+
+        $this->shouldNotThrow()->duringValue($invoker, 2);
+        $this->shouldNotThrow()->duringValue($invoker, 4);
+        $this->shouldNotThrow()->duringValue($invoker, 6);
     }
 
 

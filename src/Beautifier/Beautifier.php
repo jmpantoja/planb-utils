@@ -1,98 +1,88 @@
 <?php
-
 /**
  * This file is part of the planb project.
  *
- * (c) jmpantoja <jmpantoja@gmail.com>
+ * (c) Jose Manuel Pantoja <jmpantoja@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 declare(strict_types=1);
 
 namespace PlanB\Beautifier;
 
-use PlanB\Beautifier\Formatter\FormatterFactory;
-use PlanB\Type\Data\Data;
+use PlanB\Beautifier\Format\FormatFactory;
+use PlanB\Beautifier\Format\FormatInterface;
+use PlanB\Beautifier\Parser\ParserFactory;
 
 /**
- * Representa de una forma amigable una variable
+ * Crea representaciones de variables con un estilo aplicado
  */
 class Beautifier
 {
-
-    /**
-     * @var FormatterFactory
-     */
-    private $factory;
-
     /**
      * Beautifier named constructor.
-     * @param null|FormatterFactory $factory
-     * @return Beautifier
+     *
+     * @return \PlanB\Beautifier\Beautifier
      */
-    public static function make(?FormatterFactory $factory = null): self
+    public static function make(): self
     {
-        $factory = $factory ?? FormatterFactory::make();
-        return new static($factory);
+        return new static();
     }
 
     /**
      * Beautifier constructor.
-     * @param FormatterFactory $factory
      */
-    protected function __construct(FormatterFactory $factory)
+    protected function __construct()
     {
-        $this->factory = $factory;
     }
 
     /**
-     * Devuelve la representación de una variable
+     * Parsea una plantilla
      *
-     * @param mixed $value
+     * @param string                            $template
+     * @param mixed[]                           $values
+     *
+     * @param null|\PlanB\Beautifier\Enviroment $enviroment
+     *
      * @return string
      */
-    public function dump($value): string
+    public function parse(string $template, array $values, ?Enviroment $enviroment = null): string
     {
-        $formatter = $this->factory->getByContext(PHP_SAPI);
-        return $formatter->dump($value);
+        $parser = ParserFactory::factory($enviroment);
+
+        return $parser->parse($template, $values);
+    }
+
+
+    /**
+     * Devuelve la representacion de una variable
+     *
+     * @param mixed                             $value
+     * @param null|\PlanB\Beautifier\Enviroment $enviroment
+     *
+     * @return string
+     */
+    public function dump($value, ?Enviroment $enviroment = null): string
+    {
+
+        $format = FormatFactory::factory($value);
+
+        return $this->format($format, $enviroment);
     }
 
     /**
-     * Devuelve la representación de una variable para la consola de simfony
+     * Devuelve la representación de un objeto format
      *
-     * @param mixed $value
+     * @param \PlanB\Beautifier\Format\FormatInterface $format
+     * @param null|\PlanB\Beautifier\Enviroment        $enviroment
+     *
      * @return string
      */
-    public function toConsole($value): string
+    public function format(FormatInterface $format, ?Enviroment $enviroment = null): string
     {
-        $formatter = $this->factory->getConsole();
-        return $formatter->dump($value);
-    }
+        $parser = ParserFactory::factory($enviroment);
 
-    /**
-     * Devuelve la representación de una variable para html
-     *
-     * @param mixed $value
-     * @return string
-     */
-    public function toHtml($value): string
-    {
-        $formatter = $this->factory->getHtml();
-        return $formatter->dump($value);
+        return $parser->format($format);
     }
-
-    /**
-     * Devuelve la representación de una variable en texto plano
-     *
-     * @param mixed $value
-     * @return string
-     */
-    public function toPlainText($value): string
-    {
-        $formatter = $this->factory->getPlainText();
-        return $formatter->dump($value);
-    }
-
 }

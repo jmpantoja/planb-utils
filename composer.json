@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "files": [
-            "src/Resources/functions/cli.php",
+            "src/Resources/functions/beautify.php",
             "src/Resources/functions/hydrator.php",
             "src/Resources/functions/number.php",
             "src/Resources/functions/path.php",

@@ -23,13 +23,13 @@ class FormatFactory extends Factory
     /**
      * @param mixed $value
      *
-     * @return \PlanB\Beautifier\Format\FormatInterface
+     * @return null|\PlanB\Beautifier\Format\FormatInterface
      */
     public static function factory($value): FormatInterface
     {
         $data = Data::make($value);
 
-        return self::evaluate($data);
+        return self::evaluate($data)->isInstanceOf(FormatInterface::class)->getValue();
     }
 
 
@@ -133,9 +133,9 @@ class FormatFactory extends Factory
      *
      * @param \PlanB\Type\Data\Data $data
      *
-     * @return null|\PlanB\Beautifier\Format\DataFormat
+     * @return \PlanB\Beautifier\Format\DataFormat
      */
-    public function makeObject(Data $data): ?ObjectFormat
+    public function makeObject(Data $data): ObjectFormat
     {
         return ObjectFormat::make($data);
     }

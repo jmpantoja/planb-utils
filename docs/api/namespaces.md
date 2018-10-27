@@ -37,6 +37,7 @@
 * [PlanB\Type\Text](PlanB/Type/Text.md)
 * [PlanB\Utils](PlanB/Utils.md)
 * [PlanB\Utils\Hydrator](PlanB/Utils/Hydrator.md)
+* [PlanB\Utils\Loop](PlanB/Utils/Loop.md)
 * [PlanB\Utils\Options](PlanB/Utils/Options.md)
 * [PlanB\Utils\Options\Exception](PlanB/Utils/Options/Exception.md)
 * [PlanB\Utils\Traits](PlanB/Utils/Traits.md)

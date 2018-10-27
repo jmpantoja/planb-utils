@@ -14,9 +14,6 @@ declare(strict_types=1);
 use \PlanB\Type\Text\Text;
 use \PlanB\Type\Text\TextAssurance;
 use \PlanB\Type\Data\Data;
-use \PlanB\Console\Beautifier\Beautifier;
-use \PlanB\Console\Beautifier\Format;
-
 
 if (!function_exists('ensure_text')) {
     /**
@@ -98,23 +95,6 @@ if (!function_exists('to_snake_case')) {
     function to_snake_case(string $text, string $separator = '_'): string
     {
         return (string)Text::make($text)->toSnakeCase($separator);
-    }
-}
-
-if (!function_exists('beautify2')) {
-
-    /**
-     * Devuelve la representación de $value como cadena de texto
-     *
-     * @param mixed $value
-     * @param bool|int|Format $format
-     *
-     * @return string
-     */
-    function beautify2($value): string
-    {
-        return \PlanB\Beautifier\Beautifier::make()
-            ->dump($value);
     }
 }
 

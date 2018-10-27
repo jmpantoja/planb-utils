@@ -63,7 +63,7 @@ abstract class AbstractSet implements \IteratorAggregate, \ArrayAccess, SetInter
      */
     protected function duplicate(iterable $input = []): SetInterface
     {
-        return new static($input, $this->resolver);
+        return new static($input);
     }
 
     /**

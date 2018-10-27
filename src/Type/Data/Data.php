@@ -278,11 +278,9 @@ class Data implements Stringifable
      */
     public function isConvertibleToString(): bool
     {
+        $isConvertible = $this->isScalar() || $this->isTypeOf(Stringifable::class) || $this->isNull();
 
-        $isScalar = is_scalar($this->variable);
-        $isStringifable = $this->variable instanceof Stringifable;
-
-        if ($isScalar || $isStringifable) {
+        if ($isConvertible) {
             return true;
         }
 

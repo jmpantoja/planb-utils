@@ -75,7 +75,7 @@ class DataType implements Stringifable
      */
     public function isSameOf(string $classOrInterfaceName): bool
     {
-        return $this->type === $classOrInterfaceName;
+        return  0 === strcasecmp($this->type, $classOrInterfaceName);
     }
 
     /**
@@ -115,14 +115,12 @@ class DataType implements Stringifable
      */
     public function isTypeOf(string ...$allowed): bool
     {
-
         $allowed = new \DS\Set($allowed);
 
         $found = $allowed
             ->filter(function ($type) {
                 return $this->isClassOf($type);
             });
-
 
         return !$found->isEmpty();
     }

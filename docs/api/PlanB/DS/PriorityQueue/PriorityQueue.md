@@ -12,6 +12,7 @@ always be at the front of the queue.
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 
@@ -23,21 +24,6 @@ always be at the front of the queue.
 
 
 ## Methods
-
-### __construct
-AbstractVector constructor.
-
-
-abstract **PriorityQueue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
-
----
-
 
 ### clear
 Removes all values from the collection.
@@ -135,12 +121,12 @@ Retrieve an external iterator
 
 
 
-protected **PriorityQueue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **PriorityQueue::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -149,12 +135,12 @@ protected **PriorityQueue::bind**([Resolver](../../../Resolver.md) $resolver = n
 Configura esta colección
 
 
-**PriorityQueue::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **PriorityQueue::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -177,6 +163,21 @@ Crea la estructura de datos interna
 abstract protected **PriorityQueue::makeInternal**() : [Collection](../../../Collection.md)
 
 
+
+---
+
+
+### __construct
+AbstractPriorityQueue constructor.
+
+
+**PriorityQueue::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 

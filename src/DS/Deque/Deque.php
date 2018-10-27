@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Deque;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A Deque (pronounced "deck") is a sequence of values in a contiguous buffer
@@ -25,6 +26,8 @@ use PlanB\DS\Resolver\Resolver;
  */
 final class Deque extends AbstractDeque
 {
+    use TraitFinal;
+
     /**
      * @param mixed[] $input
      *

@@ -57,12 +57,12 @@ protected **ParserFactory::configure**() : void
 Registra un método
 
 
-**ParserFactory::register**(string|array $method) : 
+**ParserFactory::register**(string|mixed[] $method) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|string|array |$method |  |
+|string|mixed[] |$method |  |
 
 ---
 

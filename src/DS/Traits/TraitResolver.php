@@ -53,9 +53,7 @@ trait TraitResolver
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function configure(ResolverInterface $resolver): void
-    {
-    }
+    abstract public function configure(ResolverInterface $resolver): void;
 
     /**
      * Devuelve el tipo de la colección

@@ -24,7 +24,7 @@ class HtmlTagDecorator implements DecoratorInterface
     /**
      * ConsoleParser named constructor
      *
-     * @return \PlanB\Beautifier\Parser\Decorator\ConsoleParser
+     * @return \PlanB\Beautifier\Parser\Decorator\HtmlTagDecorator
      */
     public static function make(): self
     {

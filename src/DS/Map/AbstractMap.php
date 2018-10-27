@@ -71,7 +71,7 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     protected function duplicate(iterable $input = []): MapInterface
     {
-        return new static($input, $this->resolver);
+        return new static($input);
     }
 
     /**
@@ -290,10 +290,9 @@ abstract class AbstractMap implements \IteratorAggregate, \ArrayAccess, MapInter
      */
     public function map(callable $callback): MapInterface
     {
-        return $this->duplicate(
-            $this->items->map($callback)
-        );
+        return new static($this->items->map($callback));
     }
+
 
     /**
      * Returns a sequence of pairs representing all associations.

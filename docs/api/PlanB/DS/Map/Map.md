@@ -11,6 +11,7 @@ array used in a similar context. Keys can be any type, but must be unique.
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitArray
@@ -120,12 +121,12 @@ Retrieve an external iterator
 
 
 
-protected **Map::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Map::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -134,12 +135,12 @@ protected **Map::bind**([Resolver](../../../Resolver.md) $resolver = null) :
 Configura esta colección
 
 
-**Map::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **Map::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -162,35 +163,6 @@ Crea la estructura de datos interna
 abstract protected **Map::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-
-
-
-static **Map::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Map::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -259,13 +231,13 @@ Offset to unset
 AbstractMap constructor.
 
 
-**Map::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Map::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -690,6 +662,20 @@ map, but not of both.
 |Parameters: | | |
 | --- | --- | --- |
 |[Map](../../../Map.md) |$map |  |
+
+---
+
+
+### make
+
+
+
+static **Map::make**([iterable](../../../iterable.md) $input = []) : [Map](../../../Map.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

@@ -97,6 +97,7 @@ trait TraitCollection
         return $this->items->toArray();
     }
 
+
     /**
      * Invoked when calling var_dump.
      *

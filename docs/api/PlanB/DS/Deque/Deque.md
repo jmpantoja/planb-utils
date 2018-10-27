@@ -13,6 +13,7 @@ at both ends of the buffer, ie. shift, unshift, push and pop are all O(1).
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitSequence
@@ -123,12 +124,12 @@ Retrieve an external iterator
 
 
 
-protected **Deque::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Deque::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -137,12 +138,12 @@ protected **Deque::bind**([Resolver](../../../Resolver.md) $resolver = null) :
 Configura esta colección
 
 
-**Deque::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **Deque::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -165,35 +166,6 @@ Crea la estructura de datos interna
 abstract protected **Deque::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-
-
-
-static **Deque::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Deque::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -667,13 +639,27 @@ Offset to unset
 AbstractDeque constructor.
 
 
-**Deque::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Deque::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
+
+---
+
+
+### make
+
+
+
+static **Deque::make**([iterable](../../../iterable.md) $input = []) : [Deque](../../../Deque.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

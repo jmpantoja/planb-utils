@@ -11,6 +11,7 @@ value at the front of the queue and iterates in that order, destructively.
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitArray
@@ -120,12 +121,12 @@ Retrieve an external iterator
 
 
 
-protected **Queue::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Queue::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -134,12 +135,12 @@ protected **Queue::bind**([Resolver](../../../Resolver.md) $resolver = null) :
 Configura esta colección
 
 
-**Queue::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **Queue::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -162,35 +163,6 @@ Crea la estructura de datos interna
 abstract protected **Queue::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-
-
-
-static **Queue::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Queue::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -259,13 +231,13 @@ Offset to unset
 AbstractQueue constructor.
 
 
-**Queue::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Queue::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -296,12 +268,12 @@ Returns the value at the front of the queue without removing it.
 Pushes one value onto the top of the queue.
 
 
-**Queue::push**(mixed $input) : [Queue](../../../Queue.md)
+**Queue::push**(mixed $value) : [Queue](../../../Queue.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 
@@ -311,6 +283,20 @@ Pushes zero or more values onto the top of the queue.
 
 
 **Queue::pushAll**([iterable](../../../iterable.md) $input) : [Stack](../../../Stack.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### make
+
+
+
+static **Queue::make**([iterable](../../../iterable.md) $input = []) : [Queue](../../../Queue.md)
 
 
 |Parameters: | | |

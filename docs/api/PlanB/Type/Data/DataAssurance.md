@@ -82,6 +82,17 @@ static **DataAssurance::make**(mixed $variable) : [DataAssurance](../../../DataA
 ---
 
 
+### getValue
+Devuelve el valor que estamos evaluando
+
+
+**DataAssurance::getValue**() : mixed
+
+
+
+---
+
+
 ### isArray
 
 

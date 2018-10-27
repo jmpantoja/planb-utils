@@ -28,7 +28,7 @@ class StyleFactory extends Factory
      */
     public static function factory(StyleType $type): Style
     {
-        return self::evaluate($type);
+        return self::evaluate($type)->isInstanceOf(Style::class)->getValue();
     }
 
     /**
@@ -63,7 +63,7 @@ class StyleFactory extends Factory
 
         return Style::make()
             ->setFgColor(Color::CYAN())
-            ->bold(true);
+            ->bold();
     }
 
     /**

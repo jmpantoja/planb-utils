@@ -10,6 +10,7 @@
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitArray
@@ -119,12 +120,12 @@ Retrieve an external iterator
 
 
 
-protected **Set::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Set::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -133,12 +134,12 @@ protected **Set::bind**([Resolver](../../../Resolver.md) $resolver = null) :
 Configura esta colección
 
 
-**Set::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **Set::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -161,35 +162,6 @@ Crea la estructura de datos interna
 abstract protected **Set::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-
-
-
-static **Set::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Set::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -258,13 +230,13 @@ Offset to unset
 AbstractSet constructor.
 
 
-**Set::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Set::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -547,6 +519,20 @@ Formally: A ∪ B = {x: x ∈ A ∨ x ∈ B}
 |Parameters: | | |
 | --- | --- | --- |
 |[Set](../../../Set.md) |$set |  |
+
+---
+
+
+### make
+
+
+
+static **Set::make**([iterable](../../../iterable.md) $input = []) : [Set](../../../Set.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

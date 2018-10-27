@@ -13,6 +13,7 @@ growth factor isn't bound to a specific multiple or exponent.
 
 
 ## Traits
+- PlanB\DS\Traits\TraitFinal
 - PlanB\DS\Traits\TraitCollection
 - PlanB\DS\Traits\TraitResolver
 - PlanB\DS\Traits\TraitSequence
@@ -123,12 +124,12 @@ Retrieve an external iterator
 
 
 
-protected **Vector::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Vector::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -137,12 +138,12 @@ protected **Vector::bind**([Resolver](../../../Resolver.md) $resolver = null) :
 Configura esta colección
 
 
-**Vector::configure**([Resolver](../../../Resolver.md) $resolver) : void
+abstract **Vector::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -165,35 +166,6 @@ Crea la estructura de datos interna
 abstract protected **Vector::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-Vector named constructor.
-
-
-static **Vector::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Vector::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -667,13 +639,27 @@ Offset to unset
 AbstractVector constructor.
 
 
-**Vector::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Vector::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
+
+---
+
+
+### make
+Vector named constructor.
+
+
+static **Vector::make**([iterable](../../../iterable.md) $input = []) : [Vector](../../../Vector.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
 
 ---
 

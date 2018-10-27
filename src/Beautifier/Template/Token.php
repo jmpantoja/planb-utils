@@ -24,8 +24,6 @@ use PlanB\Type\Data\Data;
  */
 class Token
 {
-
-
     /**
      * @var \Ds\Map
      */
@@ -72,19 +70,8 @@ class Token
      */
     protected function __construct(string $token, Map $replacements)
     {
-        $this->replacements = $replacements;
-
-        $this->initialize($token);
-    }
-
-    /**
-     * Establece las propiedades de este objeto
-     *
-     * @param string $token
-     */
-    protected function initialize(string $token): void
-    {
         $tag = Tag::make($token);
+        $this->replacements = $replacements;
 
         $this->original = $token;
         $this->style = $tag->style();
@@ -125,7 +112,7 @@ class Token
      */
     public function value(): ?string
     {
-        if (is_null($this->key)) {
+        if (is_empty($this->key)) {
             return $this->original;
         }
 

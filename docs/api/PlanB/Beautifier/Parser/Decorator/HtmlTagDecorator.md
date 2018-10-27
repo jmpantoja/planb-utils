@@ -21,7 +21,7 @@
 ConsoleParser named constructor
 
 
-static **HtmlTagDecorator::make**() : [ConsoleParser](../../../../ConsoleParser.md)
+static **HtmlTagDecorator::make**() : [HtmlTagDecorator](../../../../HtmlTagDecorator.md)
 
 
 

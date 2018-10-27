@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Map;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A Map is a sequential collection of key-value pairs, almost identical to an
@@ -21,6 +22,8 @@ use PlanB\DS\Resolver\Resolver;
  */
 final class Map extends AbstractMap
 {
+    use TraitFinal;
+
     /**
      * @param mixed[] $input
      *

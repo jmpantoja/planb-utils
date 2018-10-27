@@ -50,7 +50,7 @@ class FactorySpec extends ObjectBehavior
         $value = Number::make(84563);
         $this->build($value);
 
-        $this->shouldThrow(\TypeError::class)->duringInstantiation();
+        $this->shouldThrow(\AssertionError::class)->duringInstantiation();
     }
 
     public function it_throws_an_exception_when_register_an_invalid_method()

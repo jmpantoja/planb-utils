@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\PriorityQueue;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A PriorityQueue is very similar to a Queue. Values are pushed into the queue
@@ -22,6 +23,7 @@ use PlanB\DS\Resolver\Resolver;
  */
 final class PriorityQueue extends AbstractPriorityQueue
 {
+    use TraitFinal;
 
     /**
      * @param mixed[] $input

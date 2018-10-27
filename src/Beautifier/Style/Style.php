@@ -106,7 +106,7 @@ class Style
             return '';
         }
 
-        return $this->fgColor->getValue();
+        return (string) $this->fgColor->getValue();
     }
 
     /**
@@ -134,7 +134,7 @@ class Style
             return '';
         }
 
-        return $this->bgColor->getValue();
+        return (string) $this->bgColor->getValue();
     }
 
     /**

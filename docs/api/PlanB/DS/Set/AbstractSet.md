@@ -133,7 +133,7 @@ protected **AbstractSet::bind**([ResolverInterface](../../../ResolverInterface.m
 Configura esta colección
 
 
-**AbstractSet::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
+abstract **AbstractSet::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |

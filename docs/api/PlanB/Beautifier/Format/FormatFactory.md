@@ -21,12 +21,12 @@
 Evalua una condición y devuelve el valor apropiado
 
 
-static **FormatFactory::evaluate**(...$arguments) : mixed
+static **FormatFactory::evaluate**(mixed ...$arguments) : mixed
 
 
 |Parameters: | | |
 | --- | --- | --- |
-| |...$arguments |  |
+|mixed |...$arguments |  |
 
 ---
 
@@ -57,12 +57,12 @@ protected **FormatFactory::configure**() : void
 Registra un método
 
 
-**FormatFactory::register**($method) : 
+**FormatFactory::register**(string|mixed[] $method) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-| |$method |  |
+|string|mixed[] |$method |  |
 
 ---
 
@@ -85,7 +85,7 @@ protected **FormatFactory::create**(mixed ...$arguments) : mixed
 
 
 
-static **FormatFactory::factory**(mixed $value) : [FormatInterface](../../../FormatInterface.md)
+static **FormatFactory::factory**(mixed $value) : null|[FormatInterface](../../../FormatInterface.md)
 
 
 |Parameters: | | |
@@ -169,7 +169,7 @@ Crea un objeto DataFormat
 Crea un objeto ObjectFormat
 
 
-**FormatFactory::makeObject**([Data](../../../Data.md) $data) : null|[DataFormat](../../../DataFormat.md)
+**FormatFactory::makeObject**([Data](../../../Data.md) $data) : [DataFormat](../../../DataFormat.md)
 
 
 |Parameters: | | |

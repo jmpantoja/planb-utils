@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace PlanB\Pattern\Factory;
 
+use PlanB\Type\Data\DataAssurance;
 use PlanB\Type\DataType\Type;
 
 /**
@@ -21,7 +22,7 @@ use PlanB\Type\DataType\Type;
 abstract class Factory
 {
     /**
-     * @var \PlanB\DS\Queue\Queue
+     * @var \PlanB\Pattern\Factory\FactoryMethodList
      */
     private $methods;
 
@@ -32,10 +33,12 @@ abstract class Factory
      *
      * @return mixed
      */
-    public static function evaluate(...$arguments)
+    public static function evaluate(...$arguments): DataAssurance
     {
-        return (new static())
+        $response = (new static())
             ->create(...$arguments);
+
+        return ensure_data($response);
     }
 
     /**
@@ -82,7 +85,6 @@ abstract class Factory
     protected function create(...$arguments)
     {
         $response = null;
-
         while ($method = $this->methods->next($response)) {
             $response = call_user_func($method, ...$arguments);
         }

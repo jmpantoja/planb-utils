@@ -47,20 +47,6 @@ protected **Token::__construct**(string $token, [Map](../../../Map.md) $replacem
 ---
 
 
-### initialize
-Establece las propiedades de este objeto
-
-
-protected **Token::initialize**(string $token) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|string |$token |  |
-
----
-
-
 ### setLineWidth
 Asigna el ancho máximo de linea
 

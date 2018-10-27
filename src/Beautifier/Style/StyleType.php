@@ -25,6 +25,7 @@ use MabeEnum\Enum;
  * @method static Style STRONG()
  * @method static Style EXCEPTION_HEADER()
  * @method static Style EXCEPTION_BODY()
+ * @method static Style EXCEPTION_TRACE()
  */
 class StyleType extends Enum
 {

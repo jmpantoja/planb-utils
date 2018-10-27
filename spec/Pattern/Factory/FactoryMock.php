@@ -28,8 +28,7 @@ class FactoryMock extends Factory
     public static function factory($value): string
     {
         $data = Data::make($value);
-        return self::evaluate($data, $value);
-
+        return self::evaluate($data, $value)->isString()->getValue();
     }
 
     /**

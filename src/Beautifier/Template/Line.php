@@ -74,13 +74,13 @@ class Line extends AbstractVector
      *
      * @param string $template
      *
-     * @return string[]
+     * @return mixed[]
      */
     private function getWords(string $template): array
     {
         $flags = PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY;
 
-        return preg_split(self::WORD_DELIMITER, $template, -1, $flags);
+        return (array) preg_split(self::WORD_DELIMITER, $template, -1, $flags);
     }
 
     /**
@@ -88,7 +88,7 @@ class Line extends AbstractVector
      *
      * @param string $word
      *
-     * @return string[]
+     * @return mixed[]
      */
     private function getTokens(string $word): array
     {

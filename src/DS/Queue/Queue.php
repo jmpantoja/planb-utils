@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Queue;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A “first in, first out” or “FIFO” collection that only allows access to the
@@ -21,6 +22,8 @@ use PlanB\DS\Resolver\Resolver;
  */
 final class Queue extends AbstractQueue
 {
+    use TraitFinal;
+
     /**
      * @param mixed[] $input
      *

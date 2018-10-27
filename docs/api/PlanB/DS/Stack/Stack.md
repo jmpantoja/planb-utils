@@ -120,26 +120,26 @@ Retrieve an external iterator
 
 
 
-protected **Stack::bind**([Resolver](../../../Resolver.md) $resolver = null) : 
+protected **Stack::bind**([ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
 
 ### configure
-Configura esta colección
 
 
-**Stack::configure**([Resolver](../../../Resolver.md) $resolver) : void
+
+**Stack::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -162,35 +162,6 @@ Crea la estructura de datos interna
 abstract protected **Stack::makeInternal**() : [Collection](../../../Collection.md)
 
 
-
----
-
-
-### make
-
-
-
-static **Stack::make**([iterable](../../../iterable.md) $input = []) : mixed
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[iterable](../../../iterable.md) |$input |  |
-
----
-
-
-### hook
-Resuelve los valores antes de ser añadidos desde algun método
-
-
-abstract protected **Stack::hook**(callable $callback, mixed ...$values) : 
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|callable |$callback |  |
-|mixed |...$values |  |
 
 ---
 
@@ -259,13 +230,13 @@ Offset to unset
 AbstractStack constructor.
 
 
-**Stack::__construct**([iterable](../../../iterable.md) $input, [Resolver](../../../Resolver.md) $resolver = null) : 
+**Stack::__construct**([iterable](../../../iterable.md) $input, [ResolverInterface](../../../ResolverInterface.md) $resolver = null) : 
 
 
 |Parameters: | | |
 | --- | --- | --- |
 |[iterable](../../../iterable.md) |$input |  |
-|[Resolver](../../../Resolver.md) |$resolver |  |
+|[ResolverInterface](../../../ResolverInterface.md) |$resolver |  |
 
 ---
 
@@ -296,12 +267,12 @@ Returns and removes the value at the top of the stack.
 Pushes one value onto the top of the stack.
 
 
-**Stack::push**(mixed $input) : [Stack](../../../Stack.md)
+**Stack::push**(mixed $value) : [Stack](../../../Stack.md)
 
 
 |Parameters: | | |
 | --- | --- | --- |
-|mixed |$input |  |
+|mixed |$value |  |
 
 ---
 
@@ -311,6 +282,20 @@ Pushes zero or more values onto the top of the stack.
 
 
 **Stack::pushAll**([iterable](../../../iterable.md) $input) : [Stack](../../../Stack.md)
+
+
+|Parameters: | | |
+| --- | --- | --- |
+|[iterable](../../../iterable.md) |$input |  |
+
+---
+
+
+### make
+
+
+
+static **Stack::make**([iterable](../../../iterable.md) $input = []) : [Stack](../../../Stack.md)
 
 
 |Parameters: | | |

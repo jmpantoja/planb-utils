@@ -1,46 +1,18 @@
 
                                                                                                                                             
     
-# MarginDecorator
-
-
-> Aplica el margen
->
-> 
+# PlanB\Utils\Loop
 
 
 
-
+## Classes
+| | |
+| --- | --- |
+| [PlanB\Utils\Loop\Loop](../../PlanB/Utils/Loop/Loop.md) |  |
 
 
 
 
-## Methods
-
-### make
-PaddingDecorator named constructor
-
-
-static **MarginDecorator::make**() : [MarginDecorator](../../../../MarginDecorator.md)
-
-
-
----
-
-
-### decorate
-
-
-
-**MarginDecorator::decorate**([Style](../../../../Style.md) $style, string $value) : string
-
-
-|Parameters: | | |
-| --- | --- | --- |
-|[Style](../../../../Style.md) |$style |  |
-|string |$value |  |
-
----
 
 
                                                                                                                                                                                                                                                                                                                                                                                                             

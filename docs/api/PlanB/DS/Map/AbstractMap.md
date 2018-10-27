@@ -134,7 +134,7 @@ protected **AbstractMap::bind**([ResolverInterface](../../../ResolverInterface.m
 Configura esta colección
 
 
-**AbstractMap::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
+abstract **AbstractMap::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |

@@ -103,4 +103,14 @@ class DataAssurance extends Assurance
     {
         return $this->data;
     }
+
+    /**
+     * Devuelve el valor que estamos evaluando
+     *
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->data->getValue();
+    }
 }

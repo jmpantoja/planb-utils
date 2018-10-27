@@ -24,7 +24,7 @@ class MarginDecorator implements DecoratorInterface
     /**
      * PaddingDecorator named constructor
      *
-     * @return \PlanB\Beautifier\Parser\Decorator\PaddingDecorator
+     * @return \PlanB\Beautifier\Parser\Decorator\MarginDecorator
      */
     public static function make(): self
     {

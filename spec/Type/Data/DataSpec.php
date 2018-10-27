@@ -707,7 +707,6 @@ class DataSpec extends ObjectBehavior
 
     }
 
-
     public function it_can_determine_if_value_is_not_convertible_to_string()
     {
         $this->build(new \stdClass());
@@ -716,6 +715,26 @@ class DataSpec extends ObjectBehavior
             ->shouldReturn(false);
 
     }
+
+    public function it_can_determine_that_a_null_value_is_convertible_to_string()
+    {
+        $this->build(null);
+
+        $this->isConvertibleToString()
+            ->shouldReturn(true);
+
+    }
+
+
+    public function it_can_determine_that_a_number_is_convertible_to_string()
+    {
+        $this->build(self::INTEGER);
+
+        $this->isConvertibleToString()
+            ->shouldReturn(true);
+
+    }
+
 
     public function it_retrieve_the_type_of_the_data()
     {

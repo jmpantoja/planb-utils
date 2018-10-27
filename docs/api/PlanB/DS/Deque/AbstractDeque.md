@@ -137,7 +137,7 @@ protected **AbstractDeque::bind**([ResolverInterface](../../../ResolverInterface
 Configura esta colección
 
 
-**AbstractDeque::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
+abstract **AbstractDeque::configure**([ResolverInterface](../../../ResolverInterface.md) $resolver) : void
 
 
 |Parameters: | | |

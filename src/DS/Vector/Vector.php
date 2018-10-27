@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Vector;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A Vector is a sequence of values in a contiguous buffer that grows and
@@ -23,6 +24,8 @@ use PlanB\DS\Resolver\Resolver;
  */
 final class Vector extends AbstractVector
 {
+    use TraitFinal;
+
     /**
      * Vector named constructor.
      *
@@ -34,6 +37,7 @@ final class Vector extends AbstractVector
     {
         return new static($input);
     }
+
 
     /**
      * Vector named constructor.

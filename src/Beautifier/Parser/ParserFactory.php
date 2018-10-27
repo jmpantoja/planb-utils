@@ -38,7 +38,7 @@ class ParserFactory extends Factory
     {
         $environment = $environment ?? Enviroment::getFromSapi(PHP_SAPI);
 
-        return self::evaluate($environment);
+        return self::evaluate($environment)->isInstanceOf(Parser::class)->getValue();
     }
 
     /**

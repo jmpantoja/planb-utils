@@ -15,12 +15,15 @@ namespace PlanB\DS\Set;
 
 use PlanB\DS\Collection;
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Traits\TraitFinal;
 
 /**
  * A sequence of unique values.
  */
 final class Set extends AbstractSet
 {
+    use TraitFinal;
+
     /**
      * @param mixed[] $input
      *
@@ -30,7 +33,6 @@ final class Set extends AbstractSet
     {
         return new static($input);
     }
-
 
     /**
      * Set named constructor.

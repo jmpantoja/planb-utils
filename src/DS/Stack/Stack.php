@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace PlanB\DS\Stack;
 
 use PlanB\DS\Resolver\Resolver;
+use PlanB\DS\Resolver\ResolverInterface;
 
 /**
  * A “last in, first out” or “LIFO” collection that only allows access to the
@@ -32,6 +33,14 @@ final class Stack extends AbstractStack
         return new static($input);
     }
 
+    /**
+     * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function configure(ResolverInterface $resolver): void
+    {
+    }
 
     /**
      * Stack named constructor.

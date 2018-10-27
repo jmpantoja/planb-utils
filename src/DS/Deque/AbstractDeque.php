@@ -67,6 +67,6 @@ abstract class AbstractDeque implements \IteratorAggregate, \ArrayAccess, DequeI
      */
     protected function duplicate(iterable $input = []): DequeInterface
     {
-        return new static($input, $this->resolver);
+        return new static($input);
     }
 }
